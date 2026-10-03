@@ -1,0 +1,2 @@
+# Maintainer document checks only; copied templates have no dependencies.
+PyYAML>=6.0,<7.0

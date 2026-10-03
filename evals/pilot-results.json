@@ -1,0 +1,716 @@
+{
+  "schema_version": 1,
+  "first_started_utc": "2026-10-03T17:57:15.051803+00:00",
+  "template_version": "0.1.0",
+  "agent": {
+    "cli_version": "codex-cli 0.159.0",
+    "model": "Existing CLI default; model ID was not emitted or recorded.",
+    "authentication": "Existing login; credentials were not copied."
+  },
+  "runner_sha256": "c294bc148709b732ad8318a68f220bd02bbda87842d400401f74ad89410f3245",
+  "checker_sha256": "ec39e2c29948dc2289eac1b0a9af25f363ca4171b42d481c63ade15eaba9ec08",
+  "payload_sha256": {
+    "lite": "940d96fef4ed3cc92af7c0c02efabb6929e3be0c97d806f17c5dabb110b03ee1",
+    "plan-first": "b1ba8b8fa195f917a724c5fc501ec40aef1e1d10f144606a8044a18d867d9003",
+    "brownfield": "219aa300ca71c472081502202036bb380f287ffe4928f16b0be64e2d4fc34fbf"
+  },
+  "fresh_conversations": 7,
+  "independent_behavior_case_executions": 160,
+  "original_test_executions": 16,
+  "all_observed_criteria_passed": true,
+  "scenarios": [
+    {
+      "scenario": "setup-first",
+      "profile": "plan-first",
+      "passed": true,
+      "final_work_status": "not started",
+      "thread_id": "01a102ee-a39c-7ba2-8a9e-ee826d67b427",
+      "cli_exit_code": 0,
+      "duration_seconds": 196.129429,
+      "observed_command_count": 17,
+      "observed_file_versions": 14,
+      "usage": {
+        "input_tokens": 159198,
+        "cached_input_tokens": 142464,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5034,
+        "reasoning_output_tokens": 1907
+      },
+      "checks": {
+        "fresh_cli_completed": true,
+        "history_bodies_not_emitted": true,
+        "existing_docs_preserved": true,
+        "existing_project_files_preserved": true,
+        "one_namespaced_pointer": true,
+        "existing_instructions_preserved": true,
+        "selected_profile": true,
+        "actual_context": true,
+        "document_contracts": true
+      },
+      "independent_behavior_cases": 0,
+      "original_test_executions": 0,
+      "history_body_canaries_emitted": 0,
+      "prompt_sha256": "d23f7b9e26308d8f2f65cea0b401e8dc9b849cf44b8361b7f38db5abf5b11af1",
+      "trace_sha256": "136e9d929dd592542199b63d615b41381f0e76bff21f9a1905931138a83de8f5",
+      "document_and_source_timeline": [],
+      "required_check_events": [
+        {
+          "seconds": 177.569213,
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            3
+          ]
+        },
+        {
+          "seconds": 177.57867,
+          "command": "/bin/bash -lc \"python3 - <<'PY'\nfrom pathlib import Path\nimport hashlib\nimport re\nfrom urllib.parse import unquote, urlsplit\n\nroot = Path.cwd()\ninstallation = root / 'docs/okms'\nsource = Path('/home/beebiz/workspace/okms/templates/plan-first/docs')\noriginal_hashes = {\n    '.gitignore': '862263fa1f46c20f0d1e4dac5ffcc75abd55c08211b2c3864c5f8764b9d87793',\n    'api.py': '2bbb9199b83be2a332940558cec80a79e45c26d0a7a5142526b6e3441d33bdfc',\n    'docs/README.md': 'ecae367341d4f1e7b9310fbddefb9ec96878cde5e3da5d44d39795b32f42b949',\n    'pagination.py': 'b734c4c00853a1669e7ac6136ab3d8fb07effae7fdd7ad4cda71f3d56e244fdb',\n    'tests/test_existing.py': '5ef975593f1dcebf87ee7eae5a8230b03529a656cec638ffd5639de574d20655',\n}\nfor relative, expected in original_hashes.items():\n    assert hashlib.sha256((root / relative).read_bytes()).hexdigest() == expected, relative\n\nagents = (root / 'AGENTS.md').read_bytes()\npointer = b'For implementation tasks, read and follow [the workflow](docs/okms/workflow.md), starting with [the docs index](docs/okms/index.md).\\\\n'\nassert agents.count(pointer) == 1, 'Workflow pointer must occur exactly once.'\nassert agents.endswith(b'\\\\n' + pointer)\noriginal_agents = agents[:-(len(pointer) + 1)]\nassert hashlib.sha256(original_agents).hexdigest() == '0614958819ec9fa64caabd1c4b285e8dee66b7020e1e912d41fb3185e7c3f1e3', 'Original agent instructions changed.'\n\npayload_files = sorted(source.rglob('*.md'))\nassert len(list(installation.rglob('*.md'))) == len(payload_files) == 7\nfor path in payload_files:\n    relative = path.relative_to(source)\n    if relative \"'!= Path('\"'context.md'):\n        assert (installation / relative).read_bytes() == path.read_bytes(), relative\n\nworkflow = (installation / 'workflow.md').read_text()\nfrontmatter = workflow.split('---', 2)[1]\nassert re.search(r'\"'^template: plan-first$'\"', frontmatter, re.M)\nassert re.search(r'\"'^template_version: \"0'\"\\\\.1\\\\.0\\\"\"'$'\"', frontmatter, re.M)\ncontext = (installation / 'context.md').read_text()\nassert '{{' not in context, 'Unresolved context placeholder.'\nassert 'python3 -m unittest discover -s tests -v' in context\nassert 'unknown' in context\n\nlinks = 0\nfor path in [root / 'AGENTS.md', *sorted(installation.rglob('*.md'))]:\n    for target in re.findall(r'\\\\[[\"'^'\"\\\\]]*\\\\]\\\\(([\"'^)]+)'\"\\\\)', path.read_text()):\n        parsed = urlsplit(target)\n        if parsed.scheme or parsed.netloc or not parsed.path:\n            continue\n        resolved = (path.parent / unquote(parsed.path)).resolve()\n        assert resolved.exists(), f'Broken link in {path.relative_to(root)}: {target}'\n        links += 1\nprint(f'Validated {links} local links and plan-first 0.1.0 metadata.')\nprint('Verified seven-file payload; six uncustomized template files match the source.')\nprint('Verified existing documentation, code, tests, and agent instructions were preserved; workflow pointer occurs once.')\nprint('Project context uses actual project files and the documented required check, with no unresolved placeholders.')\nPY\"",
+          "exit_code": 0,
+          "unit_test_counts": []
+        }
+      ],
+      "initial_grader_rejection": {
+        "failed_criteria": [
+          "document_contracts"
+        ],
+        "out_of_bundle_link_errors": 11,
+        "resolution": "Allow adopted context links inside the consuming project; retain strict exported-payload boundaries."
+      }
+    },
+    {
+      "scenario": "setup-repeat",
+      "profile": "plan-first",
+      "passed": true,
+      "final_work_status": "not started",
+      "thread_id": "01a102f1-a303-7f02-997d-50adc3ca1aa9",
+      "cli_exit_code": 0,
+      "duration_seconds": 104.582126,
+      "observed_command_count": 11,
+      "observed_file_versions": 12,
+      "usage": {
+        "input_tokens": 100834,
+        "cached_input_tokens": 85632,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2716,
+        "reasoning_output_tokens": 992
+      },
+      "checks": {
+        "fresh_cli_completed": true,
+        "history_bodies_not_emitted": true,
+        "existing_docs_preserved": true,
+        "existing_project_files_preserved": true,
+        "one_namespaced_pointer": true,
+        "existing_instructions_preserved": true,
+        "selected_profile": true,
+        "actual_context": true,
+        "repeated_setup_preserves_files": true,
+        "document_contracts": true
+      },
+      "independent_behavior_cases": 0,
+      "original_test_executions": 0,
+      "history_body_canaries_emitted": 0,
+      "prompt_sha256": "d23f7b9e26308d8f2f65cea0b401e8dc9b849cf44b8361b7f38db5abf5b11af1",
+      "trace_sha256": "255b9f83f00325e8aebbaa6ef9103d292cb4e035874a10018d318cddf52d8164",
+      "document_and_source_timeline": [],
+      "required_check_events": [
+        {
+          "seconds": 88.023036,
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            3
+          ]
+        }
+      ],
+      "initial_grader_rejection": {
+        "failed_criteria": [
+          "document_contracts"
+        ],
+        "out_of_bundle_link_errors": 11,
+        "resolution": "Allow adopted context links inside the consuming project; retain strict exported-payload boundaries."
+      }
+    },
+    {
+      "scenario": "lite",
+      "profile": "lite",
+      "passed": true,
+      "final_work_status": "done",
+      "thread_id": "01a102e9-e959-71b0-bdfb-06b020485077",
+      "cli_exit_code": 0,
+      "duration_seconds": 202.401545,
+      "observed_command_count": 8,
+      "observed_file_versions": 20,
+      "usage": {
+        "input_tokens": 163751,
+        "cached_input_tokens": 150016,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4849,
+        "reasoning_output_tokens": 2274
+      },
+      "checks": {
+        "fresh_cli_completed": true,
+        "history_bodies_not_emitted": true,
+        "spec_before_implementation": true,
+        "agent_ran_unit_tests": true,
+        "standalone_done_with_result": true,
+        "completion_after_successful_check": true,
+        "independent_behavior": true,
+        "original_project_tests": true,
+        "document_contracts": true
+      },
+      "independent_behavior_cases": 20,
+      "original_test_executions": 3,
+      "history_body_canaries_emitted": 0,
+      "prompt_sha256": "dc3c38410fb28aef52ed9c850e4c9c39935279ca7cc690aaf9a72a8dcfaf734a",
+      "trace_sha256": "239725c9e369a822e49a07ec87794fd41c21d44b98b5cefd772cb924715e67ee",
+      "document_and_source_timeline": [
+        {
+          "seconds": 99.107215,
+          "tick": 4314,
+          "path": "docs/work/MS001-strict-page-size.md",
+          "event": "saved_microspec",
+          "work_status": "planned",
+          "sha256": "c9778c06ca1e178a1eb12ecce0be91334d5c61e0fc43202aad175490eba136a8"
+        },
+        {
+          "seconds": 99.289173,
+          "tick": 4324,
+          "path": "docs/work/MS001-strict-page-size.md",
+          "event": "saved_microspec",
+          "work_status": "in_progress",
+          "sha256": "91a27ec7857552b7951e8ed45417f4e2afc2f64c544d9805e9e519e1c4409008"
+        },
+        {
+          "seconds": 141.288194,
+          "tick": 6148,
+          "path": "pagination.py",
+          "event": "source_changed",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "seconds": 141.311375,
+          "tick": 6149,
+          "path": "pagination.py",
+          "event": "source_changed",
+          "sha256": "ff125b1619c1ca641b18a45fe587302897f918252ffd2a33478458c08a76ad29"
+        },
+        {
+          "seconds": 191.288132,
+          "tick": 8279,
+          "path": "docs/work/MS001-strict-page-size.md",
+          "event": "saved_microspec",
+          "work_status": "done",
+          "sha256": "b5385bb75c629dfe33c951a10c810e3214ea4c5694f95984dc22bf1e7a7a8167"
+        }
+      ],
+      "required_check_events": [
+        {
+          "seconds": 141.536851,
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            7
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "plan-checkpoint",
+      "profile": "plan-first",
+      "passed": true,
+      "final_work_status": "in_progress",
+      "thread_id": "01a102ee-a56f-7aa3-b0d5-93c7632903eb",
+      "cli_exit_code": 0,
+      "duration_seconds": 252.444124,
+      "observed_command_count": 15,
+      "observed_file_versions": 220,
+      "usage": {
+        "input_tokens": 202823,
+        "cached_input_tokens": 170368,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6346,
+        "reasoning_output_tokens": 2473
+      },
+      "checks": {
+        "fresh_cli_completed": true,
+        "history_bodies_not_emitted": true,
+        "spec_before_implementation": true,
+        "plan_before_implementation": true,
+        "agent_ran_unit_tests": true,
+        "one_plan": true,
+        "plan_owns_spec_progress": true,
+        "two_dependent_outcomes": true,
+        "checkpoint_saved": true,
+        "second_spec_deferred": true,
+        "endpoint_not_implemented_yet": true,
+        "completion_after_successful_check": true,
+        "independent_behavior": true,
+        "original_project_tests": true,
+        "document_contracts": true
+      },
+      "independent_behavior_cases": 20,
+      "original_test_executions": 3,
+      "history_body_canaries_emitted": 0,
+      "prompt_sha256": "0a2553c347066d5a9e283543add380fb221bebda5b75f217d247e0978739e4e1",
+      "trace_sha256": "27077b1e58be6dbb47f9d8010416327a32573e80e0c19e5f825c354cb1825a5c",
+      "document_and_source_timeline": [
+        {
+          "seconds": 119.879993,
+          "tick": 2916,
+          "path": "docs/work/P001-page-size-validation/plan.md",
+          "event": "saved_plan",
+          "work_status": "in_progress",
+          "sha256": "6f30b8eed57876c34338f42957ab72b5f132fa7659079074833804821761ef75",
+          "item_states": [
+            {
+              "spec": "P001-MS01",
+              "state": "in_progress"
+            },
+            {
+              "spec": "P001-MS02",
+              "state": "planned"
+            }
+          ]
+        },
+        {
+          "seconds": 119.925208,
+          "tick": 2917,
+          "path": "docs/work/P001-page-size-validation/P001-MS01-parser.md",
+          "event": "saved_microspec",
+          "work_status": null,
+          "sha256": "5edd8cd6dc3bf90521ccc3f232190c494990516d8916de70d86d0713aa8ffecd"
+        },
+        {
+          "seconds": 167.978701,
+          "tick": 4021,
+          "path": "pagination.py",
+          "event": "source_changed",
+          "sha256": "e339feb59b2a9c81c6bd891646b7085f5329058e27db22c98ae98538ce7f589b"
+        },
+        {
+          "seconds": 230.957965,
+          "tick": 5447,
+          "path": "docs/work/P001-page-size-validation/plan.md",
+          "event": "saved_plan",
+          "work_status": "in_progress",
+          "sha256": "4ab5b4a6013d697e95519ff01cf7e961d2ed9bdd8ee6130d0a16a5f0f2f2b7a8",
+          "item_states": [
+            {
+              "spec": "P001-MS01",
+              "state": "done"
+            },
+            {
+              "spec": "P001-MS02",
+              "state": "planned"
+            }
+          ]
+        }
+      ],
+      "required_check_events": [
+        {
+          "seconds": 189.423479,
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            7
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "plan-resume",
+      "profile": "plan-first",
+      "passed": true,
+      "final_work_status": "done",
+      "thread_id": "01a102f2-81f4-77e1-8e1d-d6f0476bd843",
+      "cli_exit_code": 0,
+      "duration_seconds": 301.626723,
+      "observed_command_count": 26,
+      "observed_file_versions": 227,
+      "usage": {
+        "input_tokens": 303162,
+        "cached_input_tokens": 269056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9107,
+        "reasoning_output_tokens": 2924
+      },
+      "checks": {
+        "fresh_cli_completed": true,
+        "history_bodies_not_emitted": true,
+        "spec_before_implementation": true,
+        "plan_before_implementation": true,
+        "agent_ran_unit_tests": true,
+        "one_plan": true,
+        "plan_owns_spec_progress": true,
+        "two_dependent_outcomes": true,
+        "plan_done": true,
+        "completed_parser_not_rewritten": true,
+        "new_conversation_for_resume": true,
+        "second_spec_after_first_done": true,
+        "second_spec_before_endpoint_code": true,
+        "completion_after_successful_check": true,
+        "independent_behavior": true,
+        "original_project_tests": true,
+        "document_contracts": true
+      },
+      "independent_behavior_cases": 40,
+      "original_test_executions": 3,
+      "history_body_canaries_emitted": 0,
+      "prompt_sha256": "d1f014bf4df9a7bebb43cdce70c6a932618e907f61e61a07f9026217b5dbd6d2",
+      "trace_sha256": "8c842c09154a232b4eca3522611165417a7755b379e2791e7cac5e1f0d6ee53c",
+      "document_and_source_timeline": [
+        {
+          "seconds": 112.620668,
+          "tick": 2719,
+          "path": "docs/work/P001-page-size-validation/P001-MS02-endpoint.md",
+          "event": "saved_microspec",
+          "work_status": null,
+          "sha256": "d4064e066a58db2a4c02bdc433697023bfe05d3c539f504284ce599a7c16b4c2"
+        },
+        {
+          "seconds": 112.662783,
+          "tick": 2720,
+          "path": "docs/work/P001-page-size-validation/plan.md",
+          "event": "saved_plan",
+          "work_status": "in_progress",
+          "sha256": "b3ddf7ad83c6fc5f0cba95a643d0ab4755c672832e1e04b43a29c734fb0764e4",
+          "item_states": [
+            {
+              "spec": "P001-MS01",
+              "state": "done"
+            },
+            {
+              "spec": "P001-MS02",
+              "state": "in_progress"
+            }
+          ]
+        },
+        {
+          "seconds": 180.09692,
+          "tick": 4338,
+          "path": "api.py",
+          "event": "source_changed",
+          "sha256": "806193eb98f0776f06c9ec24254be7956ffb13550ee11e628ad79f6c2d271524"
+        },
+        {
+          "seconds": 254.636306,
+          "tick": 6080,
+          "path": "docs/work/P001-page-size-validation/plan.md",
+          "event": "saved_plan",
+          "work_status": "done",
+          "sha256": "3df5ba02a37b6d5d07f7fccf05f3e20f42e8ba571044caab1db1ddc3f49b51f0",
+          "item_states": [
+            {
+              "spec": "P001-MS01",
+              "state": "done"
+            },
+            {
+              "spec": "P001-MS02",
+              "state": "done"
+            }
+          ]
+        }
+      ],
+      "required_check_events": [
+        {
+          "seconds": 210.375624,
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            15
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "brownfield",
+      "profile": "brownfield",
+      "passed": true,
+      "final_work_status": "done",
+      "thread_id": "01a102ee-a4aa-7732-b990-9ffae3024548",
+      "cli_exit_code": 0,
+      "duration_seconds": 339.416026,
+      "observed_command_count": 14,
+      "observed_file_versions": 22,
+      "usage": {
+        "input_tokens": 252338,
+        "cached_input_tokens": 205184,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8271,
+        "reasoning_output_tokens": 3495
+      },
+      "checks": {
+        "fresh_cli_completed": true,
+        "history_bodies_not_emitted": true,
+        "spec_before_implementation": true,
+        "plan_before_implementation": true,
+        "agent_ran_unit_tests": true,
+        "one_plan": true,
+        "plan_owns_spec_progress": true,
+        "baseline_and_compatibility_before_code": true,
+        "observed_baseline_check_before_code": true,
+        "plan_done": true,
+        "shared_parser_used": true,
+        "completion_after_successful_check": true,
+        "independent_behavior": true,
+        "original_project_tests": true,
+        "document_contracts": true
+      },
+      "independent_behavior_cases": 60,
+      "original_test_executions": 4,
+      "history_body_canaries_emitted": 0,
+      "prompt_sha256": "cae0397700a6ba0f7d6b5fba3863b85555634c13f01821e75eba22cf46ae3262",
+      "trace_sha256": "c61ce1bb8ca6eb40697de1bbc618dca5ec8f70c1853f4f2011cbfbd9fa7e9c33",
+      "document_and_source_timeline": [
+        {
+          "seconds": 124.765132,
+          "tick": 5302,
+          "path": "docs/work/P001-shared-page-size/plan.md",
+          "event": "saved_plan",
+          "work_status": "in_progress",
+          "sha256": "7f75fd3f9c717b80d58e677335b4721bc009fb81eb63fff7a75fc6fbe7065f65",
+          "item_states": [
+            {
+              "spec": "P001-MS01",
+              "state": "in_progress"
+            }
+          ]
+        },
+        {
+          "seconds": 124.863436,
+          "tick": 5306,
+          "path": "docs/work/P001-shared-page-size/P001-MS01-shared-validation.md",
+          "event": "saved_microspec",
+          "work_status": null,
+          "sha256": "1bd7c380c8f1d7e8dfebb95a647b41b349e7068e5c97d1b7e3cda336551616cb"
+        },
+        {
+          "seconds": 282.133211,
+          "tick": 11805,
+          "path": "pagination.py",
+          "event": "source_changed",
+          "sha256": "4b751fa7eac17b70f8dfc9ae1b3e82204c105b45a4f9da51b8bbc0fa87250901"
+        },
+        {
+          "seconds": 282.230957,
+          "tick": 11809,
+          "path": "api.py",
+          "event": "source_changed",
+          "sha256": "b225d2e8dbafbee63160ce4720abd82b1ff92d8b1ea2654f1130127cb056c9f4"
+        },
+        {
+          "seconds": 282.30588,
+          "tick": 11812,
+          "path": "docs/work/P001-shared-page-size/plan.md",
+          "event": "saved_plan",
+          "work_status": "in_progress",
+          "sha256": "758e139f3a33ff04cee798604dd85fd2bf1f080935f3bce8ab4347deaf61b98f",
+          "item_states": [
+            {
+              "spec": "P001-MS01",
+              "state": "in_progress"
+            }
+          ]
+        },
+        {
+          "seconds": 324.031692,
+          "tick": 13559,
+          "path": "docs/work/P001-shared-page-size/plan.md",
+          "event": "saved_plan",
+          "work_status": "done",
+          "sha256": "cd9e30c5b833aabc8497d7b4de0bdea0262a4171f5029b56389cd1c806cc11b6",
+          "item_states": [
+            {
+              "spec": "P001-MS01",
+              "state": "done"
+            }
+          ]
+        }
+      ],
+      "required_check_events": [
+        {
+          "seconds": 49.057334,
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            4
+          ]
+        },
+        {
+          "seconds": 236.652271,
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -p test_pagination.py -k EndpointPaginationTests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            6
+          ]
+        },
+        {
+          "seconds": 291.038856,
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "blocked",
+      "profile": "plan-first",
+      "passed": true,
+      "final_work_status": "blocked",
+      "thread_id": "01a102f3-d36a-77a0-a032-08b5ddb209c7",
+      "cli_exit_code": 0,
+      "duration_seconds": 206.140965,
+      "observed_command_count": 11,
+      "observed_file_versions": 21,
+      "usage": {
+        "input_tokens": 138176,
+        "cached_input_tokens": 123136,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6103,
+        "reasoning_output_tokens": 2800
+      },
+      "checks": {
+        "fresh_cli_completed": true,
+        "history_bodies_not_emitted": true,
+        "spec_before_implementation": true,
+        "plan_before_implementation": true,
+        "agent_ran_unit_tests": true,
+        "one_plan": true,
+        "plan_owns_spec_progress": true,
+        "required_gate_attempted_and_failed": true,
+        "required_gate_preserved": true,
+        "work_incomplete_with_blocker": true,
+        "independent_behavior": true,
+        "original_project_tests": true,
+        "document_contracts": true
+      },
+      "independent_behavior_cases": 20,
+      "original_test_executions": 3,
+      "history_body_canaries_emitted": 0,
+      "prompt_sha256": "dc3c38410fb28aef52ed9c850e4c9c39935279ca7cc690aaf9a72a8dcfaf734a",
+      "trace_sha256": "35364d9e9b2850d90f57e70479d9ae236f97ff394ef16c8d8c3d0aef848619c3",
+      "document_and_source_timeline": [
+        {
+          "seconds": 87.172436,
+          "tick": 3706,
+          "path": "docs/work/P001-strict-page-size/plan.md",
+          "event": "saved_plan",
+          "work_status": "in_progress",
+          "sha256": "47d1c8556b083aaf9ed01852428f5053f2163531b93d881d30f3bc5742df2287",
+          "item_states": [
+            {
+              "spec": "P001-MS01",
+              "state": "in_progress"
+            }
+          ]
+        },
+        {
+          "seconds": 87.24768,
+          "tick": 3709,
+          "path": "docs/work/P001-strict-page-size/P001-MS01-validate-page-size.md",
+          "event": "saved_microspec",
+          "work_status": null,
+          "sha256": "c5141422e7430df0d19256ad3b141bdfe076cf345d1db4dbc2f89a104dda5605"
+        },
+        {
+          "seconds": 129.854215,
+          "tick": 5473,
+          "path": "pagination.py",
+          "event": "source_changed",
+          "sha256": "c32273ea1c8eba276dc19849f0b331ac3b4316fce7b1b534713ade52f9fb88dc"
+        },
+        {
+          "seconds": 191.465837,
+          "tick": 7996,
+          "path": "docs/work/P001-strict-page-size/plan.md",
+          "event": "saved_plan",
+          "work_status": "blocked",
+          "sha256": "56b0ff126af95b91a57c99caff00f88c9b34330ef878d1db3fd0906fe0d79849",
+          "item_states": [
+            {
+              "spec": "P001-MS01",
+              "state": "blocked"
+            }
+          ]
+        }
+      ],
+      "required_check_events": [
+        {
+          "seconds": 9.076144,
+          "command": "/bin/bash -lc \"rg --files -g AGENTS.md -g pagination.py -g 'test*' -g 'verify_required.py' -g 'docs/**'\"",
+          "exit_code": 0,
+          "unit_test_counts": []
+        },
+        {
+          "seconds": 14.213393,
+          "command": "/bin/bash -lc 'cat pagination.py api.py tests/test_existing.py verify_required.py .gitignore'",
+          "exit_code": 0,
+          "unit_test_counts": [],
+          "gate_result": "Required integration check unavailable: fixture service is offline."
+        },
+        {
+          "seconds": 149.513155,
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            6
+          ]
+        },
+        {
+          "seconds": 149.702155,
+          "command": "/bin/bash -lc 'python3 verify_required.py'",
+          "exit_code": 2,
+          "unit_test_counts": [],
+          "gate_result": "Required integration check unavailable: fixture service is offline."
+        },
+        {
+          "seconds": 191.595829,
+          "command": "/bin/bash -lc 'cat pagination.py tests/test_pagination.py verify_required.py'",
+          "exit_code": 0,
+          "unit_test_counts": [],
+          "gate_result": "Required integration check unavailable: fixture service is offline."
+        }
+      ]
+    }
+  ],
+  "okbase_l1": [
+    {
+      "bundle": "maintainer docs",
+      "documents": 18,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "bundle": "adopted setup",
+      "documents": 7,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "bundle": "Lite",
+      "documents": 8,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "bundle": "Plan-first resume",
+      "documents": 212,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "bundle": "Brownfield",
+      "documents": 10,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "bundle": "blocked verification",
+      "documents": 10,
+      "errors": 0,
+      "warnings": 0
+    }
+  ]
+}

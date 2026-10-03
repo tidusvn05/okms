@@ -1,0 +1,7 @@
+.okbase/
+**/.okbase/
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+.pilot-runs/
