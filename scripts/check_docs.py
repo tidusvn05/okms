@@ -21,10 +21,18 @@ PROFILES = ("lite", "plan-first", "brownfield")
 STATES = {"planned", "in_progress", "blocked", "done", "cancelled"}
 SPEC_SECTIONS = ["Intent", "Constraints", "Acceptance", "Verify"]
 PLAN_SECTIONS = ["Goal", "Approach", "Work", "Resume", "Result"]
+GOAL_SECTIONS = ["Goal", "Scope", "Completion", "Execution", "Stop", "Resume", "Result"]
+TASK_KINDS = ("implementation", "bugfix", "investigation", "design", "research", "runbook", "general")
+BLUEPRINTS = {kind: f"micro-spec-{kind}.md" for kind in TASK_KINDS if kind != "general"}
+BLUEPRINTS["general"] = "micro-spec.md"
+STOP_REASONS = {"none", "complete", "iteration_limit", "blocked", "user_stop"}
 PAYLOAD_FILES = {
     "index.md", "workflow.md", "context.md", "_templates/index.md",
-    "_templates/plan.md", "_templates/micro-spec.md", "work/index.md",
+    "_templates/plan.md", "_templates/catalog.md", "_templates/goal.md", "goal-loop.md", "work/index.md",
+    *(f"_templates/{name}" for name in BLUEPRINTS.values()),
 }
+SHARED_FILES = {"goal-loop.md", "_templates/index.md", "_templates/catalog.md", "_templates/goal.md",
+                *(f"_templates/{name}" for name in BLUEPRINTS.values())}
 ID_PATTERN = r"(?:P\d+-MS\d+|MS\d+)"
 UNEXECUTED = re.compile(r"^(?:pending|not run|not created|not implemented|not verified)\b", re.I)
 
@@ -171,16 +179,20 @@ class Checker:
                 if "work_status" in metadata and not valid_state(metadata["work_status"]):
                     self.error(path, "invalid work_status")
                 kind = metadata.get("type")
+                if "kind" in metadata and (not isinstance(metadata["kind"], str) or metadata["kind"] not in TASK_KINDS):
+                    self.error(path, "kind must be a supported task category")
                 expected_sections = None
-                if kind == "MicroSpec" or (kind == "Template" and path.name == "micro-spec.md"):
+                if kind == "MicroSpec" or (kind == "Template" and path.name in BLUEPRINTS.values()):
                     expected_sections = SPEC_SECTIONS
                 elif kind == "Plan" or (kind == "Template" and path.name == "plan.md"):
                     expected_sections = PLAN_SECTIONS
                     if "Baseline" in headings(body) or "Compatibility" in headings(body):
                         expected_sections = ["Goal", "Baseline", "Compatibility", *PLAN_SECTIONS[1:]]
+                elif kind == "Goal" or (kind == "Template" and path.name == "goal.md"):
+                    expected_sections = GOAL_SECTIONS
                 if expected_sections and headings(body) != expected_sections:
                     self.error(path, f"expected sections: {' / '.join(expected_sections)}")
-                if kind in ("Plan", "MicroSpec") and "{{" in body:
+                if kind in ("Plan", "MicroSpec", "Goal") and "{{" in body:
                     self.error(path, "work document contains an unresolved placeholder")
             for target, _, href in local_links(path, body):
                 if not target.is_relative_to(allowed_link_root):
@@ -201,6 +213,33 @@ class Checker:
                     if not any(target.is_relative_to(child) for target in listed):
                         self.error(index, f"does not list {child.name}/")
         self.check_work(root, documents)
+        if root / "_templates/catalog.md" in documents:
+            self.check_catalog(root, documents)
+
+    def check_catalog(self, root: Path, documents: dict):
+        path = root / "_templates/catalog.md"
+        body = documents[path][1]
+        seen = set()
+        for line in body.splitlines():
+            match = re.match(r"^\|\s*([a-z]+)\s*\|", line)
+            if not match:
+                continue
+            task_kind = match.group(1)
+            if task_kind in seen:
+                self.error(path, f"duplicate catalog kind: {task_kind}")
+            seen.add(task_kind)
+            if task_kind not in BLUEPRINTS:
+                self.error(path, f"unsupported catalog kind: {task_kind}")
+                continue
+            links = [target for target, _, _ in local_links(path, line)]
+            expected = path.parent / BLUEPRINTS[task_kind]
+            if links != [expected]:
+                self.error(path, f"catalog must select exactly its {task_kind} blueprint")
+            metadata = documents.get(expected, (None, ""))[0]
+            if not metadata or metadata.get("type") != "Template" or metadata.get("kind") != task_kind:
+                self.error(expected, "catalog blueprint must be a Template with its matching kind")
+        if seen != set(TASK_KINDS):
+            self.error(path, "catalog must cover the six specialized task kinds and general fallback")
 
     def check_work(self, root: Path, documents: dict):
         owners, item_states, dependencies = {}, {}, []
@@ -272,7 +311,7 @@ class Checker:
 
         active = {target for target, _, _ in local_links(root / "index.md", section(documents.get(root / "index.md", (None, ""))[1], "Active work"))}
         for path, (metadata, body) in documents.items():
-            if not metadata or metadata.get("type") not in ("Plan", "MicroSpec"):
+            if not metadata or metadata.get("type") not in ("Plan", "MicroSpec", "Goal"):
                 continue
             if metadata["type"] == "MicroSpec" and path in owners:
                 if "work_status" in metadata:
@@ -289,16 +328,83 @@ class Checker:
                 result = re.search(r"\bResults?:\s*(.+)", section(body, "Verify"), re.I)
                 if not result or UNEXECUTED.match(result.group(1)):
                     self.error(path, "done standalone spec needs an actual Result in Verify")
+            if metadata["type"] == "Goal":
+                self.check_goal(path, metadata, body, documents)
+
+    def check_goal(self, path: Path, metadata: dict, body: str, documents: dict):
+        state = metadata.get("work_status") if valid_state(metadata.get("work_status")) else None
+        limit, used = metadata.get("max_iterations"), metadata.get("iterations_used")
+        valid_limit = type(limit) is int and limit > 0
+        valid_used = type(used) is int and used >= 0
+        if not valid_limit:
+            self.error(path, "max_iterations must be a positive integer")
+        if not valid_used:
+            self.error(path, "iterations_used must be a nonnegative integer")
+        if valid_limit and valid_used and used > limit:
+            self.error(path, "Goal consumed more attempts than its recorded limit")
+        mode = metadata.get("execution")
+        if not isinstance(mode, str) or mode not in {"portable", "native"}:
+            self.error(path, "Goal execution must be portable or native")
+        if mode == "native" and ((valid_used and used > 0) or state == "done"):
+            if not isinstance(metadata.get("native_id"), str) or not metadata["native_id"].strip():
+                self.error(path, "started native Goal needs the actual native_id")
+        reason = metadata.get("stop_reason")
+        if not isinstance(reason, str) or reason not in STOP_REASONS:
+            self.error(path, "invalid Goal stop_reason")
+        if reason == "iteration_limit" and not (state == "in_progress" and valid_limit and valid_used and used == limit):
+            self.error(path, "iteration_limit requires incomplete work at the recorded limit")
+        if reason == "complete" and state != "done":
+            self.error(path, "complete stop_reason requires a done Goal")
+        if state == "done" and reason != "complete":
+            self.error(path, "done Goal needs complete stop_reason")
+        if (state == "blocked") != (reason == "blocked"):
+            self.error(path, "blocked Goal and blocked stop_reason must agree")
+        if state == "planned" and (used != 0 or reason != "none"):
+            self.error(path, "planned Goal must have no consumed attempts or stop reason")
+        if reason == "user_stop" and state not in {"in_progress", "cancelled"}:
+            self.error(path, "user_stop preserves incomplete progress or cancelled scope")
+        if state == "cancelled" and reason != "user_stop":
+            self.error(path, "cancelled Goal needs user_stop and a recorded withdrawal")
+        resume = section(body, "Resume")
+        if not all(f"- {field}:" in resume for field in ("Current", "Next", "Blocker")):
+            self.error(path, "Goal Resume needs Current, Next, and Blocker")
+        blocker = re.search(r"^- Blocker:[ \t]*(.*)$", resume, re.M)
+        blocker_text = blocker.group(1).strip() if blocker else ""
+        if state == "blocked" and (not re.search(r"\w", blocker_text)
+                                   or re.fullmatch(r"(?:none|pending)\.?", blocker_text, re.I)):
+            self.error(path, "blocked Goal needs its actual dependency")
+        criteria = re.findall(r"^- \[([ xX])\] (\S.+)$", section(body, "Completion"), re.M)
+        if not criteria:
+            self.error(path, "Goal Completion needs measurable checkbox criteria")
+        targets = [target for target, _, _ in local_links(path, section(body, "Scope"))
+                   if target.name == "plan.md" or documents.get(target, ({}, ""))[0] and
+                   documents[target][0].get("type") == "Plan"]
+        plans = []
+        for target in targets:
+            info = documents.get(target, (None, ""))[0]
+            if not info or info.get("type") != "Plan":
+                self.error(path, "Goal work link must reference a saved Plan")
+            else:
+                plans.append(info)
+        if (state in {"in_progress", "done"} or valid_used and used > 0) and not plans:
+            self.error(path, "started Goal needs a saved work plan in Scope")
+        if state == "done":
+            if not criteria or any(marker.lower() != "x" for marker, _ in criteria):
+                self.error(path, "done Goal has unverified Completion criteria")
+            if any(not isinstance(plan.get("work_status"), str) or plan["work_status"] not in {"done", "cancelled"} for plan in plans):
+                self.error(path, "done Goal references incomplete scoped plans")
+            result = section(body, "Result")
+            if not result or UNEXECUTED.match(result):
+                self.error(path, "done Goal needs actual completion evidence in Result")
 
     def check_profiles(self):
         versions = set()
-        shared = (self.root / "docs/_templates/micro-spec.md").read_bytes()
         standard = (self.root / "docs/_templates/plan.md").read_bytes()
         for profile in PROFILES:
             bundle = self.root / "templates" / profile / "docs"
             inventory = {str(p.relative_to(bundle)) for p in markdown_files(bundle)}
             if inventory != PAYLOAD_FILES:
-                self.error(bundle, "profile must contain exactly the seven payload files")
+                self.error(bundle, "profile must contain exactly the sixteen payload files")
             metadata = self.documents.get(bundle / "workflow.md", ({}, ""))[0] or {}
             if metadata.get("template") != profile:
                 self.error(bundle, "workflow template metadata disagrees with its profile")
@@ -307,15 +413,19 @@ class Checker:
                 versions.add(version)
             else:
                 self.error(bundle, "template_version must be a string")
-            micro = bundle / "_templates/micro-spec.md"
-            if not micro.is_file() or micro.read_bytes() != shared:
-                self.error(bundle, "shared micro spec blueprint drifted")
+            for name in SHARED_FILES:
+                source, target = self.root / "docs" / name, bundle / name
+                if not source.is_file() or not target.is_file() or source.read_bytes() != target.read_bytes():
+                    self.error(target, "shared catalog, contract, or Goal guide drifted")
             if profile != "brownfield" and (bundle / "_templates/plan.md").read_bytes() != standard:
                 self.error(bundle, "shared plan blueprint drifted")
             if profile == "brownfield" and headings(self.documents[bundle / "_templates/plan.md"][1]) != ["Goal", "Baseline", "Compatibility", *PLAN_SECTIONS[1:]]:
                 self.error(bundle, "Brownfield plan needs baseline and compatibility")
         if len(versions) != 1 or not all(isinstance(v, str) and re.fullmatch(r"\d+\.\d+\.\d+", v) for v in versions):
             self.error(self.root / "templates", "profile versions must match and use three numeric parts")
+        maintainer_version = (self.documents.get(self.root / "docs/workflow.md", ({}, ""))[0] or {}).get("template_version")
+        if not isinstance(maintainer_version, str) or versions != {maintainer_version}:
+            self.error(self.root / "docs/workflow.md", "maintainer workflow version must match the payloads")
 
 
 def fixture_adopt(source: Path, project: Path) -> Path:
@@ -347,7 +457,7 @@ def fixture_adopt(source: Path, project: Path) -> Path:
     relative = destination.relative_to(project).as_posix()
     workflow = (destination / "workflow.md").resolve()
     if workflow not in pointed:
-        rule = f"For implementation tasks, read and follow [the workflow]({relative}/workflow.md), starting with [the docs index]({relative}/index.md)."
+        rule = f"For substantive project tasks, read and follow [the workflow]({relative}/workflow.md), starting with [the docs index]({relative}/index.md)."
         agents.write_text(existing_text + ("\n" if existing_text else "") + rule + "\n")
     return destination
 
@@ -383,7 +493,7 @@ def onboarding_smoke(root: Path) -> int:
                 other = "brownfield" if profile != "brownfield" else "lite"
                 assert fixture_adopt(root / "templates" / other / "docs", project) == destination
                 assert snapshot == {p: p.read_bytes() for p in project.rglob("*") if p.is_file()}
-                assert (project / "AGENTS.md").read_text().count("For implementation tasks,") == 1
+                assert (project / "AGENTS.md").read_text().count("For substantive project tasks,") == 1
                 scenarios += 1
             conflict = scratch / f"{profile}-occupied"
             (conflict / "docs/okms").mkdir(parents=True)

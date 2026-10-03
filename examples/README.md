@@ -1,5 +1,7 @@
 # Worked examples
 
+See the [routing and Goal walkthrough](routing.md) for mixed task kinds, source-based outcomes, and bounded loop recovery.
+
 These examples illustrate document shape and workflow decisions. They contain no application code or executable application test suite. All application work remains planned and verification is explicitly unexecuted.
 
 | Example | Scenario | What to look for |

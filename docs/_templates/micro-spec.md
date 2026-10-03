@@ -1,14 +1,15 @@
 ---
 type: Template
+kind: general
 title: Micro spec template
-description: Specify an observable outcome, essential invariants, acceptance cases, and a verification method.
+description: Define a small verifiable outcome when no specialized task blueprint fits, retaining the common contract.
 ---
 
 # {{SPEC_ID}} · {{TITLE}}
 
 ## Intent
 
-{{ONE_OBSERVABLE_OUTCOME_AND_ITS_PURPOSE}}
+{{ONE_OBSERVABLE_OUTCOME_ITS_PURPOSE_AND_DELIVERABLE}}
 
 ## Constraints
 

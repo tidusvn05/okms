@@ -9,4 +9,4 @@ okms distributes portable Markdown workflows for coding agents. Its templates re
 - Examples are illustrative; never report their verification commands as executed against an application.
 - Check the repository with `.venv/bin/python scripts/check_docs.py`; see CONTRIBUTING.md for the maintainer environment and review scenarios.
 
-For implementation tasks, read and follow [the workflow](docs/workflow.md), starting with [the docs index](docs/index.md).
+For substantive project tasks, read and follow [the workflow](docs/workflow.md), starting with [the docs index](docs/index.md).

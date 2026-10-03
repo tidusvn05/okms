@@ -2,7 +2,7 @@
 
 The [runner](run_agent_pilot.py) explicitly invokes the installed Codex CLI against disposable Python projects. It uses the existing login and default model; it does not install a CLI, create credentials, or change user settings. The normal document checker never invokes it.
 
-Read the [observed report](pilot-report.md) and [portable measurements](pilot-results.json) for the completed run.
+Read the historical [v0.1 observed report](pilot-report.md) and [measurements](pilot-results.json), or the current [v0.2 routing report](routing-report.md) and [measurements](routing-results.json). The latter retains both drafts and failed criteria.
 
 Use the maintainer Python environment from [CONTRIBUTING.md](../CONTRIBUTING.md). Codex must already be on `PATH` and logged in. Prepare the fixtures and check their original baselines without launching an agent:
 
@@ -39,3 +39,18 @@ Each conversation runs `codex exec --ephemeral --json` with workspace write acce
 File polling supplements command and file-change events. Different snapshot ticks support observed save order. Equal ticks cannot establish order and need trace review; the runner does not silently count them as a pass. Grading separates code outcomes from workflow contracts and failed required verification. Review unexpected grades against the trace before changing a template or grader.
 
 The method follows the official [non-interactive Codex interface](https://developers.openai.com/codex/noninteractive) and [trace-based skill evaluation guidance](https://developers.openai.com/blog/eval-skills). A small run with one CLI and its current default model is evidence about those fixtures, not a guarantee across agents or projects. Worked examples remain illustrative; their application tests are not run by these fixtures.
+
+## Task routing and Goal pilot
+
+The [v0.2 routing runner](run_routing_pilot.py) reuses the external observer but grades a separate matrix: investigation/repair across fresh conversations, a Brownfield decision, a source-backed comparison, dry-run runbook authoring, general translation, portable Goal exhaustion/resumption with explicit extension, and a blocked required gate.
+
+```sh
+.venv/bin/python evals/run_routing_pilot.py --fixtures-only --run-dir .pilot-runs/routing-my-run
+.venv/bin/python evals/run_routing_pilot.py --run-dir .pilot-runs/routing-my-run
+```
+
+Seven projects produce nine fresh conversations. `--cases` selects projects, `--grade-only` reuses observed artifacts, and `--timeout` sets the per-conversation ceiling. Each selected kind must appear in a saved contract and an observed blueprint read before the scoped output; reading all category blueprints is flagged. The grader allows a repair to split into multiple bugfix outcomes when appropriate.
+
+The routing runner fingerprints payloads and snapshots its source at run start. Before preparing another project, it checks that payloads still match; after changing a template, use a new run directory. A failed full grade can coexist with a correct deliverable, and remains visible in the report. Review the per-criterion checks and unexpected reads rather than repeating a session solely to obtain a passing grade.
+
+Document outcomes use controlled fixture evidence and preserve application files. Parser/endpoint outcomes use independent behavior matrices, and every stage reruns original tests outside the agent's editable test directory. Goal grading checks consumed attempts before source changes, exhausted-but-incomplete state, same-file recovery, explicit extension, preserved completed work, and honest blocked verification. These sessions exercise portable execution; native support is an integration contract, not an observed native activation.

@@ -1,4 +1,6 @@
-# Independent agent pilot
+# Independent agent pilot: v0.1
+
+This is historical evidence for the v0.1 source at commit `e7ad89d`. Source fingerprints and document counts describe that run, rather than the current payload version.
 
 All seven fresh Codex conversations met the observed criteria after correcting one grader defect. Independent grading passed 160 behavior-case executions and 16 original test-method executions across the five code-grading stages. The deliberately unavailable integration gate failed as designed; that agent correctly left its work blocked.
 

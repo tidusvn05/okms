@@ -12,6 +12,8 @@ description: Describe the project purpose, durable rules, and real verification 
 
 ## Durable rules
 
+- Preserve the installed profile; select task contracts from the local catalog. Goals require explicit execution scope and persistent limits.
+
 - {{ESSENTIAL_PROJECT_WIDE_RULE_OR_NONE_IDENTIFIED}}
 
 ## Verification

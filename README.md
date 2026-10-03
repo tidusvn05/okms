@@ -2,17 +2,17 @@
 
 **Micro specs and recoverable workflows for coding agents.**
 
-Copy a template into your project, point your agent at its workflow, and implement one small behavior contract at a time. Plans track progress and the next action; code holds implementation details. Everything is Markdown and works with ordinary file reads.
+Copy a template into your project, point your agent at its workflow, and complete one small verifiable outcome at a time. Plans track progress and the next action; code and deliverable documents hold details. A small catalog selects task-specific contracts, and explicit Goals add bounded loop execution. Everything is Markdown and works with ordinary file reads.
 
 ## Choose a template
 
 | Template | Use it for | Workflow |
 | --- | --- | --- |
-| [Lite](templates/lite/docs/workflow.md) | One independent fix or small change | Save a micro spec → implement → check. Use its Plan-first fallback when the scope grows. |
-| [Plan-first](templates/plan-first/docs/workflow.md) | Features with multiple outcomes or dependencies | Save a plan → repeat spec → implement → check → checkpoint → check the whole plan. |
+| [Lite](templates/lite/docs/workflow.md) | One independent fix, report, or small outcome | Select a kind → save a micro spec → execute → check. Use its Plan-first fallback when scope grows. |
+| [Plan-first](templates/plan-first/docs/workflow.md) | Work with multiple outcomes or dependencies | Save a plan → repeat select → spec → execute → check → checkpoint → check the whole plan. |
 | [Brownfield](templates/brownfield/docs/workflow.md) | Changes to an existing system | Plan-first with observed baseline and compatibility obligations. |
 
-Each template contains seven Markdown files: an index, workflow, project context, plan and micro spec blueprints with their index, and a work index. The copied bundle has no runtime dependencies.
+Each template contains 16 Markdown files, including a workflow, context, task catalog, seven micro spec blueprints, Plan and Goal blueprints, Goal execution guidance, and directory indexes. The copied bundle has no runtime dependencies.
 
 ## Set up with your agent
 
@@ -35,8 +35,9 @@ Set up okms using the plan-first template from /path/to/okms.
    applicable docs, and real required checks/test commands. Preserve
    existing context on repeated setup. Mark undiscovered information
    as unknown; never execute placeholders or invent commands.
-4. Add this instruction once to the project's AGENTS.md, adapting paths:
-   For implementation tasks, read and follow [the workflow](docs/workflow.md),
+4. Reuse a pointer to this installation if one already exists. Otherwise
+   add this instruction once to the project's AGENTS.md, adapting paths:
+   For substantive project tasks, read and follow [the workflow](docs/workflow.md),
    starting with [the docs index](docs/index.md).
    Preserve existing instructions. If this agent uses a different
    instruction entrypoint, add the same pointer there instead.
@@ -63,12 +64,30 @@ cp -R /path/to/okms/templates/plan-first/docs ./docs/okms
 Fill the copied `context.md` using real project information. Add this single line once to your existing `AGENTS.md`, or create that file if absent:
 
 ```markdown
-For implementation tasks, read and follow [the workflow](docs/workflow.md), starting with [the docs index](docs/index.md).
+For substantive project tasks, read and follow [the workflow](docs/workflow.md), starting with [the docs index](docs/index.md).
 ```
 
 For a namespaced install, use `docs/okms/workflow.md` and `docs/okms/index.md`. Agents that use another instruction entrypoint need the same pointer in that entrypoint. The workflow is project guidance; reading the pointer and following it depend on the agent.
 
 If the destination already contains an okms workflow, reuse it and keep its context, indexes, and work. Review profile switches or upgrades explicitly; do not copy a new payload over an existing installation.
+
+## Select the task contract automatically
+
+The installed profile controls planning and checkpoints. For each substantive outcome, the agent reads the [task catalog](docs/_templates/catalog.md) and only the selected blueprint:
+
+| Kind | Outcome |
+| --- | --- |
+| `implementation` | Add or intentionally change behavior. |
+| `bugfix` | Correct a reproduced contract violation and check regression. |
+| `investigation` | Explain observed behavior with evidence and explicit unknowns. |
+| `design` | Record a system decision, viable alternatives, and consequences. |
+| `research` | Answer a bounded question with attributable sources and comparison. |
+| `runbook` | Author an operator procedure with actual commands and rehearsal limits. |
+| `general` | Use the common contract for other verifiable outcomes, such as translation. |
+
+Routing honors explicit scope and open checkpoints, then chooses by the next required output rather than keywords. A plan can contain several kinds: investigation → bugfix → runbook, for example. It lists future outcomes and materializes each spec when ready. Short status replies and explanations can stay in the conversation.
+
+New specs store `kind` in frontmatter. Specs without it retain the common contract, so historical files need no migration. Findings, decisions, reports, and operating steps use their own deliverable formats; their micro specs remain small. All copied profiles include the catalog and every blueprint, and routing does not silently switch the installed profile.
 
 ## The micro spec contract
 
@@ -78,14 +97,30 @@ Every micro spec has four sections:
 | --- | --- |
 | Intent | One observable outcome and why it matters. |
 | Constraints | Essential Always/Never invariants. |
-| Acceptance | Meaningful success and failure cases, usually Given/When/Then. |
+| Acceptance | Outcome-specific success and failure criteria; Given/When/Then suits behavior. |
 | Verify | A real check or review method, expected result, and relevant test scope. |
 
 Aim for roughly 100–250 words and 2–5 acceptance criteria. These are writing guides, not limits. A useful boundary is one behavior that can be verified; split by behavior rather than lines of code.
 
-Keep critical authorization, data preservation, compatibility, and concurrency rules when they determine correctness. Reference existing code and docs for implementation details. Never weaken acceptance to make a failed implementation appear complete.
+Keep critical authorization, data preservation, compatibility, and concurrency rules when they determine correctness. Reference existing code and deliverable docs for details. Verify can mean regression checks, reproducible observations, decision review, source checking, or runbook rehearsal. Never weaken acceptance to make failed or unsupported work appear complete.
 
-Plans use `Goal / Approach / Work / Resume / Result`; Brownfield adds `Baseline / Compatibility`. Save the plan before editing implementation. List future specs and dependencies, then save each spec just before its implementation. Agents continue without a mandatory approval pause unless review was requested or an important decision is missing.
+Plans use `Goal / Approach / Work / Resume / Result`; Brownfield adds `Baseline / Compatibility`. Save the plan before substantive execution. List future specs and dependencies, then save each spec just before its outcome is executed. Agents continue without a mandatory approval pause unless review was requested or an important decision is missing.
+
+## Run an explicit Goal or loop
+
+For an explicitly requested Goal, the agent also reads [bounded goal execution](docs/goal-loop.md) and renders [the Goal blueprint](docs/_templates/goal.md). A Goal records final completion criteria, scope, linked plans, execution mode, limits, stop conditions, and Resume. Plans continue to own their item states and evidence.
+
+Portable mode runs the bounded loop in the current agent session. `max_iterations` defaults to 5 unless the user supplies another positive limit; `iterations_used` reserves one attempt before execution and survives interruption. At the limit, incomplete work remains `in_progress` with `stop_reason: iteration_limit` and a saved next action. Only an explicit extension raises an existing limit. A blocked required check remains incomplete.
+
+Native mode requires actual available goal operations, an adapter mapping, and a saved native identifier. The guide describes start/attach, inspect, complete, and stop behavior while respecting the runtime's own limits and state rules. Without native support the agent can record portable mode, unless native execution is required. These Markdown files do not activate a background service or install an agent integration.
+
+Example request:
+
+```text
+Complete this feature using a portable Goal loop with at most two attempts.
+Save the Goal and plan first, select each micro spec from the task catalog,
+verify each outcome, and checkpoint when complete, blocked, or at the limit.
+```
 
 ## Progress, checks, and history
 
@@ -115,9 +150,13 @@ See [okbase usage](https://github.com/tidusvn05/okbase/blob/main/docs/usage.md) 
 
 Read the [worked examples](examples/README.md) for a small validation fix, device administration, and a compatible pagination refactor. They illustrate documents and checkpoints; they contain no application and claim no application tests were run.
 
+The [routing and Goal walkthrough](examples/routing.md) illustrates mixed task kinds and a bounded Goal contract.
+
 See [CONTRIBUTING.md](CONTRIBUTING.md) for maintainer checks and workflow review scenarios. This repository uses its own Plan-first workflow; its [implementation history](docs/work/index.md) records actual work and verification.
 
-The [agent pilot report](evals/pilot-report.md) records seven fresh Codex conversations covering adoption, Lite, Plan-first recovery, Brownfield compatibility, blocked verification, and selective history reads. See the [pilot runner instructions](evals/README.md) to reproduce it explicitly.
+The [v0.2 routing and Goal report](evals/routing-report.md) retains 15 fresh conversations across two drafts, including instruction gaps and affected reruns. All nine latest scenarios choose the expected kinds; eight meet every criterion, with one extra general blueprint read recorded for blocked verification. Independent grading passes 240 behavior-case executions and 47 original test-method executions. Portable Goal exhaustion, explicit extension, recovery, and blocked verification are exercised; native activation is untested.
+
+The historical [v0.1 agent pilot report](evals/pilot-report.md) covers adoption and the original workflows. See the [pilot runner instructions](evals/README.md) for opt-in evaluation; ordinary checks do not launch an agent.
 
 ## License
 

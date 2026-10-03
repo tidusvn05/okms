@@ -1,0 +1,2542 @@
+{
+  "schema_version": 1,
+  "template_version": "0.2.0",
+  "first_started_utc": "2026-10-03T19:22:06.358923+00:00",
+  "agent": {
+    "cli_version": "codex-cli 0.159.0",
+    "model": "Existing default; model ID was not recorded.",
+    "authentication": "Existing login; credentials were not copied."
+  },
+  "source_revisions": {
+    "initial": {
+      "combined_sha256": "b4021853a9a355b73ca06ca02362520a8d8cfe33a7d9d0fda8147fbc0491a195",
+      "payload_files_sha256": {
+        "templates/brownfield/docs/_templates/catalog.md": "e5805502b23a4ba933b575a29655124bf8e21ece7cfc40028cd98a265b7a7545",
+        "templates/brownfield/docs/_templates/goal.md": "99a5a9a4d514d1548d2f411b710e9c9e651c9346a704b70d43cc6f6823bc5ec3",
+        "templates/brownfield/docs/_templates/index.md": "4786949eabc8422884db254f04b53dd2de7150e16776e9bcda7f08a97f906083",
+        "templates/brownfield/docs/_templates/micro-spec-bugfix.md": "64d65e4447cd4199dd497fc8b0234c0f935bae0b5344c847eb636ec49ae155db",
+        "templates/brownfield/docs/_templates/micro-spec-design.md": "239b044839c7aa81bb66d790443352fc3687bdd61fb5fe4c47a3f41075dc1590",
+        "templates/brownfield/docs/_templates/micro-spec-implementation.md": "6e57f4d02fc6105f2d54c4f4b652d191e0c82e1402770811782f727800a16242",
+        "templates/brownfield/docs/_templates/micro-spec-investigation.md": "2cb65bd9eb42c22e7b5e7210bf5c47d1f8ad36f40a9cb712664779988a50ef07",
+        "templates/brownfield/docs/_templates/micro-spec-research.md": "9fd81d4d054f57d547cdb003ce171c97ffdb00774ad251de0312caa997249f74",
+        "templates/brownfield/docs/_templates/micro-spec-runbook.md": "be8121101175aadedbac4f2257e573310df30680ab88f542c626ee241b0ee973",
+        "templates/brownfield/docs/_templates/micro-spec.md": "f3fbf40b474df4b642fbc21ff7985a63eb5dcee27236259b442b647c3b13c1f6",
+        "templates/brownfield/docs/_templates/plan.md": "b8bf02a941e0a923ac4debf5f03233cb39f479688dc7e16cda18e16b67e68377",
+        "templates/brownfield/docs/context.md": "47fd5523791ed46c954f4ce1c089799e7e0e26b764733f16404c480809044d31",
+        "templates/brownfield/docs/goal-loop.md": "d6a254ec650e628151cc5665e96bcdaab0eef8acac17ed50730680f739e228c0",
+        "templates/brownfield/docs/index.md": "b33e856c46b0a0a3ba7723f4bece21b7e24e470d088916d31eea7da31b52bcd4",
+        "templates/brownfield/docs/work/index.md": "f6e9a2c9c4970be9bf2c098eb4c74f22d5f200df50ec044d8eb6305b44e95850",
+        "templates/brownfield/docs/workflow.md": "8e51f810e77fd6231724fe7eb67b1ecc01682ffc1f480b7cdd0e8353e9d50c5c",
+        "templates/lite/docs/_templates/catalog.md": "e5805502b23a4ba933b575a29655124bf8e21ece7cfc40028cd98a265b7a7545",
+        "templates/lite/docs/_templates/goal.md": "99a5a9a4d514d1548d2f411b710e9c9e651c9346a704b70d43cc6f6823bc5ec3",
+        "templates/lite/docs/_templates/index.md": "4786949eabc8422884db254f04b53dd2de7150e16776e9bcda7f08a97f906083",
+        "templates/lite/docs/_templates/micro-spec-bugfix.md": "64d65e4447cd4199dd497fc8b0234c0f935bae0b5344c847eb636ec49ae155db",
+        "templates/lite/docs/_templates/micro-spec-design.md": "239b044839c7aa81bb66d790443352fc3687bdd61fb5fe4c47a3f41075dc1590",
+        "templates/lite/docs/_templates/micro-spec-implementation.md": "6e57f4d02fc6105f2d54c4f4b652d191e0c82e1402770811782f727800a16242",
+        "templates/lite/docs/_templates/micro-spec-investigation.md": "2cb65bd9eb42c22e7b5e7210bf5c47d1f8ad36f40a9cb712664779988a50ef07",
+        "templates/lite/docs/_templates/micro-spec-research.md": "9fd81d4d054f57d547cdb003ce171c97ffdb00774ad251de0312caa997249f74",
+        "templates/lite/docs/_templates/micro-spec-runbook.md": "be8121101175aadedbac4f2257e573310df30680ab88f542c626ee241b0ee973",
+        "templates/lite/docs/_templates/micro-spec.md": "f3fbf40b474df4b642fbc21ff7985a63eb5dcee27236259b442b647c3b13c1f6",
+        "templates/lite/docs/_templates/plan.md": "674a979afad17a8e58ba250dd9c72e8997e5d413c38c2c1d104a8fedc1bc892f",
+        "templates/lite/docs/context.md": "47fd5523791ed46c954f4ce1c089799e7e0e26b764733f16404c480809044d31",
+        "templates/lite/docs/goal-loop.md": "d6a254ec650e628151cc5665e96bcdaab0eef8acac17ed50730680f739e228c0",
+        "templates/lite/docs/index.md": "b33e856c46b0a0a3ba7723f4bece21b7e24e470d088916d31eea7da31b52bcd4",
+        "templates/lite/docs/work/index.md": "f6e9a2c9c4970be9bf2c098eb4c74f22d5f200df50ec044d8eb6305b44e95850",
+        "templates/lite/docs/workflow.md": "07b2415fe2b2f3cb8c0e3a946aa04c529a14f059d972272f80712ee8777c4217",
+        "templates/plan-first/docs/_templates/catalog.md": "e5805502b23a4ba933b575a29655124bf8e21ece7cfc40028cd98a265b7a7545",
+        "templates/plan-first/docs/_templates/goal.md": "99a5a9a4d514d1548d2f411b710e9c9e651c9346a704b70d43cc6f6823bc5ec3",
+        "templates/plan-first/docs/_templates/index.md": "4786949eabc8422884db254f04b53dd2de7150e16776e9bcda7f08a97f906083",
+        "templates/plan-first/docs/_templates/micro-spec-bugfix.md": "64d65e4447cd4199dd497fc8b0234c0f935bae0b5344c847eb636ec49ae155db",
+        "templates/plan-first/docs/_templates/micro-spec-design.md": "239b044839c7aa81bb66d790443352fc3687bdd61fb5fe4c47a3f41075dc1590",
+        "templates/plan-first/docs/_templates/micro-spec-implementation.md": "6e57f4d02fc6105f2d54c4f4b652d191e0c82e1402770811782f727800a16242",
+        "templates/plan-first/docs/_templates/micro-spec-investigation.md": "2cb65bd9eb42c22e7b5e7210bf5c47d1f8ad36f40a9cb712664779988a50ef07",
+        "templates/plan-first/docs/_templates/micro-spec-research.md": "9fd81d4d054f57d547cdb003ce171c97ffdb00774ad251de0312caa997249f74",
+        "templates/plan-first/docs/_templates/micro-spec-runbook.md": "be8121101175aadedbac4f2257e573310df30680ab88f542c626ee241b0ee973",
+        "templates/plan-first/docs/_templates/micro-spec.md": "f3fbf40b474df4b642fbc21ff7985a63eb5dcee27236259b442b647c3b13c1f6",
+        "templates/plan-first/docs/_templates/plan.md": "674a979afad17a8e58ba250dd9c72e8997e5d413c38c2c1d104a8fedc1bc892f",
+        "templates/plan-first/docs/context.md": "47fd5523791ed46c954f4ce1c089799e7e0e26b764733f16404c480809044d31",
+        "templates/plan-first/docs/goal-loop.md": "d6a254ec650e628151cc5665e96bcdaab0eef8acac17ed50730680f739e228c0",
+        "templates/plan-first/docs/index.md": "b33e856c46b0a0a3ba7723f4bece21b7e24e470d088916d31eea7da31b52bcd4",
+        "templates/plan-first/docs/work/index.md": "f6e9a2c9c4970be9bf2c098eb4c74f22d5f200df50ec044d8eb6305b44e95850",
+        "templates/plan-first/docs/workflow.md": "a8e4698166e1f551ea71401cfb8e98b0295f45081ee07c54f1fe0e9dfbb61b81"
+      },
+      "runner_sha256": "d1c66af9dac66261f2eaace50c4b0d97ff4f978a6bb8ec53f0bbff34770ce466",
+      "checker_sha256": "921b91a53d3394f6ee468236eca4f94e9638a284a80b4b6cfc5b46ce1c3f39ad"
+    },
+    "clarified": {
+      "combined_sha256": "ebb78c2e4efa18f2778e01fb75436de7a108981529806c5233d8a462c1a4ee96",
+      "payload_files_sha256": {
+        "templates/brownfield/docs/_templates/catalog.md": "ff5b571ac546be443f76bf0e7cc372093ac48e7a0bf59955a5079781b5a00d95",
+        "templates/brownfield/docs/_templates/goal.md": "99a5a9a4d514d1548d2f411b710e9c9e651c9346a704b70d43cc6f6823bc5ec3",
+        "templates/brownfield/docs/_templates/index.md": "4786949eabc8422884db254f04b53dd2de7150e16776e9bcda7f08a97f906083",
+        "templates/brownfield/docs/_templates/micro-spec-bugfix.md": "64d65e4447cd4199dd497fc8b0234c0f935bae0b5344c847eb636ec49ae155db",
+        "templates/brownfield/docs/_templates/micro-spec-design.md": "239b044839c7aa81bb66d790443352fc3687bdd61fb5fe4c47a3f41075dc1590",
+        "templates/brownfield/docs/_templates/micro-spec-implementation.md": "6e57f4d02fc6105f2d54c4f4b652d191e0c82e1402770811782f727800a16242",
+        "templates/brownfield/docs/_templates/micro-spec-investigation.md": "2cb65bd9eb42c22e7b5e7210bf5c47d1f8ad36f40a9cb712664779988a50ef07",
+        "templates/brownfield/docs/_templates/micro-spec-research.md": "9fd81d4d054f57d547cdb003ce171c97ffdb00774ad251de0312caa997249f74",
+        "templates/brownfield/docs/_templates/micro-spec-runbook.md": "be8121101175aadedbac4f2257e573310df30680ab88f542c626ee241b0ee973",
+        "templates/brownfield/docs/_templates/micro-spec.md": "f3fbf40b474df4b642fbc21ff7985a63eb5dcee27236259b442b647c3b13c1f6",
+        "templates/brownfield/docs/_templates/plan.md": "b8bf02a941e0a923ac4debf5f03233cb39f479688dc7e16cda18e16b67e68377",
+        "templates/brownfield/docs/context.md": "47fd5523791ed46c954f4ce1c089799e7e0e26b764733f16404c480809044d31",
+        "templates/brownfield/docs/goal-loop.md": "d6a254ec650e628151cc5665e96bcdaab0eef8acac17ed50730680f739e228c0",
+        "templates/brownfield/docs/index.md": "b33e856c46b0a0a3ba7723f4bece21b7e24e470d088916d31eea7da31b52bcd4",
+        "templates/brownfield/docs/work/index.md": "f6e9a2c9c4970be9bf2c098eb4c74f22d5f200df50ec044d8eb6305b44e95850",
+        "templates/brownfield/docs/workflow.md": "79c9f5e021aa4a74646e21715de5d4bedc2e2dc127f1b373c00eae8b3c76d71e",
+        "templates/lite/docs/_templates/catalog.md": "ff5b571ac546be443f76bf0e7cc372093ac48e7a0bf59955a5079781b5a00d95",
+        "templates/lite/docs/_templates/goal.md": "99a5a9a4d514d1548d2f411b710e9c9e651c9346a704b70d43cc6f6823bc5ec3",
+        "templates/lite/docs/_templates/index.md": "4786949eabc8422884db254f04b53dd2de7150e16776e9bcda7f08a97f906083",
+        "templates/lite/docs/_templates/micro-spec-bugfix.md": "64d65e4447cd4199dd497fc8b0234c0f935bae0b5344c847eb636ec49ae155db",
+        "templates/lite/docs/_templates/micro-spec-design.md": "239b044839c7aa81bb66d790443352fc3687bdd61fb5fe4c47a3f41075dc1590",
+        "templates/lite/docs/_templates/micro-spec-implementation.md": "6e57f4d02fc6105f2d54c4f4b652d191e0c82e1402770811782f727800a16242",
+        "templates/lite/docs/_templates/micro-spec-investigation.md": "2cb65bd9eb42c22e7b5e7210bf5c47d1f8ad36f40a9cb712664779988a50ef07",
+        "templates/lite/docs/_templates/micro-spec-research.md": "9fd81d4d054f57d547cdb003ce171c97ffdb00774ad251de0312caa997249f74",
+        "templates/lite/docs/_templates/micro-spec-runbook.md": "be8121101175aadedbac4f2257e573310df30680ab88f542c626ee241b0ee973",
+        "templates/lite/docs/_templates/micro-spec.md": "f3fbf40b474df4b642fbc21ff7985a63eb5dcee27236259b442b647c3b13c1f6",
+        "templates/lite/docs/_templates/plan.md": "674a979afad17a8e58ba250dd9c72e8997e5d413c38c2c1d104a8fedc1bc892f",
+        "templates/lite/docs/context.md": "47fd5523791ed46c954f4ce1c089799e7e0e26b764733f16404c480809044d31",
+        "templates/lite/docs/goal-loop.md": "d6a254ec650e628151cc5665e96bcdaab0eef8acac17ed50730680f739e228c0",
+        "templates/lite/docs/index.md": "b33e856c46b0a0a3ba7723f4bece21b7e24e470d088916d31eea7da31b52bcd4",
+        "templates/lite/docs/work/index.md": "f6e9a2c9c4970be9bf2c098eb4c74f22d5f200df50ec044d8eb6305b44e95850",
+        "templates/lite/docs/workflow.md": "5eac900692ee229a797a3ff464b92254962b57b14f4ac5553177a5dc8a84a5fc",
+        "templates/plan-first/docs/_templates/catalog.md": "ff5b571ac546be443f76bf0e7cc372093ac48e7a0bf59955a5079781b5a00d95",
+        "templates/plan-first/docs/_templates/goal.md": "99a5a9a4d514d1548d2f411b710e9c9e651c9346a704b70d43cc6f6823bc5ec3",
+        "templates/plan-first/docs/_templates/index.md": "4786949eabc8422884db254f04b53dd2de7150e16776e9bcda7f08a97f906083",
+        "templates/plan-first/docs/_templates/micro-spec-bugfix.md": "64d65e4447cd4199dd497fc8b0234c0f935bae0b5344c847eb636ec49ae155db",
+        "templates/plan-first/docs/_templates/micro-spec-design.md": "239b044839c7aa81bb66d790443352fc3687bdd61fb5fe4c47a3f41075dc1590",
+        "templates/plan-first/docs/_templates/micro-spec-implementation.md": "6e57f4d02fc6105f2d54c4f4b652d191e0c82e1402770811782f727800a16242",
+        "templates/plan-first/docs/_templates/micro-spec-investigation.md": "2cb65bd9eb42c22e7b5e7210bf5c47d1f8ad36f40a9cb712664779988a50ef07",
+        "templates/plan-first/docs/_templates/micro-spec-research.md": "9fd81d4d054f57d547cdb003ce171c97ffdb00774ad251de0312caa997249f74",
+        "templates/plan-first/docs/_templates/micro-spec-runbook.md": "be8121101175aadedbac4f2257e573310df30680ab88f542c626ee241b0ee973",
+        "templates/plan-first/docs/_templates/micro-spec.md": "f3fbf40b474df4b642fbc21ff7985a63eb5dcee27236259b442b647c3b13c1f6",
+        "templates/plan-first/docs/_templates/plan.md": "674a979afad17a8e58ba250dd9c72e8997e5d413c38c2c1d104a8fedc1bc892f",
+        "templates/plan-first/docs/context.md": "47fd5523791ed46c954f4ce1c089799e7e0e26b764733f16404c480809044d31",
+        "templates/plan-first/docs/goal-loop.md": "d6a254ec650e628151cc5665e96bcdaab0eef8acac17ed50730680f739e228c0",
+        "templates/plan-first/docs/index.md": "b33e856c46b0a0a3ba7723f4bece21b7e24e470d088916d31eea7da31b52bcd4",
+        "templates/plan-first/docs/work/index.md": "f6e9a2c9c4970be9bf2c098eb4c74f22d5f200df50ec044d8eb6305b44e95850",
+        "templates/plan-first/docs/workflow.md": "5f3e8b922681d639f01b7494f5d9e36a7216cc8672acec7424cb6361fe85a2d1"
+      },
+      "runner_sha256": "7c5adbc08710ac66210c0d06b4467fb7d91e3598a8975904a0719c3fea964abf",
+      "checker_sha256": "921b91a53d3394f6ee468236eca4f94e9638a284a80b4b6cfc5b46ce1c3f39ad"
+    }
+  },
+  "native_runtime_exercised": false,
+  "grading_runner_sha256": "7c5adbc08710ac66210c0d06b4467fb7d91e3598a8975904a0719c3fea964abf",
+  "grading_checker_sha256": "921d769b24d43028ab2df3c9889bd3568ac11aeba0853489243aceacbc52fd49",
+  "fresh_conversations": 15,
+  "independent_behavior_case_executions": 240,
+  "original_test_executions": 47,
+  "latest_scenario_count": 9,
+  "latest_scenarios_all_passed": false,
+  "latest_scenario_sources": {
+    "diagnosis": "clarified",
+    "repair": "clarified",
+    "design": "clarified",
+    "goal-limit": "clarified",
+    "goal-resume": "clarified",
+    "general": "initial",
+    "research": "initial",
+    "runbook": "initial",
+    "goal-blocked": "clarified"
+  },
+  "all_observed_conversations_passed": false,
+  "sessions": [
+    {
+      "scenario": "diagnosis",
+      "profile": "plan-first",
+      "source_revision": "initial",
+      "expected_kind": "investigation",
+      "selected_blueprints_observed": [
+        "general",
+        "investigation"
+      ],
+      "passed": false,
+      "checks": {
+        "fresh_session_completed": true,
+        "chosen_kind_present": true,
+        "selected_blueprint_read": true,
+        "only_current_kind_blueprints_read": false,
+        "required_unit_check_passed": true,
+        "history_bodies_not_emitted": true,
+        "spec_saved_before_output": true,
+        "blueprint_read_before_output": true,
+        "all_kinds_match_scoped_outcomes": true,
+        "application_unchanged": true,
+        "separate_deliverable_saved": true,
+        "investigation_checkpoint_and_deferred_repair": true,
+        "cause_supported_by_observed_failure": true,
+        "document_contracts": false,
+        "independent_original_tests_passed": true
+      },
+      "document_errors": [
+        "work/P001-pagination-validation/index.md: only a bundle root index has frontmatter: okf_version: '0.2'",
+        "work/P001-pagination-validation/plan.md: Resume needs Current, Next, and Blocker"
+      ],
+      "thread_id": "01a10337-6ffc-72f2-b552-7ec80c3f7b84",
+      "cli_exit_code": 0,
+      "duration_seconds": 439.05582,
+      "usage": {
+        "input_tokens": 288446,
+        "cached_input_tokens": 264192,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 10797,
+        "reasoning_output_tokens": 3590
+      },
+      "observed_command_count": 18,
+      "observed_file_versions": 230,
+      "independent_behavior_case_executions": 0,
+      "original_test_executions": 3,
+      "original_tests_exit_code": 0,
+      "goals": {},
+      "final_plan_states": {
+        "docs/work/P001-pagination-validation/plan.md": "in_progress"
+      },
+      "final_standalone_spec_states": {},
+      "specs": [
+        "docs/work/P001-pagination-validation/P001-MS01-investigation.md"
+      ],
+      "plans": [
+        "docs/work/P001-pagination-validation/plan.md"
+      ],
+      "deliverables": [
+        "docs/work/P001-pagination-validation/findings.md"
+      ],
+      "document_and_source_timeline": [
+        {
+          "tick": 2742,
+          "seconds": 110.185403,
+          "path": "docs/work/P001-pagination-validation/plan.md",
+          "sha256": "8693088e5345e02df386493bf39e4d137dc544ab2634566389618dce8ac28fdf",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "in_progress",
+            "planned"
+          ]
+        },
+        {
+          "tick": 2743,
+          "seconds": 110.227132,
+          "path": "docs/work/P001-pagination-validation/P001-MS01-investigation.md",
+          "sha256": "810ff6c863e3f5315ec23fbc05df749b14f6e6e45dc1262df083d3be07b111cd",
+          "metadata": {
+            "type": "MicroSpec",
+            "kind": "investigation"
+          }
+        },
+        {
+          "tick": 7031,
+          "seconds": 283.853101,
+          "path": "docs/work/P001-pagination-validation/findings.md",
+          "sha256": "444af0273e232434c770deac2aeccee4455371261cbbff09b1d71c0e29511c26",
+          "metadata": {
+            "type": "Report"
+          }
+        },
+        {
+          "tick": 9858,
+          "seconds": 399.429138,
+          "path": "docs/work/P001-pagination-validation/findings.md",
+          "sha256": "5e984c4fd515f5ea8929061eb2885a83c62cb99420fb2288e0db132a4b1d92dc",
+          "metadata": {
+            "type": "Report"
+          }
+        },
+        {
+          "tick": 9860,
+          "seconds": 399.493431,
+          "path": "docs/work/P001-pagination-validation/plan.md",
+          "sha256": "ebe6e8b6db18e63e5de555889af54f6814c2684bc9047486076fa769916f66ea",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "done",
+            "planned"
+          ]
+        }
+      ],
+      "check_events": [
+        {
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            3
+          ],
+          "dry_run_output_observed": false
+        }
+      ],
+      "prompt_sha256": "818a0771a385c59baf59e4062b7112ad476e5ad2d9cbf8086a247df45ce531b9",
+      "trace_sha256": "305b85cfaf06bb2dc72370cfc604ebf42a772fcdc95c62137cc26a04207c3a04",
+      "grade_sha256": "6dd3bbada0581f80c6daa7aa2cea77eb8db32603c984a8752b807481ca51ef6f",
+      "raw_location": ".pilot-runs/v02-diagnosis-design/investigate-fix/diagnosis"
+    },
+    {
+      "scenario": "repair",
+      "profile": "plan-first",
+      "source_revision": "initial",
+      "expected_kind": "bugfix",
+      "selected_blueprints_observed": [
+        "bugfix"
+      ],
+      "passed": false,
+      "checks": {
+        "fresh_session_completed": true,
+        "chosen_kind_present": true,
+        "selected_blueprint_read": true,
+        "only_current_kind_blueprints_read": true,
+        "required_unit_check_passed": true,
+        "history_bodies_not_emitted": true,
+        "spec_saved_before_output": true,
+        "blueprint_read_before_output": true,
+        "all_kinds_match_scoped_outcomes": true,
+        "completed_findings_preserved": true,
+        "fresh_file_only_handoff": true,
+        "repair_plan_closed": true,
+        "independent_behavior_passed": true,
+        "document_contracts": false,
+        "independent_original_tests_passed": true
+      },
+      "document_errors": [
+        "work/P001-pagination-validation/index.md: only a bundle root index has frontmatter: okf_version: '0.2'"
+      ],
+      "thread_id": "01a1033e-25ce-7663-b511-7a02e5f84c3b",
+      "cli_exit_code": 0,
+      "duration_seconds": 450.752781,
+      "usage": {
+        "input_tokens": 340538,
+        "cached_input_tokens": 310144,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 12690,
+        "reasoning_output_tokens": 4018
+      },
+      "observed_command_count": 16,
+      "observed_file_versions": 240,
+      "independent_behavior_case_executions": 40,
+      "original_test_executions": 3,
+      "original_tests_exit_code": 0,
+      "goals": {},
+      "final_plan_states": {
+        "docs/work/P001-pagination-validation/plan.md": "done"
+      },
+      "final_standalone_spec_states": {},
+      "specs": [
+        "docs/work/P001-pagination-validation/P001-MS02-bugfix.md",
+        "docs/work/P001-pagination-validation/P001-MS01-investigation.md"
+      ],
+      "plans": [
+        "docs/work/P001-pagination-validation/plan.md"
+      ],
+      "deliverables": [
+        "docs/work/P001-pagination-validation/findings.md"
+      ],
+      "document_and_source_timeline": [
+        {
+          "tick": 3554,
+          "seconds": 145.162284,
+          "path": "docs/work/P001-pagination-validation/plan.md",
+          "sha256": "097b19e1e3061622a6189af86657f3030bae63390b0f78c99bd5080d0e272218",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "done",
+            "in_progress"
+          ]
+        },
+        {
+          "tick": 3556,
+          "seconds": 145.244042,
+          "path": "docs/work/P001-pagination-validation/P001-MS02-bugfix.md",
+          "sha256": "f9e57f39f8dc79b9c8c110a0d3c117840992ad242b7e1581466623ba62eb9ecc",
+          "metadata": {
+            "type": "MicroSpec",
+            "kind": "bugfix"
+          }
+        },
+        {
+          "tick": 5435,
+          "seconds": 222.421876,
+          "path": "docs/work/P001-pagination-validation/plan.md",
+          "sha256": "964ce04e7742db403f5009a970f000159b279411de1ee913da7b24bd7753195a",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "done",
+            "in_progress"
+          ]
+        },
+        {
+          "tick": 5437,
+          "seconds": 222.506957,
+          "path": "docs/work/P001-pagination-validation/P001-MS02-bugfix.md",
+          "sha256": "b62b7f17cd75be4de34dd70bc70c18cda8cb67aaaa313c86f09485b36feac3c7",
+          "metadata": {
+            "type": "MicroSpec",
+            "kind": "bugfix"
+          }
+        },
+        {
+          "tick": 7200,
+          "seconds": 295.008197,
+          "path": "pagination.py",
+          "sha256": "475e95d39e72ea4bab068fa65143231b73c8d686cd54e8c6faf845e43eb4a771"
+        },
+        {
+          "tick": 7202,
+          "seconds": 295.087257,
+          "path": "api.py",
+          "sha256": "9e28d930c180b12d9988ee093bd099de0d5bb7e734c10eaee97eec48a09b4689"
+        },
+        {
+          "tick": 7204,
+          "seconds": 295.153871,
+          "path": "docs/work/P001-pagination-validation/plan.md",
+          "sha256": "3019d5d7e5f58d539d9b3a522fada038921ea831e515956651b5fc1ae74d00b7",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "done",
+            "in_progress"
+          ]
+        },
+        {
+          "tick": 9307,
+          "seconds": 380.596305,
+          "path": "docs/work/P001-pagination-validation/plan.md",
+          "sha256": "886446a949f396682950f330290a8deb2bf35b82b70397174e2734866186d02a",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "done"
+          },
+          "work_states": [
+            "done",
+            "done"
+          ]
+        }
+      ],
+      "check_events": [
+        {
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            3
+          ],
+          "dry_run_output_observed": false
+        },
+        {
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v > /tmp/pagination-before-repair.log 2>&1\npagination_check_status=$?\nrg '\"'\"'^test_|''^Ran |''^FAILED|''^OK'\"' /tmp/pagination-before-repair.log\nexit \\\"\"'$pagination_check_status\"'",
+          "exit_code": 1,
+          "unit_test_counts": [
+            13
+          ],
+          "dry_run_output_observed": false
+        },
+        {
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            13
+          ],
+          "dry_run_output_observed": false
+        }
+      ],
+      "prompt_sha256": "6d495fee82cb873edcbb5fcc5078be755ecd81268c165bcbba4fa1bdf955984a",
+      "trace_sha256": "37618c13500f6e7c5f0a84d93b304e321868862480124e46c2d5d313bf9451d9",
+      "grade_sha256": "e234a50503194e420a77788e129e9d56ecb957fdd46764a465374c506604bdfe",
+      "raw_location": ".pilot-runs/v02-diagnosis-design/investigate-fix/repair"
+    },
+    {
+      "scenario": "design",
+      "profile": "brownfield",
+      "source_revision": "initial",
+      "expected_kind": "design",
+      "selected_blueprints_observed": [
+        "design"
+      ],
+      "passed": false,
+      "checks": {
+        "fresh_session_completed": true,
+        "chosen_kind_present": true,
+        "selected_blueprint_read": true,
+        "only_current_kind_blueprints_read": true,
+        "required_unit_check_passed": true,
+        "history_bodies_not_emitted": true,
+        "spec_saved_before_output": true,
+        "blueprint_read_before_output": true,
+        "all_kinds_match_scoped_outcomes": true,
+        "application_unchanged": true,
+        "separate_deliverable_saved": true,
+        "decision_and_compatibility_evidence": true,
+        "brownfield_baseline_recorded": true,
+        "document_contracts": false,
+        "independent_original_tests_passed": true
+      },
+      "document_errors": [
+        "work/P001-page-size-validation/index.md: only a bundle root index has frontmatter: okf_version: '0.2'"
+      ],
+      "thread_id": "01a10345-0a72-79a2-a952-d01f4cda9b99",
+      "cli_exit_code": 0,
+      "duration_seconds": 398.835343,
+      "usage": {
+        "input_tokens": 287831,
+        "cached_input_tokens": 255232,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 11875,
+        "reasoning_output_tokens": 3555
+      },
+      "observed_command_count": 11,
+      "observed_file_versions": 33,
+      "independent_behavior_case_executions": 0,
+      "original_test_executions": 4,
+      "original_tests_exit_code": 0,
+      "goals": {},
+      "final_plan_states": {
+        "docs/work/P001-page-size-validation/plan.md": "done"
+      },
+      "final_standalone_spec_states": {},
+      "specs": [
+        "docs/work/P001-page-size-validation/P001-MS01-page-size-validation-design.md"
+      ],
+      "plans": [
+        "docs/work/P001-page-size-validation/plan.md"
+      ],
+      "deliverables": [
+        "docs/work/P001-page-size-validation/decision.md"
+      ],
+      "document_and_source_timeline": [
+        {
+          "tick": 4651,
+          "seconds": 110.940119,
+          "path": "docs/work/P001-page-size-validation/plan.md",
+          "sha256": "7759caf2d711989cb9bdf19c0c756672a127d58d5e424f881184f8a78fde4dca",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "planned"
+          ]
+        },
+        {
+          "tick": 5594,
+          "seconds": 133.746436,
+          "path": "docs/work/P001-page-size-validation/P001-MS01-page-size-validation-design.md",
+          "sha256": "a8028cb2b55545de8183bd85960402330a98d6744ba98b945864cce42fcb0d9c",
+          "metadata": {
+            "type": "MicroSpec",
+            "kind": "design"
+          }
+        },
+        {
+          "tick": 5599,
+          "seconds": 133.858627,
+          "path": "docs/work/P001-page-size-validation/plan.md",
+          "sha256": "3cb1cc28c0000e839f66e0d932f4dfecaaeb229a799507c881187d93caff43db",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "in_progress"
+          ]
+        },
+        {
+          "tick": 10484,
+          "seconds": 252.922153,
+          "path": "docs/work/P001-page-size-validation/decision.md",
+          "sha256": "d97923db73a38479e13924616a71ebcb306973751a65ac7d6f62f001a47b0c0b",
+          "metadata": {
+            "type": "Decision"
+          }
+        },
+        {
+          "tick": 10489,
+          "seconds": 253.040092,
+          "path": "docs/work/P001-page-size-validation/plan.md",
+          "sha256": "60b1ff32b3ce10c5041eec2c4c4ad026a68c5231f89131f99f2fa2176b2b3db3",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "in_progress"
+          ]
+        },
+        {
+          "tick": 14873,
+          "seconds": 360.156906,
+          "path": "docs/work/P001-page-size-validation/decision.md",
+          "sha256": "15564858c133bc9120efbaf9c9d4fcf3495a19b5a755e2aeebdc11c28025b401",
+          "metadata": {
+            "type": "Decision"
+          }
+        },
+        {
+          "tick": 14876,
+          "seconds": 360.228117,
+          "path": "docs/work/P001-page-size-validation/plan.md",
+          "sha256": "e34863484e10250a5bef04b252eb5aea72af0151efce74ca5480c90bcd2559be",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "done"
+          },
+          "work_states": [
+            "done"
+          ]
+        }
+      ],
+      "check_events": [
+        {
+          "command": "/bin/bash -lc \"python3 -m unittest discover -s tests -v && python3 - <<'PY'\nfrom pathlib import Path\nimport hashlib\nimport json\npaths = sorted({*Path('.').glob('*.py'), *Path('tests').rglob('*')})\nfingerprints = {str(path): hashlib.sha256(path.read_bytes()).hexdigest() for path in paths if path.is_file() and '__pycache__' not in path.parts}\nPath('/tmp/okms-routing-design-preserved-files.json').write_text(json.dumps(fingerprints, indent=2) + '\\\\n')\nprint('Preservation baseline:', json.dumps(fingerprints, sort_keys=True))\nPY\"",
+          "exit_code": 0,
+          "unit_test_counts": [
+            4
+          ],
+          "dry_run_output_observed": false
+        },
+        {
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            4
+          ],
+          "dry_run_output_observed": false
+        }
+      ],
+      "prompt_sha256": "dbe3758d44a9683dd7b8668aa9a9a2dec7fac846704e9fb5173db7b7d6763396",
+      "trace_sha256": "029de1986bb2d3debb85d3d71e590691d5c1ac805ef66566480081c7f19b88de",
+      "grade_sha256": "0f45ef8c35ef58b62a9aaab40302966b7fcd08d329389179b983824562c27c8c",
+      "raw_location": ".pilot-runs/v02-diagnosis-design/design/design"
+    },
+    {
+      "scenario": "goal-limit",
+      "profile": "plan-first",
+      "source_revision": "initial",
+      "expected_kind": "implementation",
+      "selected_blueprints_observed": [
+        "implementation"
+      ],
+      "passed": false,
+      "checks": {
+        "fresh_session_completed": true,
+        "chosen_kind_present": true,
+        "selected_blueprint_read": true,
+        "only_current_kind_blueprints_read": true,
+        "required_unit_check_passed": true,
+        "history_bodies_not_emitted": true,
+        "spec_saved_before_output": true,
+        "blueprint_read_before_output": true,
+        "all_kinds_match_scoped_outcomes": true,
+        "independent_behavior_passed": true,
+        "one_persistent_goal": true,
+        "portable_mode_honest": true,
+        "attempt_reserved_before_code": true,
+        "limit_preserves_incomplete_goal": true,
+        "one_outcome_and_spec_at_limit": true,
+        "document_contracts": false,
+        "independent_original_tests_passed": true
+      },
+      "document_errors": [
+        "work/G001-strict-pagination/index.md: only a bundle root index has frontmatter: okf_version: '0.2'",
+        "work/P001-strict-pagination/index.md: only a bundle root index has frontmatter: okf_version: '0.2'"
+      ],
+      "thread_id": "01a10337-6f5b-7993-99c2-d9329dccaaf6",
+      "cli_exit_code": 0,
+      "duration_seconds": 368.879006,
+      "usage": {
+        "input_tokens": 336060,
+        "cached_input_tokens": 300928,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9968,
+        "reasoning_output_tokens": 3415
+      },
+      "observed_command_count": 17,
+      "observed_file_versions": 234,
+      "independent_behavior_case_executions": 20,
+      "original_test_executions": 3,
+      "original_tests_exit_code": 0,
+      "goals": {
+        "docs/work/G001-strict-pagination/goal.md": {
+          "type": "Goal",
+          "title": "Strict pagination support",
+          "description": "Deliver strict page size parsing and its dependent article endpoint integration within a portable bounded loop.",
+          "work_status": "in_progress",
+          "execution": "portable",
+          "max_iterations": 1,
+          "iterations_used": 1,
+          "stop_reason": "iteration_limit"
+        }
+      },
+      "final_plan_states": {
+        "docs/work/P001-strict-pagination/plan.md": "in_progress"
+      },
+      "final_standalone_spec_states": {},
+      "specs": [
+        "docs/work/P001-strict-pagination/P001-MS01-strict-page-size.md"
+      ],
+      "plans": [
+        "docs/work/P001-strict-pagination/plan.md"
+      ],
+      "deliverables": [],
+      "document_and_source_timeline": [
+        {
+          "tick": 4114,
+          "seconds": 166.37677,
+          "path": "docs/work/G001-strict-pagination/goal.md",
+          "sha256": "2f6854773216a122f3633986116f593d30fc0c4c170fb7850fdb1658a8a0bec8",
+          "metadata": {
+            "type": "Goal",
+            "work_status": "planned",
+            "execution": "portable",
+            "max_iterations": 1,
+            "iterations_used": 0,
+            "stop_reason": "none"
+          }
+        },
+        {
+          "tick": 4120,
+          "seconds": 166.62539,
+          "path": "docs/work/P001-strict-pagination/plan.md",
+          "sha256": "dc27813d6f64b445a9df6909cd23e5105d787425dc5d10d3d25ec1c279730441",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "planned"
+          },
+          "work_states": [
+            "planned",
+            "planned"
+          ]
+        },
+        {
+          "tick": 4122,
+          "seconds": 166.703807,
+          "path": "docs/work/P001-strict-pagination/P001-MS01-strict-page-size.md",
+          "sha256": "88cc0d66eee6eaa740a424ab29d0d8377a6f94ed3894571854cb33c8d9e2ade7",
+          "metadata": {
+            "type": "MicroSpec",
+            "kind": "implementation"
+          }
+        },
+        {
+          "tick": 4739,
+          "seconds": 191.806826,
+          "path": "docs/work/G001-strict-pagination/goal.md",
+          "sha256": "05b99c6fcc90759e22d55cbb6a6783afd6604f47d6efced1bf00b3045b5bc3c8",
+          "metadata": {
+            "type": "Goal",
+            "work_status": "in_progress",
+            "execution": "portable",
+            "max_iterations": 1,
+            "iterations_used": 1,
+            "stop_reason": "none"
+          }
+        },
+        {
+          "tick": 4740,
+          "seconds": 191.847342,
+          "path": "docs/work/P001-strict-pagination/plan.md",
+          "sha256": "00e9f1acf0183668db9cda3ca1e0f34b49fd71fe1fc62352f12574176e9c5b17",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "in_progress",
+            "planned"
+          ]
+        },
+        {
+          "tick": 5523,
+          "seconds": 223.0264,
+          "path": "pagination.py",
+          "sha256": "ff125b1619c1ca641b18a45fe587302897f918252ffd2a33478458c08a76ad29"
+        },
+        {
+          "tick": 7645,
+          "seconds": 309.47852,
+          "path": "docs/work/G001-strict-pagination/goal.md",
+          "sha256": "02a47e7333e70219258265a66a1e921f8524e93f91006e2087d9b8c5dd309be7",
+          "metadata": {
+            "type": "Goal",
+            "work_status": "in_progress",
+            "execution": "portable",
+            "max_iterations": 1,
+            "iterations_used": 1,
+            "stop_reason": "iteration_limit"
+          }
+        },
+        {
+          "tick": 7646,
+          "seconds": 309.51777,
+          "path": "docs/work/P001-strict-pagination/plan.md",
+          "sha256": "c53258868847bbc835dde783d46d87fc1989401c0c629a2a42cbd49447c91f04",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "done",
+            "planned"
+          ]
+        }
+      ],
+      "check_events": [
+        {
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            10
+          ],
+          "dry_run_output_observed": false
+        }
+      ],
+      "prompt_sha256": "e32c20566e4f9b5e76fae9869f18508fac1d212b0c3cc7408cd0f2c47624da06",
+      "trace_sha256": "68e4d74852b0ea78b762c7bf8317fa47f1ce37232ec3f5fbe1c1d47481102956",
+      "grade_sha256": "cbdaf7dc63bf1a5ed0ce6951708a5b341fe961776524ab4bd7a10b115885c83c",
+      "raw_location": ".pilot-runs/v02-goal-general/goal/goal-limit"
+    },
+    {
+      "scenario": "goal-resume",
+      "profile": "plan-first",
+      "source_revision": "initial",
+      "expected_kind": "implementation",
+      "selected_blueprints_observed": [
+        "implementation"
+      ],
+      "passed": false,
+      "checks": {
+        "fresh_session_completed": true,
+        "chosen_kind_present": true,
+        "selected_blueprint_read": true,
+        "only_current_kind_blueprints_read": true,
+        "required_unit_check_passed": true,
+        "history_bodies_not_emitted": true,
+        "spec_saved_before_output": true,
+        "blueprint_read_before_output": true,
+        "all_kinds_match_scoped_outcomes": true,
+        "independent_behavior_passed": true,
+        "one_persistent_goal": true,
+        "portable_mode_honest": true,
+        "attempt_reserved_before_code": true,
+        "same_goal_and_new_conversation": true,
+        "explicit_extension_preserves_attempts": true,
+        "goal_completed_with_plan": true,
+        "completed_parser_not_rewritten": true,
+        "document_contracts": false,
+        "independent_original_tests_passed": true
+      },
+      "document_errors": [
+        "work/G001-strict-pagination/index.md: only a bundle root index has frontmatter: okf_version: '0.2'",
+        "work/P001-strict-pagination/index.md: only a bundle root index has frontmatter: okf_version: '0.2'"
+      ],
+      "thread_id": "01a1033d-138b-7cf3-97e1-002dcf084091",
+      "cli_exit_code": 0,
+      "duration_seconds": 414.869278,
+      "usage": {
+        "input_tokens": 388354,
+        "cached_input_tokens": 351360,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 11848,
+        "reasoning_output_tokens": 3306
+      },
+      "observed_command_count": 27,
+      "observed_file_versions": 241,
+      "independent_behavior_case_executions": 40,
+      "original_test_executions": 3,
+      "original_tests_exit_code": 0,
+      "goals": {
+        "docs/work/G001-strict-pagination/goal.md": {
+          "type": "Goal",
+          "title": "Strict pagination support",
+          "description": "Deliver strict page size parsing and its dependent article endpoint integration within a portable bounded loop.",
+          "work_status": "done",
+          "execution": "portable",
+          "max_iterations": 2,
+          "iterations_used": 2,
+          "stop_reason": "complete"
+        }
+      },
+      "final_plan_states": {
+        "docs/work/P001-strict-pagination/plan.md": "done"
+      },
+      "final_standalone_spec_states": {},
+      "specs": [
+        "docs/work/P001-strict-pagination/P001-MS02-article-endpoint-integration.md",
+        "docs/work/P001-strict-pagination/P001-MS01-strict-page-size.md"
+      ],
+      "plans": [
+        "docs/work/P001-strict-pagination/plan.md"
+      ],
+      "deliverables": [],
+      "document_and_source_timeline": [
+        {
+          "tick": 3738,
+          "seconds": 154.090838,
+          "path": "docs/work/G001-strict-pagination/goal.md",
+          "sha256": "9d633c316d3522dcdf0db45e260dec276ea6453780af88caf405f66157d7e79e",
+          "metadata": {
+            "type": "Goal",
+            "work_status": "in_progress",
+            "execution": "portable",
+            "max_iterations": 2,
+            "iterations_used": 1,
+            "stop_reason": "none"
+          }
+        },
+        {
+          "tick": 3739,
+          "seconds": 154.13363,
+          "path": "docs/work/P001-strict-pagination/plan.md",
+          "sha256": "e87995bc67c2adb1d8afea7eeb31fe9e4c415214697741b82ffa63d0fe6ec5ca",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "done",
+            "planned"
+          ]
+        },
+        {
+          "tick": 3741,
+          "seconds": 154.211698,
+          "path": "docs/work/P001-strict-pagination/P001-MS02-article-endpoint-integration.md",
+          "sha256": "252e90a5bd6051b31861546e5724f4f84f96768783d5d2049b40f0900ab39a1f",
+          "metadata": {
+            "type": "MicroSpec",
+            "kind": "implementation"
+          }
+        },
+        {
+          "tick": 4664,
+          "seconds": 192.197526,
+          "path": "docs/work/G001-strict-pagination/goal.md",
+          "sha256": "61385d45b0a89034481da3db31a6cd5795e8e15bb756905362f9953a15774b3f",
+          "metadata": {
+            "type": "Goal",
+            "work_status": "in_progress",
+            "execution": "portable",
+            "max_iterations": 2,
+            "iterations_used": 2,
+            "stop_reason": "none"
+          }
+        },
+        {
+          "tick": 4665,
+          "seconds": 192.237048,
+          "path": "docs/work/P001-strict-pagination/plan.md",
+          "sha256": "d2c628424ef79f153d7d0846744037e2b02e76a63dd3854ad3a821f683ad58b8",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "done",
+            "in_progress"
+          ]
+        },
+        {
+          "tick": 6028,
+          "seconds": 248.387845,
+          "path": "api.py",
+          "sha256": "9e28d930c180b12d9988ee093bd099de0d5bb7e734c10eaee97eec48a09b4689"
+        },
+        {
+          "tick": 8311,
+          "seconds": 342.59635,
+          "path": "docs/work/P001-strict-pagination/plan.md",
+          "sha256": "7b9ff70e009fa26b7588a5810c6bae2f0d3001df475aaf28c2675467b6c02c9e",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "done"
+          },
+          "work_states": [
+            "done",
+            "done"
+          ]
+        },
+        {
+          "tick": 8313,
+          "seconds": 342.677157,
+          "path": "docs/work/G001-strict-pagination/goal.md",
+          "sha256": "a611ed71eb7b0d8a34fc8f7950e6066ed249283af8c595ffe6f608ee98da9334",
+          "metadata": {
+            "type": "Goal",
+            "work_status": "done",
+            "execution": "portable",
+            "max_iterations": 2,
+            "iterations_used": 2,
+            "stop_reason": "complete"
+          }
+        }
+      ],
+      "check_events": [
+        {
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            10
+          ],
+          "dry_run_output_observed": false
+        },
+        {
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            17
+          ],
+          "dry_run_output_observed": false
+        }
+      ],
+      "prompt_sha256": "372c35fb6d42a9e4f106d308638e21e7b29ee9b34400ce18e850a236b22bf131",
+      "trace_sha256": "fc0f97af0b3b7913385de14aa8b55728373845f640a35f5781a040606a6291f9",
+      "grade_sha256": "72df3072d3a60a307d4a0a29fe47b0474ba61c9b8a660ea59b2b582cfc829e4d",
+      "raw_location": ".pilot-runs/v02-goal-general/goal/goal-resume"
+    },
+    {
+      "scenario": "general",
+      "profile": "lite",
+      "source_revision": "initial",
+      "expected_kind": "general",
+      "selected_blueprints_observed": [
+        "general"
+      ],
+      "passed": true,
+      "checks": {
+        "fresh_session_completed": true,
+        "chosen_kind_present": true,
+        "selected_blueprint_read": true,
+        "only_current_kind_blueprints_read": true,
+        "required_unit_check_passed": true,
+        "history_bodies_not_emitted": true,
+        "spec_saved_before_output": true,
+        "blueprint_read_before_output": true,
+        "all_kinds_match_scoped_outcomes": true,
+        "application_unchanged": true,
+        "separate_deliverable_saved": true,
+        "translation_retains_values_and_command": true,
+        "translated_command_not_executed": true,
+        "standalone_lite_progress": true,
+        "document_contracts": true,
+        "independent_original_tests_passed": true
+      },
+      "document_errors": [],
+      "thread_id": "01a10343-6c72-73c2-967a-19c4a803f2f1",
+      "cli_exit_code": 0,
+      "duration_seconds": 150.825813,
+      "usage": {
+        "input_tokens": 187840,
+        "cached_input_tokens": 169472,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3489,
+        "reasoning_output_tokens": 1323
+      },
+      "observed_command_count": 10,
+      "observed_file_versions": 29,
+      "independent_behavior_case_executions": 0,
+      "original_test_executions": 3,
+      "original_tests_exit_code": 0,
+      "goals": {},
+      "final_plan_states": {},
+      "final_standalone_spec_states": {
+        "docs/work/MS001-translate-note.md": "done"
+      },
+      "specs": [
+        "docs/work/MS001-translate-note.md"
+      ],
+      "plans": [],
+      "deliverables": [
+        "docs/translation.md"
+      ],
+      "document_and_source_timeline": [
+        {
+          "tick": 3291,
+          "seconds": 79.110669,
+          "path": "docs/work/MS001-translate-note.md",
+          "sha256": "4a2f97811242c995b632e2932233054160725c493c67cb5e4d009d5a29641cd1",
+          "metadata": {
+            "type": "MicroSpec",
+            "kind": "general",
+            "work_status": "planned"
+          }
+        },
+        {
+          "tick": 3755,
+          "seconds": 90.281112,
+          "path": "docs/work/MS001-translate-note.md",
+          "sha256": "a697c8c0f5f71597599bb3aa3f22be76feaa018b46736de137841f7a99297ae8",
+          "metadata": {
+            "type": "MicroSpec",
+            "kind": "general",
+            "work_status": "in_progress"
+          }
+        },
+        {
+          "tick": 3759,
+          "seconds": 90.355732,
+          "path": "docs/translation.md",
+          "sha256": "ba659f52b26ccfe0d40ce9acc7c2941072c7ca15d61f3720595cd5715c5a4e29",
+          "metadata": {
+            "type": "Note"
+          }
+        },
+        {
+          "tick": 5560,
+          "seconds": 133.74779,
+          "path": "docs/work/MS001-translate-note.md",
+          "sha256": "90c8e034c4adbcbeb194c46e1bb74cf82f600b5a11245f006a29f6f3236a3a3f",
+          "metadata": {
+            "type": "MicroSpec",
+            "kind": "general",
+            "work_status": "done"
+          }
+        }
+      ],
+      "check_events": [
+        {
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            3
+          ],
+          "dry_run_output_observed": false
+        }
+      ],
+      "prompt_sha256": "5e097e395cc177b90ce54ef9f09cfb812ee1f3d6ec791a3fff8777a1ae328db9",
+      "trace_sha256": "add54e0be7b5e4af73f644ec0bae9b2eb725662a8b11ae76e7c661de49174520",
+      "grade_sha256": "4bc3d3105a4223ace6fcb327613628c5269c1560202cf761763c4cb3212d6d72",
+      "raw_location": ".pilot-runs/v02-goal-general/general/general"
+    },
+    {
+      "scenario": "research",
+      "profile": "lite",
+      "source_revision": "initial",
+      "expected_kind": "research",
+      "selected_blueprints_observed": [
+        "research"
+      ],
+      "passed": true,
+      "checks": {
+        "fresh_session_completed": true,
+        "chosen_kind_present": true,
+        "selected_blueprint_read": true,
+        "only_current_kind_blueprints_read": true,
+        "required_unit_check_passed": true,
+        "history_bodies_not_emitted": true,
+        "spec_saved_before_output": true,
+        "blueprint_read_before_output": true,
+        "all_kinds_match_scoped_outcomes": true,
+        "application_unchanged": true,
+        "separate_deliverable_saved": true,
+        "source_facts_dates_and_limits": true,
+        "source_references_present": true,
+        "standalone_lite_progress": true,
+        "document_contracts": true,
+        "independent_original_tests_passed": true
+      },
+      "document_errors": [],
+      "thread_id": "01a10337-6f07-7800-a8f9-0c7c854cc645",
+      "cli_exit_code": 0,
+      "duration_seconds": 240.823514,
+      "usage": {
+        "input_tokens": 235188,
+        "cached_input_tokens": 206080,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6735,
+        "reasoning_output_tokens": 2948
+      },
+      "observed_command_count": 12,
+      "observed_file_versions": 31,
+      "independent_behavior_case_executions": 0,
+      "original_test_executions": 3,
+      "original_tests_exit_code": 0,
+      "goals": {},
+      "final_plan_states": {},
+      "final_standalone_spec_states": {
+        "docs/work/MS001-harbor-quarry-comparison.md": "done"
+      },
+      "specs": [
+        "docs/work/MS001-harbor-quarry-comparison.md"
+      ],
+      "plans": [],
+      "deliverables": [
+        "docs/harbor-quarry-comparison.md"
+      ],
+      "document_and_source_timeline": [
+        {
+          "tick": 2869,
+          "seconds": 70.272135,
+          "path": "docs/work/MS001-harbor-quarry-comparison.md",
+          "sha256": "34cb7f2b69055b94697e3a484cb41c3cbce131cffa078d0327a3f3b4f0d8bee1",
+          "metadata": {
+            "type": "MicroSpec",
+            "kind": "research",
+            "work_status": "planned"
+          }
+        },
+        {
+          "tick": 3033,
+          "seconds": 74.239894,
+          "path": "docs/work/MS001-harbor-quarry-comparison.md",
+          "sha256": "bd8dfcefa3a10b17682cecbad701049eb76ed7fe43a4885a93f0075a32677ded",
+          "metadata": {
+            "type": "MicroSpec",
+            "kind": "research",
+            "work_status": "in_progress"
+          }
+        },
+        {
+          "tick": 5639,
+          "seconds": 137.579849,
+          "path": "docs/harbor-quarry-comparison.md",
+          "sha256": "33ca838860d89f8ba7e1f400adeb12e472941c7a6750282b7e86f344cd690581",
+          "metadata": {
+            "type": "Report"
+          }
+        },
+        {
+          "tick": 8432,
+          "seconds": 205.919603,
+          "path": "docs/work/MS001-harbor-quarry-comparison.md",
+          "sha256": "ae27473d68c70323f0ff61a0f436c1e913554313e2dcffd234883375ce5b604a",
+          "metadata": {
+            "type": "MicroSpec",
+            "kind": "research",
+            "work_status": "done"
+          }
+        }
+      ],
+      "check_events": [
+        {
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            3
+          ],
+          "dry_run_output_observed": false
+        }
+      ],
+      "prompt_sha256": "806b3f9a18ff03b67005f6b01a5da7ed99b445fb6a927800351e4a5a2dc5e3a8",
+      "trace_sha256": "e66ba0eed5c52f0b1acab3fa2fb1964bf54c4626987032adf14c54a42a1d1c2b",
+      "grade_sha256": "81e8c80054721018d06c1856dcf221217a262c237821e22456ce480341e4b7ea",
+      "raw_location": ".pilot-runs/v02-research-runbook-blocked/research/research"
+    },
+    {
+      "scenario": "runbook",
+      "profile": "lite",
+      "source_revision": "initial",
+      "expected_kind": "runbook",
+      "selected_blueprints_observed": [
+        "runbook"
+      ],
+      "passed": true,
+      "checks": {
+        "fresh_session_completed": true,
+        "chosen_kind_present": true,
+        "selected_blueprint_read": true,
+        "only_current_kind_blueprints_read": true,
+        "required_unit_check_passed": true,
+        "history_bodies_not_emitted": true,
+        "spec_saved_before_output": true,
+        "blueprint_read_before_output": true,
+        "all_kinds_match_scoped_outcomes": true,
+        "application_unchanged": true,
+        "separate_deliverable_saved": true,
+        "operator_steps_and_failure_handling": true,
+        "dry_run_observed": true,
+        "service_source_and_state_preserved": true,
+        "standalone_lite_progress": true,
+        "document_contracts": true,
+        "independent_original_tests_passed": true
+      },
+      "document_errors": [],
+      "thread_id": "01a1033b-1ca2-7170-8bbd-a9bb59ca492b",
+      "cli_exit_code": 0,
+      "duration_seconds": 346.403785,
+      "usage": {
+        "input_tokens": 308766,
+        "cached_input_tokens": 277888,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8935,
+        "reasoning_output_tokens": 2766
+      },
+      "observed_command_count": 19,
+      "observed_file_versions": 30,
+      "independent_behavior_case_executions": 0,
+      "original_test_executions": 3,
+      "original_tests_exit_code": 0,
+      "goals": {},
+      "final_plan_states": {},
+      "final_standalone_spec_states": {
+        "docs/work/MS001-fixture-service-recovery.md": "done"
+      },
+      "specs": [
+        "docs/work/MS001-fixture-service-recovery.md"
+      ],
+      "plans": [],
+      "deliverables": [
+        "docs/fixture-service-recovery.md"
+      ],
+      "document_and_source_timeline": [
+        {
+          "tick": 3363,
+          "seconds": 80.649668,
+          "path": "docs/work/MS001-fixture-service-recovery.md",
+          "sha256": "facc09a219d14d6bdd52ad64f8cb7c19d1a8ba484c3c04f1e6d654036425d614",
+          "metadata": {
+            "type": "MicroSpec",
+            "kind": "runbook",
+            "work_status": "planned"
+          }
+        },
+        {
+          "tick": 3674,
+          "seconds": 88.150908,
+          "path": "docs/work/MS001-fixture-service-recovery.md",
+          "sha256": "a222ceca34256cf9849e0a9cebeccbf69fe4b0cdb1059d11fc06d650a3ed980a",
+          "metadata": {
+            "type": "MicroSpec",
+            "kind": "runbook",
+            "work_status": "in_progress"
+          }
+        },
+        {
+          "tick": 9668,
+          "seconds": 233.622313,
+          "path": "docs/fixture-service-recovery.md",
+          "sha256": "9f9ad89b2da68f484c48c58434d2d7971404df9bc47d1742dd7d5b35c8e5566d",
+          "metadata": {
+            "type": "Runbook"
+          }
+        },
+        {
+          "tick": 12917,
+          "seconds": 313.024331,
+          "path": "docs/work/MS001-fixture-service-recovery.md",
+          "sha256": "a39fdbfe77080a4648453afe6fb02ebc5aa4951946b10df72e2ff09871ce74d1",
+          "metadata": {
+            "type": "MicroSpec",
+            "kind": "runbook",
+            "work_status": "done"
+          }
+        }
+      ],
+      "check_events": [
+        {
+          "command": "/bin/bash -lc 'python3 fixture_service.py recover --dry-run'",
+          "exit_code": 0,
+          "unit_test_counts": [],
+          "dry_run_output_observed": true
+        },
+        {
+          "command": "/bin/bash -lc 'python3 fixture_service.py rollback --dry-run'",
+          "exit_code": 0,
+          "unit_test_counts": [],
+          "dry_run_output_observed": true
+        },
+        {
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            3
+          ],
+          "dry_run_output_observed": false
+        }
+      ],
+      "prompt_sha256": "5f40309b66a5e8cc11260efb377186b1124769be1f41e18067fc14d3667b50fe",
+      "trace_sha256": "7d40bfe1c983340041d800a08283983ef851b391a9ee947ece9cd80c9ca030fe",
+      "grade_sha256": "fbe7ba20aec9f412cffd7d4629e561ee30011d1414430872f8a0ca5c5a1de800",
+      "raw_location": ".pilot-runs/v02-research-runbook-blocked/runbook/runbook"
+    },
+    {
+      "scenario": "goal-blocked",
+      "profile": "plan-first",
+      "source_revision": "initial",
+      "expected_kind": "bugfix",
+      "selected_blueprints_observed": [
+        "bugfix"
+      ],
+      "passed": false,
+      "checks": {
+        "fresh_session_completed": true,
+        "chosen_kind_present": true,
+        "selected_blueprint_read": true,
+        "only_current_kind_blueprints_read": true,
+        "required_unit_check_passed": true,
+        "history_bodies_not_emitted": true,
+        "spec_saved_before_output": true,
+        "blueprint_read_before_output": true,
+        "all_kinds_match_scoped_outcomes": true,
+        "independent_behavior_passed": true,
+        "one_persistent_goal": true,
+        "portable_mode_honest": true,
+        "attempt_reserved_before_code": true,
+        "required_gate_failed_without_repairing_it": true,
+        "blocked_goal_preserves_incomplete_verification": true,
+        "document_contracts": false,
+        "independent_original_tests_passed": true
+      },
+      "document_errors": [
+        "work/G001-strict-page-size/index.md: only a bundle root index has frontmatter: okf_version: '0.2'",
+        "work/P001-strict-page-size/index.md: only a bundle root index has frontmatter: okf_version: '0.2'"
+      ],
+      "thread_id": "01a10340-66a0-7da3-84f6-571e87991592",
+      "cli_exit_code": 0,
+      "duration_seconds": 327.748459,
+      "usage": {
+        "input_tokens": 257051,
+        "cached_input_tokens": 212864,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9087,
+        "reasoning_output_tokens": 2843
+      },
+      "observed_command_count": 12,
+      "observed_file_versions": 34,
+      "independent_behavior_case_executions": 20,
+      "original_test_executions": 3,
+      "original_tests_exit_code": 0,
+      "goals": {
+        "docs/work/G001-strict-page-size/goal.md": {
+          "type": "Goal",
+          "title": "Strict page size parser",
+          "description": "Repair page size parsing in a portable loop with at most three attempts and preserve actual verification results.",
+          "work_status": "blocked",
+          "execution": "portable",
+          "max_iterations": 3,
+          "iterations_used": 1,
+          "stop_reason": "blocked"
+        }
+      },
+      "final_plan_states": {
+        "docs/work/P001-strict-page-size/plan.md": "blocked"
+      },
+      "final_standalone_spec_states": {},
+      "specs": [
+        "docs/work/P001-strict-page-size/P001-MS01-page-size-parser.md"
+      ],
+      "plans": [
+        "docs/work/P001-strict-page-size/plan.md"
+      ],
+      "deliverables": [],
+      "document_and_source_timeline": [
+        {
+          "tick": 5764,
+          "seconds": 139.174514,
+          "path": "docs/work/G001-strict-page-size/goal.md",
+          "sha256": "c378d23c44be0a57738e41654b8027fa74822c6d354c529da4eeccc7711b1d0f",
+          "metadata": {
+            "type": "Goal",
+            "work_status": "in_progress",
+            "execution": "portable",
+            "max_iterations": 3,
+            "iterations_used": 1,
+            "stop_reason": "none"
+          }
+        },
+        {
+          "tick": 5775,
+          "seconds": 139.444085,
+          "path": "docs/work/P001-strict-page-size/plan.md",
+          "sha256": "ba9b0d7f421f07a06f1cf3602c5fa6355e0776190a965dffaf5bd3157cac72a7",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "in_progress"
+          ]
+        },
+        {
+          "tick": 5777,
+          "seconds": 139.492735,
+          "path": "docs/work/P001-strict-page-size/P001-MS01-page-size-parser.md",
+          "sha256": "b97c7a1aef7d1cf2018254e5cd7dd4d01a697bb70df32e8a8e44db270f72364a",
+          "metadata": {
+            "type": "MicroSpec",
+            "kind": "bugfix"
+          }
+        },
+        {
+          "tick": 8650,
+          "seconds": 210.301574,
+          "path": "pagination.py",
+          "sha256": "713eb7f47587ba717a8d7dc3c45ea748951a824996f95a7cbb3a87e1a1a8aee5"
+        },
+        {
+          "tick": 11692,
+          "seconds": 285.485458,
+          "path": "docs/work/G001-strict-page-size/goal.md",
+          "sha256": "e560cc06ea530cb14bfde94113079dd3950ede9b640d0ef64a749244f2c7ee8a",
+          "metadata": {
+            "type": "Goal",
+            "work_status": "blocked",
+            "execution": "portable",
+            "max_iterations": 3,
+            "iterations_used": 1,
+            "stop_reason": "blocked"
+          }
+        },
+        {
+          "tick": 11694,
+          "seconds": 285.535757,
+          "path": "docs/work/P001-strict-page-size/plan.md",
+          "sha256": "74d02f932da190cba04af37c8f1065491299f52124aecce7baf1d15dfcd7697f",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "blocked"
+          },
+          "work_states": [
+            "blocked"
+          ]
+        },
+        {
+          "tick": 13138,
+          "seconds": 321.185834,
+          "path": "docs/work/P001-strict-page-size/plan.md",
+          "sha256": "bcf0c80b89e9ca38d8c31e74113874897f157e8f8d1b93b154b94c6d478b3fb2",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "blocked"
+          },
+          "work_states": [
+            "blocked"
+          ]
+        }
+      ],
+      "check_events": [
+        {
+          "command": "/bin/bash -lc \"rg -n '\"'^Ran |''^FAILED|''^OK|''^FAIL:|''^ERROR:'\"' /tmp/okms-page-size-attempt1-before.log\"",
+          "exit_code": 0,
+          "unit_test_counts": [
+            7
+          ],
+          "dry_run_output_observed": false
+        },
+        {
+          "command": "/bin/bash -lc 'python3 verify_required.py'",
+          "exit_code": 2,
+          "unit_test_counts": [],
+          "dry_run_output_observed": false
+        },
+        {
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            10
+          ],
+          "dry_run_output_observed": false
+        }
+      ],
+      "prompt_sha256": "15c5fec1de86685f0dc1459aec3a5f484da9e6950e9bdb71d07927c901f3530e",
+      "trace_sha256": "b21ec47375b5a3d9a907775e74cda3762e9ab6998d37943a7c74e9712a15814a",
+      "grade_sha256": "321ef3e37e800dd4cbc617edb69dd7129598adadfb9827b37092a8275c2e0ea4",
+      "raw_location": ".pilot-runs/v02-research-runbook-blocked/goal-blocked/goal-blocked"
+    },
+    {
+      "scenario": "diagnosis",
+      "profile": "plan-first",
+      "source_revision": "clarified",
+      "expected_kind": "investigation",
+      "selected_blueprints_observed": [
+        "investigation"
+      ],
+      "passed": true,
+      "checks": {
+        "fresh_session_completed": true,
+        "chosen_kind_present": true,
+        "selected_blueprint_read": true,
+        "only_current_kind_blueprints_read": true,
+        "required_unit_check_passed": true,
+        "history_bodies_not_emitted": true,
+        "spec_saved_before_output": true,
+        "blueprint_read_before_output": true,
+        "all_kinds_match_scoped_outcomes": true,
+        "application_unchanged": true,
+        "separate_deliverable_saved": true,
+        "investigation_checkpoint_and_deferred_repair": true,
+        "cause_supported_by_observed_failure": true,
+        "document_contracts": true,
+        "independent_original_tests_passed": true
+      },
+      "document_errors": [],
+      "thread_id": "01a10349-64f0-7762-97dc-639a047097ed",
+      "cli_exit_code": 0,
+      "duration_seconds": 435.780051,
+      "usage": {
+        "input_tokens": 285637,
+        "cached_input_tokens": 239616,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 12524,
+        "reasoning_output_tokens": 3986
+      },
+      "observed_command_count": 17,
+      "observed_file_versions": 231,
+      "independent_behavior_case_executions": 0,
+      "original_test_executions": 3,
+      "original_tests_exit_code": 0,
+      "goals": {},
+      "final_plan_states": {
+        "docs/work/P001-article-pagination/plan.md": "in_progress"
+      },
+      "final_standalone_spec_states": {},
+      "specs": [
+        "docs/work/P001-article-pagination/P001-MS01-investigation.md"
+      ],
+      "plans": [
+        "docs/work/P001-article-pagination/plan.md"
+      ],
+      "deliverables": [
+        "docs/work/P001-article-pagination/findings.md"
+      ],
+      "document_and_source_timeline": [
+        {
+          "tick": 2753,
+          "seconds": 110.071387,
+          "path": "docs/work/P001-article-pagination/plan.md",
+          "sha256": "e5a68fb43953542b4b9c06d2af219087b33da4f96a058cc7b19d646faf9e88c2",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "in_progress",
+            "planned"
+          ]
+        },
+        {
+          "tick": 2754,
+          "seconds": 110.115976,
+          "path": "docs/work/P001-article-pagination/P001-MS01-investigation.md",
+          "sha256": "37429cd73512215f0c191447296ee624cc53d29749ba4856bb77d32a331d3aa3",
+          "metadata": {
+            "type": "MicroSpec",
+            "kind": "investigation"
+          }
+        },
+        {
+          "tick": 6375,
+          "seconds": 255.780218,
+          "path": "docs/work/P001-article-pagination/findings.md",
+          "sha256": "c31d3a3d91900bf894f322ce5791d676b2dd22f6f599134e26b2de1a5b6939e3",
+          "metadata": {
+            "type": "Findings"
+          }
+        },
+        {
+          "tick": 6377,
+          "seconds": 255.848964,
+          "path": "docs/work/P001-article-pagination/plan.md",
+          "sha256": "53b603a5b431be375fde4245e2d3e74c5793a2fc2ea4860a6d4b8326d0a2703e",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "in_progress",
+            "planned"
+          ]
+        },
+        {
+          "tick": 9444,
+          "seconds": 379.598459,
+          "path": "docs/work/P001-article-pagination/plan.md",
+          "sha256": "cabc7a077cbd28f61291c76610deb0ab0d86f774235bec46afc2797c1e615288",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "done",
+            "planned"
+          ]
+        },
+        {
+          "tick": 9446,
+          "seconds": 379.692185,
+          "path": "docs/work/P001-article-pagination/findings.md",
+          "sha256": "ceccba3f4f4dbcd2a190c0606c4281df1b85f499f41720fcf21ce9a6872091ca",
+          "metadata": {
+            "type": "Findings"
+          }
+        }
+      ],
+      "check_events": [
+        {
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            3
+          ],
+          "dry_run_output_observed": false
+        }
+      ],
+      "prompt_sha256": "818a0771a385c59baf59e4062b7112ad476e5ad2d9cbf8086a247df45ce531b9",
+      "trace_sha256": "18a12932dd601c06cb086c10cb8cd341a07056b9ac10fe87da34cba1216ed405",
+      "grade_sha256": "44287d05490898bee741473ebdc546614d5633bd14aae9fd020a7f3d7ed17172",
+      "raw_location": ".pilot-runs/v02-clarified-diagnosis/investigate-fix/diagnosis"
+    },
+    {
+      "scenario": "repair",
+      "profile": "plan-first",
+      "source_revision": "clarified",
+      "expected_kind": "bugfix",
+      "selected_blueprints_observed": [
+        "bugfix"
+      ],
+      "passed": true,
+      "checks": {
+        "fresh_session_completed": true,
+        "chosen_kind_present": true,
+        "selected_blueprint_read": true,
+        "only_current_kind_blueprints_read": true,
+        "required_unit_check_passed": true,
+        "history_bodies_not_emitted": true,
+        "spec_saved_before_output": true,
+        "blueprint_read_before_output": true,
+        "all_kinds_match_scoped_outcomes": true,
+        "completed_findings_preserved": true,
+        "fresh_file_only_handoff": true,
+        "repair_plan_closed": true,
+        "independent_behavior_passed": true,
+        "document_contracts": true,
+        "independent_original_tests_passed": true
+      },
+      "document_errors": [],
+      "thread_id": "01a10350-0e62-79b3-9e23-75805b27dace",
+      "cli_exit_code": 0,
+      "duration_seconds": 443.181175,
+      "usage": {
+        "input_tokens": 372932,
+        "cached_input_tokens": 326528,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 13189,
+        "reasoning_output_tokens": 4029
+      },
+      "observed_command_count": 22,
+      "observed_file_versions": 237,
+      "independent_behavior_case_executions": 40,
+      "original_test_executions": 3,
+      "original_tests_exit_code": 0,
+      "goals": {},
+      "final_plan_states": {
+        "docs/work/P001-article-pagination/plan.md": "done"
+      },
+      "final_standalone_spec_states": {},
+      "specs": [
+        "docs/work/P001-article-pagination/P001-MS02-bugfix.md",
+        "docs/work/P001-article-pagination/P001-MS01-investigation.md"
+      ],
+      "plans": [
+        "docs/work/P001-article-pagination/plan.md"
+      ],
+      "deliverables": [
+        "docs/work/P001-article-pagination/findings.md"
+      ],
+      "document_and_source_timeline": [
+        {
+          "tick": 2860,
+          "seconds": 116.394924,
+          "path": "docs/work/P001-article-pagination/plan.md",
+          "sha256": "54000a5d7ddf3976369d5f080f6b981dbc3bb4b2d3d9e1ec175af42ebf2231aa",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "done",
+            "in_progress"
+          ]
+        },
+        {
+          "tick": 2862,
+          "seconds": 116.502186,
+          "path": "docs/work/P001-article-pagination/P001-MS02-bugfix.md",
+          "sha256": "e847835fa7f1f5280e6869b2749785a4c129936e8dcd6cb5b2eafc993d54f973",
+          "metadata": {
+            "type": "MicroSpec",
+            "kind": "bugfix"
+          }
+        },
+        {
+          "tick": 6150,
+          "seconds": 250.930855,
+          "path": "pagination.py",
+          "sha256": "853a46e7fbccc52e69c66019dd0c12f68065fcfe0fe32ae76a5cb6ec082c418a"
+        },
+        {
+          "tick": 6152,
+          "seconds": 251.008594,
+          "path": "api.py",
+          "sha256": "9e28d930c180b12d9988ee093bd099de0d5bb7e734c10eaee97eec48a09b4689"
+        },
+        {
+          "tick": 6156,
+          "seconds": 251.158638,
+          "path": "docs/work/P001-article-pagination/plan.md",
+          "sha256": "48cb9c86d76761a89b9c2a98c66496535fba8b2bcbefd0f0e485eca4b9ee95b7",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "done",
+            "in_progress"
+          ]
+        },
+        {
+          "tick": 9522,
+          "seconds": 386.242627,
+          "path": "docs/work/P001-article-pagination/plan.md",
+          "sha256": "880719559ad173aa8e13cf3aa8bd689a0abba92b49c1c2e27af01ecc7b3dab59",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "done"
+          },
+          "work_states": [
+            "done",
+            "done"
+          ]
+        }
+      ],
+      "check_events": [
+        {
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            3
+          ],
+          "dry_run_output_observed": false
+        },
+        {
+          "command": "/bin/bash -lc 'PYTHONPATH=.:tests python3 -m unittest test_pagination.PageSizeRegressionTests.test_invalid_text test_pagination.PageSizeRegressionTests.test_long_leading_zeros test_pagination.ArticlePaginationRegressionTests.test_invalid_text -v'",
+          "exit_code": 1,
+          "unit_test_counts": [
+            3
+          ],
+          "dry_run_output_observed": false
+        },
+        {
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            19
+          ],
+          "dry_run_output_observed": false
+        }
+      ],
+      "prompt_sha256": "6d495fee82cb873edcbb5fcc5078be755ecd81268c165bcbba4fa1bdf955984a",
+      "trace_sha256": "4a0226112014b20b60013d97d682261cc2f5edc848db1e7557bf04f7a1b7e9bd",
+      "grade_sha256": "d38a306ad734758d342614dc99370ac1ae6b2f52e23433a8fc78157520f777ea",
+      "raw_location": ".pilot-runs/v02-clarified-diagnosis/investigate-fix/repair"
+    },
+    {
+      "scenario": "goal-limit",
+      "profile": "plan-first",
+      "source_revision": "clarified",
+      "expected_kind": "implementation",
+      "selected_blueprints_observed": [
+        "implementation"
+      ],
+      "passed": true,
+      "checks": {
+        "fresh_session_completed": true,
+        "chosen_kind_present": true,
+        "selected_blueprint_read": true,
+        "only_current_kind_blueprints_read": true,
+        "required_unit_check_passed": true,
+        "history_bodies_not_emitted": true,
+        "spec_saved_before_output": true,
+        "blueprint_read_before_output": true,
+        "all_kinds_match_scoped_outcomes": true,
+        "independent_behavior_passed": true,
+        "one_persistent_goal": true,
+        "portable_mode_honest": true,
+        "attempt_reserved_before_code": true,
+        "limit_preserves_incomplete_goal": true,
+        "one_outcome_and_spec_at_limit": true,
+        "document_contracts": true,
+        "independent_original_tests_passed": true
+      },
+      "document_errors": [],
+      "thread_id": "01a10349-6506-76f0-a893-1685b4bdfbe1",
+      "cli_exit_code": 0,
+      "duration_seconds": 330.612967,
+      "usage": {
+        "input_tokens": 260038,
+        "cached_input_tokens": 233600,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9274,
+        "reasoning_output_tokens": 3225
+      },
+      "observed_command_count": 16,
+      "observed_file_versions": 234,
+      "independent_behavior_case_executions": 20,
+      "original_test_executions": 3,
+      "original_tests_exit_code": 0,
+      "goals": {
+        "docs/work/G001-strict-pagination/goal.md": {
+          "type": "Goal",
+          "title": "Strict pagination Goal",
+          "description": "Execute strict page-size parsing and dependent article endpoint integration with one portable attempt.",
+          "work_status": "in_progress",
+          "execution": "portable",
+          "max_iterations": 1,
+          "iterations_used": 1,
+          "stop_reason": "iteration_limit"
+        }
+      },
+      "final_plan_states": {
+        "docs/work/P001-strict-pagination/plan.md": "in_progress"
+      },
+      "final_standalone_spec_states": {},
+      "specs": [
+        "docs/work/P001-strict-pagination/P001-MS01-strict-page-size-parser.md"
+      ],
+      "plans": [
+        "docs/work/P001-strict-pagination/plan.md"
+      ],
+      "deliverables": [],
+      "document_and_source_timeline": [
+        {
+          "tick": 3472,
+          "seconds": 138.514784,
+          "path": "docs/work/G001-strict-pagination/goal.md",
+          "sha256": "ba1f08db577a25b87eb26314b8c0a8e225d87923f21f7d6781c43532ecb3b900",
+          "metadata": {
+            "type": "Goal",
+            "work_status": "planned",
+            "execution": "portable",
+            "max_iterations": 1,
+            "iterations_used": 0,
+            "stop_reason": "none"
+          }
+        },
+        {
+          "tick": 3480,
+          "seconds": 138.856802,
+          "path": "docs/work/P001-strict-pagination/plan.md",
+          "sha256": "48f17a499c4c6f860b136375afe900ef20bd636c80718f44618133d22412e648",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "planned"
+          },
+          "work_states": [
+            "planned",
+            "planned"
+          ]
+        },
+        {
+          "tick": 3482,
+          "seconds": 138.919693,
+          "path": "docs/work/P001-strict-pagination/P001-MS01-strict-page-size-parser.md",
+          "sha256": "4cd5c7ae8d489109783f23b42e4c85c59855cebe632260c8334a388bced59cc0",
+          "metadata": {
+            "type": "MicroSpec",
+            "kind": "implementation"
+          }
+        },
+        {
+          "tick": 4303,
+          "seconds": 172.491797,
+          "path": "docs/work/G001-strict-pagination/goal.md",
+          "sha256": "25fb8922c5701f1ac1a348ffd5234a7bb5f274db48eca3c4a92b8d47d36560e4",
+          "metadata": {
+            "type": "Goal",
+            "work_status": "in_progress",
+            "execution": "portable",
+            "max_iterations": 1,
+            "iterations_used": 1,
+            "stop_reason": "none"
+          }
+        },
+        {
+          "tick": 4304,
+          "seconds": 172.535242,
+          "path": "docs/work/P001-strict-pagination/plan.md",
+          "sha256": "be0c32890c5320afc3bbae782b5b7ce4c645d09d626007f15747c865b85fd69d",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "in_progress",
+            "planned"
+          ]
+        },
+        {
+          "tick": 5359,
+          "seconds": 215.011523,
+          "path": "pagination.py",
+          "sha256": "02b83d661862a21558d6327d8da09d53ec03837242c8fdf8e260fe97f6ca8657"
+        },
+        {
+          "tick": 6895,
+          "seconds": 277.030094,
+          "path": "docs/work/P001-strict-pagination/plan.md",
+          "sha256": "2af04e94d7bd09391369d6769297d728479ac570e339d318e3f67a5f50d88824",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "done",
+            "planned"
+          ]
+        },
+        {
+          "tick": 6897,
+          "seconds": 277.107806,
+          "path": "docs/work/G001-strict-pagination/goal.md",
+          "sha256": "125fb5c7784a54954d82d0fb841ce069969a5312e7225be0444075840c71b107",
+          "metadata": {
+            "type": "Goal",
+            "work_status": "in_progress",
+            "execution": "portable",
+            "max_iterations": 1,
+            "iterations_used": 1,
+            "stop_reason": "iteration_limit"
+          }
+        }
+      ],
+      "check_events": [
+        {
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            10
+          ],
+          "dry_run_output_observed": false
+        }
+      ],
+      "prompt_sha256": "e32c20566e4f9b5e76fae9869f18508fac1d212b0c3cc7408cd0f2c47624da06",
+      "trace_sha256": "53acd396309942221b5b5497529b132ea9172e6e5bfe0f7d36590c37eb3497b5",
+      "grade_sha256": "495a60a90833f9463e7af4b2995628f3e7081db04fc8c80a206680b1689e4961",
+      "raw_location": ".pilot-runs/v02-clarified-goal/goal/goal-limit"
+    },
+    {
+      "scenario": "goal-resume",
+      "profile": "plan-first",
+      "source_revision": "clarified",
+      "expected_kind": "implementation",
+      "selected_blueprints_observed": [
+        "implementation"
+      ],
+      "passed": true,
+      "checks": {
+        "fresh_session_completed": true,
+        "chosen_kind_present": true,
+        "selected_blueprint_read": true,
+        "only_current_kind_blueprints_read": true,
+        "required_unit_check_passed": true,
+        "history_bodies_not_emitted": true,
+        "spec_saved_before_output": true,
+        "blueprint_read_before_output": true,
+        "all_kinds_match_scoped_outcomes": true,
+        "independent_behavior_passed": true,
+        "one_persistent_goal": true,
+        "portable_mode_honest": true,
+        "attempt_reserved_before_code": true,
+        "same_goal_and_new_conversation": true,
+        "explicit_extension_preserves_attempts": true,
+        "goal_completed_with_plan": true,
+        "completed_parser_not_rewritten": true,
+        "document_contracts": true,
+        "independent_original_tests_passed": true
+      },
+      "document_errors": [],
+      "thread_id": "01a1034e-730b-7d72-97d5-205e4eb9e870",
+      "cli_exit_code": 0,
+      "duration_seconds": 386.392641,
+      "usage": {
+        "input_tokens": 393643,
+        "cached_input_tokens": 358400,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 11078,
+        "reasoning_output_tokens": 3423
+      },
+      "observed_command_count": 11,
+      "observed_file_versions": 244,
+      "independent_behavior_case_executions": 40,
+      "original_test_executions": 3,
+      "original_tests_exit_code": 0,
+      "goals": {
+        "docs/work/G001-strict-pagination/goal.md": {
+          "type": "Goal",
+          "title": "Strict pagination Goal",
+          "description": "Execute strict page-size parsing and dependent article endpoint integration with two total portable attempts.",
+          "work_status": "done",
+          "execution": "portable",
+          "max_iterations": 2,
+          "iterations_used": 2,
+          "stop_reason": "complete"
+        }
+      },
+      "final_plan_states": {
+        "docs/work/P001-strict-pagination/plan.md": "done"
+      },
+      "final_standalone_spec_states": {},
+      "specs": [
+        "docs/work/P001-strict-pagination/P001-MS01-strict-page-size-parser.md",
+        "docs/work/P001-strict-pagination/P001-MS02-article-endpoint-integration.md"
+      ],
+      "plans": [
+        "docs/work/P001-strict-pagination/plan.md"
+      ],
+      "deliverables": [],
+      "document_and_source_timeline": [
+        {
+          "tick": 2411,
+          "seconds": 98.845287,
+          "path": "docs/work/G001-strict-pagination/goal.md",
+          "sha256": "95cdd843e60d34c251fcaa12c4c59f9c3ee1c9648d0347564138f676cf290bf2",
+          "metadata": {
+            "type": "Goal",
+            "work_status": "in_progress",
+            "execution": "portable",
+            "max_iterations": 2,
+            "iterations_used": 1,
+            "stop_reason": "none"
+          }
+        },
+        {
+          "tick": 2413,
+          "seconds": 98.928985,
+          "path": "docs/work/P001-strict-pagination/plan.md",
+          "sha256": "d3b7337625e53f2eed3ca68086d166b5b8e14f21ebad0ced63897fd004ffdff7",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "done",
+            "planned"
+          ]
+        },
+        {
+          "tick": 4088,
+          "seconds": 167.380804,
+          "path": "docs/work/P001-strict-pagination/P001-MS02-article-endpoint-integration.md",
+          "sha256": "34f59f30627c8c1581303a4cc1b576a013cef1726eea49b0d4b99e875740b4dc",
+          "metadata": {
+            "type": "MicroSpec",
+            "kind": "implementation"
+          }
+        },
+        {
+          "tick": 4092,
+          "seconds": 167.56903,
+          "path": "docs/work/P001-strict-pagination/plan.md",
+          "sha256": "84a36b229ac119bfe66c717321cc9d0761954bc39ddcf374b3cfb1fd5f1aaf0e",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "done",
+            "in_progress"
+          ]
+        },
+        {
+          "tick": 4094,
+          "seconds": 167.650167,
+          "path": "docs/work/G001-strict-pagination/goal.md",
+          "sha256": "045c8e31da7a33d65a489b490ea281e3708a30f0a26d3f1db2d129c4b6f059b4",
+          "metadata": {
+            "type": "Goal",
+            "work_status": "in_progress",
+            "execution": "portable",
+            "max_iterations": 2,
+            "iterations_used": 2,
+            "stop_reason": "none"
+          }
+        },
+        {
+          "tick": 5276,
+          "seconds": 215.984375,
+          "path": "api.py",
+          "sha256": "9e28d930c180b12d9988ee093bd099de0d5bb7e734c10eaee97eec48a09b4689"
+        },
+        {
+          "tick": 7767,
+          "seconds": 318.486047,
+          "path": "docs/work/P001-strict-pagination/plan.md",
+          "sha256": "eff0af85884380493f048c4fba9870b10db3dd5843bf19e6380ce278c5e4a573",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "done"
+          },
+          "work_states": [
+            "done",
+            "done"
+          ]
+        },
+        {
+          "tick": 7768,
+          "seconds": 318.534853,
+          "path": "docs/work/G001-strict-pagination/goal.md",
+          "sha256": "c019b4ffdc2528de457b37a3fef80d80273020413871dabf8cb587ba42575dd6",
+          "metadata": {
+            "type": "Goal",
+            "work_status": "done",
+            "execution": "portable",
+            "max_iterations": 2,
+            "iterations_used": 2,
+            "stop_reason": "complete"
+          }
+        }
+      ],
+      "check_events": [
+        {
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            17
+          ],
+          "dry_run_output_observed": false
+        }
+      ],
+      "prompt_sha256": "372c35fb6d42a9e4f106d308638e21e7b29ee9b34400ce18e850a236b22bf131",
+      "trace_sha256": "b74885599d7139e8f7fc857128325d35803b51ba97dabb843d5db0918f9861b3",
+      "grade_sha256": "9ab56db1c72f972fef86ffd82c5b7c2695099dcbae484e4a422c6867924aaff6",
+      "raw_location": ".pilot-runs/v02-clarified-goal/goal/goal-resume"
+    },
+    {
+      "scenario": "goal-blocked",
+      "profile": "plan-first",
+      "source_revision": "clarified",
+      "expected_kind": "bugfix",
+      "selected_blueprints_observed": [
+        "bugfix",
+        "general"
+      ],
+      "passed": false,
+      "checks": {
+        "fresh_session_completed": true,
+        "chosen_kind_present": true,
+        "selected_blueprint_read": true,
+        "only_current_kind_blueprints_read": false,
+        "required_unit_check_passed": true,
+        "history_bodies_not_emitted": true,
+        "spec_saved_before_output": true,
+        "blueprint_read_before_output": true,
+        "all_kinds_match_scoped_outcomes": true,
+        "independent_behavior_passed": true,
+        "one_persistent_goal": true,
+        "portable_mode_honest": true,
+        "attempt_reserved_before_code": true,
+        "required_gate_failed_without_repairing_it": true,
+        "blocked_goal_preserves_incomplete_verification": true,
+        "document_contracts": true,
+        "independent_original_tests_passed": true
+      },
+      "document_errors": [],
+      "thread_id": "01a10349-644b-7ad3-81db-db7133e30fde",
+      "cli_exit_code": 0,
+      "duration_seconds": 306.632393,
+      "usage": {
+        "input_tokens": 213630,
+        "cached_input_tokens": 184320,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8810,
+        "reasoning_output_tokens": 2730
+      },
+      "observed_command_count": 18,
+      "observed_file_versions": 32,
+      "independent_behavior_case_executions": 20,
+      "original_test_executions": 3,
+      "original_tests_exit_code": 0,
+      "goals": {
+        "docs/work/G001-page-size/goal.md": {
+          "type": "Goal",
+          "title": "Strict page size parser",
+          "description": "Repair page size validation through at most three portable attempts and record required verification results.",
+          "work_status": "blocked",
+          "execution": "portable",
+          "max_iterations": 3,
+          "iterations_used": 1,
+          "stop_reason": "blocked"
+        }
+      },
+      "final_plan_states": {
+        "docs/work/P001-page-size/plan.md": "blocked"
+      },
+      "final_standalone_spec_states": {},
+      "specs": [
+        "docs/work/P001-page-size/P001-MS01-page-size.md"
+      ],
+      "plans": [
+        "docs/work/P001-page-size/plan.md"
+      ],
+      "deliverables": [],
+      "document_and_source_timeline": [
+        {
+          "tick": 5703,
+          "seconds": 136.727842,
+          "path": "docs/work/G001-page-size/goal.md",
+          "sha256": "401e0539ef723d160688df863892b50fc7ce717d60d140857d501b873faaab50",
+          "metadata": {
+            "type": "Goal",
+            "work_status": "in_progress",
+            "execution": "portable",
+            "max_iterations": 3,
+            "iterations_used": 1,
+            "stop_reason": "none"
+          }
+        },
+        {
+          "tick": 5715,
+          "seconds": 137.019771,
+          "path": "docs/work/P001-page-size/plan.md",
+          "sha256": "8b9e18708b1752b165cec5c3d9bf766d86a9ad537230511f8642678af6c06798",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "in_progress"
+          ]
+        },
+        {
+          "tick": 5718,
+          "seconds": 137.088498,
+          "path": "docs/work/P001-page-size/P001-MS01-page-size.md",
+          "sha256": "2247795bb4d196837d26bc69c6a9678e9c584429295aa8c92e530d6c1c441526",
+          "metadata": {
+            "type": "MicroSpec",
+            "kind": "bugfix"
+          }
+        },
+        {
+          "tick": 8734,
+          "seconds": 211.367936,
+          "path": "pagination.py",
+          "sha256": "7be953537866498329d665e2664c80a8e9f1cff522638b9610d92841e9fa9777"
+        },
+        {
+          "tick": 11871,
+          "seconds": 288.795676,
+          "path": "docs/work/G001-page-size/goal.md",
+          "sha256": "7f6f9a529dd211b4d5554a818ae32e585e03101e96460c7f5893d05054dc8892",
+          "metadata": {
+            "type": "Goal",
+            "work_status": "blocked",
+            "execution": "portable",
+            "max_iterations": 3,
+            "iterations_used": 1,
+            "stop_reason": "blocked"
+          }
+        },
+        {
+          "tick": 11873,
+          "seconds": 288.846517,
+          "path": "docs/work/P001-page-size/plan.md",
+          "sha256": "7ff7b672e935259cd78497f995f5c73e2d26b50eb799ea199f130493df031764",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "blocked"
+          },
+          "work_states": [
+            "blocked"
+          ]
+        }
+      ],
+      "check_events": [
+        {
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -p test_pagination.py -k test_rejects_signs -v'",
+          "exit_code": 1,
+          "unit_test_counts": [
+            1
+          ],
+          "dry_run_output_observed": false
+        },
+        {
+          "command": "/bin/bash -lc 'python3 verify_required.py'",
+          "exit_code": 2,
+          "unit_test_counts": [],
+          "dry_run_output_observed": false
+        },
+        {
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            14
+          ],
+          "dry_run_output_observed": false
+        }
+      ],
+      "prompt_sha256": "15c5fec1de86685f0dc1459aec3a5f484da9e6950e9bdb71d07927c901f3530e",
+      "trace_sha256": "ea69fe3c607389008e0684ebfb4e230e5892a688564c263563218b23f2e26397",
+      "grade_sha256": "a71dd56c331e36ce748d9b669bf8e4f477582f45d5e4aa786996a3341b7060ea",
+      "raw_location": ".pilot-runs/v02-clarified-blocked/goal-blocked/goal-blocked"
+    },
+    {
+      "scenario": "design",
+      "profile": "brownfield",
+      "source_revision": "clarified",
+      "expected_kind": "design",
+      "selected_blueprints_observed": [
+        "design"
+      ],
+      "passed": true,
+      "checks": {
+        "fresh_session_completed": true,
+        "chosen_kind_present": true,
+        "selected_blueprint_read": true,
+        "only_current_kind_blueprints_read": true,
+        "required_unit_check_passed": true,
+        "history_bodies_not_emitted": true,
+        "spec_saved_before_output": true,
+        "blueprint_read_before_output": true,
+        "all_kinds_match_scoped_outcomes": true,
+        "application_unchanged": true,
+        "separate_deliverable_saved": true,
+        "decision_and_compatibility_evidence": true,
+        "brownfield_baseline_recorded": true,
+        "document_contracts": true,
+        "independent_original_tests_passed": true
+      },
+      "document_errors": [],
+      "thread_id": "01a1034c-6a35-70b2-86ea-fe7858714d74",
+      "cli_exit_code": 0,
+      "duration_seconds": 505.057311,
+      "usage": {
+        "input_tokens": 250158,
+        "cached_input_tokens": 225536,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 13169,
+        "reasoning_output_tokens": 4910
+      },
+      "observed_command_count": 17,
+      "observed_file_versions": 33,
+      "independent_behavior_case_executions": 0,
+      "original_test_executions": 4,
+      "original_tests_exit_code": 0,
+      "goals": {},
+      "final_plan_states": {
+        "docs/work/P001-page-size-validation/plan.md": "done"
+      },
+      "final_standalone_spec_states": {},
+      "specs": [
+        "docs/work/P001-page-size-validation/P001-MS01-validation-decision.md"
+      ],
+      "plans": [
+        "docs/work/P001-page-size-validation/plan.md"
+      ],
+      "deliverables": [
+        "docs/work/P001-page-size-validation/decision.md"
+      ],
+      "document_and_source_timeline": [
+        {
+          "tick": 5172,
+          "seconds": 123.523587,
+          "path": "docs/work/P001-page-size-validation/plan.md",
+          "sha256": "dddac8dccb722f9c2024d6eaa4d6bfcc62561f7a84c3dab23e7ffe4264ef6418",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "planned"
+          ]
+        },
+        {
+          "tick": 6492,
+          "seconds": 155.418555,
+          "path": "docs/work/P001-page-size-validation/P001-MS01-validation-decision.md",
+          "sha256": "f1118fc4b34c003b600676bf107e51eb8207de45d05934a853232fb820064da0",
+          "metadata": {
+            "type": "MicroSpec",
+            "kind": "design"
+          }
+        },
+        {
+          "tick": 6497,
+          "seconds": 155.543649,
+          "path": "docs/work/P001-page-size-validation/plan.md",
+          "sha256": "f869b4fa1ff8147d8a78302048b6c36e1ac581da2909ed2e83ea5627ce67d33d",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "in_progress"
+          ]
+        },
+        {
+          "tick": 14888,
+          "seconds": 360.098673,
+          "path": "docs/work/P001-page-size-validation/decision.md",
+          "sha256": "33d20101b99895a68b26602954e927f86d2e10c456bc12521aedf4e1a99e9c4b",
+          "metadata": {
+            "type": "Decision"
+          }
+        },
+        {
+          "tick": 14894,
+          "seconds": 360.240825,
+          "path": "docs/work/P001-page-size-validation/plan.md",
+          "sha256": "133b58525e61b7ac075044b7056c517f007a5bf2da40045bc5c5dac5a1ab6bc5",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "in_progress"
+          },
+          "work_states": [
+            "in_progress"
+          ]
+        },
+        {
+          "tick": 20456,
+          "seconds": 495.91412,
+          "path": "docs/work/P001-page-size-validation/plan.md",
+          "sha256": "e8c2556f90e21b53c5b0009088eaa95b482bdb676f3e8e2bb39a51c22cb1db4c",
+          "metadata": {
+            "type": "Plan",
+            "work_status": "done"
+          },
+          "work_states": [
+            "done"
+          ]
+        },
+        {
+          "tick": 20459,
+          "seconds": 495.987536,
+          "path": "docs/work/P001-page-size-validation/decision.md",
+          "sha256": "a9bc0864de3746616ef20bcb239e23c9652350ff01c32ad52b591f2cf3939b21",
+          "metadata": {
+            "type": "Decision"
+          }
+        }
+      ],
+      "check_events": [
+        {
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            4
+          ],
+          "dry_run_output_observed": false
+        },
+        {
+          "command": "/bin/bash -lc 'python3 -m unittest discover -s tests -v'",
+          "exit_code": 0,
+          "unit_test_counts": [
+            4
+          ],
+          "dry_run_output_observed": false
+        }
+      ],
+      "prompt_sha256": "dbe3758d44a9683dd7b8668aa9a9a2dec7fac846704e9fb5173db7b7d6763396",
+      "trace_sha256": "dbd5e4fdaddbacbc293de424af0b9be2bb0d8d74b8ae394606e0d7c307a9fdaa",
+      "grade_sha256": "16712eec1286abe23573734ff8a1fb1575b48ab37be6d5bd7a0a59bebaa81ea9",
+      "raw_location": ".pilot-runs/v02-clarified-design/design/design"
+    }
+  ]
+}
