@@ -2,7 +2,7 @@
 type: Plan
 title: P003 · Add task routing and bounded goal loops
 description: Expand portable workflows with task blueprints, selective routing, recoverable goals, and observed evaluation.
-work_status: in_progress
+work_status: done
 ---
 
 # P003 · Add task routing and bounded goal loops
@@ -29,14 +29,14 @@ Out of scope: an installer, autonomous background service, model classifier depe
 | [P003-MS02 · Routing and goal workflow](P003-MS02-routing-loop.md) | P003-MS01 | done | All links resolve; each profile has 16 Markdown files at v0.2.0. Routing, bounded execution, upgrade guidance, and illustrative walkthrough reviewed. |
 | [P003-MS03 · Contract validation](P003-MS03-validation.md) | P003-MS02 | done | Checker passes 106 Markdown files and 12 setup scenarios; all 18 contract tests pass. Maintainer docs and all three 16-file payloads pass okbase L1 with zero diagnostics. |
 | [P003-MS04 · Observed routing pilots](P003-MS04-routing-pilots.md) | P003-MS03 | done | `evals/routing-report.md` retains 15 fresh conversations across two drafts, 240 independent behavior executions, and 47 original test executions. Eight of nine latest scenarios meet every criterion; blocked Goal retains one extra general blueprint read. All seven latest output bundles pass L1 with zero diagnostics. |
-| [P003-MS05 · Final review and publication](P003-MS05-publication.md) | P003-MS04 | in_progress | Final source and measurements are checked; publication pending. |
+| [P003-MS05 · Final review and publication](P003-MS05-publication.md) | P003-MS04 | done | Checker passes 109 Markdown files and 12 setup scenarios; 19 contract tests, syntax, diff, source/measurement audit, and current bundle L1 checks pass. Source commit `891c8df` was pushed normally; remote main matched local HEAD and the working tree was clean before this closure checkpoint. |
 
 ## Resume
 
-- Current: P003-MS05.
-- Next: review final source, links, and published measurements; complete required checks and push the authorized commit, verifying remote SHA and a clean tree.
+- Current: none; all P003 items are done.
+- Next: use the installed task catalog and Goal guide; start new work with a new plan when requirements change.
 - Blocker: none.
 
 ## Result
 
-Pending. P001 and P002 remain historical evidence for v0.1.
+Published v0.2 source to `git@github.com:tidusvn05/okms.git` in commit `891c8df`, with all three 16-file profiles, seven task contracts, automatic selection guidance, persistent bounded Goals, compatible upgrade instructions, and observed evaluation. Required repository checks and all 19 contract tests pass. Fifteen fresh conversations pass 240 independent behavior and 47 original test executions; eight of nine latest scenarios meet every criterion. The blocked Goal correctly preserves incomplete verification but reads one extra general blueprint; both drafts and that exception are retained in the report. Native activation remains untested. P001 and P002 remain historical v0.1 evidence.

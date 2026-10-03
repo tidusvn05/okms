@@ -4,7 +4,7 @@ okf_version: "0.2"
 
 # Active work
 
-- [P003 · Add task routing and bounded goal loops](work/P003-task-routing/plan.md) - Build and evaluate portable task selection and recoverable bounded execution.
+No open work.
 
 # Documents and directories
 
