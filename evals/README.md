@@ -2,7 +2,7 @@
 
 ## Hybrid Team runtime pilot
 
-Read the [v0.1 observed report](hybrid-report.md) and [measurements](hybrid-results.json) for selected passes, retained failures, component follow-ups, and native activation limits.
+Read the [Rust 0.2.0 observed report](rust-report.md) and [measurements](rust-results.json) for the complete final downloaded-binary matrix. The historical [Python 0.1.0 report](hybrid-report.md) and [measurements](hybrid-results.json) retain earlier passes, failed/partial attempts and component follow-ups. Both reports distinguish explicit bootstrap from native automatic activation.
 
 The opt-in [Hybrid runner](run_hybrid_pilot.py) exercises the Rust CLI in three disposable Git projects with dirty staging, unstaged edits, untracked notes, and two saved independent contracts. It uses installed/logged-in Codex and Claude Code CLIs without installing tools, copying credentials, or bypassing native trust/permissions. Its source fingerprint/snapshot freezes the Rust source, executable, payload, checker and runner; use a new directory after source changes. Python belongs to the evaluation harness and fixture application checks, not the distributed runtime.
 

@@ -34,7 +34,7 @@ Publish task contracts and recoverable workflows for agents working in any proje
 - Review setup in an empty project and one with existing docs and agent instructions; resume a saved plan without relying on chat history.
 - Explicit agent evaluation: run `.venv/bin/python evals/run_agent_pilot.py` when assessing workflow changes; this uses the installed Codex CLI and existing login in disposable projects. Ordinary document checks never invoke it.
 - Review/delegation evaluation: run `.venv/bin/python evals/run_review_pilot.py` for disposable Codex/Claude Code sessions with existing authentication; see `evals/README.md` for scope and evidence handling.
-- Hybrid Team evaluation: run `.venv/bin/python evals/run_hybrid_pilot.py` only for explicit mixed-CLI observations. Ordinary checks use fake transports; preserve live failures, source fingerprints, native IDs, and startup limits. See `evals/hybrid-report.md` for scoped passes and retained limits.
+- Hybrid Team evaluation: run `.venv/bin/python evals/run_hybrid_pilot.py` only for explicit mixed-CLI observations. Ordinary checks use fake transports; preserve live failures, source fingerprints, native IDs, and startup limits. See `evals/rust-report.md` for the final downloaded-binary matrix and `evals/hybrid-report.md` for preserved Python history.
 
 ## Locations
 

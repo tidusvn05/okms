@@ -113,6 +113,6 @@ Portable workflow frontmatter uses namespaced `okms_template` and `okms_template
 
 For a v0.3 portable installation, merge the review catalog/blueprint, revised implementation contract, optional delegation guide/blueprints, and index entries deliberately. Existing general reviews keep their historical kind. Optional adapter examples remain separate from portable adoption. Explicit Hybrid Team setup merges its native files; edits and effective native trust/permissions remain project/user-owned.
 
-Check the final change and describe behavior, evidence, and limits. Hybrid Team's preflighted setup is opt-in; repeated adoption preserves modifications rather than synchronizing them. Live mixed-provider observations use the opt-in runner in [evals](evals/README.md); retain failed criteria and exact native IDs/traces. Structural checks cannot establish native hook activation.
+Check the final change and describe behavior, evidence, and limits. Hybrid Team's preflighted setup is opt-in; repeated adoption preserves modifications rather than synchronizing them. Live mixed-provider observations use the opt-in runner in [evals](evals/README.md); the [Rust report](evals/rust-report.md) records the final downloaded-binary matrix. Retain failed criteria and exact native IDs/traces. Structural checks cannot establish native hook activation.
 
 Contributions are provided under MIT OR Apache-2.0, matching this repository.

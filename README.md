@@ -16,7 +16,7 @@ Lite and Plan-first each contain 21 Markdown files at version 0.4.1, with eight 
 
 Choose by planning and coordination needs. All profiles apply baseline and compatibility obligations when existing contracts are affected. Task kind remains independent of profile: coordination is not a ninth kind.
 
-The historical [Python pilot report](evals/hybrid-report.md) retains the 0.1.0 observations and failures. Native hook trust and automatic-startup limits remain explicit.
+The [Rust 0.2.0 report](evals/rust-report.md) records all three final mixed-provider cases passing against a downloaded Actions binary, including exact resume, handoff and incomplete failed-gate work. The historical [Python pilot report](evals/hybrid-report.md) retains the 0.1.0 observations and failures. Native hook trust and automatic-startup limits remain explicit.
 
 ## Set up with your agent
 
