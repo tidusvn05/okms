@@ -109,7 +109,7 @@ Lite and Plan-first are `0.4.1`; change both portable workflows' versions togeth
 
 Keep existing spec IDs, plan columns, kindless historical files, and project instructions during deliberate upgrades. Repeated setup alone does not upgrade an installation or change its profile.
 
-Portable workflow frontmatter uses namespaced `okms_template` and `okms_template_version` keys from 0.4.1, because documentation site generators reserve unprefixed page metadata (MkDocs treats `template` as a theme template and fails the build). Setup keeps recognizing the unprefixed keys of earlier installations; upgrading one renames both keys without other changes. Hybrid Team is identified by `.okms/install.json` and keeps its workflow metadata until its next runtime version.
+Portable workflow frontmatter uses namespaced `okms_template` and `okms_template_version` keys from 0.4.1, because MkDocs treats `template` as a theme template and fails the build. Portable setup keeps recognizing the unprefixed keys of earlier installations; upgrading one renames both keys without other changes. The new Hybrid Team 0.2.0 uses the same namespaced frontmatter, while `.okms/install.json` and runtime JSON configuration retain their existing field names. Published 0.1.0 copies remain unchanged and require deliberate migration.
 
 For a v0.3 portable installation, merge the review catalog/blueprint, revised implementation contract, optional delegation guide/blueprints, and index entries deliberately. Existing general reviews keep their historical kind. Optional adapter examples remain separate from portable adoption. Explicit Hybrid Team setup merges its native files; edits and effective native trust/permissions remain project/user-owned.
 

@@ -478,7 +478,9 @@ class Checker:
             cargo_path = self.root / "Cargo.toml"
             cargo = cargo_path.read_text().split("[dependencies]", 1)[0] if cargo_path.is_file() else ""
             version = re.search(r'^version\s*=\s*"(\d+\.\d+\.\d+)"$', cargo, re.M)
-            if not version or metadata.get("template") != profile or metadata.get("template_version") != version[1]:
+            if LEGACY_IDENTITY & metadata.keys():
+                self.error(bundle, "Hybrid workflow must use namespaced okms_template metadata")
+            if not version or metadata.get("okms_template") != profile or metadata.get("okms_template_version") != version[1]:
                 self.error(bundle, "Hybrid Team must identify its independent Rust package version")
             for name in {"_templates/plan.md", "_templates/goal.md", "goal-loop.md",
                          *(f"_templates/{name}" for name in BLUEPRINTS.values()),

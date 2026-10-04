@@ -150,10 +150,10 @@ pub fn install(project: &Path, docs: Option<&str>, dry_run: bool) -> Result<Valu
         let workflow = destination.join("workflow.md");
         ensure!(
             workflow.is_file()
-                && Regex::new(r"(?m)^template:\s*hybrid-team\s*$")?
+                && Regex::new(r"(?m)^okms_template:\s*hybrid-team\s*$")?
                     .is_match(&fs::read_to_string(&workflow)?)
                 && fs::read_to_string(&workflow)?
-                    .contains(&format!("template_version: \"{}\"", crate::VERSION)),
+                    .contains(&format!("okms_template_version: \"{}\"", crate::VERSION)),
             "Explicit documentation destination is occupied; unchanged."
         );
     }

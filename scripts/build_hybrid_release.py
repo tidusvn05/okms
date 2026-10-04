@@ -25,8 +25,8 @@ def profile_version(root=ROOT):
         raise ValueError("Cargo package version must be major.minor.patch.")
     version = match.group(1)
     workflow = (root / "templates/hybrid-team/docs/workflow.md").read_text()
-    if not re.search(r'^template_version:\s*[\"\x27]?' + re.escape(version) + r'[\"\x27]?\s*$', workflow, re.M):
-        raise ValueError("Hybrid Team template_version must match Cargo.")
+    if not re.search(r'^okms_template_version:\s*[\"\x27]?' + re.escape(version) + r'[\"\x27]?\s*$', workflow, re.M):
+        raise ValueError("Hybrid Team okms_template_version must match Cargo.")
     return version
 
 

@@ -102,7 +102,7 @@ def write(project, relative, content):
 def fingerprint():
     paths = [path for path in SOURCE.rglob("*") if path.is_file() and "__pycache__" not in path.parts]
     paths += list((ROOT / "src").glob("*.rs"))
-    paths += [ROOT / name for name in ("Cargo.toml", "Cargo.lock", "build.rs", "evals/hybrid_support.py")]
+    paths += [ROOT / name for name in ("Cargo.toml", "Cargo.lock", "build.rs", "LICENSE-MIT", "LICENSE-APACHE", "evals/hybrid_support.py")]
     paths += [Path(__file__), ROOT / "scripts/check_docs.py"]
     return {str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest() for path in sorted(paths)}
 
@@ -277,7 +277,12 @@ def grade(directory, case):
                 response["from"] == request["to"] and response["to"] == request["from"] for response in messages) for request in messages)
         resumes = []
         for agent in workers:
-            turns = sorted((directory / "project/.okms/state/runs" / agent["run_id"] / agent["id"]).glob("turn-*/invocation.json"))
+            turns = list((directory / "project/.okms/state/runs" / agent["run_id"] / agent["id"]).glob("turn-*/invocation.json"))
+            try:
+                turns.sort(key=lambda path: datetime.fromisoformat(json.loads(path.read_text())["started_at"].replace("Z", "+00:00")))
+            except (KeyError, TypeError, ValueError):
+                resumes.append(False)
+                continue
             for path in turns[1:]:
                 argv = json.loads(path.read_text())["argv"]
                 flag = "resume" if agent["provider"] == "codex" else "--resume"
@@ -350,6 +355,14 @@ def main(argv=None):
         saved = directory / "source.json"
         if saved.exists() and json.loads(saved.read_text()) != signature:
             parser.error("Source changed; use a new run directory and retain previous observations.")
+        binary_metadata = directory / "binary.json"
+        digest = hashlib.sha256(BINARY.read_bytes()).hexdigest()
+        if saved.exists():
+            if not binary_metadata.is_file() or not (directory / "source/okms").is_file():
+                parser.error("Partial binary snapshot exists; preserve/review it and use explicit recovery or a new directory.")
+            recorded = json.loads(binary_metadata.read_text())["sha256"]
+            if recorded != digest or recorded != hashlib.sha256((directory / "source/okms").read_bytes()).hexdigest():
+                parser.error("Binary changed; use a new run directory and retain previous observations.")
         if not saved.exists():
             atomic_json(saved, signature)
             shutil.copytree(SOURCE, directory / "source/hybrid-team", ignore=shutil.ignore_patterns("__pycache__"))
@@ -360,7 +373,7 @@ def main(argv=None):
             atomic_json(directory / "binary.json", {"path": str(BINARY),
                 "sha256": hashlib.sha256(BINARY.read_bytes()).hexdigest(),
                 "version": subprocess.check_output([str(BINARY), "--version"], text=True).strip()})
-            for path in [ROOT / "Cargo.toml", ROOT / "Cargo.lock", ROOT / "build.rs", *(ROOT / "src").glob("*.rs")]:
+            for path in [ROOT / "Cargo.toml", ROOT / "Cargo.lock", ROOT / "build.rs", ROOT / "LICENSE-MIT", ROOT / "LICENSE-APACHE", *(ROOT / "src").glob("*.rs")]:
                 target = directory / "source" / path.relative_to(ROOT)
                 target.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(path, target)
@@ -384,7 +397,12 @@ def main(argv=None):
             results.append(execute(target, case, args.timeout))
     if args.fixtures_only:
         return 0
-    version = subprocess.check_output([str(BINARY), "--version"], text=True).strip().split()[-1]
+    binary_metadata = directory / "binary.json"
+    if binary_metadata.is_file():
+        version = json.loads(binary_metadata.read_text())["version"].split()[-1]
+    else:
+        installed = directory / args.cases[0] / "project/.okms/install.json"
+        version = json.loads(installed.read_text())["version"] if installed.is_file() else "unknown"
     atomic_json(directory / "results.json", {"profile": "hybrid-team", "runtime": "rust", "version": version, "results": results})
     for result in results:
         print(result["case"] + ": " + ("PASS" if result["pass"] else "FAIL") + " " + json.dumps(result["checks"]), flush=True)

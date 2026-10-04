@@ -104,6 +104,22 @@ class RustAdoptionTests(unittest.TestCase):
         with sqlite3.connect(self.project / ".okms/state/team.sqlite3") as db:
             self.assertEqual(db.execute("SELECT COUNT(*) FROM agents").fetchone()[0], 0)
 
+    def test_matching_occupied_namespace_and_namespaced_identity(self):
+        shutil.copytree(ROOT / "templates/hybrid-team/docs", self.project / "docs")
+        self.write("docs/context.md", "Project-owned context remains.\n")
+        result = self.call("init", "--docs", "docs")
+        self.assertEqual(result["docs_path"], "docs")
+        workflow = (self.project / "docs/workflow.md").read_text()
+        self.assertIn("okms_template: hybrid-team", workflow)
+        self.assertIn('okms_template_version: "0.2.0"', workflow)
+        self.assertNotIn("\ntemplate:", workflow)
+        self.assertEqual((self.project / "docs/context.md").read_text(), "Project-owned context remains.\n")
+        config = json.loads((self.project / ".okms/team.json").read_text())
+        self.assertEqual(config["template_version"], "0.2.0")
+        before = files(self.project)
+        self.assertEqual(self.call("init", "--docs", "docs")["changed"], [])
+        self.assertEqual(files(self.project), before)
+
     def test_copied_binary_and_hook_work_without_python_or_source(self):
         source = self.directory / "temporary-source"
         source.mkdir()

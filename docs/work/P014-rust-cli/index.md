@@ -8,3 +8,5 @@
 - [Process cleanup contract](P014-MS05-processes.md) - Bound descendants after their driver exits during cancellation.
 - [PR integration contract](P014-MS07-pull-requests.md) - Review the stacked portable changes and merge a checked combined tree.
 - [PR review](PR-review.md) - Exact revisions, findings, integration checks and agent-observation limits.
+- [Hybrid metadata contract](P014-MS08-metadata.md) - Use the observed site-compatible identity in the new Rust payload.
+- [Final release contract](P014-MS06-release.md) - Frozen downloaded binary, real mixed-provider observations and checked regular publication.

@@ -2,8 +2,8 @@
 type: Guide
 title: Hybrid Team workflow
 description: Coordinate scoped Codex and Claude Code workers with recoverable plans, shared messages, isolated worktrees, and checked integration.
-template: hybrid-team
-template_version: "0.2.0"
+okms_template: hybrid-team
+okms_template_version: "0.2.0"
 ---
 
 # Hybrid Team workflow

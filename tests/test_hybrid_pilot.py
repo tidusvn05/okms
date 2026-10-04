@@ -2,6 +2,7 @@
 
 import importlib.util
 import json
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
@@ -61,8 +62,48 @@ class HybridPilotTests(unittest.TestCase):
         pilot.atomic_json(self.directory / "codex/observations.json", [])
         pilot.capture(project, self.directory / "codex", "codex", [])
         from unittest.mock import patch
-        with patch.object(pilot, "start_native", side_effect=AssertionError("Native session must not start")):
+        with patch.object(pilot, "start_native", side_effect=AssertionError("Native session must not start")), \
+                patch.object(pilot, "BINARY", self.directory / "removed-binary"), \
+                patch.object(pilot.subprocess, "check_output", side_effect=AssertionError("Grading must not execute binaries")):
             self.assertEqual(pilot.main(["--run-dir", str(self.directory), "--cases", "codex", "--grade-only"]), 1)
+
+    def test_changed_binary_rejects_reuse_without_starting_native_sessions(self):
+        from unittest.mock import patch
+        copied = self.directory / "okms"
+        shutil.copy2(pilot.BINARY, copied)
+        run = self.directory / "run"
+        args = ["--run-dir", str(run), "--cases", "codex", "--fixtures-only"]
+        with patch.object(pilot, "BINARY", copied), \
+                patch.object(pilot, "start_native", side_effect=AssertionError("Native session must not start")):
+            self.assertEqual(pilot.main(args), 0)
+            original = (run / "binary.json").read_bytes()
+            with copied.open("ab") as stream:
+                stream.write(b"different binary bytes")
+            with self.assertRaises(SystemExit) as error:
+                pilot.main(args)
+            self.assertEqual(error.exception.code, 2)
+            self.assertEqual((run / "binary.json").read_bytes(), original)
+            self.assertFalse((run / "codex/primary").exists())
+
+    def test_resume_evidence_uses_invocation_order_and_exact_native_identity(self):
+        project = pilot.prepare(self.directory, "codex")
+        pilot.atomic_json(self.directory / "observations.json", [])
+        pilot.capture(project, self.directory, "codex", [])
+        state_path = self.directory / "state.json"
+        state = json.loads(state_path.read_text())
+        state["agents"].append({"id":"worker-one", "role":"worker", "provider":"codex", "run_id":"run-one",
+                                "native_session_id":"exact-thread", "status":"result_ready", "notes":'{"worker_result":{"disposition":"result_ready"}}'})
+        pilot.atomic_json(state_path, state)
+        turns = project / ".okms/state/runs/run-one/worker-one"
+        pilot.atomic_json(turns / "turn-z-initial/invocation.json", {
+            "argv":["codex", "exec", "--json", "-"], "started_at":"2026-10-04T00:00:01Z"})
+        resumed = turns / "turn-a-resumed/invocation.json"
+        value = {"argv":["codex", "exec", "resume", "exact-thread", "-"], "started_at":"2026-10-04T00:00:02Z"}
+        pilot.atomic_json(resumed, value)
+        self.assertTrue(pilot.grade(self.directory, "codex")["checks"]["exact_native_session_resume"])
+        value["argv"][3] = "different-thread"
+        pilot.atomic_json(resumed, value)
+        self.assertFalse(pilot.grade(self.directory, "codex")["checks"]["exact_native_session_resume"])
 
     def test_partial_native_case_cannot_be_silently_restarted(self):
         pilot.prepare(self.directory / "codex", "codex")
