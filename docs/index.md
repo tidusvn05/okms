@@ -4,7 +4,7 @@ okf_version: "0.2"
 
 # Active work
 
-- [P010 · Publish Hybrid Team](work/P010-hybrid-release/plan.md) - Verify download installation, commit/push the authorized work, and publish the prerelease.
+- None.
 
 # Documents and directories
 
