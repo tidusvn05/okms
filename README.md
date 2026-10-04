@@ -44,16 +44,24 @@ https://github.com/tidusvn05/okms
    If that destination contains other content, choose an empty
    destination. Do not overwrite existing project files.
 4. Fill context.md from actual project files: purpose, durable rules,
-   applicable docs, and real required checks/test commands. Preserve
-   existing context on repeated setup. Mark undiscovered information
-   as unknown; never execute placeholders or invent commands.
+   applicable docs, and real required checks/test commands. When existing
+   instructions or docs already state a rule or command, link to that
+   section instead of copying it. Follow the project's documentation
+   conventions, including its language. Preserve existing context on
+   repeated setup. Mark undiscovered information as unknown; never
+   execute placeholders or invent commands.
 5. Reuse a pointer to this installation if one already exists. Otherwise
    add this instruction once to the project's AGENTS.md, adapting paths:
    For substantive project tasks, read and follow [the workflow](docs/workflow.md),
    starting with [the docs index](docs/index.md).
    Preserve existing instructions. If this agent uses a different
-   instruction entrypoint, add the same pointer there instead.
-6. Check the copied links and report the selected profile and location.
+   instruction entrypoint, add the same pointer there instead. If one
+   instruction file imports another, such as CLAUDE.md importing
+   AGENTS.md, add the pointer only to the imported file.
+6. Check the copied links. If the destination is inside a documentation
+   site or build, such as one configured by mkdocs.yml, run the project's
+   existing check and keep it passing, following its conventions for
+   navigation or exclusion. Report the selected profile and location.
    Remove the temporary source checkout created for this setup, if any.
    Keep okbase optional; there is no need to install it for this setup.
 ```
@@ -82,16 +90,24 @@ https://github.com/tidusvn05/okms
    If that destination contains other content, choose an empty
    destination. Do not overwrite existing project files.
 4. Fill context.md from actual project files: purpose, durable rules,
-   applicable docs, and real required checks/test commands. Preserve
-   existing context on repeated setup. Mark undiscovered information
-   as unknown; never execute placeholders or invent commands.
+   applicable docs, and real required checks/test commands. When existing
+   instructions or docs already state a rule or command, link to that
+   section instead of copying it. Follow the project's documentation
+   conventions, including its language. Preserve existing context on
+   repeated setup. Mark undiscovered information as unknown; never
+   execute placeholders or invent commands.
 5. Reuse a pointer to this installation if one already exists. Otherwise
    add this instruction once to the project's AGENTS.md, adapting paths:
    For substantive project tasks, read and follow [the workflow](docs/workflow.md),
    starting with [the docs index](docs/index.md).
    Preserve existing instructions. If this agent uses a different
-   instruction entrypoint, add the same pointer there instead.
-6. Check the copied links and report the selected profile and location.
+   instruction entrypoint, add the same pointer there instead. If one
+   instruction file imports another, such as CLAUDE.md importing
+   AGENTS.md, add the pointer only to the imported file.
+6. Check the copied links. If the destination is inside a documentation
+   site or build, such as one configured by mkdocs.yml, run the project's
+   existing check and keep it passing, following its conventions for
+   navigation or exclusion. Report the selected profile and location.
    Remove the temporary source checkout created for this setup, if any.
    Keep okbase optional; there is no need to install it for this setup.
 ```
@@ -155,7 +171,7 @@ When `docs/` already exists, use this alternative only if `docs/okms/` does not 
 cp -R /path/to/okms/templates/plan-first/docs ./docs/okms
 ```
 
-Fill the copied `context.md` using real project information. Add this single line once to your existing `AGENTS.md`, or create that file if absent:
+Fill the copied `context.md` using real project information, linking to existing instructions or docs that already state a rule or command instead of copying them, and following the project's documentation conventions, including its language. If the copy sits inside a documentation site, run the project's existing documentation check. Add this single line once to your existing `AGENTS.md`, or create that file if absent:
 
 ```markdown
 For substantive project tasks, read and follow [the workflow](docs/workflow.md), starting with [the docs index](docs/index.md).

@@ -28,4 +28,4 @@ description: Describe the project purpose, durable rules, and real verification 
 - Implementation: {{RELEVANT_CODE_PATHS}}.
 - Current documentation: {{LINKS_OR_PATHS_TO_APPLICABLE_DOCUMENTATION}}.
 
-Fill this file using the actual project before implementation. Record unknown information explicitly; do not run unresolved placeholders or invent commands.
+Fill this file using the actual project before implementation. Record unknown information explicitly; do not run unresolved placeholders or invent commands. Where the project's instructions or documentation already state a rule, command, or location, link to that section instead of copying it, so this file cannot drift from its source. Write it in the language the project's documentation uses.
