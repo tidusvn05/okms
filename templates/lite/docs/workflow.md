@@ -3,7 +3,7 @@ type: Guide
 title: Lite workflow
 description: Complete one independent change through a saved micro spec and use a plan when work needs coordination.
 template: lite
-template_version: "0.3.0"
+template_version: "0.4.0"
 ---
 
 # Lite workflow
@@ -74,6 +74,10 @@ For standalone work, its micro spec owns progress and evidence in Verify. For pl
 Mark an item `done` only when acceptance is supported by recorded evidence. Evidence names the actual command or method and its result, with code/test paths when useful. Tests may be skipped with a reason; acceptance checks and required project checks still apply. Missing necessary verification leaves the item incomplete. Failed checks return to diagnosis and implementation for that item.
 
 Use `blocked` for work that cannot progress, with the missing input or dependency and next action. Continue other ready items when possible. Use `cancelled` only for withdrawn or superseded scope and record why. Mark the plan done after all remaining scoped items and required checks are complete; record summary and verification limits in Result.
+
+## Optional delegation
+
+Use [agent delegation](delegation.md) only when the user or applicable project/skill instructions authorize it. Keep assignments within the current spec, one coordinator for shared progress, and actual verification of combined acceptance. Roles and worker reports do not own work state; checkpoint through the existing Resume or standalone Verify fields.
 
 ## History
 

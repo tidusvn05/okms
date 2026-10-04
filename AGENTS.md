@@ -1,6 +1,6 @@
 # Working on okms
 
-okms distributes portable Markdown workflows for coding agents. Its templates require no runtime, installer, or agent-specific integration.
+okms distributes portable Markdown workflows for coding agents. Lite and Plan-first require no runtime or installer. The explicitly selected Hybrid Team profile additionally provides a project-local runtime, preserving setup, and native configuration.
 
 - Write all repository documentation, templates, examples, and code comments in English.
 - Keep Lite and Plan-first payloads self-contained after copying.

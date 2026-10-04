@@ -1,0 +1,2113 @@
+{
+  "bootstrap": "Actual root native IDs parsed from streams and joined explicitly; automatic Codex startup/trust is not established.",
+  "capabilities": {
+    "claude": {
+      "authenticated": true,
+      "available": true,
+      "structured_output": true,
+      "version": "2.1.284 (Claude Code)"
+    },
+    "codex": {
+      "authenticated": true,
+      "available": true,
+      "structured_output": true,
+      "version": "codex-cli 0.159.0"
+    }
+  },
+  "cases": [
+    {
+      "artifacts_sha256": {
+        "baseline.json": "875811e183fbb9764b1c7ca1ee009386e01ce83c40f95b0b0f2b5ea767d0377a",
+        "capabilities.json": "7568ffdeb7ce66bb555a6613553ad99983e4b88500d02e4bca986e3564c20f36",
+        "current.json": "ba50e62c60b803dad4bc5749cbd2867adc552e2335ac0a96843bc0c03a1e45fc",
+        "final-plan.md": "4f645fbf599f327fd9a0bc8a210ad361e3e932695e50963845e71901f7a8a4fc",
+        "grade.json": "57dfc8fc8a119cd100a9dbea535029146c1092c278589ddf97878a9a1f6519f9",
+        "messages.json": "a5590c9ff7f409f8144a81c890e6c7e615ab3e9486de0e052b3a0cdf54a82ca3",
+        "native.json": "225eef0f862793f99c54167f3f2b7d857cced2374c44fc14bb5352db9519c1d0",
+        "observations.json": "1160ded7eb4a8db0e391906d31d4eb9aeace989ac7d996566ed335346bbdbffb",
+        "oracle.json": "a0038e4776e5c0598fe26484453ceefb41b2070f9cb26a4a65be634d4bd816cc",
+        "primary/invocation.json": "0e90ac4f1edf71114c9a76f6bc312545a891ba681cdfeed8231b8eea0185721d",
+        "primary/prompt.txt": "db8295ad2ee75d861f62d8090aabd3656e29996a94baaac77594157d5486461e",
+        "primary/result.json": "96df5c96efdfe474dafe0cb748ae1b206e96c40bbe8e3c775f2461608c002d7a",
+        "primary/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "primary/stdout.jsonl": "f081e8c4d22feb66e8833add83f25caf465d7bedb203f19e4a240f613eb33faa",
+        "project/.okms/state/runs/run-085d1d6df53c4263/integration-checks-5fef350e64a04f2c/check-1.log": "8dd2ffac455144a312d28d6e24be94e6919e6ffe124cd44b0637a2b060233af6",
+        "project/.okms/state/runs/run-085d1d6df53c4263/integration-checks-5fef350e64a04f2c/checks.json": "a47827fca74e93e2b2c0d100323f3122be7a506343a4d6b09fbcedbaecf22c25",
+        "project/.okms/state/runs/run-085d1d6df53c4263/integration-checks-5fef350e64a04f2c/root/check-1.log": "8dd2ffac455144a312d28d6e24be94e6919e6ffe124cd44b0637a2b060233af6",
+        "project/.okms/state/runs/run-085d1d6df53c4263/integration-checks-5fef350e64a04f2c/root/checks.json": "ac39436dd91599d63a4b4fe52734b67744f9290357e1c2c0fff6c8cda27378ce",
+        "project/.okms/state/runs/run-085d1d6df53c4263/worker-9c938d6307c84a7b/result.json": "c0db29efabb6c67c7de3359ef58d2f049ce0f05f6448f09b5c510c0f0897d3f3",
+        "project/.okms/state/runs/run-085d1d6df53c4263/worker-9c938d6307c84a7b/turn-1791096747480302251/invocation.json": "7cd5eec79fefcc773a26f6de4e661d91f6121236cb0463697883c69a1ad6f266",
+        "project/.okms/state/runs/run-085d1d6df53c4263/worker-9c938d6307c84a7b/turn-1791096747480302251/prompt.txt": "fb11cbd2da92655536b5c5c44b7ce5d8b043245824cd1e4402fd6ccb17ddc186",
+        "project/.okms/state/runs/run-085d1d6df53c4263/worker-9c938d6307c84a7b/turn-1791096747480302251/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-085d1d6df53c4263/worker-9c938d6307c84a7b/turn-1791096747480302251/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-085d1d6df53c4263/worker-9c938d6307c84a7b/turn-1791096747480302251/stdout.jsonl": "bbdc00fd70d2e8e3160f9fe637376db659850d3a0fbba75e62bf84e5373527d3",
+        "project/.okms/state/runs/run-085d1d6df53c4263/worker-9c938d6307c84a7b/turn-1791097026536992772/invocation.json": "547d99e60906603421e7a7127498dfbbb7e5e5ddfbd66d08635f3606749c5750",
+        "project/.okms/state/runs/run-085d1d6df53c4263/worker-9c938d6307c84a7b/turn-1791097026536992772/prompt.txt": "ae0590a7e693dc0a9454276c12727661a048669624d1dea0fb99d01bfe027829",
+        "project/.okms/state/runs/run-085d1d6df53c4263/worker-9c938d6307c84a7b/turn-1791097026536992772/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-085d1d6df53c4263/worker-9c938d6307c84a7b/turn-1791097026536992772/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-085d1d6df53c4263/worker-9c938d6307c84a7b/turn-1791097026536992772/stdout.jsonl": "100bc57544cd7f310c657707a3e7f36ab3ec3c34e830c00383ffef00d4953a05",
+        "project/.okms/state/runs/run-085d1d6df53c4263/worker-a599c7682d5c4a24/result.json": "7f3c01451b911b88912f4bdcc680f60c5ddd051c784eff7daf9d630404607472",
+        "project/.okms/state/runs/run-085d1d6df53c4263/worker-a599c7682d5c4a24/turn-1791096747302120921/invocation.json": "4788efc2c7c66fdf9452326e6080046427efc990b2244478c371dd7139de1b5d",
+        "project/.okms/state/runs/run-085d1d6df53c4263/worker-a599c7682d5c4a24/turn-1791096747302120921/prompt.txt": "80126687ce09173759e9fe53869a741ae151a9872228c2800147bbb0ad1b493a",
+        "project/.okms/state/runs/run-085d1d6df53c4263/worker-a599c7682d5c4a24/turn-1791096747302120921/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-085d1d6df53c4263/worker-a599c7682d5c4a24/turn-1791096747302120921/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-085d1d6df53c4263/worker-a599c7682d5c4a24/turn-1791096747302120921/stdout.jsonl": "c9a9994d8772a5aa57e531ae086141154c8b55330685dd33867e4843ae8b5df6",
+        "project/.okms/state/runs/run-085d1d6df53c4263/worker-a599c7682d5c4a24/turn-1791096856248467599/invocation.json": "ff5a6543181f868f0f75a9df823e0c72d631b9cb33eb0a0bb2a5b0cf8d2f9f01",
+        "project/.okms/state/runs/run-085d1d6df53c4263/worker-a599c7682d5c4a24/turn-1791096856248467599/prompt.txt": "8eff5d6420bac11a50b65d765b283a43dadb9a1678ddeca29fcc0e12bce9f6be",
+        "project/.okms/state/runs/run-085d1d6df53c4263/worker-a599c7682d5c4a24/turn-1791096856248467599/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-085d1d6df53c4263/worker-a599c7682d5c4a24/turn-1791096856248467599/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-085d1d6df53c4263/worker-a599c7682d5c4a24/turn-1791096856248467599/stdout.jsonl": "199fa7dc87d610285a4a63f90c6a1af244c7a1a94e2c5b50ee2bea3f578754e9",
+        "project/.okms/state/verification/verify-0592e0c08bac41c5/check-1.log": "8dd2ffac455144a312d28d6e24be94e6919e6ffe124cd44b0637a2b060233af6",
+        "project/.okms/state/verification/verify-0592e0c08bac41c5/checks.json": "cf9f859bea48df3efe9fd7b3a03ad17c7c464e598f339caa4a3b69a1b96dc37f",
+        "project/.okms/state/verification/verify-0cf99dd2104246de/check-1.log": "163a69c325b7563196e469f7e37b3c2c66a4614494dc8459ca88a93953e792fc",
+        "project/.okms/state/verification/verify-0cf99dd2104246de/checks.json": "17368d128fcacb770b11d8253ebd914926eb049f3f8a7fc5c393285ecbd26de1",
+        "project/.okms/state/verification/verify-457728aed9074f0d/check-1.log": "d274fc723615143ea67b726e1c0ac857d585e28df60a2eefc2ac3d8f82777095",
+        "project/.okms/state/verification/verify-457728aed9074f0d/checks.json": "f1ff60b67d85a42859f7dcdcc2f412a43ac601cb0b951bc7251deea799f5ec77",
+        "project/.okms/state/verification/verify-912e0ee7e95d4f3b/check-1.log": "63878a26aba4763609b47f158d483cdb0302d11384f4d953504c2bd88ef3bc89",
+        "project/.okms/state/verification/verify-912e0ee7e95d4f3b/checks.json": "c344403a83fec5845c4443abed5d9a40c430334c6a30eb3ae7a3b078b2dc8b27",
+        "project/.okms/state/verification/verify-d374b671e41343ea/check-1.log": "7aaa5a73198b249af1a9450b5fd9b6a4c0ee34ff29b3baa0191ff3a95f19f515",
+        "project/.okms/state/verification/verify-d374b671e41343ea/checks.json": "f74f4aa7b8805950bb6880f0663d69665753287c445be8dd738714a2e7c1ee1e",
+        "project/.okms/state/verification/verify-d4044e0a9c924784/check-1.log": "163a69c325b7563196e469f7e37b3c2c66a4614494dc8459ca88a93953e792fc",
+        "project/.okms/state/verification/verify-d4044e0a9c924784/checks.json": "385fa78db5d091195f5020a0b19b100970aab3a78ec2ad89091572e10419c875",
+        "standby/invocation.json": "a7ed3af7aa4380983ac445ba77330ba78c7a48a2b0bee1dc1031ff3446a937df",
+        "standby/prompt.txt": "72faeda61ba1524cf6535e45f66952c0823876c3eb6e3a755c7f73949745de89",
+        "standby/result.json": "b0b0f145cda6233a997859dd9059d65ebe0418e1ba9775467f37da5e889406e2",
+        "standby/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "standby/stdout.jsonl": "508c398c74844d98d9eb50c720aabd7273a9a673babf35b7264610dd9ee60986",
+        "state.json": "d1ec956ee33673a3c1491da8d8eb4fbfd5d34a618a79679d817ca4e7c84f73a8"
+      },
+      "checks": {
+        "completion_follows_actual_checks": true,
+        "cross_provider_handoff_observed": true,
+        "exact_native_session_resume": true,
+        "head_and_staging_preserved": false,
+        "independent_root_behavior": true,
+        "native_roots_observed": false,
+        "notes_tests_instructions_preserved": true,
+        "one_coordinator_at_observed_checkpoints": true,
+        "parallel_workers_observed": true,
+        "peer_request_response_ack": true,
+        "two_provider_workers_returned": true,
+        "verified_integration_then_completion": true,
+        "worker_checks_observed": true
+      },
+      "combined_checks": [
+        {
+          "argv": [
+            "python3",
+            "checks.py",
+            "all"
+          ],
+          "exit_code": 0
+        }
+      ],
+      "event_counts": {
+        "assignment_queued": 2,
+        "checkpoint_saved": 4,
+        "coordinator_changed": 3,
+        "hook_received": 56,
+        "integration_applied": 1,
+        "message_acknowledged": 2,
+        "message_delivered": 6,
+        "message_queued": 2,
+        "result_ready": 2,
+        "resume_requested": 4,
+        "root_verification_finished": 1,
+        "run_started": 1,
+        "session_ended": 1,
+        "verification_finished": 6,
+        "waiting_input": 1,
+        "worker_failed": 1,
+        "worker_started": 4
+      },
+      "failed_checks": [
+        "head_and_staging_preserved",
+        "native_roots_observed"
+      ],
+      "id": "hybrid-live-v1/codex",
+      "independent_root_oracle": {
+        "all_passed": true,
+        "passed": 15,
+        "total": 15
+      },
+      "native_hook_receipts": {
+        "claude:PostToolUse": 49,
+        "claude:SessionStart": 3,
+        "claude:UserPromptSubmit": 4
+      },
+      "observation": "Root timeout/native permission denials and Git stat-cache index refresh; completed feature behavior does not make these criteria pass.",
+      "outcome": "fail",
+      "pass": false,
+      "peer_exchange": [
+        {
+          "acked": true,
+          "from": "worker-a599c7682d5c4a24",
+          "id": "message-d81380e660ca40a0",
+          "reply_to": null,
+          "to": "worker-9c938d6307c84a7b",
+          "type": "request"
+        },
+        {
+          "acked": true,
+          "from": "worker-9c938d6307c84a7b",
+          "id": "message-52921d22e7b74199",
+          "reply_to": "message-d81380e660ca40a0",
+          "to": "worker-a599c7682d5c4a24",
+          "type": "response"
+        }
+      ],
+      "plan_rows": {
+        "P001-MS01": "done",
+        "P001-MS02": "done"
+      },
+      "roots": [
+        {
+          "agent_id": "agent-b8ae385a4bef490b",
+          "bootstrap": "external join with actual streamed session ID",
+          "error_observations": 1,
+          "exit_code": -15,
+          "label": "primary",
+          "native_session_id": "01a105ac-e239-7fa0-9799-5267e662d669",
+          "provider": "codex"
+        },
+        {
+          "agent_id": "agent-99ec610a1ba94c58",
+          "bootstrap": "external join with actual streamed session ID",
+          "error_observations": 8,
+          "exit_code": 0,
+          "label": "standby",
+          "native_session_id": "02765ce0-5d1a-4b69-bcc6-e1089944a006",
+          "provider": "claude"
+        }
+      ],
+      "selected_acceptance_case": false,
+      "source_set": "hybrid-live-v1",
+      "workers": [
+        {
+          "agent_id": "worker-a599c7682d5c4a24",
+          "changed_paths": [
+            "labels.py"
+          ],
+          "native_session_id": "01a105af-76c0-7160-b4b4-9608d7f8c1ad",
+          "provider": "codex",
+          "returned_worker_result": true,
+          "revision": "1e2d56b2200ccd0dc1b3d1744c010e18e9fe57bb",
+          "spec_id": "P001-MS01",
+          "status": "integrated",
+          "turns": [
+            {
+              "artifact": "project/.okms/state/runs/run-085d1d6df53c4263/worker-a599c7682d5c4a24/turn-1791096747302120921",
+              "resumed_native_session_id": null,
+              "started_at": "2026-10-04T06:52:27Z"
+            },
+            {
+              "artifact": "project/.okms/state/runs/run-085d1d6df53c4263/worker-a599c7682d5c4a24/turn-1791096856248467599",
+              "resumed_native_session_id": "01a105af-76c0-7160-b4b4-9608d7f8c1ad",
+              "started_at": "2026-10-04T06:54:16Z"
+            }
+          ]
+        },
+        {
+          "agent_id": "worker-9c938d6307c84a7b",
+          "changed_paths": [
+            "durations.py"
+          ],
+          "native_session_id": "2f4f5fea-a1f2-4da7-82d2-b944082871dc",
+          "provider": "claude",
+          "returned_worker_result": true,
+          "revision": "77c7df3c79fcb3bd4c3db757bc63c53320e0e6a6",
+          "spec_id": "P001-MS02",
+          "status": "integrated",
+          "turns": [
+            {
+              "artifact": "project/.okms/state/runs/run-085d1d6df53c4263/worker-9c938d6307c84a7b/turn-1791096747480302251",
+              "resumed_native_session_id": null,
+              "started_at": "2026-10-04T06:52:27Z"
+            },
+            {
+              "artifact": "project/.okms/state/runs/run-085d1d6df53c4263/worker-9c938d6307c84a7b/turn-1791097026536992772",
+              "resumed_native_session_id": "2f4f5fea-a1f2-4da7-82d2-b944082871dc",
+              "started_at": "2026-10-04T06:57:06Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artifacts_sha256": {
+        "baseline.json": "a5c28a50ee46b31b576d63d45cdc50a62179b93fdab75cb9ee5b664c01ba3122",
+        "capabilities.json": "7568ffdeb7ce66bb555a6613553ad99983e4b88500d02e4bca986e3564c20f36",
+        "current.json": "fbcb90597199a60501ca821b947e084a75a5969f2e3c7820ff887c80e6e964b1",
+        "final-plan.md": "065f2152e48e6ad600c6ecee6d3a62913ce07894b69da152dab56a1b05a7698b",
+        "grade.json": "d12b4d2fa5b2732a662101bd4941961730bc82930b207208688f480e3c18e3a1",
+        "messages.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "native.json": "998168826aaceaaf3b70361d590bca01cfc20c2f2a7f0f03ba395dc0ef6aa687",
+        "observations.json": "26041103a58111076e3068a124eadefb3fb14d67dd02d2cfd09d630c731684c2",
+        "oracle.json": "1228cbc59854f25f0488a73d5a48ccd263e706a545142b12d8966d3f8878192f",
+        "primary/invocation.json": "3c907911ab0924ad5d93dcf4517fd9600ef2ec3f4ef72959d6a982540b6d1afc",
+        "primary/prompt.txt": "730e2e36cd53c9666f4a45051b57efbcdcd1c280ad3dde536418496dcb6177ee",
+        "primary/result.json": "3a434881d3742cca7c66d4cf80b7f8030d432cfd7734abc9b06e2cbd5fb97922",
+        "primary/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "primary/stdout.jsonl": "cf5b48fd636a2c725e969970e9c0e4369e21c630e696cd8c2cde6bcbb22f086d",
+        "project/.okms/state/runs/run-f0de96a157f046e0/integration-checks-ff39f2806e1d4567/check-1.log": "2b83f4ad16c6c3724f7e06b8072ca3be3764953d6285c6aab29f7a7e246f9843",
+        "project/.okms/state/runs/run-f0de96a157f046e0/integration-checks-ff39f2806e1d4567/checks.json": "1b1ac416272bc7b345fae60677a26e4f61f04c5e75a1ea921b9c3f920d17db20",
+        "project/.okms/state/runs/run-f0de96a157f046e0/worker-663dac9076eb4e85/result.json": "9d203589040c32275b8df06c0250d747864d1a450acc89b1fdfd08bb37a2053e",
+        "project/.okms/state/runs/run-f0de96a157f046e0/worker-663dac9076eb4e85/turn-1791097518912872655/invocation.json": "e1e84e82122d9136261a5af3cd83745b462a6ea31071105eb4ee5cbba47ea9ad",
+        "project/.okms/state/runs/run-f0de96a157f046e0/worker-663dac9076eb4e85/turn-1791097518912872655/prompt.txt": "07d9d5b16c437f574384b2258a693b27386502e6c0b54fe9c1746d842f3a3877",
+        "project/.okms/state/runs/run-f0de96a157f046e0/worker-663dac9076eb4e85/turn-1791097518912872655/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-f0de96a157f046e0/worker-663dac9076eb4e85/turn-1791097518912872655/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-f0de96a157f046e0/worker-663dac9076eb4e85/turn-1791097518912872655/stdout.jsonl": "c2bed6836293f9f5a7338a5e861a16db642a27e31bbbd54ee53b9515507ab527",
+        "project/.okms/state/runs/run-f0de96a157f046e0/worker-f0f246b08db34e82/result.json": "366cb3f995243615fbce8f5cfb1ba4b499d9dfae0f4fd6906188f838ef0f0627",
+        "project/.okms/state/runs/run-f0de96a157f046e0/worker-f0f246b08db34e82/turn-1791097521703944899/invocation.json": "6087e4dc868e700468736a0d3ebd2c2cf0bb2acd51a1fd42a65d98be9eedf4eb",
+        "project/.okms/state/runs/run-f0de96a157f046e0/worker-f0f246b08db34e82/turn-1791097521703944899/prompt.txt": "da68045ce1f77230b3c6a927ca3d90f16aa552278a89c9351214a941af236623",
+        "project/.okms/state/runs/run-f0de96a157f046e0/worker-f0f246b08db34e82/turn-1791097521703944899/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-f0de96a157f046e0/worker-f0f246b08db34e82/turn-1791097521703944899/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-f0de96a157f046e0/worker-f0f246b08db34e82/turn-1791097521703944899/stdout.jsonl": "6800c0d7b5e02b6c3dc11771846429c4d0f226e601bdfe9323f00e7d8afdbe8d",
+        "project/.okms/state/runs/run-f0de96a157f046e0/worker-f0f246b08db34e82/turn-1791097667531105237/invocation.json": "cc3b2a5ffd9c9b3a0f2aff451595c1783f72702bedf619aabda69a67bce2ab78",
+        "project/.okms/state/runs/run-f0de96a157f046e0/worker-f0f246b08db34e82/turn-1791097667531105237/prompt.txt": "6328283b77cfd903c36ab2f9236e4a5d85d07a683df8c314c4447a3816c38662",
+        "project/.okms/state/runs/run-f0de96a157f046e0/worker-f0f246b08db34e82/turn-1791097667531105237/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-f0de96a157f046e0/worker-f0f246b08db34e82/turn-1791097667531105237/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-f0de96a157f046e0/worker-f0f246b08db34e82/turn-1791097667531105237/stdout.jsonl": "ebf93ad670e7da4eb516dce0c39f7bb6ad9a3d91a85987413b942f0c711f230d",
+        "project/.okms/state/runs/run-f0de96a157f046e0/worker-f0f246b08db34e82/turn-1791097720243327950/invocation.json": "f88cbb2ebb4fb0657e43537fb92438657d5143e108d131e4cf66c36ceb60eb02",
+        "project/.okms/state/runs/run-f0de96a157f046e0/worker-f0f246b08db34e82/turn-1791097720243327950/prompt.txt": "17e0ce2a22f3b7d395158dac5170c699d97d300bf1b13ca1ea16056f781bed85",
+        "project/.okms/state/runs/run-f0de96a157f046e0/worker-f0f246b08db34e82/turn-1791097720243327950/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-f0de96a157f046e0/worker-f0f246b08db34e82/turn-1791097720243327950/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-f0de96a157f046e0/worker-f0f246b08db34e82/turn-1791097720243327950/stdout.jsonl": "5f487473233975bfb2776226bbdf642a229585c03d4e48eb82f8ffde11c63d99",
+        "project/.okms/state/verification/verify-09c437fd27e647d7/check-1.log": "7aaa5a73198b249af1a9450b5fd9b6a4c0ee34ff29b3baa0191ff3a95f19f515",
+        "project/.okms/state/verification/verify-09c437fd27e647d7/checks.json": "b0101e03cbedf009a66e1ce0f2317400ee68fc197d7488428c2218daee542dac",
+        "project/.okms/state/verification/verify-893753dcd3ee4b3c/check-1.log": "85370718fa8a4f2549fdf643a1a6bc22847d7b96c1eddaecd9c413444d31cb7b",
+        "project/.okms/state/verification/verify-893753dcd3ee4b3c/checks.json": "c412af4e18935af08096dff3fc290f2a0ab55c2b79d5d8cdea50f2809cacd91a",
+        "project/.okms/state/verification/verify-e1c90eb717684ab3/check-1.log": "163a69c325b7563196e469f7e37b3c2c66a4614494dc8459ca88a93953e792fc",
+        "project/.okms/state/verification/verify-e1c90eb717684ab3/checks.json": "4ebe98a77db79316603c7cdeddd07368f779831b6914900589f98715f3af72f0",
+        "state.json": "5699d6470ff20dd0d6932716618edb4757820dc6b4171fcf2f67ada5c86beb75"
+      },
+      "checks": {
+        "failed_verification_stays_incomplete": true,
+        "head_and_staging_preserved": true,
+        "native_roots_observed": false,
+        "no_unverified_root_application": true,
+        "notes_tests_instructions_preserved": true,
+        "one_coordinator_at_observed_checkpoints": true,
+        "parallel_workers_observed": true,
+        "required_gate_failure_retained": true,
+        "two_provider_workers_returned": true,
+        "worker_checks_observed": true
+      },
+      "combined_checks": [
+        {
+          "argv": [
+            "python3",
+            "checks.py",
+            "gate"
+          ],
+          "exit_code": 34
+        }
+      ],
+      "event_counts": {
+        "assignment_queued": 2,
+        "checkpoint_saved": 2,
+        "coordinator_changed": 1,
+        "hook_received": 62,
+        "integration_failed": 1,
+        "result_ready": 2,
+        "resume_requested": 2,
+        "run_started": 1,
+        "session_ended": 1,
+        "verification_finished": 3,
+        "worker_failed": 2,
+        "worker_started": 4
+      },
+      "failed_checks": [
+        "native_roots_observed"
+      ],
+      "id": "hybrid-live-v2/blocked",
+      "independent_root_oracle": {
+        "all_passed": false,
+        "passed": 0,
+        "total": 15
+      },
+      "native_hook_receipts": {
+        "claude:PostToolUse": 54,
+        "claude:SessionStart": 4,
+        "claude:UserPromptSubmit": 4
+      },
+      "observation": "Native root permission denials remain failed; the required-gate/incomplete-state criteria pass.",
+      "outcome": "fail",
+      "pass": false,
+      "peer_exchange": [],
+      "plan_rows": {
+        "P001-MS01": "blocked",
+        "P001-MS02": "blocked"
+      },
+      "roots": [
+        {
+          "agent_id": "agent-77cab2c1e3974520",
+          "bootstrap": "external join with actual streamed session ID",
+          "error_observations": 8,
+          "exit_code": 0,
+          "label": "primary",
+          "native_session_id": "12b9a80e-8c68-4077-9b7b-77d13e7fb600",
+          "provider": "claude"
+        }
+      ],
+      "selected_acceptance_case": false,
+      "source_set": "hybrid-live-v2",
+      "workers": [
+        {
+          "agent_id": "worker-663dac9076eb4e85",
+          "changed_paths": [
+            "labels.py"
+          ],
+          "native_session_id": "01a105bb-3c97-7d02-8bda-31bb156f5a5d",
+          "provider": "codex",
+          "returned_worker_result": true,
+          "revision": "6bc57b83ee98f5d8a27d2f7e3d465c5ed01a61ec",
+          "spec_id": "P001-MS01",
+          "status": "result_ready",
+          "turns": [
+            {
+              "artifact": "project/.okms/state/runs/run-f0de96a157f046e0/worker-663dac9076eb4e85/turn-1791097518912872655",
+              "resumed_native_session_id": null,
+              "started_at": "2026-10-04T07:05:18Z"
+            }
+          ]
+        },
+        {
+          "agent_id": "worker-f0f246b08db34e82",
+          "changed_paths": [
+            "durations.py"
+          ],
+          "native_session_id": "ddbff89a-b49d-4e39-8ea5-0e5e77418d8a",
+          "provider": "claude",
+          "returned_worker_result": true,
+          "revision": "7963a7c30649c74a7caca15246454967e5bcac32",
+          "spec_id": "P001-MS02",
+          "status": "result_ready",
+          "turns": [
+            {
+              "artifact": "project/.okms/state/runs/run-f0de96a157f046e0/worker-f0f246b08db34e82/turn-1791097521703944899",
+              "resumed_native_session_id": null,
+              "started_at": "2026-10-04T07:05:21Z"
+            },
+            {
+              "artifact": "project/.okms/state/runs/run-f0de96a157f046e0/worker-f0f246b08db34e82/turn-1791097667531105237",
+              "resumed_native_session_id": "ddbff89a-b49d-4e39-8ea5-0e5e77418d8a",
+              "started_at": "2026-10-04T07:07:47Z"
+            },
+            {
+              "artifact": "project/.okms/state/runs/run-f0de96a157f046e0/worker-f0f246b08db34e82/turn-1791097720243327950",
+              "resumed_native_session_id": "ddbff89a-b49d-4e39-8ea5-0e5e77418d8a",
+              "started_at": "2026-10-04T07:08:40Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artifacts_sha256": {
+        "baseline.json": "1237d78b494f0301055fe883792a9f11328279b4579f47ceef1da601b052ee70",
+        "capabilities.json": "7568ffdeb7ce66bb555a6613553ad99983e4b88500d02e4bca986e3564c20f36",
+        "current.json": "acd2e25db9ab2c50fecc788ffbd179c5c0c1cae8ef92877cfc45e7b61b9bd4a4",
+        "final-plan.md": "81ef2ae4eb1feab619385fcc8bc79c2523b717ba60e55dc280fd459ef4a16d67",
+        "grade.json": "f3bb4ea2ee8c8b9309159cd9ba1dc5ca60f0a85dde065f217766a431e3224592",
+        "messages.json": "a1cb20a7944274e3b82a76adc4cc2fa124a15b88c6dfc07e7f3ca119f250e1e2",
+        "native.json": "c9802d82995ffc7080bc68f79f7cf03d67200726089c56f3d7c5e280d6aadcb6",
+        "observations.json": "db8b2fdddc8dc7f9370fc81fb86a1dba87c7be1fd90e516fe804a7c713b43f61",
+        "oracle.json": "a0038e4776e5c0598fe26484453ceefb41b2070f9cb26a4a65be634d4bd816cc",
+        "primary/invocation.json": "d981f7bf41e44a4910f854a041ba59b9402734d84288ec82b3f97901c185f7e6",
+        "primary/prompt.txt": "db8295ad2ee75d861f62d8090aabd3656e29996a94baaac77594157d5486461e",
+        "primary/result.json": "8a4d924e4d0e5f2ad1ff74733deb8f6b33330e24e99c414f28b1bfff6f58466e",
+        "primary/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "primary/stdout.jsonl": "d1170d766d33696be87e0d2de0c77c115caaf3b3d17b0738d3f9dd76695c14f6",
+        "project/.okms/state/runs/run-c233f52e76f44682/integration-checks-da1015f84ba949ce/check-1.log": "8dd2ffac455144a312d28d6e24be94e6919e6ffe124cd44b0637a2b060233af6",
+        "project/.okms/state/runs/run-c233f52e76f44682/integration-checks-da1015f84ba949ce/checks.json": "1f7d055ce68f34b0c3c603aa4fcc7aa2cc6eedbd88a1404f88362eb06b39997d",
+        "project/.okms/state/runs/run-c233f52e76f44682/integration-checks-da1015f84ba949ce/root/check-1.log": "8dd2ffac455144a312d28d6e24be94e6919e6ffe124cd44b0637a2b060233af6",
+        "project/.okms/state/runs/run-c233f52e76f44682/integration-checks-da1015f84ba949ce/root/checks.json": "aa39879d846484a811486c623c0cb4090dec7175b346409cc1e46f012df1903e",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-316e2ac246f34aae/result.json": "cb308f035259a17ce7fa9176f6239f8f485484b3ed2ac4143d17bedc61890c24",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-316e2ac246f34aae/turn-1791096862717743134/invocation.json": "49f4e1de542fa0460575d5258578cd1cbfd198bdd549261848054e55641f6920",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-316e2ac246f34aae/turn-1791096862717743134/prompt.txt": "a9ed8fa8e8365cdc822f05e90bff6318aef274773c2fef8fbc11a4db63950515",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-316e2ac246f34aae/turn-1791096862717743134/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-316e2ac246f34aae/turn-1791096862717743134/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-316e2ac246f34aae/turn-1791096862717743134/stdout.jsonl": "0853e75d820a1b38434ea6158e3708d8550d71d06b7e6e2c8850f5bac457caf0",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-316e2ac246f34aae/turn-1791096929662099234/invocation.json": "cfa790f6a20147c87d197c32cc818c529713bc09d0e11e86621552bed3156f29",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-316e2ac246f34aae/turn-1791096929662099234/prompt.txt": "5a118358e0fd4a06e3e2170afdb00f80447ec7210ac36c765195c706c0a88054",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-316e2ac246f34aae/turn-1791096929662099234/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-316e2ac246f34aae/turn-1791096929662099234/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-316e2ac246f34aae/turn-1791096929662099234/stdout.jsonl": "b442675a2c89d29b6594ffce57a64f5541f5b2ec7bf12fb60ca4256c844f3eb8",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-349114a984804d72/result.json": "f4eb9a7f1da6d66b534ba6e246f704c5e7f4f04cefa2b1d9251401721dada4d4",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-349114a984804d72/turn-1791096863958210099/invocation.json": "648641e51c70755b8a71758f47a05bd248abee5af2d6b19fc015698e8998aca9",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-349114a984804d72/turn-1791096863958210099/prompt.txt": "8e26e39ad787778f8e7649986f8693c0db92b1c5b5d67134f50577ba85707c6b",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-349114a984804d72/turn-1791096863958210099/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-349114a984804d72/turn-1791096863958210099/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-349114a984804d72/turn-1791096863958210099/stdout.jsonl": "42016392627018b9d1d923495467368d7461e5ef3bcb48d7a73f566fc6cf1206",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-349114a984804d72/turn-1791097032217555098/invocation.json": "ce058c8a36a85170482c34a4cd71383556e23c16ae97153182ee904d65e73f86",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-349114a984804d72/turn-1791097032217555098/prompt.txt": "d6c0df96f43656e7eceb0c5e08b035e80c7b52de6f0d7618a12a007d9fb1be49",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-349114a984804d72/turn-1791097032217555098/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-349114a984804d72/turn-1791097032217555098/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-349114a984804d72/turn-1791097032217555098/stdout.jsonl": "1c761c809acfb2004db5f76ceee129a2fb619af3b768a233754dac22c34b40a5",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-349114a984804d72/turn-1791097069750075112/invocation.json": "7f65defc5d073e5e14a29c788211b84a9d13375e0234c5c845c274baae8cf893",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-349114a984804d72/turn-1791097069750075112/prompt.txt": "3ff44c0c1da16fd29edfba878159caafc3e2bef64981e26380444ce1fd2fc700",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-349114a984804d72/turn-1791097069750075112/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-349114a984804d72/turn-1791097069750075112/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-c233f52e76f44682/worker-349114a984804d72/turn-1791097069750075112/stdout.jsonl": "f1897db3f357faa5fa65c71517a5745c3e9d48cf4a3702515f21993f06b9d776",
+        "project/.okms/state/verification/verify-105b973e34e04498/check-1.log": "7aaa5a73198b249af1a9450b5fd9b6a4c0ee34ff29b3baa0191ff3a95f19f515",
+        "project/.okms/state/verification/verify-105b973e34e04498/checks.json": "5ee97cc21509ca92145ae7d3461bf766fd55510ad44a86a59c01b09ea6637665",
+        "project/.okms/state/verification/verify-89624c5ca4c94c72/check-1.log": "163a69c325b7563196e469f7e37b3c2c66a4614494dc8459ca88a93953e792fc",
+        "project/.okms/state/verification/verify-89624c5ca4c94c72/checks.json": "c28358466246b072703e67124d39377e7ca29708c4890f9102eaf65dfc06bed4",
+        "project/.okms/state/verification/verify-d2f905963a86421a/check-1.log": "8dd2ffac455144a312d28d6e24be94e6919e6ffe124cd44b0637a2b060233af6",
+        "project/.okms/state/verification/verify-d2f905963a86421a/checks.json": "7ce691b3f007058591db7c21c64ae6b6faba8d13c0ea0d4472cecd2ecb3dd899",
+        "standby/invocation.json": "87983c444e7e9644ec077344a9af324e78548757926f747947d73064244939c0",
+        "standby/prompt.txt": "72faeda61ba1524cf6535e45f66952c0823876c3eb6e3a755c7f73949745de89",
+        "standby/result.json": "c13ea474fc9e5cbee3af24825ab888d71a114a56fc79553d28cabd6e16bbfeb2",
+        "standby/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "standby/stdout.jsonl": "5ccf4afa13e43000c7feb4ca5384d6ffb36b97ede2b314f2aeebdb3b10b7998f",
+        "state.json": "f806562ef61adb65434c919ffeaf1cdef4dc9be1794111f5c8538b66ebb49987"
+      },
+      "checks": {
+        "completion_follows_actual_checks": true,
+        "cross_provider_handoff_observed": true,
+        "exact_native_session_resume": true,
+        "head_and_staging_preserved": true,
+        "independent_root_behavior": true,
+        "native_roots_observed": false,
+        "notes_tests_instructions_preserved": true,
+        "one_coordinator_at_observed_checkpoints": true,
+        "parallel_workers_observed": true,
+        "peer_request_response_ack": true,
+        "two_provider_workers_returned": true,
+        "verified_integration_then_completion": true,
+        "worker_checks_observed": true
+      },
+      "combined_checks": [
+        {
+          "argv": [
+            "python3",
+            "checks.py",
+            "all"
+          ],
+          "exit_code": 0
+        }
+      ],
+      "event_counts": {
+        "assignment_queued": 2,
+        "checkpoint_saved": 2,
+        "coordinator_changed": 2,
+        "hook_received": 79,
+        "integration_applied": 1,
+        "message_acknowledged": 3,
+        "message_delivered": 5,
+        "message_queued": 3,
+        "result_ready": 2,
+        "resume_requested": 5,
+        "root_verification_finished": 1,
+        "run_started": 1,
+        "session_ended": 1,
+        "verification_finished": 3,
+        "waiting_input": 1,
+        "worker_failed": 2,
+        "worker_started": 5
+      },
+      "failed_checks": [
+        "native_roots_observed"
+      ],
+      "id": "hybrid-live-v2/claude",
+      "independent_root_oracle": {
+        "all_passed": true,
+        "passed": 15,
+        "total": 15
+      },
+      "native_hook_receipts": {
+        "claude:PostToolUse": 71,
+        "claude:SessionStart": 4,
+        "claude:UserPromptSubmit": 4
+      },
+      "observation": "Native root permission denials remain failed despite returned workers and verified feature behavior.",
+      "outcome": "fail",
+      "pass": false,
+      "peer_exchange": [
+        {
+          "acked": true,
+          "from": "worker-316e2ac246f34aae",
+          "id": "message-c6587191603a4100",
+          "reply_to": null,
+          "to": "worker-349114a984804d72",
+          "type": "request"
+        },
+        {
+          "acked": true,
+          "from": "worker-349114a984804d72",
+          "id": "message-548f654c979d47bd",
+          "reply_to": "message-c6587191603a4100",
+          "to": "worker-316e2ac246f34aae",
+          "type": "response"
+        }
+      ],
+      "plan_rows": {
+        "P001-MS01": "done",
+        "P001-MS02": "done"
+      },
+      "roots": [
+        {
+          "agent_id": "agent-fdc370893e3e4833",
+          "bootstrap": "external join with actual streamed session ID",
+          "error_observations": 9,
+          "exit_code": 0,
+          "label": "primary",
+          "native_session_id": "9f2d7284-5237-4642-81e5-8876f53f6990",
+          "provider": "claude"
+        },
+        {
+          "agent_id": "agent-9addd99ccbea4eb2",
+          "bootstrap": "external join with actual streamed session ID",
+          "error_observations": 0,
+          "exit_code": 0,
+          "label": "standby",
+          "native_session_id": "01a105af-da63-7a83-a422-9f9b2cb51fce",
+          "provider": "codex"
+        }
+      ],
+      "selected_acceptance_case": false,
+      "source_set": "hybrid-live-v2",
+      "workers": [
+        {
+          "agent_id": "worker-316e2ac246f34aae",
+          "changed_paths": [
+            "labels.py"
+          ],
+          "native_session_id": "01a105b1-3942-7b53-8a3f-62eb5c82715f",
+          "provider": "codex",
+          "returned_worker_result": true,
+          "revision": "1c2479a342fa5af38bb082918be60fabb9647237",
+          "spec_id": "P001-MS01",
+          "status": "integrated",
+          "turns": [
+            {
+              "artifact": "project/.okms/state/runs/run-c233f52e76f44682/worker-316e2ac246f34aae/turn-1791096862717743134",
+              "resumed_native_session_id": null,
+              "started_at": "2026-10-04T06:54:22Z"
+            },
+            {
+              "artifact": "project/.okms/state/runs/run-c233f52e76f44682/worker-316e2ac246f34aae/turn-1791096929662099234",
+              "resumed_native_session_id": "01a105b1-3942-7b53-8a3f-62eb5c82715f",
+              "started_at": "2026-10-04T06:55:29Z"
+            }
+          ]
+        },
+        {
+          "agent_id": "worker-349114a984804d72",
+          "changed_paths": [
+            "durations.py"
+          ],
+          "native_session_id": "4bac41ad-1d16-4127-b41a-e0de1b3a0731",
+          "provider": "claude",
+          "returned_worker_result": true,
+          "revision": "1fe3a86faf95e74541dbd2d30fbaecaef1984ff3",
+          "spec_id": "P001-MS02",
+          "status": "integrated",
+          "turns": [
+            {
+              "artifact": "project/.okms/state/runs/run-c233f52e76f44682/worker-349114a984804d72/turn-1791096863958210099",
+              "resumed_native_session_id": null,
+              "started_at": "2026-10-04T06:54:23Z"
+            },
+            {
+              "artifact": "project/.okms/state/runs/run-c233f52e76f44682/worker-349114a984804d72/turn-1791097032217555098",
+              "resumed_native_session_id": "4bac41ad-1d16-4127-b41a-e0de1b3a0731",
+              "started_at": "2026-10-04T06:57:12Z"
+            },
+            {
+              "artifact": "project/.okms/state/runs/run-c233f52e76f44682/worker-349114a984804d72/turn-1791097069750075112",
+              "resumed_native_session_id": "4bac41ad-1d16-4127-b41a-e0de1b3a0731",
+              "started_at": "2026-10-04T06:57:49Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artifacts_sha256": {
+        "../operator-stop.json": "d5a8e1fd6181e99d0b121db985f1ccbdae20c252ea653a3cda33e4d97f3feb57",
+        "baseline.json": "0ca30ad006af49f7191be306296e9d6afdf38584240ee4c57a00538fb73e7354",
+        "capabilities.json": "7568ffdeb7ce66bb555a6613553ad99983e4b88500d02e4bca986e3564c20f36",
+        "current.json": "c6c240e4ed01cb95ffe1c031760080ca8f11ad4bfcc965efcd636725105040a6",
+        "final-plan.md": "6be5c8b8f5acba7801a0ec4ccec56ffbd73e6c046d7c77f681b6b5b23a05f671",
+        "grade.json": "734b3bb7d20a6b19a70de602e6f64fcbf740fda31cd69342a46eeb9566fb5494",
+        "messages.json": "ce44699c16394d16b6ad653557209c311b9c825aabb6640b0d483a59da85abd7",
+        "native.json": "4b062d25103e5777a568723b37d6107aa2c8e8d12d5746f5601969fec023173a",
+        "observations.json": "a34c288b5f2fc075aba35d2cb88f705f082af0bd766facb06310c3571405b06e",
+        "oracle.json": "a0038e4776e5c0598fe26484453ceefb41b2070f9cb26a4a65be634d4bd816cc",
+        "primary/invocation.json": "d36c5c3f0b37e71b0f3607c6822698eca54ad33864c42484aab5c14dfb7615a1",
+        "primary/prompt.txt": "db8295ad2ee75d861f62d8090aabd3656e29996a94baaac77594157d5486461e",
+        "primary/result.json": "2068d484118c0fb77598856d130fd459209b48c02c6cef1d33862c743e4c0e40",
+        "primary/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "primary/stdout.jsonl": "eb1fb83cf16bf7039adb250e0311758b11a821b78b67725680d6c10c808f7626",
+        "project/.okms/state/runs/run-f146926ce4af417a/integration-checks-dbc218a21b5d486c/check-1.log": "8dd2ffac455144a312d28d6e24be94e6919e6ffe124cd44b0637a2b060233af6",
+        "project/.okms/state/runs/run-f146926ce4af417a/integration-checks-dbc218a21b5d486c/checks.json": "ccbc1c715c537af22560375c3af61a7babe1449dc59d0ac521c57989578a2619",
+        "project/.okms/state/runs/run-f146926ce4af417a/integration-checks-dbc218a21b5d486c/root/check-1.log": "8dd2ffac455144a312d28d6e24be94e6919e6ffe124cd44b0637a2b060233af6",
+        "project/.okms/state/runs/run-f146926ce4af417a/integration-checks-dbc218a21b5d486c/root/checks.json": "904c319e4dd9142898ff958db7bc341e63ced0e9ffcc5b290ff7a397212816be",
+        "project/.okms/state/runs/run-f146926ce4af417a/worker-661d757e334e498a/result.json": "a84813aa9424097e780e59649095910c87f1522193dc7ec8b49da6e8df6441be",
+        "project/.okms/state/runs/run-f146926ce4af417a/worker-661d757e334e498a/turn-1791098050976273984/invocation.json": "aa0c69fc3d1bdb8d18dc64a4bcf0e22f23f1e14596962b01cb98978dd08ccbe5",
+        "project/.okms/state/runs/run-f146926ce4af417a/worker-661d757e334e498a/turn-1791098050976273984/prompt.txt": "5dff316ba50e13d5774d49c4da296094201a3b3f75fd81f72f438f518855588c",
+        "project/.okms/state/runs/run-f146926ce4af417a/worker-661d757e334e498a/turn-1791098050976273984/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-f146926ce4af417a/worker-661d757e334e498a/turn-1791098050976273984/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-f146926ce4af417a/worker-661d757e334e498a/turn-1791098050976273984/stdout.jsonl": "ba0d0384bbcf49598d8022dfab9ee244bef1a199ab7429fe979228cdf90e03e2",
+        "project/.okms/state/runs/run-f146926ce4af417a/worker-661d757e334e498a/turn-1791098321264627584/invocation.json": "ec6ee66f41e5fd46ed30c85b764aaa259a3c5fc39ba475529754da77ad0d8ede",
+        "project/.okms/state/runs/run-f146926ce4af417a/worker-661d757e334e498a/turn-1791098321264627584/prompt.txt": "b50a8603bdf372f3a074b0c5e039858b8602a7c94fff1bb697f428872bba9043",
+        "project/.okms/state/runs/run-f146926ce4af417a/worker-661d757e334e498a/turn-1791098321264627584/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-f146926ce4af417a/worker-661d757e334e498a/turn-1791098321264627584/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-f146926ce4af417a/worker-661d757e334e498a/turn-1791098321264627584/stdout.jsonl": "fcca0067b2f473e02871c313ffaedb474738cc0379cc949b9b8bd8a629a54154",
+        "project/.okms/state/runs/run-f146926ce4af417a/worker-7cd3d6abd2554e7d/result.json": "bf6befff712f5a5f3f3508309fcaf9a167904996758229adc6ed38b443cc35ba",
+        "project/.okms/state/runs/run-f146926ce4af417a/worker-7cd3d6abd2554e7d/turn-1791098049972900171/invocation.json": "54e5a988d7872cd439f9a2e44a52ebdc950409efcf88e0499a7cbd995039436d",
+        "project/.okms/state/runs/run-f146926ce4af417a/worker-7cd3d6abd2554e7d/turn-1791098049972900171/prompt.txt": "bee688bc09c6e630402cedd0560b11a88fa53639c9c48d1881de985ed0dcb263",
+        "project/.okms/state/runs/run-f146926ce4af417a/worker-7cd3d6abd2554e7d/turn-1791098049972900171/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-f146926ce4af417a/worker-7cd3d6abd2554e7d/turn-1791098049972900171/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-f146926ce4af417a/worker-7cd3d6abd2554e7d/turn-1791098049972900171/stdout.jsonl": "c2849c1dd72b5270408897960d1bda0b40aa36481a727cefc7ca258ee86bab79",
+        "project/.okms/state/runs/run-f146926ce4af417a/worker-7cd3d6abd2554e7d/turn-1791098141807579337/invocation.json": "9756d92957ffbce5dedaa19d9351af8a01f9a040c9efd0341963bd1ed0330978",
+        "project/.okms/state/runs/run-f146926ce4af417a/worker-7cd3d6abd2554e7d/turn-1791098141807579337/prompt.txt": "74d6cb4be92744c8da85c55f72704a547f7bc721768c78b156ee6f2f934a93af",
+        "project/.okms/state/runs/run-f146926ce4af417a/worker-7cd3d6abd2554e7d/turn-1791098141807579337/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-f146926ce4af417a/worker-7cd3d6abd2554e7d/turn-1791098141807579337/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-f146926ce4af417a/worker-7cd3d6abd2554e7d/turn-1791098141807579337/stdout.jsonl": "35e277aae7deeb41096856343c0c0defce761a8fd3db1e64c4a19dea7f57e70c",
+        "project/.okms/state/verification/verify-3d0df7a7b8264cc2/check-1.log": "163a69c325b7563196e469f7e37b3c2c66a4614494dc8459ca88a93953e792fc",
+        "project/.okms/state/verification/verify-3d0df7a7b8264cc2/checks.json": "a1174e73cc0c5737841820653bda4e6fc2926cbe4239b074048ec50ea6e6870e",
+        "project/.okms/state/verification/verify-7ea3c750623a445a/check-1.log": "7aaa5a73198b249af1a9450b5fd9b6a4c0ee34ff29b3baa0191ff3a95f19f515",
+        "project/.okms/state/verification/verify-7ea3c750623a445a/checks.json": "aeb92b99f99ae9338c291891db1a46438cfb1ddca691344cdd4ec156706dc036",
+        "project/.okms/state/verification/verify-947982418814404a/check-1.log": "e75ddc52dc032470b564a87aabf9dd12c22a6b6fda7b2cb60bb06aab62b9032a",
+        "project/.okms/state/verification/verify-947982418814404a/checks.json": "37b41bd002f834cf42453066109c206f1b1bbf75aacc0c94faf645204d5fa293",
+        "project/.okms/state/verification/verify-d483458b8cf24ffa/check-1.log": "163a69c325b7563196e469f7e37b3c2c66a4614494dc8459ca88a93953e792fc",
+        "project/.okms/state/verification/verify-d483458b8cf24ffa/checks.json": "db897e9aba56edef9afd057ed4384b8da843998089514cec51983bebb118fcaf",
+        "standby/invocation.json": "527a20065c1ad27cf7559e065faf0951fb75ff9bfe7e16bbd2809925c14da90e",
+        "standby/prompt.txt": "72faeda61ba1524cf6535e45f66952c0823876c3eb6e3a755c7f73949745de89",
+        "standby/result.json": "338e878e24699468febfa8cf01db6a7d51d401d2c10332c7f8d010c12710dd8a",
+        "standby/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "standby/stdout.jsonl": "e86d6c0d378d9e456f7b2a2d5f8f8f789cfe6f769fa5c6afc78175c1e0e878fa",
+        "state.json": "14c711fc876e3ebd0d56460e26431f7ada9228c2ad56377fdeeb8fd49fcb2276"
+      },
+      "checks": {
+        "completion_follows_actual_checks": false,
+        "cross_provider_handoff_observed": true,
+        "exact_native_session_resume": true,
+        "head_and_staging_preserved": true,
+        "independent_root_behavior": true,
+        "native_roots_observed": false,
+        "notes_tests_instructions_preserved": true,
+        "one_coordinator_at_observed_checkpoints": true,
+        "parallel_workers_observed": true,
+        "peer_request_response_ack": true,
+        "two_provider_workers_returned": true,
+        "verified_integration_then_completion": false,
+        "worker_checks_observed": true
+      },
+      "combined_checks": [
+        {
+          "argv": [
+            "python3",
+            "checks.py",
+            "all"
+          ],
+          "exit_code": 0
+        }
+      ],
+      "event_counts": {
+        "assignment_queued": 2,
+        "checkpoint_saved": 1,
+        "coordinator_changed": 2,
+        "hook_received": 72,
+        "integration_applied": 1,
+        "message_acknowledged": 3,
+        "message_delivered": 5,
+        "message_queued": 3,
+        "result_ready": 2,
+        "resume_requested": 4,
+        "root_verification_finished": 1,
+        "run_started": 1,
+        "session_ended": 1,
+        "verification_finished": 4,
+        "waiting_input": 1,
+        "worker_failed": 1,
+        "worker_started": 4
+      },
+      "failed_checks": [
+        "completion_follows_actual_checks",
+        "native_roots_observed",
+        "verified_integration_then_completion"
+      ],
+      "id": "hybrid-live-v3/claude",
+      "independent_root_oracle": {
+        "all_passed": true,
+        "passed": 15,
+        "total": 15
+      },
+      "native_hook_receipts": {
+        "claude:PostToolUse": 66,
+        "claude:SessionStart": 3,
+        "claude:UserPromptSubmit": 3
+      },
+      "observation": "Operator interrupted the obsolete payload after diagnosed shell-approval/handoff issues; partial observations remain failed.",
+      "outcome": "interrupted",
+      "pass": false,
+      "peer_exchange": [
+        {
+          "acked": true,
+          "from": "worker-7cd3d6abd2554e7d",
+          "id": "message-cb63b54fc689492e",
+          "reply_to": null,
+          "to": "worker-661d757e334e498a",
+          "type": "request"
+        },
+        {
+          "acked": true,
+          "from": "worker-661d757e334e498a",
+          "id": "message-a4bb309a03664079",
+          "reply_to": "message-cb63b54fc689492e",
+          "to": "worker-7cd3d6abd2554e7d",
+          "type": "response"
+        }
+      ],
+      "plan_rows": {
+        "P001-MS01": "done",
+        "P001-MS02": "in_progress"
+      },
+      "roots": [
+        {
+          "agent_id": "agent-5de86211ded04af8",
+          "bootstrap": "external join with actual streamed session ID",
+          "error_observations": 13,
+          "exit_code": 0,
+          "label": "primary",
+          "native_session_id": "62fee6fd-bd49-42e6-b334-8675120540dd",
+          "provider": "claude"
+        },
+        {
+          "agent_id": "agent-c6f642491c334cd0",
+          "bootstrap": "external join with actual streamed session ID",
+          "error_observations": 1,
+          "exit_code": -15,
+          "label": "standby",
+          "native_session_id": "01a105c2-450d-79d0-be30-a7b44c2d70a8",
+          "provider": "codex"
+        }
+      ],
+      "selected_acceptance_case": false,
+      "source_set": "hybrid-live-v3",
+      "workers": [
+        {
+          "agent_id": "worker-7cd3d6abd2554e7d",
+          "changed_paths": [
+            "labels.py"
+          ],
+          "native_session_id": "01a105c3-56f4-7783-bea8-307256421e00",
+          "provider": "codex",
+          "returned_worker_result": true,
+          "revision": "48e55f6aafa92cd0ca043afc5d529271bc76f101",
+          "spec_id": "P001-MS01",
+          "status": "integrated",
+          "turns": [
+            {
+              "artifact": "project/.okms/state/runs/run-f146926ce4af417a/worker-7cd3d6abd2554e7d/turn-1791098049972900171",
+              "resumed_native_session_id": null,
+              "started_at": "2026-10-04T07:14:09Z"
+            },
+            {
+              "artifact": "project/.okms/state/runs/run-f146926ce4af417a/worker-7cd3d6abd2554e7d/turn-1791098141807579337",
+              "resumed_native_session_id": "01a105c3-56f4-7783-bea8-307256421e00",
+              "started_at": "2026-10-04T07:15:41Z"
+            }
+          ]
+        },
+        {
+          "agent_id": "worker-661d757e334e498a",
+          "changed_paths": [
+            "durations.py"
+          ],
+          "native_session_id": "508d9a75-cd7b-4e77-81cd-a2575841bd77",
+          "provider": "claude",
+          "returned_worker_result": true,
+          "revision": "e0d10b62ae9db6641fdb1b63ab42a2b5bd3b68d4",
+          "spec_id": "P001-MS02",
+          "status": "integrated",
+          "turns": [
+            {
+              "artifact": "project/.okms/state/runs/run-f146926ce4af417a/worker-661d757e334e498a/turn-1791098050976273984",
+              "resumed_native_session_id": null,
+              "started_at": "2026-10-04T07:14:10Z"
+            },
+            {
+              "artifact": "project/.okms/state/runs/run-f146926ce4af417a/worker-661d757e334e498a/turn-1791098321264627584",
+              "resumed_native_session_id": "508d9a75-cd7b-4e77-81cd-a2575841bd77",
+              "started_at": "2026-10-04T07:18:41Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artifacts_sha256": {
+        "baseline.json": "2eeaa269ae506d1b6893cc5e4b3564a0b4231f7a2171d647902f6f92ab6fefbd",
+        "capabilities.json": "7568ffdeb7ce66bb555a6613553ad99983e4b88500d02e4bca986e3564c20f36",
+        "current.json": "9d55a17a8a651c724aa4ff5ae7481f7611ea73bed11d8e4092d0e1882ed3e15f",
+        "final-plan.md": "54d3b1bb2776016c5d8f8521a7a710ddf0ddaee387d27d2cdffa8fdf08a867d1",
+        "grade.json": "2a98f81eea3f46e1ea0f87f97f462be9215651b9f4221abdde993bdbff99be75",
+        "messages.json": "42fa46e22d330b94bdab3147b127381e216f9dc9a27371c8248dfac5fa984d4a",
+        "native.json": "ea2423970e5db78ed4ed7116ebdd33ca32bbcbfed052be5ad42fcd0467ad6aff",
+        "observations.json": "80e210275b66a0e4448644d427c49cd79daf13353868c2fcbdc5c31adcfe20a1",
+        "oracle.json": "a0038e4776e5c0598fe26484453ceefb41b2070f9cb26a4a65be634d4bd816cc",
+        "primary/invocation.json": "a159affe23cdb20e91ee467840dc00cf5789293611dbbc7556bda3589105d646",
+        "primary/prompt.txt": "db8295ad2ee75d861f62d8090aabd3656e29996a94baaac77594157d5486461e",
+        "primary/result.json": "ac3ff1926e80e433a844ae07fe0a682d9791e4ec1b785e44b6c2f6178d7f214a",
+        "primary/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "primary/stdout.jsonl": "879d37f7641e612a4660e630725c195afd5cb7b4415257f52c817809cf370ae9",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/integration-checks-91d9b571d5d049d0/check-1.log": "8dd2ffac455144a312d28d6e24be94e6919e6ffe124cd44b0637a2b060233af6",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/integration-checks-91d9b571d5d049d0/check-2.log": "93cf2249cf5b4498cc4509927b6246c7d9027958f27b3f64a886b91fd1eac05c",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/integration-checks-91d9b571d5d049d0/checks.json": "6976beedd900034528959ed8e8c4f0b4301b850f02505240a3cd8c851edf8b8a",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/integration-checks-91d9b571d5d049d0/root/check-1.log": "8dd2ffac455144a312d28d6e24be94e6919e6ffe124cd44b0637a2b060233af6",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/integration-checks-91d9b571d5d049d0/root/check-2.log": "93cf2249cf5b4498cc4509927b6246c7d9027958f27b3f64a886b91fd1eac05c",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/integration-checks-91d9b571d5d049d0/root/checks.json": "db0f47536c3897930930002f1e891145ca3df8e01917936edcaf7ddef0fdaaec",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-04bab1f54c0c4d75/result.json": "2bb80380156680ef7ba7bb87861c0f3c18eb80a35449dd89ca596006c3860690",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-04bab1f54c0c4d75/turn-1791097398925336400/invocation.json": "541fac8bcea2500b32ec3102fc60de8169b32d1db9cbe3c4a47a812c9f76bf31",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-04bab1f54c0c4d75/turn-1791097398925336400/prompt.txt": "e5c97f60b9bb41ba7df8595bfe8cc4ca175384989c7d4202149b7b916594a4cf",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-04bab1f54c0c4d75/turn-1791097398925336400/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-04bab1f54c0c4d75/turn-1791097398925336400/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-04bab1f54c0c4d75/turn-1791097398925336400/stdout.jsonl": "078342b20399b544866b16cbc06e3167b3520a56403950ca54752c4c987b9b02",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-04bab1f54c0c4d75/turn-1791097607414821831/invocation.json": "46dbcd5bbfdc730a7bb2071585917c88ad68270acefc16e3cf016afd2b04d67b",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-04bab1f54c0c4d75/turn-1791097607414821831/prompt.txt": "8c5f6d3e42661ebcf2a5c7024c9b6a2ff05b7f1d9eca75be27f1a076c51165a1",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-04bab1f54c0c4d75/turn-1791097607414821831/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-04bab1f54c0c4d75/turn-1791097607414821831/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-04bab1f54c0c4d75/turn-1791097607414821831/stdout.jsonl": "a146ba3b1b2daa66d3757894c09088d7adca56b47bf2e62edf65fb86737788e5",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-3602898f97ea4b7e/result.json": "826f2ce118cf42ddc932d5633ac40320164e57740f3747312bc48a1a44a77f1d",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-3602898f97ea4b7e/turn-1791097398717755728/invocation.json": "ee72e8259ea7d5690a3e0439fa586567bd80d36c29eb192dde88e6cc184077ab",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-3602898f97ea4b7e/turn-1791097398717755728/prompt.txt": "afa6b12beee448540ba503367cb613b78ca1a3c74ed9002e3c0aefc0e1ffa7fd",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-3602898f97ea4b7e/turn-1791097398717755728/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-3602898f97ea4b7e/turn-1791097398717755728/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-3602898f97ea4b7e/turn-1791097398717755728/stdout.jsonl": "f8d619ae38971f475d7fb23e67c0882bb8552db67dc6ac127033c6f085ee25bf",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-3602898f97ea4b7e/turn-1791097462870797175/invocation.json": "e3e27b51a258cba544bb7ca4287d8ac1956f54460014b8c6971b786aab16c411",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-3602898f97ea4b7e/turn-1791097462870797175/prompt.txt": "1a4f1083913a4fc898f0780b469ae1335e37e0af6e12f5eecabae4e72af41fe7",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-3602898f97ea4b7e/turn-1791097462870797175/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-3602898f97ea4b7e/turn-1791097462870797175/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-3602898f97ea4b7e/turn-1791097462870797175/stdout.jsonl": "ee5903dbe350791e92be36482b4eafb68371638975272850b0078bf64d660730",
+        "project/.okms/state/verification/verify-0041f1a6442e41da/check-1.log": "163a69c325b7563196e469f7e37b3c2c66a4614494dc8459ca88a93953e792fc",
+        "project/.okms/state/verification/verify-0041f1a6442e41da/checks.json": "8fd07b0950df1d68947fe88c90f4fc7098305d8ab45d1eb0a93552a309c5a46b",
+        "project/.okms/state/verification/verify-68ad1ff230e746a5/check-1.log": "163a69c325b7563196e469f7e37b3c2c66a4614494dc8459ca88a93953e792fc",
+        "project/.okms/state/verification/verify-68ad1ff230e746a5/checks.json": "356b4c7196bc82c16c7749bb5e99d6d0d3441a866b2ba9adc42b769a8bd9a60b",
+        "project/.okms/state/verification/verify-a2901d0ce6554bc8/check-1.log": "7aaa5a73198b249af1a9450b5fd9b6a4c0ee34ff29b3baa0191ff3a95f19f515",
+        "project/.okms/state/verification/verify-a2901d0ce6554bc8/checks.json": "b753557289fabcc2094d6164dde938eacecfc122fc082e148687b1c12f9ae7f9",
+        "standby/invocation.json": "5f11785fa9b682781910c976975ee96db3de2fb9b4ccee33935050d252d2f57e",
+        "standby/prompt.txt": "72faeda61ba1524cf6535e45f66952c0823876c3eb6e3a755c7f73949745de89",
+        "standby/result.json": "ecefbf97ee73651629df11271a1a5d250ce3a3f5725ce523302d45762f675761",
+        "standby/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "standby/stdout.jsonl": "d540f385afb73823b71c157e7b924739d9df460eb71a1027d512f72071efe7ea",
+        "state.json": "a5283d82001c18a3f4398c881e4e874f839b98380cae035aad221f4d06dea5da"
+      },
+      "checks": {
+        "completion_follows_actual_checks": false,
+        "cross_provider_handoff_observed": true,
+        "exact_native_session_resume": true,
+        "head_and_staging_preserved": false,
+        "independent_root_behavior": true,
+        "native_roots_observed": false,
+        "notes_tests_instructions_preserved": true,
+        "one_coordinator_at_observed_checkpoints": true,
+        "parallel_workers_observed": true,
+        "peer_request_response_ack": true,
+        "two_provider_workers_returned": true,
+        "verified_integration_then_completion": false,
+        "worker_checks_observed": true
+      },
+      "combined_checks": [
+        {
+          "argv": [
+            "python3",
+            "checks.py",
+            "all"
+          ],
+          "exit_code": 0
+        },
+        {
+          "argv": [
+            "python3",
+            "-c",
+            "from labels import normalize_label\nfrom durations import duration_label\nseparators = \"\\t\\n\\r\\v\\f\\u0085\\u00a0\\u1680\\u2000\\u2007\\u2028\\u2029\\u202f\\u205f\\u3000\"\nfor separator in separators:\n    assert normalize_label(separator + \"Stra\u00dfe\" + separator + separator + \"\u03a3\" + separator) == \"strasse \u03c3\"\ndef expect_value_error(function, value):\n    try:\n        function(value)\n    except ValueError:\n        return\n    raise AssertionError(\"invalid input was accepted\")\nfor bad in (separators, False, b\"x\", [], {}):\n    expect_value_error(normalize_label, bad)\nfor seconds, expected in ((59, \"0m59s\"), (60, \"1m00s\"), (3601, \"60m01s\")):\n    assert duration_label(seconds) == expected\nexpect_value_error(duration_label, False)\nprint(\"Unicode label and duration boundary checks passed\")\n"
+          ],
+          "exit_code": 0
+        }
+      ],
+      "event_counts": {
+        "assignment_queued": 2,
+        "checkpoint_saved": 1,
+        "coordinator_changed": 2,
+        "hook_received": 42,
+        "integration_applied": 1,
+        "message_acknowledged": 3,
+        "message_delivered": 7,
+        "message_queued": 4,
+        "result_ready": 2,
+        "resume_requested": 4,
+        "root_verification_finished": 1,
+        "run_started": 1,
+        "verification_finished": 3,
+        "waiting_input": 1,
+        "worker_failed": 1,
+        "worker_started": 4
+      },
+      "failed_checks": [
+        "completion_follows_actual_checks",
+        "head_and_staging_preserved",
+        "native_roots_observed",
+        "verified_integration_then_completion"
+      ],
+      "id": "hybrid-live-v3/codex",
+      "independent_root_oracle": {
+        "all_passed": true,
+        "passed": 15,
+        "total": 15
+      },
+      "native_hook_receipts": {
+        "claude:PostToolUse": 36,
+        "claude:SessionStart": 3,
+        "claude:UserPromptSubmit": 3
+      },
+      "observation": "Native permission denials, stat-cache index refresh, and an unfinished receiving-coordinator checkpoint remain failed.",
+      "outcome": "fail",
+      "pass": false,
+      "peer_exchange": [
+        {
+          "acked": true,
+          "from": "worker-3602898f97ea4b7e",
+          "id": "message-853714835a9d4801",
+          "reply_to": null,
+          "to": "worker-04bab1f54c0c4d75",
+          "type": "request"
+        },
+        {
+          "acked": true,
+          "from": "worker-04bab1f54c0c4d75",
+          "id": "message-f26cf0e78aea45a7",
+          "reply_to": "message-853714835a9d4801",
+          "to": "worker-3602898f97ea4b7e",
+          "type": "response"
+        }
+      ],
+      "plan_rows": {
+        "P001-MS01": "done",
+        "P001-MS02": "in_progress"
+      },
+      "roots": [
+        {
+          "agent_id": "agent-c6e708042c914473",
+          "bootstrap": "external join with actual streamed session ID",
+          "error_observations": 0,
+          "exit_code": 0,
+          "label": "primary",
+          "native_session_id": "01a105b7-208e-7462-b33c-5d1c5d2f96b7",
+          "provider": "codex"
+        },
+        {
+          "agent_id": "agent-cf9dabebcd744ab7",
+          "bootstrap": "external join with actual streamed session ID",
+          "error_observations": 2,
+          "exit_code": 0,
+          "label": "standby",
+          "native_session_id": "6f87ec30-0a63-4559-a2ce-40ef8d91dd16",
+          "provider": "claude"
+        }
+      ],
+      "selected_acceptance_case": false,
+      "source_set": "hybrid-live-v3",
+      "workers": [
+        {
+          "agent_id": "worker-3602898f97ea4b7e",
+          "changed_paths": [
+            "labels.py"
+          ],
+          "native_session_id": "01a105b9-67eb-78f0-93c5-eabe461ecbf0",
+          "provider": "codex",
+          "returned_worker_result": true,
+          "revision": "5295c5ee753d71756f3d60cbc16d2bd6df73ad96",
+          "spec_id": "P001-MS01",
+          "status": "integrated",
+          "turns": [
+            {
+              "artifact": "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-3602898f97ea4b7e/turn-1791097398717755728",
+              "resumed_native_session_id": null,
+              "started_at": "2026-10-04T07:03:18Z"
+            },
+            {
+              "artifact": "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-3602898f97ea4b7e/turn-1791097462870797175",
+              "resumed_native_session_id": "01a105b9-67eb-78f0-93c5-eabe461ecbf0",
+              "started_at": "2026-10-04T07:04:22Z"
+            }
+          ]
+        },
+        {
+          "agent_id": "worker-04bab1f54c0c4d75",
+          "changed_paths": [
+            "durations.py"
+          ],
+          "native_session_id": "0796bfe4-d62a-4d1a-bae3-40c25a9c3c4f",
+          "provider": "claude",
+          "returned_worker_result": true,
+          "revision": "e0e0a136779b60e7caf0749ecabecfd3ae4ccc44",
+          "spec_id": "P001-MS02",
+          "status": "integrated",
+          "turns": [
+            {
+              "artifact": "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-04bab1f54c0c4d75/turn-1791097398925336400",
+              "resumed_native_session_id": null,
+              "started_at": "2026-10-04T07:03:18Z"
+            },
+            {
+              "artifact": "project/.okms/state/runs/run-a5b8f62c42ee487b/worker-04bab1f54c0c4d75/turn-1791097607414821831",
+              "resumed_native_session_id": "0796bfe4-d62a-4d1a-bae3-40c25a9c3c4f",
+              "started_at": "2026-10-04T07:06:47Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artifacts_sha256": {
+        "baseline.json": "414751cd90c5d87cf089a39c80253dc4fb95b5adeb19da507a11d0a44e189954",
+        "capabilities.json": "7568ffdeb7ce66bb555a6613553ad99983e4b88500d02e4bca986e3564c20f36",
+        "current.json": "c5d984f4cc06c4dfe22ae48cacc5d7cc70f90ff2773f713188c93320b2a68078",
+        "final-plan.md": "e72a87fe5e8ce45aa36c6e35351d79e217224b09811c64d627dd1876697ae684",
+        "grade.json": "a15b062e5b463b1af3fc28c95a4f57b274b74adce8da57193229c96d2e8b1ef9",
+        "messages.json": "c55f9e1b727f63a25bedc6502e8c684be24f25479d9a08bf44ef9657d7e15788",
+        "native.json": "e302e3581203d40f52d7e3a72d9bdff5d9db52e627f2818b08dc367e97e3184b",
+        "observations.json": "e8d1276128ed40531b546d488bc4e8acf6e2adbfd294768043825ecec14b71e0",
+        "oracle.json": "1228cbc59854f25f0488a73d5a48ccd263e706a545142b12d8966d3f8878192f",
+        "primary/invocation.json": "57d37e9d682dc5c658b2aa6ec026c6ada87325256fb112bea4b5a3d0e8e58c82",
+        "primary/prompt.txt": "730e2e36cd53c9666f4a45051b57efbcdcd1c280ad3dde536418496dcb6177ee",
+        "primary/result.json": "d68bd65c7a378602043583c78091af81e5bf2ac9e74ca92af21dd0712e4b971e",
+        "primary/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "primary/stdout.jsonl": "57014c67e0131169964bcce5bde6a37b77bfad74a782bcd1f9fd1507df6e5222",
+        "project/.okms/state/runs/run-ad60f1815c974e4e/integration-checks-fb52d38ca97d41e3/check-1.log": "2b83f4ad16c6c3724f7e06b8072ca3be3764953d6285c6aab29f7a7e246f9843",
+        "project/.okms/state/runs/run-ad60f1815c974e4e/integration-checks-fb52d38ca97d41e3/check-2.log": "8dd2ffac455144a312d28d6e24be94e6919e6ffe124cd44b0637a2b060233af6",
+        "project/.okms/state/runs/run-ad60f1815c974e4e/integration-checks-fb52d38ca97d41e3/checks.json": "cdb467f1cde8ef9aa369e90cac3cae101f400e427a2b2eec62361f2b9a6434b4",
+        "project/.okms/state/runs/run-ad60f1815c974e4e/worker-66b4cf07fb134e32/result.json": "756a67a89442b3d1abe3ddfe9e315c2339d7e8b4421a12a06f8393d45a6865c5",
+        "project/.okms/state/runs/run-ad60f1815c974e4e/worker-66b4cf07fb134e32/turn-1791098629715639660/invocation.json": "c1115389ba8f9f771ebc3f5401d35c8e421a6a0f4a3651bbffaca793fff923fd",
+        "project/.okms/state/runs/run-ad60f1815c974e4e/worker-66b4cf07fb134e32/turn-1791098629715639660/prompt.txt": "a7bc5df5d08fbc2c463133fb38e295511fbbeaf45595a8395353ab31ddb725e9",
+        "project/.okms/state/runs/run-ad60f1815c974e4e/worker-66b4cf07fb134e32/turn-1791098629715639660/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-ad60f1815c974e4e/worker-66b4cf07fb134e32/turn-1791098629715639660/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-ad60f1815c974e4e/worker-66b4cf07fb134e32/turn-1791098629715639660/stdout.jsonl": "4787eaea30fa2d640a2654c1b324fcf12c1b1efebac1ff7da7ee79754b3968f7",
+        "project/.okms/state/runs/run-ad60f1815c974e4e/worker-66b4cf07fb134e32/turn-1791098749217685614/invocation.json": "3204c457f86450dea9cfa760cb708276870135178e7e7d55967306d2aae36494",
+        "project/.okms/state/runs/run-ad60f1815c974e4e/worker-66b4cf07fb134e32/turn-1791098749217685614/prompt.txt": "4f4f0d3ef0d95e5c9dfb05dea9775e0857601a5c8152b586af79e16d90c88bc2",
+        "project/.okms/state/runs/run-ad60f1815c974e4e/worker-66b4cf07fb134e32/turn-1791098749217685614/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-ad60f1815c974e4e/worker-66b4cf07fb134e32/turn-1791098749217685614/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-ad60f1815c974e4e/worker-66b4cf07fb134e32/turn-1791098749217685614/stdout.jsonl": "8cab9179d9c6687699cebd12781b8fd5fc162113386f175dcea2cbebdbcd5c78",
+        "project/.okms/state/runs/run-ad60f1815c974e4e/worker-bb18c85f8a394cf1/result.json": "b8bace60bb2bf49fce083c8e82b9b8e76faed1edcfdb46f5f800a6d6f1153c8a",
+        "project/.okms/state/runs/run-ad60f1815c974e4e/worker-bb18c85f8a394cf1/turn-1791098629842643935/invocation.json": "cf1f93bdf600a5e761e2adc23a65159e36d37c96e67b653e2a8e637a999e9ad6",
+        "project/.okms/state/runs/run-ad60f1815c974e4e/worker-bb18c85f8a394cf1/turn-1791098629842643935/prompt.txt": "c3e4b1fed260e3202bdc4d5b2bba5e748864d339b0c78dd2624c47956f2410ce",
+        "project/.okms/state/runs/run-ad60f1815c974e4e/worker-bb18c85f8a394cf1/turn-1791098629842643935/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-ad60f1815c974e4e/worker-bb18c85f8a394cf1/turn-1791098629842643935/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-ad60f1815c974e4e/worker-bb18c85f8a394cf1/turn-1791098629842643935/stdout.jsonl": "bf20c802473a54ef45c80f9da408ef90ea9155293cc30458ae5e0df84c007648",
+        "project/.okms/state/verification/verify-20b2c7346ef74ccd/check-1.log": "7aaa5a73198b249af1a9450b5fd9b6a4c0ee34ff29b3baa0191ff3a95f19f515",
+        "project/.okms/state/verification/verify-20b2c7346ef74ccd/checks.json": "00a1bd0d19a832fa857b1c9956156965ef63f2d0f464160e3cd3970672eeb005",
+        "project/.okms/state/verification/verify-8abdcdaf68d1460f/check-1.log": "163a69c325b7563196e469f7e37b3c2c66a4614494dc8459ca88a93953e792fc",
+        "project/.okms/state/verification/verify-8abdcdaf68d1460f/checks.json": "e09efb92592654095f698b5c2993278916051067c8d74ca73dc3429ea32317e6",
+        "state.json": "e9652ca771f336a1362b1c06429a1a29e7b67e5d66283342bbf414e120cb6c79"
+      },
+      "checks": {
+        "failed_verification_stays_incomplete": true,
+        "head_and_staging_preserved": true,
+        "native_roots_observed": true,
+        "no_unverified_root_application": true,
+        "notes_tests_instructions_preserved": true,
+        "one_coordinator_at_observed_checkpoints": true,
+        "parallel_workers_observed": true,
+        "required_gate_failure_retained": true,
+        "two_provider_workers_returned": true,
+        "worker_checks_observed": true
+      },
+      "combined_checks": [
+        {
+          "argv": [
+            "python3",
+            "checks.py",
+            "gate"
+          ],
+          "exit_code": 34
+        },
+        {
+          "argv": [
+            "python3",
+            "checks.py",
+            "all"
+          ],
+          "exit_code": 0
+        }
+      ],
+      "event_counts": {
+        "assignment_queued": 2,
+        "checkpoint_saved": 4,
+        "coordinator_changed": 1,
+        "hook_received": 26,
+        "integration_failed": 1,
+        "message_acknowledged": 3,
+        "message_delivered": 7,
+        "message_queued": 3,
+        "result_ready": 2,
+        "resume_requested": 1,
+        "run_started": 1,
+        "session_ended": 1,
+        "verification_finished": 2,
+        "waiting_input": 1,
+        "worker_started": 3
+      },
+      "failed_checks": [],
+      "id": "hybrid-live-v4/blocked",
+      "independent_root_oracle": {
+        "all_passed": false,
+        "passed": 0,
+        "total": 15
+      },
+      "native_hook_receipts": {
+        "claude:PostToolUse": 22,
+        "claude:SessionStart": 2,
+        "claude:UserPromptSubmit": 2
+      },
+      "observation": "All scoped criteria pass: required combined gate fails, no application delta is applied, both plan rows remain blocked.",
+      "outcome": "pass",
+      "pass": true,
+      "peer_exchange": [],
+      "plan_rows": {
+        "P001-MS01": "blocked",
+        "P001-MS02": "blocked"
+      },
+      "roots": [
+        {
+          "agent_id": "agent-70fd25de27cf4732",
+          "bootstrap": "external join with actual streamed session ID",
+          "error_observations": 0,
+          "exit_code": 0,
+          "label": "primary",
+          "native_session_id": "e452d6aa-b820-4164-a2ed-d3c9ac646a8f",
+          "provider": "claude"
+        }
+      ],
+      "selected_acceptance_case": true,
+      "source_set": "hybrid-live-v4",
+      "workers": [
+        {
+          "agent_id": "worker-66b4cf07fb134e32",
+          "changed_paths": [
+            "labels.py"
+          ],
+          "native_session_id": "01a105cc-2fcc-7a63-94b1-6755e09ed23f",
+          "provider": "codex",
+          "returned_worker_result": true,
+          "revision": "9bf6da1487276d6e8cd51d6f5252c2603f58226b",
+          "spec_id": "P001-MS01",
+          "status": "result_ready",
+          "turns": [
+            {
+              "artifact": "project/.okms/state/runs/run-ad60f1815c974e4e/worker-66b4cf07fb134e32/turn-1791098629715639660",
+              "resumed_native_session_id": null,
+              "started_at": "2026-10-04T07:23:49Z"
+            },
+            {
+              "artifact": "project/.okms/state/runs/run-ad60f1815c974e4e/worker-66b4cf07fb134e32/turn-1791098749217685614",
+              "resumed_native_session_id": "01a105cc-2fcc-7a63-94b1-6755e09ed23f",
+              "started_at": "2026-10-04T07:25:49Z"
+            }
+          ]
+        },
+        {
+          "agent_id": "worker-bb18c85f8a394cf1",
+          "changed_paths": [
+            "durations.py"
+          ],
+          "native_session_id": "8904ea30-8b3c-48ac-9be7-5ba474700c77",
+          "provider": "claude",
+          "returned_worker_result": true,
+          "revision": "e8763dcea00179035e4431f07a5e4905a865cdb4",
+          "spec_id": "P001-MS02",
+          "status": "result_ready",
+          "turns": [
+            {
+              "artifact": "project/.okms/state/runs/run-ad60f1815c974e4e/worker-bb18c85f8a394cf1/turn-1791098629842643935",
+              "resumed_native_session_id": null,
+              "started_at": "2026-10-04T07:23:49Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artifacts_sha256": {
+        "baseline.json": "d6f5f5682614283342b16a5e686b375618bf847a34e221e246e5d6eaa135ff54",
+        "capabilities.json": "7568ffdeb7ce66bb555a6613553ad99983e4b88500d02e4bca986e3564c20f36",
+        "current.json": "013c65e1891e6f84013fa89bcb1f0d27a099276f976ebc33adda2f512baaadf2",
+        "final-plan.md": "525d77911f4d547d380bb06dde1b52ac1b7a72fa62477fbe9833d7c6ae7a0de5",
+        "grade.json": "d7258265b8d2e2eea80398b30e0b1dcbe9786388af62a16bbbc6fdb347f9ff6c",
+        "messages.json": "600ee720cf4ed2cc85e5990a1838fa96aafc825f1a7ebc293d9589931182594a",
+        "native.json": "c45a3d9ab8e96b9bc01c345f3e1c91802d72ac1e261239360f4b05fbaff25362",
+        "observations.json": "081782a8e41c801c7c05b9ad4b7a1ba0ad46c49dbdadeb4bb780c392419f859a",
+        "oracle.json": "a0038e4776e5c0598fe26484453ceefb41b2070f9cb26a4a65be634d4bd816cc",
+        "primary/invocation.json": "7174bf311e129345a880cd0c7f31822315dc846fc885771f073076c1a317d715",
+        "primary/prompt.txt": "db8295ad2ee75d861f62d8090aabd3656e29996a94baaac77594157d5486461e",
+        "primary/result.json": "bf4f3949c2b6215d3fceaa2fd188175b55f266b6f99ba5158dc4573a47d60d31",
+        "primary/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "primary/stdout.jsonl": "960f0afaa0cd6f9ac568e796c512e8afb92e38db6cf2fdced5899390b3edd5d3",
+        "project/.okms/state/runs/run-b015f85cac79469a/integration-checks-fdb51bff009042f0/check-1.log": "8dd2ffac455144a312d28d6e24be94e6919e6ffe124cd44b0637a2b060233af6",
+        "project/.okms/state/runs/run-b015f85cac79469a/integration-checks-fdb51bff009042f0/checks.json": "0c08bb36af08d0c6c6db9c7157270eedd36358041cee00aebf96492d3a24d73e",
+        "project/.okms/state/runs/run-b015f85cac79469a/integration-checks-fdb51bff009042f0/root/check-1.log": "8dd2ffac455144a312d28d6e24be94e6919e6ffe124cd44b0637a2b060233af6",
+        "project/.okms/state/runs/run-b015f85cac79469a/integration-checks-fdb51bff009042f0/root/checks.json": "d62bb23837ba3845241caaa81861e1406e74aaee886453c86e8d10f5b41dbf5c",
+        "project/.okms/state/runs/run-b015f85cac79469a/worker-00e177337b2b4bc0/result.json": "6b32182cbadd705232ccff5181f3e02f31ca131b471e66eb5ca966b55e134250",
+        "project/.okms/state/runs/run-b015f85cac79469a/worker-00e177337b2b4bc0/turn-1791098006191538426/invocation.json": "1caa59275adf4ba59ef7d7f357c797c9c12d4e63755e9c88cb9bc25adf4fdce5",
+        "project/.okms/state/runs/run-b015f85cac79469a/worker-00e177337b2b4bc0/turn-1791098006191538426/prompt.txt": "7fd389bdc653a2adb8677817ac6b876c857067d0567d6e242e773195abeeafd1",
+        "project/.okms/state/runs/run-b015f85cac79469a/worker-00e177337b2b4bc0/turn-1791098006191538426/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-b015f85cac79469a/worker-00e177337b2b4bc0/turn-1791098006191538426/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-b015f85cac79469a/worker-00e177337b2b4bc0/turn-1791098006191538426/stdout.jsonl": "c5620a693d3dc04b3581ad82f8cb0f1d46c0f3f556da4813a6a1fdb0deec5bf3",
+        "project/.okms/state/runs/run-b015f85cac79469a/worker-00e177337b2b4bc0/turn-1791098111775564830/invocation.json": "fe4bc7ecab83ea7ebf14875c6ee529f0b1ae2fe639578e5dc2cfec85df361692",
+        "project/.okms/state/runs/run-b015f85cac79469a/worker-00e177337b2b4bc0/turn-1791098111775564830/prompt.txt": "a6c095c160a501a5f4365690a39f528fe9fbe66884ed2bca6a629cb2a1d83167",
+        "project/.okms/state/runs/run-b015f85cac79469a/worker-00e177337b2b4bc0/turn-1791098111775564830/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-b015f85cac79469a/worker-00e177337b2b4bc0/turn-1791098111775564830/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-b015f85cac79469a/worker-00e177337b2b4bc0/turn-1791098111775564830/stdout.jsonl": "f6c3ebc9c526a62e9cf0d016ec4e22747c1cc94a02abc0f43cd73f1e2097c92d",
+        "project/.okms/state/runs/run-b015f85cac79469a/worker-00e177337b2b4bc0/turn-1791098212124078030/invocation.json": "b5530850d7c9cebc6b80dd3addabab351223083bccddfc4bdba8e1a78ba023e5",
+        "project/.okms/state/runs/run-b015f85cac79469a/worker-00e177337b2b4bc0/turn-1791098212124078030/prompt.txt": "6885db8f4d00e84323d39e83d793a1521ecc718c5cddcdb4d1c7420c29b37b30",
+        "project/.okms/state/runs/run-b015f85cac79469a/worker-00e177337b2b4bc0/turn-1791098212124078030/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-b015f85cac79469a/worker-00e177337b2b4bc0/turn-1791098212124078030/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-b015f85cac79469a/worker-00e177337b2b4bc0/turn-1791098212124078030/stdout.jsonl": "32a970bd4de5e61ca95da925b06fa81b99463a29645a9b4a31a4a8873b599f11",
+        "project/.okms/state/runs/run-b015f85cac79469a/worker-bb7516f5659b4dcc/result.json": "a811cef2277e75a5e1e4c00b1bf7f175774fe17bfcae02ac957eaf440d46cfb3",
+        "project/.okms/state/runs/run-b015f85cac79469a/worker-bb7516f5659b4dcc/turn-1791098006270369155/invocation.json": "a776287f4808daf1676460aa504bd0185b84850ab2316a2f946f5f58a619a8a8",
+        "project/.okms/state/runs/run-b015f85cac79469a/worker-bb7516f5659b4dcc/turn-1791098006270369155/prompt.txt": "4589aa97748447246af39cbdfa0e35c117aaf7ea344f16b9e316c0d1a2270643",
+        "project/.okms/state/runs/run-b015f85cac79469a/worker-bb7516f5659b4dcc/turn-1791098006270369155/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-b015f85cac79469a/worker-bb7516f5659b4dcc/turn-1791098006270369155/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-b015f85cac79469a/worker-bb7516f5659b4dcc/turn-1791098006270369155/stdout.jsonl": "e14ec8fbf0fe7246348e43d24889e1a4f4997ea12d2881c27c07028caf57fa78",
+        "project/.okms/state/verification/verify-035a147ab28e4dd5/check-1.log": "7aaa5a73198b249af1a9450b5fd9b6a4c0ee34ff29b3baa0191ff3a95f19f515",
+        "project/.okms/state/verification/verify-035a147ab28e4dd5/checks.json": "c7b741b1c13743798c5c9c1e100a43b6dd81f2a453215610a500421a8002b587",
+        "project/.okms/state/verification/verify-1ea2f1f0fc2b4d17/check-1.log": "163a69c325b7563196e469f7e37b3c2c66a4614494dc8459ca88a93953e792fc",
+        "project/.okms/state/verification/verify-1ea2f1f0fc2b4d17/checks.json": "6445adbf1f76c5e44087a0c09fe26385ed6335dffea3cb75af53a0b4851ec33a",
+        "project/.okms/state/verification/verify-6de636cfcc344349/check-1.log": "8dd2ffac455144a312d28d6e24be94e6919e6ffe124cd44b0637a2b060233af6",
+        "project/.okms/state/verification/verify-6de636cfcc344349/checks.json": "c1469457e8f7edb821fe058f134b5c66d74b95f169dbf8edfc9ea3eb1cb023ff",
+        "project/.okms/state/verification/verify-de45519ff8db445b/check-1.log": "163a69c325b7563196e469f7e37b3c2c66a4614494dc8459ca88a93953e792fc",
+        "project/.okms/state/verification/verify-de45519ff8db445b/checks.json": "169d0a3374777c99f29afb51eec47b47f17162eb387c4da9ea965059544da7c4",
+        "standby/invocation.json": "25e7698fab3e070a0450bbee30a13c2c3ebc49382500947a797a38d5ea11f81a",
+        "standby/prompt.txt": "72faeda61ba1524cf6535e45f66952c0823876c3eb6e3a755c7f73949745de89",
+        "standby/result.json": "8fd385bc7c4e6e9019847de4ccd66795ad3a099ff07ce61a41af71b958943255",
+        "standby/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "standby/stdout.jsonl": "676e2a6a56e132541f64f9ed1047e3229de67bbc707fbd68f63132e97d5292de",
+        "state.json": "18c6efd610e38fe696509290eacf0a93d4edccb3d323c7f06edee2193170e69a"
+      },
+      "checks": {
+        "completion_follows_actual_checks": true,
+        "cross_provider_handoff_observed": true,
+        "exact_native_session_resume": true,
+        "head_and_staging_preserved": true,
+        "independent_root_behavior": true,
+        "native_roots_observed": true,
+        "notes_tests_instructions_preserved": true,
+        "one_coordinator_at_observed_checkpoints": true,
+        "parallel_workers_observed": true,
+        "peer_request_response_ack": true,
+        "two_provider_workers_returned": true,
+        "verified_integration_then_completion": true,
+        "worker_checks_observed": true
+      },
+      "combined_checks": [
+        {
+          "argv": [
+            "python3",
+            "checks.py",
+            "all"
+          ],
+          "exit_code": 0
+        }
+      ],
+      "event_counts": {
+        "assignment_queued": 2,
+        "checkpoint_saved": 2,
+        "coordinator_changed": 2,
+        "hook_received": 64,
+        "integration_applied": 1,
+        "message_acknowledged": 4,
+        "message_delivered": 10,
+        "message_queued": 5,
+        "result_ready": 2,
+        "resume_requested": 4,
+        "root_verification_finished": 1,
+        "run_started": 1,
+        "session_ended": 1,
+        "verification_finished": 4,
+        "waiting_input": 2,
+        "worker_started": 4
+      },
+      "failed_checks": [],
+      "id": "hybrid-live-v4/claude",
+      "independent_root_oracle": {
+        "all_passed": true,
+        "passed": 15,
+        "total": 15
+      },
+      "native_hook_receipts": {
+        "claude:PostToolUse": 60,
+        "claude:SessionStart": 2,
+        "claude:UserPromptSubmit": 2
+      },
+      "observation": "All scoped criteria pass. A second waiting turn required coordinator help because generic Read-tool guidance was unsuitable for Codex.",
+      "outcome": "pass",
+      "pass": true,
+      "peer_exchange": [
+        {
+          "acked": true,
+          "from": "worker-00e177337b2b4bc0",
+          "id": "message-bdd89e80e6fb458e",
+          "reply_to": null,
+          "to": "worker-bb7516f5659b4dcc",
+          "type": "request"
+        },
+        {
+          "acked": true,
+          "from": "worker-bb7516f5659b4dcc",
+          "id": "message-0f043e6aa91c45c8",
+          "reply_to": "message-bdd89e80e6fb458e",
+          "to": "worker-00e177337b2b4bc0",
+          "type": "response"
+        },
+        {
+          "acked": false,
+          "from": "worker-00e177337b2b4bc0",
+          "id": "message-1bdb09be340142b4",
+          "reply_to": "message-0f043e6aa91c45c8",
+          "to": "worker-bb7516f5659b4dcc",
+          "type": "request"
+        }
+      ],
+      "plan_rows": {
+        "P001-MS01": "done",
+        "P001-MS02": "done"
+      },
+      "roots": [
+        {
+          "agent_id": "agent-4f9fddd42ab644c0",
+          "bootstrap": "external join with actual streamed session ID",
+          "error_observations": 0,
+          "exit_code": 0,
+          "label": "primary",
+          "native_session_id": "fece1572-4186-4f6f-9bd9-641488c878ea",
+          "provider": "claude"
+        },
+        {
+          "agent_id": "agent-04677acecff84b4f",
+          "bootstrap": "external join with actual streamed session ID",
+          "error_observations": 0,
+          "exit_code": 0,
+          "label": "standby",
+          "native_session_id": "01a105c2-3b64-7913-afc4-b43f367ace9d",
+          "provider": "codex"
+        }
+      ],
+      "selected_acceptance_case": true,
+      "source_set": "hybrid-live-v4",
+      "workers": [
+        {
+          "agent_id": "worker-00e177337b2b4bc0",
+          "changed_paths": [
+            "labels.py"
+          ],
+          "native_session_id": "01a105c2-ac0c-7172-bcbc-f5a38470675a",
+          "provider": "codex",
+          "returned_worker_result": true,
+          "revision": "64338e045ae26ff566d4ee11f4e7e9eb2b604716",
+          "spec_id": "P001-MS01",
+          "status": "integrated",
+          "turns": [
+            {
+              "artifact": "project/.okms/state/runs/run-b015f85cac79469a/worker-00e177337b2b4bc0/turn-1791098006191538426",
+              "resumed_native_session_id": null,
+              "started_at": "2026-10-04T07:13:26Z"
+            },
+            {
+              "artifact": "project/.okms/state/runs/run-b015f85cac79469a/worker-00e177337b2b4bc0/turn-1791098111775564830",
+              "resumed_native_session_id": "01a105c2-ac0c-7172-bcbc-f5a38470675a",
+              "started_at": "2026-10-04T07:15:11Z"
+            },
+            {
+              "artifact": "project/.okms/state/runs/run-b015f85cac79469a/worker-00e177337b2b4bc0/turn-1791098212124078030",
+              "resumed_native_session_id": "01a105c2-ac0c-7172-bcbc-f5a38470675a",
+              "started_at": "2026-10-04T07:16:52Z"
+            }
+          ]
+        },
+        {
+          "agent_id": "worker-bb7516f5659b4dcc",
+          "changed_paths": [
+            "durations.py"
+          ],
+          "native_session_id": "849a75d8-ff50-4b40-8433-ad0ade0ca6f2",
+          "provider": "claude",
+          "returned_worker_result": true,
+          "revision": "8e40494d70e2c5577fd14777cc4f7a00aaab343d",
+          "spec_id": "P001-MS02",
+          "status": "integrated",
+          "turns": [
+            {
+              "artifact": "project/.okms/state/runs/run-b015f85cac79469a/worker-bb7516f5659b4dcc/turn-1791098006270369155",
+              "resumed_native_session_id": null,
+              "started_at": "2026-10-04T07:13:26Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "artifacts_sha256": {
+        "baseline.json": "6bee3612fbf86596b031f53435807c41e94e1182f4be5716047e2499e350667f",
+        "capabilities.json": "7568ffdeb7ce66bb555a6613553ad99983e4b88500d02e4bca986e3564c20f36",
+        "current.json": "f712c6fc3efa0c7c205c84942f2eed3b8f736a7e4c5bec40974c214d626778b1",
+        "final-plan.md": "df8494e3ab4391a10305c3dafa5a9c57ed65b3b3b927122fdd5d45456c923e48",
+        "grade.json": "b685801e7be675b73a6068ae3a080e9d35bc545ca8f56bbf8fe5fa858909889f",
+        "messages.json": "e8ba9bae0053be6caa9bd4f1cb5f03c774ed0568a00f4bf615032e753848c9f7",
+        "native.json": "eba58c60dbf7ac6fab7f013feab77035090f11728161ce550c7e5bfa9898e370",
+        "observations.json": "02f7fbec78fb27def29a9fa76f6c411984b223148e758ebebc2bc9630ee2122f",
+        "oracle.json": "a0038e4776e5c0598fe26484453ceefb41b2070f9cb26a4a65be634d4bd816cc",
+        "primary/invocation.json": "c7d49511c9175a3bacec423e91772419ee5f0986638dc474631982b6da52e06f",
+        "primary/prompt.txt": "db8295ad2ee75d861f62d8090aabd3656e29996a94baaac77594157d5486461e",
+        "primary/result.json": "9df78bd390b21a54df8a8d9749bae1a2a014b0c83d9be1827d9b061420364830",
+        "primary/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "primary/stdout.jsonl": "b1ac486a684f58db07680b06687cb05532f31867a4935056dcdf7e324df11d72",
+        "project/.okms/state/runs/run-d36af9c1386a4792/integration-checks-72cac6fffff942b5/check-1.log": "8dd2ffac455144a312d28d6e24be94e6919e6ffe124cd44b0637a2b060233af6",
+        "project/.okms/state/runs/run-d36af9c1386a4792/integration-checks-72cac6fffff942b5/check-2.log": "4abf5637649231d85e831c64938f1ed8811409e1cbcd113285dc7338dfc87ad3",
+        "project/.okms/state/runs/run-d36af9c1386a4792/integration-checks-72cac6fffff942b5/checks.json": "49661a89e01ad8b255ffd911f193778cc6f640e93371d092f841a5a3abc39ad3",
+        "project/.okms/state/runs/run-d36af9c1386a4792/integration-checks-72cac6fffff942b5/root/check-1.log": "8dd2ffac455144a312d28d6e24be94e6919e6ffe124cd44b0637a2b060233af6",
+        "project/.okms/state/runs/run-d36af9c1386a4792/integration-checks-72cac6fffff942b5/root/check-2.log": "4abf5637649231d85e831c64938f1ed8811409e1cbcd113285dc7338dfc87ad3",
+        "project/.okms/state/runs/run-d36af9c1386a4792/integration-checks-72cac6fffff942b5/root/checks.json": "ed326094a270abeafe971387f6b27d5564de519fe5b6e963e3363cda8fc42a82",
+        "project/.okms/state/runs/run-d36af9c1386a4792/worker-5f8d0cc87b4f435a/result.json": "87f54ecafc9cf91dfc60bd3277eaa5d30a18297e1825a9442a33d0d946fb9618",
+        "project/.okms/state/runs/run-d36af9c1386a4792/worker-5f8d0cc87b4f435a/turn-1791098332214720817/invocation.json": "92f36ef5b59cb81bb7f3103017bc002e768417c87bb4e4447c58ee2c469da750",
+        "project/.okms/state/runs/run-d36af9c1386a4792/worker-5f8d0cc87b4f435a/turn-1791098332214720817/prompt.txt": "c34baed0e7c8f95905772f8f6bdce9643387a78695ffc85303fac1fa0de574be",
+        "project/.okms/state/runs/run-d36af9c1386a4792/worker-5f8d0cc87b4f435a/turn-1791098332214720817/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-d36af9c1386a4792/worker-5f8d0cc87b4f435a/turn-1791098332214720817/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-d36af9c1386a4792/worker-5f8d0cc87b4f435a/turn-1791098332214720817/stdout.jsonl": "77d7558eaa0a903bdf84a5da49c22c1b4f83ea5aa17171027cda726bb95dc55f",
+        "project/.okms/state/runs/run-d36af9c1386a4792/worker-5f8d0cc87b4f435a/turn-1791098452656033487/invocation.json": "ef28d774efbfbb12bdb27c0b4de089e3655f781b220fca5d6100504a73406f15",
+        "project/.okms/state/runs/run-d36af9c1386a4792/worker-5f8d0cc87b4f435a/turn-1791098452656033487/prompt.txt": "b696704e81b242abf2fa0ac2b25dd37b6075dd473be028fd755febdb998e2a13",
+        "project/.okms/state/runs/run-d36af9c1386a4792/worker-5f8d0cc87b4f435a/turn-1791098452656033487/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-d36af9c1386a4792/worker-5f8d0cc87b4f435a/turn-1791098452656033487/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-d36af9c1386a4792/worker-5f8d0cc87b4f435a/turn-1791098452656033487/stdout.jsonl": "cbf21d16c36f9c53455c1a2d302edafe60afc8ade8964599d75dd3300360e6b1",
+        "project/.okms/state/runs/run-d36af9c1386a4792/worker-5f8d0cc87b4f435a/turn-1791098682575265482/invocation.json": "7ec132b08d4291633c46379b65b799678c445be8cae2840d8e077deb109666e5",
+        "project/.okms/state/runs/run-d36af9c1386a4792/worker-5f8d0cc87b4f435a/turn-1791098682575265482/prompt.txt": "91a5365887a4aa3d911f70a66c2f0a45aac2baf2fe2f30875715461c7ad22db0",
+        "project/.okms/state/runs/run-d36af9c1386a4792/worker-5f8d0cc87b4f435a/turn-1791098682575265482/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-d36af9c1386a4792/worker-5f8d0cc87b4f435a/turn-1791098682575265482/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-d36af9c1386a4792/worker-5f8d0cc87b4f435a/turn-1791098682575265482/stdout.jsonl": "01df1bd4d2043d235cb524d138eb0f71fed95e6fdc29a80cb7ce2dac2379fab1",
+        "project/.okms/state/runs/run-d36af9c1386a4792/worker-72cc043437a2497c/result.json": "bf1942da2e02b751175dbb930279b4d7feb3ddadc6c78e58e14358b24c7f3afa",
+        "project/.okms/state/runs/run-d36af9c1386a4792/worker-72cc043437a2497c/turn-1791098332339643956/invocation.json": "05de7fd0640bed2ed66f4e113f062b99e90a2e4dcde3c578621a1113957012cc",
+        "project/.okms/state/runs/run-d36af9c1386a4792/worker-72cc043437a2497c/turn-1791098332339643956/prompt.txt": "f17e0a0091a2645fffb74b4eab26f5cf9102655ddd9f7dc411a164623be6d7f1",
+        "project/.okms/state/runs/run-d36af9c1386a4792/worker-72cc043437a2497c/turn-1791098332339643956/result-schema.json": "3e3fca3f47b7e321505047e7445280114b38f6991b2f9f91dba024097435271f",
+        "project/.okms/state/runs/run-d36af9c1386a4792/worker-72cc043437a2497c/turn-1791098332339643956/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "project/.okms/state/runs/run-d36af9c1386a4792/worker-72cc043437a2497c/turn-1791098332339643956/stdout.jsonl": "a6a8fe18da1ec411d5e84c8bff86374a72230ef0fa8e8624e103f4226516f55b",
+        "project/.okms/state/verification/verify-6f6039fe9c154dba/check-1.log": "7aaa5a73198b249af1a9450b5fd9b6a4c0ee34ff29b3baa0191ff3a95f19f515",
+        "project/.okms/state/verification/verify-6f6039fe9c154dba/checks.json": "bf92f66e12a9de757059b46caadfd6a338eb3c000eac44d041bc55f72d017462",
+        "project/.okms/state/verification/verify-7a90b7782d074760/check-1.log": "163a69c325b7563196e469f7e37b3c2c66a4614494dc8459ca88a93953e792fc",
+        "project/.okms/state/verification/verify-7a90b7782d074760/checks.json": "ab211b662c8c37600213d4a26135c99aae2465f463290c11fb93eacc45032e5c",
+        "project/.okms/state/verification/verify-aec03f5563564059/check-1.log": "163a69c325b7563196e469f7e37b3c2c66a4614494dc8459ca88a93953e792fc",
+        "project/.okms/state/verification/verify-aec03f5563564059/checks.json": "21c5cfaa5d008dc6ccf197f953f64ed141952e280abdb6af0ed240e42e924d74",
+        "project/.okms/state/verification/verify-cb8ecf80f34b4d72/check-1.log": "8dd2ffac455144a312d28d6e24be94e6919e6ffe124cd44b0637a2b060233af6",
+        "project/.okms/state/verification/verify-cb8ecf80f34b4d72/checks.json": "c6dcdcbb1a5fdd193a0c4736c94971a81c80e7bcdb89ee48da0f34601cf26869",
+        "project/.okms/state/verification/verify-f2ecb99465d64150/check-1.log": "2071fdba5670103251b706ea5a0623029360db1210761d665bae6fb9e3a4bd9c",
+        "project/.okms/state/verification/verify-f2ecb99465d64150/checks.json": "4f54de9dcb0733cdffd44245d55043a79cc0d078c9e2bdd3703fe123d1c6ca99",
+        "standby/invocation.json": "c39cf593095216448f7170e0e1bef4c3f4745f88ec7a8de3b7439060d0133395",
+        "standby/prompt.txt": "72faeda61ba1524cf6535e45f66952c0823876c3eb6e3a755c7f73949745de89",
+        "standby/result.json": "d625b138aadb3c17f395afebcab493e5f305d6866faf3bbef82ac46415e001fc",
+        "standby/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "standby/stdout.jsonl": "7936f361df92f5ad6ebad31c82632c7f9cda752a921e63cd62bc5917e155969e",
+        "state.json": "4529d2868fec1419bdb84a1334dc441b15dba4815e50117e5be10c9511a44c4b"
+      },
+      "checks": {
+        "completion_follows_actual_checks": true,
+        "cross_provider_handoff_observed": true,
+        "exact_native_session_resume": true,
+        "head_and_staging_preserved": true,
+        "independent_root_behavior": true,
+        "native_roots_observed": true,
+        "notes_tests_instructions_preserved": true,
+        "one_coordinator_at_observed_checkpoints": true,
+        "parallel_workers_observed": true,
+        "peer_request_response_ack": true,
+        "two_provider_workers_returned": true,
+        "verified_integration_then_completion": true,
+        "worker_checks_observed": true
+      },
+      "combined_checks": [
+        {
+          "argv": [
+            "python3",
+            "checks.py",
+            "all"
+          ],
+          "exit_code": 0
+        },
+        {
+          "argv": [
+            "python3",
+            "-c",
+            "from labels import normalize_label\nfrom durations import duration_label\nassert normalize_label(\"\\u00a0Stra\u00dfe\\n\\t\u03a3\\u2003\") == \"strasse \u03c3\"\nassert normalize_label(\"A\\r\\nB\\vC\\fD\") == \"a b c d\"\ndef reject(function, values):\n    for value in values:\n        try:\n            function(value)\n        except ValueError:\n            continue\n        raise AssertionError(f\"Expected ValueError for {value!r}\")\nreject(normalize_label, [\"\\t\\n\\r\\v\\f\\u00a0\\u2003\", True, False, b\"label\", [], {}, 1.5, object()])\nassert duration_label(59) == \"0m59s\"\nassert duration_label(60) == \"1m00s\"\nassert duration_label(61) == \"1m01s\"\nassert duration_label(3599) == \"59m59s\"\nassert duration_label(60 * 10**30 + 59) == \"1\" + \"0\" * 30 + \"m59s\"\nclass Seconds(int):\n    pass\nassert duration_label(Seconds(90)) == \"1m30s\"\nreject(duration_label, [False, None, float(\"nan\"), float(\"inf\"), float(\"-inf\"), b\"90\", [], {}])\nprint(\"Supplemental contract checks passed: Unicode casefold/whitespace, invalid types, minute boundaries, large integer, int subclass, NaN/infinity\")\n"
+          ],
+          "exit_code": 0
+        }
+      ],
+      "event_counts": {
+        "assignment_queued": 2,
+        "checkpoint_saved": 3,
+        "coordinator_changed": 2,
+        "hook_received": 54,
+        "integration_applied": 1,
+        "message_acknowledged": 4,
+        "message_delivered": 9,
+        "message_queued": 5,
+        "result_ready": 2,
+        "resume_requested": 4,
+        "root_verification_finished": 1,
+        "run_started": 1,
+        "session_ended": 1,
+        "verification_finished": 5,
+        "waiting_input": 2,
+        "worker_started": 4
+      },
+      "failed_checks": [],
+      "id": "hybrid-live-v5/codex",
+      "independent_root_oracle": {
+        "all_passed": true,
+        "passed": 15,
+        "total": 15
+      },
+      "native_hook_receipts": {
+        "claude:PostToolUse": 49,
+        "claude:SessionStart": 2,
+        "claude:UserPromptSubmit": 3
+      },
+      "observation": "All scoped criteria pass. A second waiting turn required coordinator help because generic Read-tool guidance was unsuitable for Codex.",
+      "outcome": "pass",
+      "pass": true,
+      "peer_exchange": [
+        {
+          "acked": true,
+          "from": "worker-5f8d0cc87b4f435a",
+          "id": "message-b5e21782751a4307",
+          "reply_to": null,
+          "to": "worker-72cc043437a2497c",
+          "type": "request"
+        },
+        {
+          "acked": true,
+          "from": "worker-72cc043437a2497c",
+          "id": "message-4f5392cc463d4234",
+          "reply_to": "message-b5e21782751a4307",
+          "to": "worker-5f8d0cc87b4f435a",
+          "type": "response"
+        },
+        {
+          "acked": false,
+          "from": "worker-5f8d0cc87b4f435a",
+          "id": "message-96f763b046194375",
+          "reply_to": null,
+          "to": "worker-72cc043437a2497c",
+          "type": "request"
+        }
+      ],
+      "plan_rows": {
+        "P001-MS01": "done",
+        "P001-MS02": "done"
+      },
+      "roots": [
+        {
+          "agent_id": "agent-51573a56e58b4d3f",
+          "bootstrap": "external join with actual streamed session ID",
+          "error_observations": 0,
+          "exit_code": 0,
+          "label": "primary",
+          "native_session_id": "01a105c5-05ed-7dc3-bf02-94aaedc04746",
+          "provider": "codex"
+        },
+        {
+          "agent_id": "agent-c4a347642b324d6d",
+          "bootstrap": "external join with actual streamed session ID",
+          "error_observations": 0,
+          "exit_code": 0,
+          "label": "standby",
+          "native_session_id": "bb7500ae-412e-4d6f-8f9f-3b967b05699d",
+          "provider": "claude"
+        }
+      ],
+      "selected_acceptance_case": true,
+      "source_set": "hybrid-live-v5",
+      "workers": [
+        {
+          "agent_id": "worker-5f8d0cc87b4f435a",
+          "changed_paths": [
+            "labels.py"
+          ],
+          "native_session_id": "01a105c7-a580-74b1-b466-dc8e27e728df",
+          "provider": "codex",
+          "returned_worker_result": true,
+          "revision": "9c65d41fa4ed39e9d81d883560eec8bce580df6d",
+          "spec_id": "P001-MS01",
+          "status": "integrated",
+          "turns": [
+            {
+              "artifact": "project/.okms/state/runs/run-d36af9c1386a4792/worker-5f8d0cc87b4f435a/turn-1791098332214720817",
+              "resumed_native_session_id": null,
+              "started_at": "2026-10-04T07:18:52Z"
+            },
+            {
+              "artifact": "project/.okms/state/runs/run-d36af9c1386a4792/worker-5f8d0cc87b4f435a/turn-1791098452656033487",
+              "resumed_native_session_id": "01a105c7-a580-74b1-b466-dc8e27e728df",
+              "started_at": "2026-10-04T07:20:52Z"
+            },
+            {
+              "artifact": "project/.okms/state/runs/run-d36af9c1386a4792/worker-5f8d0cc87b4f435a/turn-1791098682575265482",
+              "resumed_native_session_id": "01a105c7-a580-74b1-b466-dc8e27e728df",
+              "started_at": "2026-10-04T07:24:42Z"
+            }
+          ]
+        },
+        {
+          "agent_id": "worker-72cc043437a2497c",
+          "changed_paths": [
+            "durations.py"
+          ],
+          "native_session_id": "dd425aa0-8061-41f8-93e7-dc5bc262913f",
+          "provider": "claude",
+          "returned_worker_result": true,
+          "revision": "b642989fb26fd47d78794821a2801e1316fcfe2e",
+          "spec_id": "P001-MS02",
+          "status": "integrated",
+          "turns": [
+            {
+              "artifact": "project/.okms/state/runs/run-d36af9c1386a4792/worker-72cc043437a2497c/turn-1791098332339643956",
+              "resumed_native_session_id": null,
+              "started_at": "2026-10-04T07:18:52Z"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "component_probes": [
+    {
+      "artifacts_sha256": {
+        "invocation.json": "13518826e8109a943c0d4d03300d66f23b96e2ca2a22b47494e157a0a51d79d0",
+        "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout.jsonl": "526f6b93bf7213bcd5b102c8bf5c6b0fc4ed78b8f4bfc0c388fc94b7c4f0c7b7"
+      },
+      "available_tools": [
+        "Read",
+        "Glob",
+        "Grep",
+        "Edit",
+        "Write",
+        "Bash",
+        "StructuredOutput"
+      ],
+      "id": "hybrid-structured-probe",
+      "model": "claude-opus-5-5",
+      "native_session_id": "29016947-2ab0-49ab-9b8e-881cbd0ff497",
+      "pass": true,
+      "permission_denials": [],
+      "provider": "claude",
+      "purpose": "Read-only structured-output transport; no application implementation/check claimed.",
+      "source_limit": "This preliminary probe did not write a complete source fingerprint; copied installed files and native trace remain retained.",
+      "structured_output": {
+        "disposition": "result_ready",
+        "evidence": [
+          "No implementation or application verification was performed."
+        ],
+        "next": "Continue the separate pilot.",
+        "remaining": [
+          "Application assignments remain unexecuted."
+        ],
+        "summary": "Read-only transport probe completed."
+      }
+    },
+    {
+      "artifacts_sha256": {
+        "oracle.json": "5c010363c72fd578fa9d42fae787bcfd38467494cc10be7e6e986569d3c78a2f",
+        "probe.json": "04339f5ca1b21207aaa8063d3f4e63b4f883d807859dde85d021f296170a96b0",
+        "project/.okms/state/runs/run-66a4a358cfae4f81/worker-0d43634649034332/turn-1791099579160583157/invocation.json": "80b2f661685dc2e9d97b56994b0f294b7853f2797e8a3659c774694cb16a84d7",
+        "project/.okms/state/runs/run-66a4a358cfae4f81/worker-0d43634649034332/turn-1791099579160583157/stdout.jsonl": "c951220f4683660fb07d17ccd0f429b89f9901a88f4d1b7859493335d1b631a7"
+      },
+      "changed_paths": [
+        "labels.py"
+      ],
+      "coordinator_input_requests": 0,
+      "id": "hybrid-codex-read-probe",
+      "independent_worker_oracle": {
+        "all_passed": true,
+        "passed": 7,
+        "total": 7
+      },
+      "native_session_id": "01a105da-ac85-7362-9e84-33676e37caab",
+      "pass": true,
+      "provider": "codex",
+      "purpose": "Codex scoped source reads and provider-specific worker guidance",
+      "remaining": "This probe does not repeat the mixed coordinator/peer/handoff matrix.",
+      "root": "Scripted component-probe owner; no native coordinator CLI.",
+      "source_fingerprints": {
+        "evals/run_hybrid_pilot.py": "c2d0507f6f3b6c0882616fef4eda56ee498034f3b9aa75daaf6a557bcb9a3fe3",
+        "scripts/check_docs.py": "dddd6302a41bf3b133bb7d5c7d54dedbfae93d244872b25eb7ad2b197f806d28",
+        "templates/hybrid-team/docs/_templates/agent-role.md": "65d817eff91ceb9439a15c9a97829cc06c96ce59bf55eb7ce13ea766ece404bb",
+        "templates/hybrid-team/docs/_templates/catalog.md": "8812b9fb1053adc54bb33268b7182f7dd24822287d60f07b9602e6751a7605b6",
+        "templates/hybrid-team/docs/_templates/delegation-brief.md": "1f5ee01ddd69d52ee094fcf02019449087fdb0b3f008a928a01299189a8ee224",
+        "templates/hybrid-team/docs/_templates/goal.md": "99a5a9a4d514d1548d2f411b710e9c9e651c9346a704b70d43cc6f6823bc5ec3",
+        "templates/hybrid-team/docs/_templates/index.md": "2924555bb3ef0ebe5dbf484d6140943f061792641bc727570d00f78af0960870",
+        "templates/hybrid-team/docs/_templates/micro-spec-bugfix.md": "64d65e4447cd4199dd497fc8b0234c0f935bae0b5344c847eb636ec49ae155db",
+        "templates/hybrid-team/docs/_templates/micro-spec-design.md": "239b044839c7aa81bb66d790443352fc3687bdd61fb5fe4c47a3f41075dc1590",
+        "templates/hybrid-team/docs/_templates/micro-spec-implementation.md": "679ce9c59b847c0a752407d8b6d9fa691e4ec937822022bc994bddb96e764a30",
+        "templates/hybrid-team/docs/_templates/micro-spec-investigation.md": "2cb65bd9eb42c22e7b5e7210bf5c47d1f8ad36f40a9cb712664779988a50ef07",
+        "templates/hybrid-team/docs/_templates/micro-spec-research.md": "9fd81d4d054f57d547cdb003ce171c97ffdb00774ad251de0312caa997249f74",
+        "templates/hybrid-team/docs/_templates/micro-spec-review.md": "307cace073f71f4a3d8464ad2d75a82b896dcf5c9617bcec4b69df8130865c5c",
+        "templates/hybrid-team/docs/_templates/micro-spec-runbook.md": "be8121101175aadedbac4f2257e573310df30680ab88f542c626ee241b0ee973",
+        "templates/hybrid-team/docs/_templates/micro-spec.md": "f3fbf40b474df4b642fbc21ff7985a63eb5dcee27236259b442b647c3b13c1f6",
+        "templates/hybrid-team/docs/_templates/plan.md": "4c3b572028a479194bb9e750bbd43984ceb7aae8c98ecfc9aec3cc998077ffb6",
+        "templates/hybrid-team/docs/_templates/team-spec.md": "407b81877e4fa41b39cba2fca6fe6a264365aa8b2251d9e730ee0b56343c7f51",
+        "templates/hybrid-team/docs/_templates/worker-result.md": "507549e60f06dd45d318a58479c90c909bed9846fe7527378209ac95642c14a8",
+        "templates/hybrid-team/docs/context.md": "ce1e9b38f06c070bc9e3ae471b69d9a7d15791b91059c37d0a6cf4ba87282e8f",
+        "templates/hybrid-team/docs/delegation.md": "77a442950297cd36dbaa2daaadc23dbb69f444743a896ee8601e82ec81969ddd",
+        "templates/hybrid-team/docs/goal-loop.md": "d6a254ec650e628151cc5665e96bcdaab0eef8acac17ed50730680f739e228c0",
+        "templates/hybrid-team/docs/index.md": "2a9d8fe67d9fb60179ce77b80cd879439b1f129de85648360e0b56c2ab8de5e1",
+        "templates/hybrid-team/docs/roles/coordinator.md": "68b8b0fc5d688e1c015df41d63ea1020edffd1e8f5d008e0d32fb5043087e056",
+        "templates/hybrid-team/docs/roles/index.md": "f4c43e6f2aea1c92210f1a617cbf56913fc793a266d70c7740fd8078d8689a64",
+        "templates/hybrid-team/docs/roles/reviewer.md": "6939b268b241c3cb9728a03d0a8831a3ff027b8ced01b84add903fd52b3098bc",
+        "templates/hybrid-team/docs/roles/worker.md": "77a25898c2f2cd21481b80543f4d74628f7f2892841e6a4f1d5ab709d45beb48",
+        "templates/hybrid-team/docs/team-policy.md": "41d70535a1e71f8f62a01e6ad2c61005c89e611eb2f157c72e637043fc354fab",
+        "templates/hybrid-team/docs/team.md": "4f54d57a1a74aac1d0c8e9b8589377726241943e67b43f5eea843b8124c12624",
+        "templates/hybrid-team/docs/work/index.md": "f6e9a2c9c4970be9bf2c098eb4c74f22d5f200df50ec044d8eb6305b44e95850",
+        "templates/hybrid-team/docs/workflow.md": "994beea178438d5102fea2743c12321a9b8359d4c2fe8e37979637257e59d859",
+        "templates/hybrid-team/native/claude/okms-reviewer.md": "87d4e6c388c0d93edb88aa4b5755cce8b6a87c07235a7b89b5750845cb267fad",
+        "templates/hybrid-team/native/claude/okms-worker.md": "bbc94bfa6bff9071315bf434855583a02450569d2dea7ed2533bda083ff43e27",
+        "templates/hybrid-team/native/codex/okms-reviewer.toml": "1a23223879754d97e8c4ce944f4c2092a82619cff0e9be079836e51a885f73e9",
+        "templates/hybrid-team/native/codex/okms-worker.toml": "5cf12cad0dae6bea0b89977ff21c137181d89eed410fb0553cde2a40be374485",
+        "templates/hybrid-team/runtime/okms_team/__init__.py": "4aab7a9e97a4fa6ca997c584908329d2e66a27c4ffb40d2de88fbc981ea13ec9",
+        "templates/hybrid-team/runtime/okms_team/adoption.py": "f940cf9c49ee49745a9ba48633eaff621ef55548e5c93d255bfb2f86685cce41",
+        "templates/hybrid-team/runtime/okms_team/cli.py": "1c4e4668ae087d80f3a5530dd79dfc9fee346a8127c5252fc488ae3fd67f8022",
+        "templates/hybrid-team/runtime/okms_team/gitops.py": "a258631d221af4d433897baead70a7ced9c843b86914d1807ebfec3f742ac80d",
+        "templates/hybrid-team/runtime/okms_team/providers.py": "e78333da7c4dfe50a2278d45972b98fbffe7e7ec74b3d5a6d8b50b0105759394",
+        "templates/hybrid-team/runtime/okms_team/runtime.py": "59626525d299257a9ee327e4cb722f7c37793663bca98c1fdfd15ea10a359b45",
+        "templates/hybrid-team/runtime/okms_team/state.py": "5862d96da7872009cd2dd252b8ddc2f890632a29ab3caea304aefe14ec785381",
+        "templates/hybrid-team/runtime/okms_team/worker.py": "21afe5adf48a7ed6987682c6b31b94f7da455124d2827a20ebb9746c2e8d501d",
+        "templates/hybrid-team/runtime/team.py": "335d2bcc3211f1959b1fa9ea167f4300193b4d9be7afb9a87c6c191f095be009",
+        "templates/hybrid-team/setup.py": "0a99d6348f81b03fa9d121857295efea08c562094b7adb9bff75f499999b9845",
+        "templates/hybrid-team/skills/okms-coordinate/SKILL.md": "81bd16fcb689008cd0fb9016cfe2616ea79caa2a00934cbdf6e061d2a1fe328e",
+        "templates/hybrid-team/skills/okms-work/SKILL.md": "1de37ec9e954bb78d3bbec67eb90ff67a3201f9e57f5ca47876c6f48fa8cb6c6"
+      },
+      "status": "result_ready"
+    }
+  ],
+  "final_source_fingerprints": {
+    "evals/run_hybrid_pilot.py": "c2d0507f6f3b6c0882616fef4eda56ee498034f3b9aa75daaf6a557bcb9a3fe3",
+    "scripts/check_docs.py": "dddd6302a41bf3b133bb7d5c7d54dedbfae93d244872b25eb7ad2b197f806d28",
+    "templates/hybrid-team/docs/_templates/agent-role.md": "65d817eff91ceb9439a15c9a97829cc06c96ce59bf55eb7ce13ea766ece404bb",
+    "templates/hybrid-team/docs/_templates/catalog.md": "8812b9fb1053adc54bb33268b7182f7dd24822287d60f07b9602e6751a7605b6",
+    "templates/hybrid-team/docs/_templates/delegation-brief.md": "1f5ee01ddd69d52ee094fcf02019449087fdb0b3f008a928a01299189a8ee224",
+    "templates/hybrid-team/docs/_templates/goal.md": "99a5a9a4d514d1548d2f411b710e9c9e651c9346a704b70d43cc6f6823bc5ec3",
+    "templates/hybrid-team/docs/_templates/index.md": "2924555bb3ef0ebe5dbf484d6140943f061792641bc727570d00f78af0960870",
+    "templates/hybrid-team/docs/_templates/micro-spec-bugfix.md": "64d65e4447cd4199dd497fc8b0234c0f935bae0b5344c847eb636ec49ae155db",
+    "templates/hybrid-team/docs/_templates/micro-spec-design.md": "239b044839c7aa81bb66d790443352fc3687bdd61fb5fe4c47a3f41075dc1590",
+    "templates/hybrid-team/docs/_templates/micro-spec-implementation.md": "679ce9c59b847c0a752407d8b6d9fa691e4ec937822022bc994bddb96e764a30",
+    "templates/hybrid-team/docs/_templates/micro-spec-investigation.md": "2cb65bd9eb42c22e7b5e7210bf5c47d1f8ad36f40a9cb712664779988a50ef07",
+    "templates/hybrid-team/docs/_templates/micro-spec-research.md": "9fd81d4d054f57d547cdb003ce171c97ffdb00774ad251de0312caa997249f74",
+    "templates/hybrid-team/docs/_templates/micro-spec-review.md": "307cace073f71f4a3d8464ad2d75a82b896dcf5c9617bcec4b69df8130865c5c",
+    "templates/hybrid-team/docs/_templates/micro-spec-runbook.md": "be8121101175aadedbac4f2257e573310df30680ab88f542c626ee241b0ee973",
+    "templates/hybrid-team/docs/_templates/micro-spec.md": "f3fbf40b474df4b642fbc21ff7985a63eb5dcee27236259b442b647c3b13c1f6",
+    "templates/hybrid-team/docs/_templates/plan.md": "4c3b572028a479194bb9e750bbd43984ceb7aae8c98ecfc9aec3cc998077ffb6",
+    "templates/hybrid-team/docs/_templates/team-spec.md": "407b81877e4fa41b39cba2fca6fe6a264365aa8b2251d9e730ee0b56343c7f51",
+    "templates/hybrid-team/docs/_templates/worker-result.md": "507549e60f06dd45d318a58479c90c909bed9846fe7527378209ac95642c14a8",
+    "templates/hybrid-team/docs/context.md": "ce1e9b38f06c070bc9e3ae471b69d9a7d15791b91059c37d0a6cf4ba87282e8f",
+    "templates/hybrid-team/docs/delegation.md": "77a442950297cd36dbaa2daaadc23dbb69f444743a896ee8601e82ec81969ddd",
+    "templates/hybrid-team/docs/goal-loop.md": "d6a254ec650e628151cc5665e96bcdaab0eef8acac17ed50730680f739e228c0",
+    "templates/hybrid-team/docs/index.md": "2a9d8fe67d9fb60179ce77b80cd879439b1f129de85648360e0b56c2ab8de5e1",
+    "templates/hybrid-team/docs/roles/coordinator.md": "68b8b0fc5d688e1c015df41d63ea1020edffd1e8f5d008e0d32fb5043087e056",
+    "templates/hybrid-team/docs/roles/index.md": "f4c43e6f2aea1c92210f1a617cbf56913fc793a266d70c7740fd8078d8689a64",
+    "templates/hybrid-team/docs/roles/reviewer.md": "6939b268b241c3cb9728a03d0a8831a3ff027b8ced01b84add903fd52b3098bc",
+    "templates/hybrid-team/docs/roles/worker.md": "77a25898c2f2cd21481b80543f4d74628f7f2892841e6a4f1d5ab709d45beb48",
+    "templates/hybrid-team/docs/team-policy.md": "41d70535a1e71f8f62a01e6ad2c61005c89e611eb2f157c72e637043fc354fab",
+    "templates/hybrid-team/docs/team.md": "4f54d57a1a74aac1d0c8e9b8589377726241943e67b43f5eea843b8124c12624",
+    "templates/hybrid-team/docs/work/index.md": "f6e9a2c9c4970be9bf2c098eb4c74f22d5f200df50ec044d8eb6305b44e95850",
+    "templates/hybrid-team/docs/workflow.md": "994beea178438d5102fea2743c12321a9b8359d4c2fe8e37979637257e59d859",
+    "templates/hybrid-team/native/claude/okms-reviewer.md": "87d4e6c388c0d93edb88aa4b5755cce8b6a87c07235a7b89b5750845cb267fad",
+    "templates/hybrid-team/native/claude/okms-worker.md": "bbc94bfa6bff9071315bf434855583a02450569d2dea7ed2533bda083ff43e27",
+    "templates/hybrid-team/native/codex/okms-reviewer.toml": "1a23223879754d97e8c4ce944f4c2092a82619cff0e9be079836e51a885f73e9",
+    "templates/hybrid-team/native/codex/okms-worker.toml": "5cf12cad0dae6bea0b89977ff21c137181d89eed410fb0553cde2a40be374485",
+    "templates/hybrid-team/runtime/okms_team/__init__.py": "4aab7a9e97a4fa6ca997c584908329d2e66a27c4ffb40d2de88fbc981ea13ec9",
+    "templates/hybrid-team/runtime/okms_team/adoption.py": "f940cf9c49ee49745a9ba48633eaff621ef55548e5c93d255bfb2f86685cce41",
+    "templates/hybrid-team/runtime/okms_team/cli.py": "1c4e4668ae087d80f3a5530dd79dfc9fee346a8127c5252fc488ae3fd67f8022",
+    "templates/hybrid-team/runtime/okms_team/gitops.py": "a258631d221af4d433897baead70a7ced9c843b86914d1807ebfec3f742ac80d",
+    "templates/hybrid-team/runtime/okms_team/providers.py": "e78333da7c4dfe50a2278d45972b98fbffe7e7ec74b3d5a6d8b50b0105759394",
+    "templates/hybrid-team/runtime/okms_team/runtime.py": "59626525d299257a9ee327e4cb722f7c37793663bca98c1fdfd15ea10a359b45",
+    "templates/hybrid-team/runtime/okms_team/state.py": "5862d96da7872009cd2dd252b8ddc2f890632a29ab3caea304aefe14ec785381",
+    "templates/hybrid-team/runtime/okms_team/worker.py": "21afe5adf48a7ed6987682c6b31b94f7da455124d2827a20ebb9746c2e8d501d",
+    "templates/hybrid-team/runtime/team.py": "335d2bcc3211f1959b1fa9ea167f4300193b4d9be7afb9a87c6c191f095be009",
+    "templates/hybrid-team/setup.py": "0a99d6348f81b03fa9d121857295efea08c562094b7adb9bff75f499999b9845",
+    "templates/hybrid-team/skills/okms-coordinate/SKILL.md": "81bd16fcb689008cd0fb9016cfe2616ea79caa2a00934cbdf6e061d2a1fe328e",
+    "templates/hybrid-team/skills/okms-work/SKILL.md": "1de37ec9e954bb78d3bbec67eb90ff67a3201f9e57f5ca47876c6f48fa8cb6c6"
+  },
+  "limits": [
+    "Full mixed matrix not rerun after provider-specific worker guidance and the partial-run restart guard; final Codex guidance has a genuine component observation and final unit coverage.",
+    "Native Codex hooks were not trusted/activated by the runner; automatic startup/SessionEnd requires separate native review and observations.",
+    "Claude named external worker role/tools are observed; native Codex TOML custom-role discovery/selection and native reader dispatch were not established.",
+    "Native skill invocation is not independently established by installed skill files or worker prose.",
+    "Only controlled Linux CLI projects and installed versions/models were observed; macOS/WSL/desktop/IDE/remote are outside these results.",
+    "Local cooperative-worker identity/scope controls and worktrees are not an adversarial OS security boundary.",
+    "Raw run directories are ignored local artifacts; hashes and summaries do not embed their contents or make them available to repository readers."
+  ],
+  "metrics": {
+    "case_projects": 8,
+    "component_probe_cli_invocations": 2,
+    "failed_complete_projects": 4,
+    "followup_worker_behavior_case_executions": 7,
+    "interrupted_projects": 1,
+    "passing_projects": 3,
+    "root_cli_invocations": 14,
+    "selected_behavior_case_executions": 30,
+    "worker_cli_invocations": 32
+  },
+  "observed_date": "2026-10-04",
+  "permissions": {
+    "claude_roots_final": "acceptEdits; fixture explicitly allows Read/Glob/Grep/Edit/Write/Bash, with no prompts and native deny rules retained.",
+    "claude_workers_final": "acceptEdits; native read/edit tools, StructuredOutput and runtime-command Bash prefix only; shared state added.",
+    "codex_roots": "Existing user configuration; observed configuration allows unrestricted sandbox access and no approval prompts. No override or bypass flag.",
+    "codex_workers": "workspace-write, shared runtime state added; native/parent restrictions still apply."
+  },
+  "platform": "Linux x86_64",
+  "profile": "hybrid-team",
+  "sources": {
+    "hybrid-live-v1": {
+      "evals/run_hybrid_pilot.py": "ecc1e09e9517332c61e22db8d3d21ec267b567a054597d6e6d1553ce8c6b2a54",
+      "scripts/check_docs.py": "dddd6302a41bf3b133bb7d5c7d54dedbfae93d244872b25eb7ad2b197f806d28",
+      "templates/hybrid-team/docs/_templates/agent-role.md": "65d817eff91ceb9439a15c9a97829cc06c96ce59bf55eb7ce13ea766ece404bb",
+      "templates/hybrid-team/docs/_templates/catalog.md": "8812b9fb1053adc54bb33268b7182f7dd24822287d60f07b9602e6751a7605b6",
+      "templates/hybrid-team/docs/_templates/delegation-brief.md": "1f5ee01ddd69d52ee094fcf02019449087fdb0b3f008a928a01299189a8ee224",
+      "templates/hybrid-team/docs/_templates/goal.md": "99a5a9a4d514d1548d2f411b710e9c9e651c9346a704b70d43cc6f6823bc5ec3",
+      "templates/hybrid-team/docs/_templates/index.md": "2924555bb3ef0ebe5dbf484d6140943f061792641bc727570d00f78af0960870",
+      "templates/hybrid-team/docs/_templates/micro-spec-bugfix.md": "64d65e4447cd4199dd497fc8b0234c0f935bae0b5344c847eb636ec49ae155db",
+      "templates/hybrid-team/docs/_templates/micro-spec-design.md": "239b044839c7aa81bb66d790443352fc3687bdd61fb5fe4c47a3f41075dc1590",
+      "templates/hybrid-team/docs/_templates/micro-spec-implementation.md": "679ce9c59b847c0a752407d8b6d9fa691e4ec937822022bc994bddb96e764a30",
+      "templates/hybrid-team/docs/_templates/micro-spec-investigation.md": "2cb65bd9eb42c22e7b5e7210bf5c47d1f8ad36f40a9cb712664779988a50ef07",
+      "templates/hybrid-team/docs/_templates/micro-spec-research.md": "9fd81d4d054f57d547cdb003ce171c97ffdb00774ad251de0312caa997249f74",
+      "templates/hybrid-team/docs/_templates/micro-spec-review.md": "307cace073f71f4a3d8464ad2d75a82b896dcf5c9617bcec4b69df8130865c5c",
+      "templates/hybrid-team/docs/_templates/micro-spec-runbook.md": "be8121101175aadedbac4f2257e573310df30680ab88f542c626ee241b0ee973",
+      "templates/hybrid-team/docs/_templates/micro-spec.md": "f3fbf40b474df4b642fbc21ff7985a63eb5dcee27236259b442b647c3b13c1f6",
+      "templates/hybrid-team/docs/_templates/plan.md": "4c3b572028a479194bb9e750bbd43984ceb7aae8c98ecfc9aec3cc998077ffb6",
+      "templates/hybrid-team/docs/_templates/team-spec.md": "407b81877e4fa41b39cba2fca6fe6a264365aa8b2251d9e730ee0b56343c7f51",
+      "templates/hybrid-team/docs/_templates/worker-result.md": "507549e60f06dd45d318a58479c90c909bed9846fe7527378209ac95642c14a8",
+      "templates/hybrid-team/docs/context.md": "ce1e9b38f06c070bc9e3ae471b69d9a7d15791b91059c37d0a6cf4ba87282e8f",
+      "templates/hybrid-team/docs/delegation.md": "77a442950297cd36dbaa2daaadc23dbb69f444743a896ee8601e82ec81969ddd",
+      "templates/hybrid-team/docs/goal-loop.md": "d6a254ec650e628151cc5665e96bcdaab0eef8acac17ed50730680f739e228c0",
+      "templates/hybrid-team/docs/index.md": "2a9d8fe67d9fb60179ce77b80cd879439b1f129de85648360e0b56c2ab8de5e1",
+      "templates/hybrid-team/docs/roles/coordinator.md": "68b8b0fc5d688e1c015df41d63ea1020edffd1e8f5d008e0d32fb5043087e056",
+      "templates/hybrid-team/docs/roles/index.md": "f4c43e6f2aea1c92210f1a617cbf56913fc793a266d70c7740fd8078d8689a64",
+      "templates/hybrid-team/docs/roles/reviewer.md": "6939b268b241c3cb9728a03d0a8831a3ff027b8ced01b84add903fd52b3098bc",
+      "templates/hybrid-team/docs/roles/worker.md": "77a25898c2f2cd21481b80543f4d74628f7f2892841e6a4f1d5ab709d45beb48",
+      "templates/hybrid-team/docs/team-policy.md": "41d70535a1e71f8f62a01e6ad2c61005c89e611eb2f157c72e637043fc354fab",
+      "templates/hybrid-team/docs/team.md": "0348a0bd75c57b81d7f5e500e84cd0e476f6fa54919526db5a38224c7a46573a",
+      "templates/hybrid-team/docs/work/index.md": "f6e9a2c9c4970be9bf2c098eb4c74f22d5f200df50ec044d8eb6305b44e95850",
+      "templates/hybrid-team/docs/workflow.md": "994beea178438d5102fea2743c12321a9b8359d4c2fe8e37979637257e59d859",
+      "templates/hybrid-team/native/claude/okms-reviewer.md": "87d4e6c388c0d93edb88aa4b5755cce8b6a87c07235a7b89b5750845cb267fad",
+      "templates/hybrid-team/native/claude/okms-worker.md": "6fd5281e31c4024fcfd36d64ce20171c92f20029f96c81f14499099def59e880",
+      "templates/hybrid-team/native/codex/okms-reviewer.toml": "1a23223879754d97e8c4ce944f4c2092a82619cff0e9be079836e51a885f73e9",
+      "templates/hybrid-team/native/codex/okms-worker.toml": "5cf12cad0dae6bea0b89977ff21c137181d89eed410fb0553cde2a40be374485",
+      "templates/hybrid-team/runtime/okms_team/__init__.py": "4aab7a9e97a4fa6ca997c584908329d2e66a27c4ffb40d2de88fbc981ea13ec9",
+      "templates/hybrid-team/runtime/okms_team/adoption.py": "f940cf9c49ee49745a9ba48633eaff621ef55548e5c93d255bfb2f86685cce41",
+      "templates/hybrid-team/runtime/okms_team/cli.py": "1c4e4668ae087d80f3a5530dd79dfc9fee346a8127c5252fc488ae3fd67f8022",
+      "templates/hybrid-team/runtime/okms_team/gitops.py": "a258631d221af4d433897baead70a7ced9c843b86914d1807ebfec3f742ac80d",
+      "templates/hybrid-team/runtime/okms_team/providers.py": "938f38b5f1f14713c279478d2df09ac1913f0034638882e0c03e3e46a6e0ca22",
+      "templates/hybrid-team/runtime/okms_team/runtime.py": "29c210ed14fde034dd9aa5b9d270e2db772d780966137062e48bbea6ed0865cf",
+      "templates/hybrid-team/runtime/okms_team/state.py": "4ee1c53f7dfb777cde63d43962912c563bc796651f00fb5d9baef77c4e2fb06c",
+      "templates/hybrid-team/runtime/okms_team/worker.py": "be172fb4dbf73fa54188d8afab99bd1d18d5742edb95be429b9a7c3f242d8f51",
+      "templates/hybrid-team/runtime/team.py": "335d2bcc3211f1959b1fa9ea167f4300193b4d9be7afb9a87c6c191f095be009",
+      "templates/hybrid-team/setup.py": "0a99d6348f81b03fa9d121857295efea08c562094b7adb9bff75f499999b9845",
+      "templates/hybrid-team/skills/okms-coordinate/SKILL.md": "81bd16fcb689008cd0fb9016cfe2616ea79caa2a00934cbdf6e061d2a1fe328e",
+      "templates/hybrid-team/skills/okms-work/SKILL.md": "f3d93f4e3d4e65ad60bda27bbabbab81fa9822fee6ee7126289eb0cfac0b75f7"
+    },
+    "hybrid-live-v2": {
+      "evals/run_hybrid_pilot.py": "bf0bde69d714ff33153f94b686ef843385e24c1d64d51f2bd67dce176de945ec",
+      "scripts/check_docs.py": "dddd6302a41bf3b133bb7d5c7d54dedbfae93d244872b25eb7ad2b197f806d28",
+      "templates/hybrid-team/docs/_templates/agent-role.md": "65d817eff91ceb9439a15c9a97829cc06c96ce59bf55eb7ce13ea766ece404bb",
+      "templates/hybrid-team/docs/_templates/catalog.md": "8812b9fb1053adc54bb33268b7182f7dd24822287d60f07b9602e6751a7605b6",
+      "templates/hybrid-team/docs/_templates/delegation-brief.md": "1f5ee01ddd69d52ee094fcf02019449087fdb0b3f008a928a01299189a8ee224",
+      "templates/hybrid-team/docs/_templates/goal.md": "99a5a9a4d514d1548d2f411b710e9c9e651c9346a704b70d43cc6f6823bc5ec3",
+      "templates/hybrid-team/docs/_templates/index.md": "2924555bb3ef0ebe5dbf484d6140943f061792641bc727570d00f78af0960870",
+      "templates/hybrid-team/docs/_templates/micro-spec-bugfix.md": "64d65e4447cd4199dd497fc8b0234c0f935bae0b5344c847eb636ec49ae155db",
+      "templates/hybrid-team/docs/_templates/micro-spec-design.md": "239b044839c7aa81bb66d790443352fc3687bdd61fb5fe4c47a3f41075dc1590",
+      "templates/hybrid-team/docs/_templates/micro-spec-implementation.md": "679ce9c59b847c0a752407d8b6d9fa691e4ec937822022bc994bddb96e764a30",
+      "templates/hybrid-team/docs/_templates/micro-spec-investigation.md": "2cb65bd9eb42c22e7b5e7210bf5c47d1f8ad36f40a9cb712664779988a50ef07",
+      "templates/hybrid-team/docs/_templates/micro-spec-research.md": "9fd81d4d054f57d547cdb003ce171c97ffdb00774ad251de0312caa997249f74",
+      "templates/hybrid-team/docs/_templates/micro-spec-review.md": "307cace073f71f4a3d8464ad2d75a82b896dcf5c9617bcec4b69df8130865c5c",
+      "templates/hybrid-team/docs/_templates/micro-spec-runbook.md": "be8121101175aadedbac4f2257e573310df30680ab88f542c626ee241b0ee973",
+      "templates/hybrid-team/docs/_templates/micro-spec.md": "f3fbf40b474df4b642fbc21ff7985a63eb5dcee27236259b442b647c3b13c1f6",
+      "templates/hybrid-team/docs/_templates/plan.md": "4c3b572028a479194bb9e750bbd43984ceb7aae8c98ecfc9aec3cc998077ffb6",
+      "templates/hybrid-team/docs/_templates/team-spec.md": "407b81877e4fa41b39cba2fca6fe6a264365aa8b2251d9e730ee0b56343c7f51",
+      "templates/hybrid-team/docs/_templates/worker-result.md": "507549e60f06dd45d318a58479c90c909bed9846fe7527378209ac95642c14a8",
+      "templates/hybrid-team/docs/context.md": "ce1e9b38f06c070bc9e3ae471b69d9a7d15791b91059c37d0a6cf4ba87282e8f",
+      "templates/hybrid-team/docs/delegation.md": "77a442950297cd36dbaa2daaadc23dbb69f444743a896ee8601e82ec81969ddd",
+      "templates/hybrid-team/docs/goal-loop.md": "d6a254ec650e628151cc5665e96bcdaab0eef8acac17ed50730680f739e228c0",
+      "templates/hybrid-team/docs/index.md": "2a9d8fe67d9fb60179ce77b80cd879439b1f129de85648360e0b56c2ab8de5e1",
+      "templates/hybrid-team/docs/roles/coordinator.md": "68b8b0fc5d688e1c015df41d63ea1020edffd1e8f5d008e0d32fb5043087e056",
+      "templates/hybrid-team/docs/roles/index.md": "f4c43e6f2aea1c92210f1a617cbf56913fc793a266d70c7740fd8078d8689a64",
+      "templates/hybrid-team/docs/roles/reviewer.md": "6939b268b241c3cb9728a03d0a8831a3ff027b8ced01b84add903fd52b3098bc",
+      "templates/hybrid-team/docs/roles/worker.md": "77a25898c2f2cd21481b80543f4d74628f7f2892841e6a4f1d5ab709d45beb48",
+      "templates/hybrid-team/docs/team-policy.md": "41d70535a1e71f8f62a01e6ad2c61005c89e611eb2f157c72e637043fc354fab",
+      "templates/hybrid-team/docs/team.md": "ac6812c7146594625b3837b87806287eb1d9d2e16b0e10c04fab6caa162ebcd0",
+      "templates/hybrid-team/docs/work/index.md": "f6e9a2c9c4970be9bf2c098eb4c74f22d5f200df50ec044d8eb6305b44e95850",
+      "templates/hybrid-team/docs/workflow.md": "994beea178438d5102fea2743c12321a9b8359d4c2fe8e37979637257e59d859",
+      "templates/hybrid-team/native/claude/okms-reviewer.md": "87d4e6c388c0d93edb88aa4b5755cce8b6a87c07235a7b89b5750845cb267fad",
+      "templates/hybrid-team/native/claude/okms-worker.md": "6fd5281e31c4024fcfd36d64ce20171c92f20029f96c81f14499099def59e880",
+      "templates/hybrid-team/native/codex/okms-reviewer.toml": "1a23223879754d97e8c4ce944f4c2092a82619cff0e9be079836e51a885f73e9",
+      "templates/hybrid-team/native/codex/okms-worker.toml": "5cf12cad0dae6bea0b89977ff21c137181d89eed410fb0553cde2a40be374485",
+      "templates/hybrid-team/runtime/okms_team/__init__.py": "4aab7a9e97a4fa6ca997c584908329d2e66a27c4ffb40d2de88fbc981ea13ec9",
+      "templates/hybrid-team/runtime/okms_team/adoption.py": "f940cf9c49ee49745a9ba48633eaff621ef55548e5c93d255bfb2f86685cce41",
+      "templates/hybrid-team/runtime/okms_team/cli.py": "1c4e4668ae087d80f3a5530dd79dfc9fee346a8127c5252fc488ae3fd67f8022",
+      "templates/hybrid-team/runtime/okms_team/gitops.py": "a258631d221af4d433897baead70a7ced9c843b86914d1807ebfec3f742ac80d",
+      "templates/hybrid-team/runtime/okms_team/providers.py": "938f38b5f1f14713c279478d2df09ac1913f0034638882e0c03e3e46a6e0ca22",
+      "templates/hybrid-team/runtime/okms_team/runtime.py": "59626525d299257a9ee327e4cb722f7c37793663bca98c1fdfd15ea10a359b45",
+      "templates/hybrid-team/runtime/okms_team/state.py": "4ee1c53f7dfb777cde63d43962912c563bc796651f00fb5d9baef77c4e2fb06c",
+      "templates/hybrid-team/runtime/okms_team/worker.py": "be172fb4dbf73fa54188d8afab99bd1d18d5742edb95be429b9a7c3f242d8f51",
+      "templates/hybrid-team/runtime/team.py": "335d2bcc3211f1959b1fa9ea167f4300193b4d9be7afb9a87c6c191f095be009",
+      "templates/hybrid-team/setup.py": "0a99d6348f81b03fa9d121857295efea08c562094b7adb9bff75f499999b9845",
+      "templates/hybrid-team/skills/okms-coordinate/SKILL.md": "81bd16fcb689008cd0fb9016cfe2616ea79caa2a00934cbdf6e061d2a1fe328e",
+      "templates/hybrid-team/skills/okms-work/SKILL.md": "f3d93f4e3d4e65ad60bda27bbabbab81fa9822fee6ee7126289eb0cfac0b75f7"
+    },
+    "hybrid-live-v3": {
+      "evals/run_hybrid_pilot.py": "bf0bde69d714ff33153f94b686ef843385e24c1d64d51f2bd67dce176de945ec",
+      "scripts/check_docs.py": "dddd6302a41bf3b133bb7d5c7d54dedbfae93d244872b25eb7ad2b197f806d28",
+      "templates/hybrid-team/docs/_templates/agent-role.md": "65d817eff91ceb9439a15c9a97829cc06c96ce59bf55eb7ce13ea766ece404bb",
+      "templates/hybrid-team/docs/_templates/catalog.md": "8812b9fb1053adc54bb33268b7182f7dd24822287d60f07b9602e6751a7605b6",
+      "templates/hybrid-team/docs/_templates/delegation-brief.md": "1f5ee01ddd69d52ee094fcf02019449087fdb0b3f008a928a01299189a8ee224",
+      "templates/hybrid-team/docs/_templates/goal.md": "99a5a9a4d514d1548d2f411b710e9c9e651c9346a704b70d43cc6f6823bc5ec3",
+      "templates/hybrid-team/docs/_templates/index.md": "2924555bb3ef0ebe5dbf484d6140943f061792641bc727570d00f78af0960870",
+      "templates/hybrid-team/docs/_templates/micro-spec-bugfix.md": "64d65e4447cd4199dd497fc8b0234c0f935bae0b5344c847eb636ec49ae155db",
+      "templates/hybrid-team/docs/_templates/micro-spec-design.md": "239b044839c7aa81bb66d790443352fc3687bdd61fb5fe4c47a3f41075dc1590",
+      "templates/hybrid-team/docs/_templates/micro-spec-implementation.md": "679ce9c59b847c0a752407d8b6d9fa691e4ec937822022bc994bddb96e764a30",
+      "templates/hybrid-team/docs/_templates/micro-spec-investigation.md": "2cb65bd9eb42c22e7b5e7210bf5c47d1f8ad36f40a9cb712664779988a50ef07",
+      "templates/hybrid-team/docs/_templates/micro-spec-research.md": "9fd81d4d054f57d547cdb003ce171c97ffdb00774ad251de0312caa997249f74",
+      "templates/hybrid-team/docs/_templates/micro-spec-review.md": "307cace073f71f4a3d8464ad2d75a82b896dcf5c9617bcec4b69df8130865c5c",
+      "templates/hybrid-team/docs/_templates/micro-spec-runbook.md": "be8121101175aadedbac4f2257e573310df30680ab88f542c626ee241b0ee973",
+      "templates/hybrid-team/docs/_templates/micro-spec.md": "f3fbf40b474df4b642fbc21ff7985a63eb5dcee27236259b442b647c3b13c1f6",
+      "templates/hybrid-team/docs/_templates/plan.md": "4c3b572028a479194bb9e750bbd43984ceb7aae8c98ecfc9aec3cc998077ffb6",
+      "templates/hybrid-team/docs/_templates/team-spec.md": "407b81877e4fa41b39cba2fca6fe6a264365aa8b2251d9e730ee0b56343c7f51",
+      "templates/hybrid-team/docs/_templates/worker-result.md": "507549e60f06dd45d318a58479c90c909bed9846fe7527378209ac95642c14a8",
+      "templates/hybrid-team/docs/context.md": "ce1e9b38f06c070bc9e3ae471b69d9a7d15791b91059c37d0a6cf4ba87282e8f",
+      "templates/hybrid-team/docs/delegation.md": "77a442950297cd36dbaa2daaadc23dbb69f444743a896ee8601e82ec81969ddd",
+      "templates/hybrid-team/docs/goal-loop.md": "d6a254ec650e628151cc5665e96bcdaab0eef8acac17ed50730680f739e228c0",
+      "templates/hybrid-team/docs/index.md": "2a9d8fe67d9fb60179ce77b80cd879439b1f129de85648360e0b56c2ab8de5e1",
+      "templates/hybrid-team/docs/roles/coordinator.md": "68b8b0fc5d688e1c015df41d63ea1020edffd1e8f5d008e0d32fb5043087e056",
+      "templates/hybrid-team/docs/roles/index.md": "f4c43e6f2aea1c92210f1a617cbf56913fc793a266d70c7740fd8078d8689a64",
+      "templates/hybrid-team/docs/roles/reviewer.md": "6939b268b241c3cb9728a03d0a8831a3ff027b8ced01b84add903fd52b3098bc",
+      "templates/hybrid-team/docs/roles/worker.md": "77a25898c2f2cd21481b80543f4d74628f7f2892841e6a4f1d5ab709d45beb48",
+      "templates/hybrid-team/docs/team-policy.md": "41d70535a1e71f8f62a01e6ad2c61005c89e611eb2f157c72e637043fc354fab",
+      "templates/hybrid-team/docs/team.md": "ac6812c7146594625b3837b87806287eb1d9d2e16b0e10c04fab6caa162ebcd0",
+      "templates/hybrid-team/docs/work/index.md": "f6e9a2c9c4970be9bf2c098eb4c74f22d5f200df50ec044d8eb6305b44e95850",
+      "templates/hybrid-team/docs/workflow.md": "994beea178438d5102fea2743c12321a9b8359d4c2fe8e37979637257e59d859",
+      "templates/hybrid-team/native/claude/okms-reviewer.md": "87d4e6c388c0d93edb88aa4b5755cce8b6a87c07235a7b89b5750845cb267fad",
+      "templates/hybrid-team/native/claude/okms-worker.md": "bbc94bfa6bff9071315bf434855583a02450569d2dea7ed2533bda083ff43e27",
+      "templates/hybrid-team/native/codex/okms-reviewer.toml": "1a23223879754d97e8c4ce944f4c2092a82619cff0e9be079836e51a885f73e9",
+      "templates/hybrid-team/native/codex/okms-worker.toml": "5cf12cad0dae6bea0b89977ff21c137181d89eed410fb0553cde2a40be374485",
+      "templates/hybrid-team/runtime/okms_team/__init__.py": "4aab7a9e97a4fa6ca997c584908329d2e66a27c4ffb40d2de88fbc981ea13ec9",
+      "templates/hybrid-team/runtime/okms_team/adoption.py": "f940cf9c49ee49745a9ba48633eaff621ef55548e5c93d255bfb2f86685cce41",
+      "templates/hybrid-team/runtime/okms_team/cli.py": "1c4e4668ae087d80f3a5530dd79dfc9fee346a8127c5252fc488ae3fd67f8022",
+      "templates/hybrid-team/runtime/okms_team/gitops.py": "a258631d221af4d433897baead70a7ced9c843b86914d1807ebfec3f742ac80d",
+      "templates/hybrid-team/runtime/okms_team/providers.py": "2ec9a02fe3551c8849eeb76dab04d1787fbb0e6e594ba8c326ce33a9b3772edd",
+      "templates/hybrid-team/runtime/okms_team/runtime.py": "59626525d299257a9ee327e4cb722f7c37793663bca98c1fdfd15ea10a359b45",
+      "templates/hybrid-team/runtime/okms_team/state.py": "4ee1c53f7dfb777cde63d43962912c563bc796651f00fb5d9baef77c4e2fb06c",
+      "templates/hybrid-team/runtime/okms_team/worker.py": "148fb8424357f9b18ace3879c901b4b4b7e768e478b8d45bbbf06fb37855db0b",
+      "templates/hybrid-team/runtime/team.py": "335d2bcc3211f1959b1fa9ea167f4300193b4d9be7afb9a87c6c191f095be009",
+      "templates/hybrid-team/setup.py": "0a99d6348f81b03fa9d121857295efea08c562094b7adb9bff75f499999b9845",
+      "templates/hybrid-team/skills/okms-coordinate/SKILL.md": "81bd16fcb689008cd0fb9016cfe2616ea79caa2a00934cbdf6e061d2a1fe328e",
+      "templates/hybrid-team/skills/okms-work/SKILL.md": "508e52d6d13170d29fca2500c279a85db501250d706121c53e0e34a938bbe608"
+    },
+    "hybrid-live-v4": {
+      "evals/run_hybrid_pilot.py": "623c497c8ddeef8b41a184bd94566e10417f6ab7dcbf3f38c2014078d8c21838",
+      "scripts/check_docs.py": "dddd6302a41bf3b133bb7d5c7d54dedbfae93d244872b25eb7ad2b197f806d28",
+      "templates/hybrid-team/docs/_templates/agent-role.md": "65d817eff91ceb9439a15c9a97829cc06c96ce59bf55eb7ce13ea766ece404bb",
+      "templates/hybrid-team/docs/_templates/catalog.md": "8812b9fb1053adc54bb33268b7182f7dd24822287d60f07b9602e6751a7605b6",
+      "templates/hybrid-team/docs/_templates/delegation-brief.md": "1f5ee01ddd69d52ee094fcf02019449087fdb0b3f008a928a01299189a8ee224",
+      "templates/hybrid-team/docs/_templates/goal.md": "99a5a9a4d514d1548d2f411b710e9c9e651c9346a704b70d43cc6f6823bc5ec3",
+      "templates/hybrid-team/docs/_templates/index.md": "2924555bb3ef0ebe5dbf484d6140943f061792641bc727570d00f78af0960870",
+      "templates/hybrid-team/docs/_templates/micro-spec-bugfix.md": "64d65e4447cd4199dd497fc8b0234c0f935bae0b5344c847eb636ec49ae155db",
+      "templates/hybrid-team/docs/_templates/micro-spec-design.md": "239b044839c7aa81bb66d790443352fc3687bdd61fb5fe4c47a3f41075dc1590",
+      "templates/hybrid-team/docs/_templates/micro-spec-implementation.md": "679ce9c59b847c0a752407d8b6d9fa691e4ec937822022bc994bddb96e764a30",
+      "templates/hybrid-team/docs/_templates/micro-spec-investigation.md": "2cb65bd9eb42c22e7b5e7210bf5c47d1f8ad36f40a9cb712664779988a50ef07",
+      "templates/hybrid-team/docs/_templates/micro-spec-research.md": "9fd81d4d054f57d547cdb003ce171c97ffdb00774ad251de0312caa997249f74",
+      "templates/hybrid-team/docs/_templates/micro-spec-review.md": "307cace073f71f4a3d8464ad2d75a82b896dcf5c9617bcec4b69df8130865c5c",
+      "templates/hybrid-team/docs/_templates/micro-spec-runbook.md": "be8121101175aadedbac4f2257e573310df30680ab88f542c626ee241b0ee973",
+      "templates/hybrid-team/docs/_templates/micro-spec.md": "f3fbf40b474df4b642fbc21ff7985a63eb5dcee27236259b442b647c3b13c1f6",
+      "templates/hybrid-team/docs/_templates/plan.md": "4c3b572028a479194bb9e750bbd43984ceb7aae8c98ecfc9aec3cc998077ffb6",
+      "templates/hybrid-team/docs/_templates/team-spec.md": "407b81877e4fa41b39cba2fca6fe6a264365aa8b2251d9e730ee0b56343c7f51",
+      "templates/hybrid-team/docs/_templates/worker-result.md": "507549e60f06dd45d318a58479c90c909bed9846fe7527378209ac95642c14a8",
+      "templates/hybrid-team/docs/context.md": "ce1e9b38f06c070bc9e3ae471b69d9a7d15791b91059c37d0a6cf4ba87282e8f",
+      "templates/hybrid-team/docs/delegation.md": "77a442950297cd36dbaa2daaadc23dbb69f444743a896ee8601e82ec81969ddd",
+      "templates/hybrid-team/docs/goal-loop.md": "d6a254ec650e628151cc5665e96bcdaab0eef8acac17ed50730680f739e228c0",
+      "templates/hybrid-team/docs/index.md": "2a9d8fe67d9fb60179ce77b80cd879439b1f129de85648360e0b56c2ab8de5e1",
+      "templates/hybrid-team/docs/roles/coordinator.md": "68b8b0fc5d688e1c015df41d63ea1020edffd1e8f5d008e0d32fb5043087e056",
+      "templates/hybrid-team/docs/roles/index.md": "f4c43e6f2aea1c92210f1a617cbf56913fc793a266d70c7740fd8078d8689a64",
+      "templates/hybrid-team/docs/roles/reviewer.md": "6939b268b241c3cb9728a03d0a8831a3ff027b8ced01b84add903fd52b3098bc",
+      "templates/hybrid-team/docs/roles/worker.md": "77a25898c2f2cd21481b80543f4d74628f7f2892841e6a4f1d5ab709d45beb48",
+      "templates/hybrid-team/docs/team-policy.md": "41d70535a1e71f8f62a01e6ad2c61005c89e611eb2f157c72e637043fc354fab",
+      "templates/hybrid-team/docs/team.md": "4f54d57a1a74aac1d0c8e9b8589377726241943e67b43f5eea843b8124c12624",
+      "templates/hybrid-team/docs/work/index.md": "f6e9a2c9c4970be9bf2c098eb4c74f22d5f200df50ec044d8eb6305b44e95850",
+      "templates/hybrid-team/docs/workflow.md": "994beea178438d5102fea2743c12321a9b8359d4c2fe8e37979637257e59d859",
+      "templates/hybrid-team/native/claude/okms-reviewer.md": "87d4e6c388c0d93edb88aa4b5755cce8b6a87c07235a7b89b5750845cb267fad",
+      "templates/hybrid-team/native/claude/okms-worker.md": "bbc94bfa6bff9071315bf434855583a02450569d2dea7ed2533bda083ff43e27",
+      "templates/hybrid-team/native/codex/okms-reviewer.toml": "1a23223879754d97e8c4ce944f4c2092a82619cff0e9be079836e51a885f73e9",
+      "templates/hybrid-team/native/codex/okms-worker.toml": "5cf12cad0dae6bea0b89977ff21c137181d89eed410fb0553cde2a40be374485",
+      "templates/hybrid-team/runtime/okms_team/__init__.py": "4aab7a9e97a4fa6ca997c584908329d2e66a27c4ffb40d2de88fbc981ea13ec9",
+      "templates/hybrid-team/runtime/okms_team/adoption.py": "f940cf9c49ee49745a9ba48633eaff621ef55548e5c93d255bfb2f86685cce41",
+      "templates/hybrid-team/runtime/okms_team/cli.py": "1c4e4668ae087d80f3a5530dd79dfc9fee346a8127c5252fc488ae3fd67f8022",
+      "templates/hybrid-team/runtime/okms_team/gitops.py": "a258631d221af4d433897baead70a7ced9c843b86914d1807ebfec3f742ac80d",
+      "templates/hybrid-team/runtime/okms_team/providers.py": "e78333da7c4dfe50a2278d45972b98fbffe7e7ec74b3d5a6d8b50b0105759394",
+      "templates/hybrid-team/runtime/okms_team/runtime.py": "59626525d299257a9ee327e4cb722f7c37793663bca98c1fdfd15ea10a359b45",
+      "templates/hybrid-team/runtime/okms_team/state.py": "4ee1c53f7dfb777cde63d43962912c563bc796651f00fb5d9baef77c4e2fb06c",
+      "templates/hybrid-team/runtime/okms_team/worker.py": "e7fead98d1e3a41ec173fbf5db0a24472fbeb11383f7f0610800dca5a951c1f5",
+      "templates/hybrid-team/runtime/team.py": "335d2bcc3211f1959b1fa9ea167f4300193b4d9be7afb9a87c6c191f095be009",
+      "templates/hybrid-team/setup.py": "0a99d6348f81b03fa9d121857295efea08c562094b7adb9bff75f499999b9845",
+      "templates/hybrid-team/skills/okms-coordinate/SKILL.md": "81bd16fcb689008cd0fb9016cfe2616ea79caa2a00934cbdf6e061d2a1fe328e",
+      "templates/hybrid-team/skills/okms-work/SKILL.md": "ee4a74d5c6ae5b381f24e9046096d2f7f6afb0d8a6650ef355c7ca37d2f55ba4"
+    },
+    "hybrid-live-v5": {
+      "evals/run_hybrid_pilot.py": "623c497c8ddeef8b41a184bd94566e10417f6ab7dcbf3f38c2014078d8c21838",
+      "scripts/check_docs.py": "dddd6302a41bf3b133bb7d5c7d54dedbfae93d244872b25eb7ad2b197f806d28",
+      "templates/hybrid-team/docs/_templates/agent-role.md": "65d817eff91ceb9439a15c9a97829cc06c96ce59bf55eb7ce13ea766ece404bb",
+      "templates/hybrid-team/docs/_templates/catalog.md": "8812b9fb1053adc54bb33268b7182f7dd24822287d60f07b9602e6751a7605b6",
+      "templates/hybrid-team/docs/_templates/delegation-brief.md": "1f5ee01ddd69d52ee094fcf02019449087fdb0b3f008a928a01299189a8ee224",
+      "templates/hybrid-team/docs/_templates/goal.md": "99a5a9a4d514d1548d2f411b710e9c9e651c9346a704b70d43cc6f6823bc5ec3",
+      "templates/hybrid-team/docs/_templates/index.md": "2924555bb3ef0ebe5dbf484d6140943f061792641bc727570d00f78af0960870",
+      "templates/hybrid-team/docs/_templates/micro-spec-bugfix.md": "64d65e4447cd4199dd497fc8b0234c0f935bae0b5344c847eb636ec49ae155db",
+      "templates/hybrid-team/docs/_templates/micro-spec-design.md": "239b044839c7aa81bb66d790443352fc3687bdd61fb5fe4c47a3f41075dc1590",
+      "templates/hybrid-team/docs/_templates/micro-spec-implementation.md": "679ce9c59b847c0a752407d8b6d9fa691e4ec937822022bc994bddb96e764a30",
+      "templates/hybrid-team/docs/_templates/micro-spec-investigation.md": "2cb65bd9eb42c22e7b5e7210bf5c47d1f8ad36f40a9cb712664779988a50ef07",
+      "templates/hybrid-team/docs/_templates/micro-spec-research.md": "9fd81d4d054f57d547cdb003ce171c97ffdb00774ad251de0312caa997249f74",
+      "templates/hybrid-team/docs/_templates/micro-spec-review.md": "307cace073f71f4a3d8464ad2d75a82b896dcf5c9617bcec4b69df8130865c5c",
+      "templates/hybrid-team/docs/_templates/micro-spec-runbook.md": "be8121101175aadedbac4f2257e573310df30680ab88f542c626ee241b0ee973",
+      "templates/hybrid-team/docs/_templates/micro-spec.md": "f3fbf40b474df4b642fbc21ff7985a63eb5dcee27236259b442b647c3b13c1f6",
+      "templates/hybrid-team/docs/_templates/plan.md": "4c3b572028a479194bb9e750bbd43984ceb7aae8c98ecfc9aec3cc998077ffb6",
+      "templates/hybrid-team/docs/_templates/team-spec.md": "407b81877e4fa41b39cba2fca6fe6a264365aa8b2251d9e730ee0b56343c7f51",
+      "templates/hybrid-team/docs/_templates/worker-result.md": "507549e60f06dd45d318a58479c90c909bed9846fe7527378209ac95642c14a8",
+      "templates/hybrid-team/docs/context.md": "ce1e9b38f06c070bc9e3ae471b69d9a7d15791b91059c37d0a6cf4ba87282e8f",
+      "templates/hybrid-team/docs/delegation.md": "77a442950297cd36dbaa2daaadc23dbb69f444743a896ee8601e82ec81969ddd",
+      "templates/hybrid-team/docs/goal-loop.md": "d6a254ec650e628151cc5665e96bcdaab0eef8acac17ed50730680f739e228c0",
+      "templates/hybrid-team/docs/index.md": "2a9d8fe67d9fb60179ce77b80cd879439b1f129de85648360e0b56c2ab8de5e1",
+      "templates/hybrid-team/docs/roles/coordinator.md": "68b8b0fc5d688e1c015df41d63ea1020edffd1e8f5d008e0d32fb5043087e056",
+      "templates/hybrid-team/docs/roles/index.md": "f4c43e6f2aea1c92210f1a617cbf56913fc793a266d70c7740fd8078d8689a64",
+      "templates/hybrid-team/docs/roles/reviewer.md": "6939b268b241c3cb9728a03d0a8831a3ff027b8ced01b84add903fd52b3098bc",
+      "templates/hybrid-team/docs/roles/worker.md": "77a25898c2f2cd21481b80543f4d74628f7f2892841e6a4f1d5ab709d45beb48",
+      "templates/hybrid-team/docs/team-policy.md": "41d70535a1e71f8f62a01e6ad2c61005c89e611eb2f157c72e637043fc354fab",
+      "templates/hybrid-team/docs/team.md": "4f54d57a1a74aac1d0c8e9b8589377726241943e67b43f5eea843b8124c12624",
+      "templates/hybrid-team/docs/work/index.md": "f6e9a2c9c4970be9bf2c098eb4c74f22d5f200df50ec044d8eb6305b44e95850",
+      "templates/hybrid-team/docs/workflow.md": "994beea178438d5102fea2743c12321a9b8359d4c2fe8e37979637257e59d859",
+      "templates/hybrid-team/native/claude/okms-reviewer.md": "87d4e6c388c0d93edb88aa4b5755cce8b6a87c07235a7b89b5750845cb267fad",
+      "templates/hybrid-team/native/claude/okms-worker.md": "bbc94bfa6bff9071315bf434855583a02450569d2dea7ed2533bda083ff43e27",
+      "templates/hybrid-team/native/codex/okms-reviewer.toml": "1a23223879754d97e8c4ce944f4c2092a82619cff0e9be079836e51a885f73e9",
+      "templates/hybrid-team/native/codex/okms-worker.toml": "5cf12cad0dae6bea0b89977ff21c137181d89eed410fb0553cde2a40be374485",
+      "templates/hybrid-team/runtime/okms_team/__init__.py": "4aab7a9e97a4fa6ca997c584908329d2e66a27c4ffb40d2de88fbc981ea13ec9",
+      "templates/hybrid-team/runtime/okms_team/adoption.py": "f940cf9c49ee49745a9ba48633eaff621ef55548e5c93d255bfb2f86685cce41",
+      "templates/hybrid-team/runtime/okms_team/cli.py": "1c4e4668ae087d80f3a5530dd79dfc9fee346a8127c5252fc488ae3fd67f8022",
+      "templates/hybrid-team/runtime/okms_team/gitops.py": "a258631d221af4d433897baead70a7ced9c843b86914d1807ebfec3f742ac80d",
+      "templates/hybrid-team/runtime/okms_team/providers.py": "e78333da7c4dfe50a2278d45972b98fbffe7e7ec74b3d5a6d8b50b0105759394",
+      "templates/hybrid-team/runtime/okms_team/runtime.py": "59626525d299257a9ee327e4cb722f7c37793663bca98c1fdfd15ea10a359b45",
+      "templates/hybrid-team/runtime/okms_team/state.py": "5862d96da7872009cd2dd252b8ddc2f890632a29ab3caea304aefe14ec785381",
+      "templates/hybrid-team/runtime/okms_team/worker.py": "e7fead98d1e3a41ec173fbf5db0a24472fbeb11383f7f0610800dca5a951c1f5",
+      "templates/hybrid-team/runtime/team.py": "335d2bcc3211f1959b1fa9ea167f4300193b4d9be7afb9a87c6c191f095be009",
+      "templates/hybrid-team/setup.py": "0a99d6348f81b03fa9d121857295efea08c562094b7adb9bff75f499999b9845",
+      "templates/hybrid-team/skills/okms-coordinate/SKILL.md": "81bd16fcb689008cd0fb9016cfe2616ea79caa2a00934cbdf6e061d2a1fe328e",
+      "templates/hybrid-team/skills/okms-work/SKILL.md": "ee4a74d5c6ae5b381f24e9046096d2f7f6afb0d8a6650ef355c7ca37d2f55ba4"
+    }
+  },
+  "version": "0.1.0"
+}

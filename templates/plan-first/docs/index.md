@@ -9,6 +9,7 @@ No open work. Add the current plan or standalone spec here when starting work, a
 # Documents and directories
 
 - [Goal execution](goal-loop.md) - Run an explicitly requested bounded loop with persistent limits and recovery.
+- [Optional agent delegation](delegation.md) - Read role, assignment, result, and recovery rules when delegation is authorized.
 - [Workflow](workflow.md) - Follow the selected micro spec workflow before editing implementation.
 - [Project context](context.md) - Read the project's purpose, durable rules, and real verification commands.
 - [Document blueprints](_templates/index.md) - Render plans and micro specs for the current task.

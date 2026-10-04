@@ -12,13 +12,14 @@ Every specialized blueprint already contains the common four-section contract. R
 
 | Kind | Choose for the next outcome | Deliverable and required evidence | Blueprint |
 | --- | --- | --- | --- |
-| implementation | Add a feature or intentionally change behavior. | Code or other implementation, with acceptance checks and applicable tests. | [Implementation](micro-spec-implementation.md) |
+| implementation | Add or change an artifact, intentionally change behavior, or improve structure while retaining behavior. | Implementation with acceptance checks and applicable tests; refactors include baseline and retained-behavior evidence. | [Implementation](micro-spec-implementation.md) |
 | bugfix | Correct demonstrated behavior that contradicts its contract. | A repair, evidence of the original failure, and passing regression checks. | [Bugfix](micro-spec-bugfix.md) |
+| review | Assess a defined artifact or change and report actionable findings without repairing it. | A review report identifying scope/revision, findings with location, impact, and evidence, checked areas, and verification limits. | [Review](micro-spec-review.md) |
 | investigation | Explain observed behavior, test hypotheses, or locate a cause before deciding the repair. | Findings tied to reproducible observations; separate confirmed facts, hypotheses, and remaining gaps. | [Investigation](micro-spec-investigation.md) |
 | design | Make a system or interface decision under project constraints. | A decision document with viable alternatives, tradeoffs, compatibility, and scenario review. | [Design](micro-spec-design.md) |
 | research | Answer a scoped question by gathering and comparing source evidence. | A source-backed report with dates, comparison criteria, limits, and supported conclusions. | [Research](micro-spec-research.md) |
 | runbook | Document how an operator performs or recovers a procedure. | A runbook with prerequisites, commands, expected results, failure handling, and relevant rehearsal evidence. | [Runbook](micro-spec-runbook.md) |
-| general | Produce a verifiable outcome that does not fit the specialized kinds, such as translation or a bounded review. | The requested artifact and a concrete review/check method. | [General](micro-spec.md) |
+| general | Produce a verifiable outcome that does not fit the specialized kinds, such as translation. | The requested artifact and a concrete review/check method. | [General](micro-spec.md) |
 
 ## Selection rules
 
@@ -27,6 +28,8 @@ Every specialized blueprint already contains the common four-section contract. R
 3. A repair may need investigation first when ordinary exploration cannot establish a reproducible failure or cause. Keep separate outcomes as separate planned rows; write each spec when its dependencies are ready. An already understood defect can go directly to bugfix with reproduction evidence.
 4. Use general for an unsupported category. Read context first and ask only when a missing decision materially changes the task. Do not invent another workflow or silently switch the installed profile.
 5. Store the chosen `kind` in the new micro spec. Record a short selection reason in the plan's Approach, or in a standalone spec's Intent. Reassess the next outcome after verification, preserving the evidence and scope of past work.
+
+A behavior-preserving refactor uses implementation: name the structural improvement and the contracts to retain, then check both. A review produces findings; explaining their cause may need investigation, and an authorized repair uses bugfix or implementation. A reviewer is a role, not another kind. For authorized delegation, read [the delegation guide](../delegation.md) only when needed; it does not change the installed profile or create parallel spec execution.
 
 A status question or brief explanation can be answered directly. Save a work contract when starting a substantive unit with a durable deliverable or recoverable execution. Legacy specs without `kind` retain the common contract; do not rewrite historical files to add classification.
 

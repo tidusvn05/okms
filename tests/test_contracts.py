@@ -108,6 +108,62 @@ class ContractTests(unittest.TestCase):
     def test_copied_payload_is_valid(self):
         self.assertFalse(self.errors())
 
+    def make_agent_record(self, record_type):
+        parent = self.bundle / "work/MS001-fixture.md"
+        if not parent.exists():
+            self.make_spec(standalone=True)
+        path = self.bundle / "work" / f"{record_type}.md"
+        content = "# Agent record fixture\n\n" + "\n\n".join(
+            f"## {name}\n\n" + ("[Parent contract](MS001-fixture.md)." if name == "Reference"
+                                   else "Fixture-only instructions or evidence; no application execution.")
+            for name in checker.AGENT_SECTIONS[record_type]) + "\n"
+        concept(path, {"type": record_type, "title": "Agent record fixture",
+                      "description": "Exercise optional record structure and parent progress ownership."}, content)
+        with (self.bundle / "work/index.md").open("a") as handle:
+            handle.write(f"- [Agent record]({path.name}) - Optional structural record fixture.\n")
+        return path
+
+    def test_optional_records_preserve_parent_progress_owner(self):
+        for record_type in checker.AGENT_SECTIONS:
+            with self.subTest(record_type=record_type):
+                self.make_agent_record(record_type)
+                self.assertFalse(self.errors())
+
+    def test_optional_records_cannot_declare_task_kind_or_progress(self):
+        for record_type in checker.AGENT_SECTIONS:
+            path = self.make_agent_record(record_type)
+            original = path.read_text()
+            for field in ("kind: review", "work_status: done"):
+                with self.subTest(record_type=record_type, field=field):
+                    path.write_text(original.replace(f"type: {record_type}", f"type: {record_type}\n{field}"))
+                    self.assertTrue(any("must not own task kind or work progress" in error for error in self.errors()))
+            path.write_text(original)
+
+    def test_assignment_and_result_require_a_parent_spec_not_an_index(self):
+        for record_type in ("DelegationBrief", "WorkerResult"):
+            path = self.make_agent_record(record_type)
+            original = path.read_text()
+            with self.subTest(record_type=record_type):
+                path.write_text(original.replace("(MS001-fixture.md)", "(index.md)"))
+                self.assertTrue(any("one parent MicroSpec" in error for error in self.errors()))
+            path.write_text(original)
+
+    def test_optional_record_rejects_unrendered_contract(self):
+        path = self.make_agent_record("DelegationBrief")
+        path.write_text(path.read_text().replace("Fixture-only instructions or evidence", "{{UNFILLED_SCOPE}}"))
+        self.assertTrue(any("unresolved placeholder" in error for error in self.errors()))
+
+    def test_source_citations_require_real_files_with_lines_in_labels(self):
+        source = self.project / "api.py"
+        source.write_text("# Synthetic citation target; no application execution.\n")
+        path = self.make_agent_record("WorkerResult")
+        original = path.read_text()
+        valid = original.replace("## Evidence\n", "## Evidence\n\n[api.py:3](../../api.py).\n")
+        path.write_text(valid)
+        self.assertFalse(self.errors(link_root=self.project))
+        path.write_text(valid.replace("(../../api.py)", "(../../api.py:3)"))
+        self.assertTrue(any("broken link" in error for error in self.errors(link_root=self.project)))
+
     def test_conditional_plan_sections_are_valid_in_either_workflow(self):
         self.make_goal()
         original = self.plan.read_text()
@@ -127,7 +183,7 @@ class ContractTests(unittest.TestCase):
                 self.plan.write_text(original.replace("## Approach", f"## {name}\n\nFixture-only evidence.\n\n## Approach"))
                 self.assertTrue(any("expected sections" in error for error in self.errors()))
 
-    def test_unexpected_third_profile_is_rejected(self):
+    def test_unexpected_profile_is_rejected(self):
         repository = self.project / "repository"
         shutil.copytree(ROOT / "docs", repository / "docs")
         shutil.copytree(ROOT / "templates", repository / "templates")
@@ -135,7 +191,7 @@ class ContractTests(unittest.TestCase):
         instance = checker.Checker(repository)
         instance.load()
         instance.check_profiles()
-        self.assertTrue(any("only Lite and Plan-first" in error for error in instance.errors))
+        self.assertTrue(any("only supported profiles" in error for error in instance.errors))
 
     def test_legacy_kindless_spec_stays_valid(self):
         self.make_spec(task_kind=None, standalone=True)

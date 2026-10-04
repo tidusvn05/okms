@@ -1,8 +1,56 @@
 # Observed agent pilots
 
+## Hybrid Team runtime pilot
+
+Read the [v0.1 observed report](hybrid-report.md) and [measurements](hybrid-results.json) for selected passes, retained failures, component follow-ups, and native activation limits.
+
+The opt-in [Hybrid runner](run_hybrid_pilot.py) prepares three disposable Git projects with dirty staging, unstaged edits, untracked notes, and two saved independent contracts. It uses installed/logged-in Codex and Claude Code CLIs without installing tools, copying credentials, or bypassing native trust/permissions. Its source fingerprint/snapshot freezes the payload, checker, and runner; use a new directory after source changes.
+
+```sh
+.venv/bin/python evals/run_hybrid_pilot.py --fixtures-only --run-dir .pilot-runs/hybrid-fixtures
+.venv/bin/python evals/run_hybrid_pilot.py --run-dir .pilot-runs/hybrid-live
+.venv/bin/python evals/run_hybrid_pilot.py --grade-only --run-dir .pilot-runs/hybrid-live
+```
+
+Cases `codex` and `claude` start that tool as coordinator, two external mixed-provider workers, and the other tool as standby for explicit handoff. The label worker requests input, returns waiting_input, and resumes by its saved native ID when the duration worker replies. The receiving coordinator checks the actual root before final completion. Case `blocked` retains a required unavailable combined gate and incomplete plan rows. `--cases` selects cases; `--timeout` defaults to 900 seconds per case.
+
+The runner explicitly joins each root using the actual ID parsed from its CLI stream and supplies an identity-file pointer. This bootstrap is distinct from automatic startup. It records native hook receipts independently and never enables untrusted Codex hooks. Codex root sessions preserve existing user permissions; workers use the profile's workspace-write policy. Claude roots use acceptEdits with local Bash/read/edit tools explicitly allowed in the disposable fixture; workers retain the narrower runtime-command rule. Native deny rules still apply. Effective permissions/sandbox inheritance can limit startup/Git/state access. Root CLI environments use GIT_OPTIONAL_LOCKS=0 to suppress optional index refresh during observation.
+
+Artifacts remain in the ignored run directory: frozen source, prompts, invocation arrays, root/worker streams, native IDs, persistent runtime DB/messages/events, worker revisions/results/check logs, sampled plan/role transitions, baseline/final state, independent root behavior, and per-criterion grades. The oracle checks 15 separately specified behavior cases outside the writable test source. Requests, successful turns, claimed completion, and absent observations cannot substitute for returned worker results, actual checks, acknowledged peer replies, resume IDs, and handoff events.
+
+Fixtures and grader unit tests start no provider session. Preserve failed cases and traces; rerun after a diagnosed implementation/evaluation change, retaining previous evidence. Native desktop/IDE, remote workers, other models/platforms, and automatic Codex hook trust need separate observations.
+
+## Review and native-reader pilot
+
+Read the [v0.4 observed report](review-report.md) for measured outcomes and retained failures; this is a controlled evaluation, not a cross-tool benchmark.
+
+The [review runner](run_review_pilot.py) uses the installed Codex and Claude Code CLIs with existing authentication and no model override. It prepares ten disposable projects for findings/no-findings, two native readers and fresh recovery, missing child verification, and a failed combined check. The delegation project has two fresh conversations, producing twelve conversations across both tools.
+
+```sh
+.venv/bin/python evals/run_review_pilot.py --fixtures-only --run-dir .pilot-runs/review-fixtures
+.venv/bin/python evals/run_review_pilot.py --providers codex --run-dir .pilot-runs/review-codex
+.venv/bin/python evals/run_review_pilot.py --providers claude --run-dir .pilot-runs/review-claude
+```
+
+Use separate run directories for concurrent provider runs. `--cases finding`, for example, selects a scenario; `--grade-only` reviews saved observations without another task session. A timeout defaults to 900 seconds per conversation. Do not repeat a failed session solely to obtain a pass: retain its source, trace, grade, and reason.
+
+To finish coordinator work after an interrupted delegated case, use `--continue-from` with its saved invocation directory, one provider, and one case. All four reader records must exist. This creates a fresh checkout and conversation, preserves records and IDs, and merges only the clarified shared citation contracts; it does not delegate again. Retained checks may support recovery when the checked source/tests are unchanged.
+
+```sh
+.venv/bin/python evals/run_review_pilot.py --providers codex --cases integration-failure \
+  --continue-from .pilot-runs/review-codex/codex/integration-failure/integration-failure \
+  --run-dir .pilot-runs/review-integration-recovery
+```
+
+The runner copies [optional native reviewers](../adapters/README.md) only into disposable projects. It observes actual tool calls/results rather than inferring delegation from prompts. Source fingerprints and snapshots include both payloads, native definitions, observer, grader, and checker. Raw traces and timestamped file snapshots remain outside each writable project in ignored run directories. Seven independent behavior cases check protected fixture facts after each session.
+
+Claude runs in print mode with explicit local tools, accepted file edits, no permission prompts or session persistence, and no MCP connections; its project CLAUDE.md imports the fixture AGENTS.md. Codex uses the existing ephemeral JSON invocation and workspace sandbox. Effective native permissions and context differ; report actual results and version/availability limits instead of comparing these configurations as a benchmark. Ordinary document checks and unit tests never launch a task agent.
+
+## Earlier workflow pilots
+
 The [runner](run_agent_pilot.py) explicitly invokes the installed Codex CLI against disposable Python projects. It uses the existing login and default model; it does not install a CLI, create credentials, or change user settings. The normal document checker never invokes it.
 
-The current [v0.3 targeted report](workflow-report.md) and [measurements](workflow-results.json) cover a Lite existing-code fix and a Plan-first compatible refactor with scope-based baseline and compatibility obligations.
+The historical [v0.3 targeted report](workflow-report.md) and [measurements](workflow-results.json) cover a Lite existing-code fix and a Plan-first compatible refactor with scope-based baseline and compatibility obligations.
 
 Read the historical [v0.1 observed report](pilot-report.md) and [measurements](pilot-results.json), or the historical [v0.2 routing report](routing-report.md) and [measurements](routing-results.json). The latter retains both drafts and failed criteria; these reports describe their recorded versions, rather than the current two-workflow payloads.
 

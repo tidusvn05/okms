@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import ast
 import re
 import shutil
 import sys
@@ -18,22 +19,36 @@ except ImportError:
 
 
 PROFILES = ("lite", "plan-first")
+RUNTIME_PROFILES = ("hybrid-team",)
+ALL_PROFILES = PROFILES + RUNTIME_PROFILES
+TEAM_SECTIONS = ["Purpose", "Members", "Routing", "Communication", "Integration", "Recovery"]
 EXAMPLES = ("lite", "plan-first", "existing-system")
 STATES = {"planned", "in_progress", "blocked", "done", "cancelled"}
 SPEC_SECTIONS = ["Intent", "Constraints", "Acceptance", "Verify"]
 PLAN_SECTIONS = ["Goal", "Approach", "Work", "Resume", "Result"]
 GOAL_SECTIONS = ["Goal", "Scope", "Completion", "Execution", "Stop", "Resume", "Result"]
-TASK_KINDS = ("implementation", "bugfix", "investigation", "design", "research", "runbook", "general")
+TASK_KINDS = ("implementation", "bugfix", "review", "investigation", "design", "research", "runbook", "general")
 BLUEPRINTS = {kind: f"micro-spec-{kind}.md" for kind in TASK_KINDS if kind != "general"}
 BLUEPRINTS["general"] = "micro-spec.md"
+AGENT_SECTIONS = {
+    "AgentRole": ["Mission", "Trigger", "Authority", "Output", "Escalation"],
+    "DelegationBrief": ["Reference", *SPEC_SECTIONS],
+    "WorkerResult": ["Reference", "Result", "Evidence", "Remaining", "Next"],
+}
+AGENT_BLUEPRINTS = {"agent-role.md": "AgentRole", "delegation-brief.md": "DelegationBrief",
+                    "worker-result.md": "WorkerResult"}
 STOP_REASONS = {"none", "complete", "iteration_limit", "blocked", "user_stop"}
 PAYLOAD_FILES = {
-    "index.md", "workflow.md", "context.md", "_templates/index.md",
+    "index.md", "workflow.md", "context.md", "delegation.md", "_templates/index.md",
     "_templates/plan.md", "_templates/catalog.md", "_templates/goal.md", "goal-loop.md", "work/index.md",
     *(f"_templates/{name}" for name in BLUEPRINTS.values()),
+    *(f"_templates/{name}" for name in AGENT_BLUEPRINTS),
 }
-SHARED_FILES = {"goal-loop.md", "_templates/index.md", "_templates/catalog.md", "_templates/plan.md", "_templates/goal.md",
-                *(f"_templates/{name}" for name in BLUEPRINTS.values())}
+SHARED_FILES = {"goal-loop.md", "delegation.md", "_templates/index.md", "_templates/catalog.md", "_templates/plan.md", "_templates/goal.md",
+                *(f"_templates/{name}" for name in BLUEPRINTS.values()),
+                *(f"_templates/{name}" for name in AGENT_BLUEPRINTS)}
+HYBRID_FILES = PAYLOAD_FILES | {"team.md", "team-policy.md", "_templates/team-spec.md",
+                               "roles/index.md", "roles/coordinator.md", "roles/worker.md", "roles/reviewer.md"}
 ID_PATTERN = r"(?:P\d+-MS\d+|MS\d+)"
 UNEXECUTED = re.compile(r"^(?:pending|not run|not created|not implemented|not verified)\b", re.I)
 
@@ -191,9 +206,24 @@ class Checker:
                         expected_sections = ["Goal", "Baseline", "Compatibility", *PLAN_SECTIONS[1:]]
                 elif kind == "Goal" or (kind == "Template" and path.name == "goal.md"):
                     expected_sections = GOAL_SECTIONS
+                agent_kind = AGENT_BLUEPRINTS.get(path.name) if kind == "Template" else kind
+                if kind == "TeamSpec" or kind == "Template" and path.name == "team-spec.md":
+                    expected_sections = TEAM_SECTIONS
+                    if "kind" in metadata or "work_status" in metadata:
+                        self.error(path, "team policy must not own task kind or work progress")
+                if agent_kind in AGENT_SECTIONS:
+                    expected_sections = AGENT_SECTIONS[agent_kind]
+                    if "kind" in metadata or "work_status" in metadata:
+                        self.error(path, "agent records must not own task kind or work progress")
+                    if kind != "Template" and agent_kind in {"DelegationBrief", "WorkerResult"}:
+                        parents = [target for target, _, _ in local_links(path, section(body, "Reference"))
+                                   if documents.get(target, ({}, ""))[0]
+                                   and documents[target][0].get("type") == "MicroSpec"]
+                        if len(set(parents)) != 1:
+                            self.error(path, "agent assignment/result needs one parent MicroSpec link in Reference")
                 if expected_sections and headings(body) != expected_sections:
                     self.error(path, f"expected sections: {' / '.join(expected_sections)}")
-                if kind in ("Plan", "MicroSpec", "Goal") and "{{" in body:
+                if kind in {"Plan", "MicroSpec", "Goal", *AGENT_SECTIONS} and "{{" in body:
                     self.error(path, "work document contains an unresolved placeholder")
             for target, _, href in local_links(path, body):
                 if not target.is_relative_to(allowed_link_root):
@@ -240,7 +270,7 @@ class Checker:
             if not metadata or metadata.get("type") != "Template" or metadata.get("kind") != task_kind:
                 self.error(expected, "catalog blueprint must be a Template with its matching kind")
         if seen != set(TASK_KINDS):
-            self.error(path, "catalog must cover the six specialized task kinds and general fallback")
+            self.error(path, "catalog must cover every supported task kind and general fallback")
 
     def check_work(self, root: Path, documents: dict):
         owners, item_states, dependencies = {}, {}, []
@@ -402,13 +432,13 @@ class Checker:
         versions = set()
         distribution = self.root / "templates"
         actual_profiles = {path.name for path in distribution.iterdir() if path.is_dir() and not path.name.startswith(".")}
-        if actual_profiles != set(PROFILES):
-            self.error(distribution, "distribution must contain only Lite and Plan-first profiles")
+        if actual_profiles != set(ALL_PROFILES):
+            self.error(distribution, "distribution must contain only supported profiles: Lite, Plan-first, and Hybrid Team")
         for profile in PROFILES:
             bundle = self.root / "templates" / profile / "docs"
             inventory = {str(p.relative_to(bundle)) for p in markdown_files(bundle)}
             if inventory != PAYLOAD_FILES:
-                self.error(bundle, "profile must contain exactly the sixteen payload files")
+                self.error(bundle, f"profile must contain exactly the {len(PAYLOAD_FILES)} payload files")
             metadata = self.documents.get(bundle / "workflow.md", ({}, ""))[0] or {}
             if metadata.get("template") != profile:
                 self.error(bundle, "workflow template metadata disagrees with its profile")
@@ -426,6 +456,53 @@ class Checker:
         maintainer_version = (self.documents.get(self.root / "docs/workflow.md", ({}, ""))[0] or {}).get("template_version")
         if not isinstance(maintainer_version, str) or versions != {maintainer_version}:
             self.error(self.root / "docs/workflow.md", "maintainer workflow version must match the payloads")
+        for profile in RUNTIME_PROFILES:
+            bundle = distribution / profile / "docs"
+            inventory = {str(path.relative_to(bundle)) for path in markdown_files(bundle)}
+            if inventory != HYBRID_FILES:
+                self.error(bundle, f"runtime profile must contain exactly the {len(HYBRID_FILES)} documentation files")
+            metadata = self.documents.get(bundle / "workflow.md", ({}, ""))[0] or {}
+            if metadata.get("template") != profile or metadata.get("template_version") != "0.1.0":
+                self.error(bundle, "Hybrid Team must identify its independent experimental version")
+            for name in {"_templates/plan.md", "_templates/goal.md", "goal-loop.md",
+                         *(f"_templates/{name}" for name in BLUEPRINTS.values()),
+                         *(f"_templates/{name}" for name in AGENT_BLUEPRINTS)}:
+                source, target = self.root / "docs" / name, bundle / name
+                if not target.is_file() or source.read_bytes() != target.read_bytes():
+                    self.error(target, "shared task/agent contract or Goal guide drifted")
+            if not (distribution / profile / "runtime/team.py").is_file():
+                self.error(distribution / profile, "missing project-local runtime entrypoint")
+            self.check_runtime_assets(distribution / profile)
+
+    def check_runtime_assets(self, profile):
+        if not (profile / "setup.py").is_file():
+            self.error(profile, "missing preserving runtime setup")
+        for path in [profile / "setup.py", *(profile / "runtime").rglob("*.py")]:
+            try:
+                ast.parse(path.read_text(), filename=str(path))
+            except (OSError, SyntaxError) as error:
+                self.error(path, "runtime source cannot be parsed: " + str(error))
+        for provider in ("codex", "claude"):
+            for role in ("worker", "reviewer"):
+                extension = ".toml" if provider == "codex" else ".md"
+                path = profile / "native" / provider / ("okms-" + role + extension)
+                if not path.is_file():
+                    self.error(path, "missing native role definition")
+                    continue
+                body = path.read_text()
+                if provider == "codex":
+                    if not all(re.search(r"^" + field + r'\s*=\s*".+"$', body, re.M)
+                               for field in ("name", "description", "sandbox_mode", "developer_instructions")):
+                        self.error(path, "native role needs named TOML configuration fields")
+                else:
+                    metadata = self.documents.get(path, ({}, ""))[0] or {}
+                    if metadata.get("name") != "okms-" + role or not metadata.get("description") or not metadata.get("tools"):
+                        self.error(path, "native role needs name, description, and tools")
+        for name in ("okms-coordinate", "okms-work"):
+            path = profile / "skills" / name / "SKILL.md"
+            metadata = self.documents.get(path, ({}, ""))[0] or {}
+            if metadata.get("name") != name or not isinstance(metadata.get("description"), str):
+                self.error(path, "distributed skill needs matching name and description")
 
 
 def fixture_adopt(source: Path, project: Path) -> Path:
@@ -517,7 +594,7 @@ def main() -> int:
     checker = Checker(root)
     checker.load()
     checker.check_links()
-    bundles = [root / "docs"] + [root / "templates" / p / "docs" for p in PROFILES] + [root / "examples" / name for name in EXAMPLES]
+    bundles = [root / "docs"] + [root / "templates" / p / "docs" for p in ALL_PROFILES] + [root / "examples" / name for name in EXAMPLES]
     for bundle in bundles:
         checker.check_bundle(bundle)
     if not checker.errors:
@@ -532,7 +609,7 @@ def main() -> int:
         for error in checker.errors:
             print(f"FAIL {error}", file=sys.stderr)
         return 1
-    print(f"PASS: {len(checker.documents)} Markdown files, {len(bundles)} OKF bundles, {len(PROFILES)} standalone payloads, {scenarios} onboarding scenarios.")
+    print(f"PASS: {len(checker.documents)} Markdown files, {len(bundles)} OKF bundles, {len(PROFILES)} Markdown payloads, {len(RUNTIME_PROFILES)} runtime payload, {scenarios} onboarding scenarios.")
     print("This command checks documents and fixtures; it does not run agent pilots or example application tests.")
     return 0
 

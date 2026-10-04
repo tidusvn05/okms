@@ -2,14 +2,14 @@
 type: Template
 kind: implementation
 title: Implementation micro spec template
-description: Describe one new or intentionally changed behavior, its essential invariants, and concrete implementation checks.
+description: Specify one artifact, behavior change, or structural improvement with essential invariants and implementation checks.
 ---
 
 # {{SPEC_ID}} · {{TITLE}}
 
 ## Intent
 
-{{OBSERVABLE_BEHAVIOR_AND_WHY_IT_IS_NEEDED}}
+{{OBSERVABLE_OUTCOME_OR_STRUCTURAL_IMPROVEMENT_AND_WHY_IT_IS_NEEDED}}
 
 ## Constraints
 
@@ -20,9 +20,10 @@ description: Describe one new or intentionally changed behavior, its essential i
 
 - Given {{VALID_CONTEXT}}, When {{ACTION}}, Then {{OBSERVABLE_SUCCESS}}.
 - Given {{FAILURE_CONTEXT}}, When {{ACTION}}, Then {{EXPECTED_FAILURE_AND_PRESERVED_STATE}}.
+- For a behavior-preserving refactor: {{STRUCTURAL_IMPROVEMENT_AND_RETAINED_BEHAVIOR_OR_NOT_APPLICABLE}}.
 
 ## Verify
 
-- Method: {{REAL_PROJECT_COMMANDS_AND_ACCEPTANCE_REVIEW}}.
+- Method: {{REAL_PROJECT_COMMANDS_AND_ACCEPTANCE_REVIEW_WITH_APPLICABLE_BASELINE}}.
 - Expected: {{SUCCESS_AND_FAILURE_BEHAVIOR_PROVEN}}.
 - Tests: {{RELEVANT_TEST_SCOPE_OR_JUSTIFIED_SKIP}}.

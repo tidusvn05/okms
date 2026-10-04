@@ -3,7 +3,7 @@ type: Guide
 title: Plan-first workflow
 description: Save an implementation plan and complete one verified micro spec at a time with recoverable progress.
 template: plan-first
-template_version: "0.3.0"
+template_version: "0.4.0"
 ---
 
 # Plan-first workflow
@@ -62,6 +62,10 @@ The plan's Work table owns each spec's progress and results. Do not duplicate wo
 Mark an item `done` only when acceptance is supported by recorded evidence. Evidence names the actual command or method and its result, with code/test paths when useful. Tests may be skipped with a reason; acceptance checks and required project checks still apply. Missing necessary verification leaves the item incomplete. Failed checks return to diagnosis and implementation for that item.
 
 Use `blocked` for work that cannot progress, with the missing input or dependency and next action. Continue other ready items when possible. Use `cancelled` only for withdrawn or superseded scope and record why. Mark the plan done after all remaining scoped items and required checks are complete; record summary and verification limits in Result.
+
+## Optional delegation
+
+Use [agent delegation](delegation.md) only when the user or applicable project/skill instructions authorize it. Keep assignments within the current spec, one coordinator for shared progress, and actual verification of combined acceptance. Roles and worker reports do not own work state; checkpoint through the existing Resume or standalone Verify fields.
 
 ## History
 

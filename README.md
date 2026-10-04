@@ -2,7 +2,7 @@
 
 **Micro specs and recoverable workflows for coding agents.**
 
-Copy a template into your project, point your agent at its workflow, and complete one small verifiable outcome at a time. Plans track progress and the next action; code and deliverable documents hold details. A small catalog selects task-specific contracts, and explicit Goals add bounded loop execution. Everything is Markdown and works with ordinary file reads.
+Copy a template into your project, point your agent at its workflow, and complete small verifiable outcomes. Plans track progress and the next action; code and deliverable documents hold details. Lite and Plan-first are portable Markdown. The optional Hybrid Team profile adds a local runtime for Codex and Claude Code workers.
 
 ## Choose a template
 
@@ -10,10 +10,13 @@ Copy a template into your project, point your agent at its workflow, and complet
 | --- | --- | --- |
 | [Lite](templates/lite/docs/workflow.md) | One independent fix, report, or small outcome | Select a kind → save a micro spec → execute → check. Use its Plan-first fallback when scope grows. |
 | [Plan-first](templates/plan-first/docs/workflow.md) | Work with multiple outcomes or dependencies | Save a plan → repeat select → spec → execute → check → checkpoint → check the whole plan. |
+| [Hybrid Team](templates/hybrid-team/docs/workflow.md) · experimental | Use Codex and Claude Code together in one project | One coordinator → ready scoped workers → durable messages → isolated integration → root checks → checkpoint. |
 
-Each template contains 16 Markdown files, including a workflow, context, task catalog, seven micro spec blueprints, Plan and Goal blueprints, Goal execution guidance, and directory indexes. The copied bundle has no runtime dependencies.
+Lite and Plan-first each contain 21 Markdown files at version 0.4.0, with eight task kinds and optional delegation contracts. They have no runtime dependencies. Hybrid Team 0.1.0 has 28 documentation files plus a Python standard-library runtime, native configuration, roles, and skills. It requires Python 3.10+, Git with an existing commit, and both installed/authenticated CLIs on Linux, macOS, or WSL.
 
-Choose the workflow by the work's size and dependencies. Both workflows apply baseline and compatibility obligations when the affected scope includes existing contracts, including shared integration effects from new code. The agent identifies those obligations from the project.
+Choose by planning and coordination needs. All profiles apply baseline and compatibility obligations when existing contracts are affected. Task kind remains independent of profile: coordination is not a ninth kind.
+
+The [Hybrid Team pilot report](evals/hybrid-report.md) records observed CLI operation, retained failures, and automatic-startup limits for this experimental profile.
 
 ## Set up with your agent
 
@@ -93,7 +96,41 @@ https://github.com/tidusvn05/okms
 
 </details>
 
-Each prompt performs setup; give the agent a substantive task afterward. Existing installations keep their current profile; request a profile switch explicitly if needed.
+<details>
+<summary>Hybrid Team — Codex and Claude Code together (experimental)</summary>
+
+```text
+Explicitly set up the hybrid-team profile in the current project from:
+https://github.com/tidusvn05/okms
+
+1. Inspect existing docs, active work, agent instructions, native settings,
+   Git, Python, and available/authenticated Codex and Claude Code CLIs.
+   Preserve them; do not install tools or create/copy credentials.
+2. If .okms/install.json already identifies Hybrid Team, reuse its docs_path,
+   runtime and configuration without upgrading or replacing project edits.
+   Otherwise fetch a shallow HTTPS clone/archive into a new temporary
+   directory outside this project. Run python3 templates/hybrid-team/setup.py
+   --project PROJECT_PATH from that source, using argument arrays/quoted paths.
+   Setup selects an empty docs namespace and preserves other profiles/history.
+3. Fill the installed context.md and team-policy.md using actual project
+   information. Configure real required checks as argv arrays in
+   .okms/team.json. Preserve existing values on repeated setup; mark unknown
+   commands as unknown and never run placeholders or invent a test runner.
+4. Run python3 .okms/team.py doctor and review the installed instructions,
+   roles, skills, hooks, links, and preservation report. Ordinary setup must
+   not launch provider sessions or application work.
+5. Report profile/version/docs_path, prerequisites, and remaining native
+   activation steps. Codex project/hooks require native trust review via
+   /hooks; Claude Code must load project settings. Do not bypass trust or
+   permissions. Configuration alone is not proof of automatic startup.
+6. Remove only the temporary source checkout created for setup. Give me
+   the next task instructions: an active coordinator uses ready scoped
+   workers, while a second root session stays standby until explicit handoff.
+```
+
+</details>
+
+Each prompt performs setup; give the agent a substantive task afterward. Portable setup reuses its existing profile. Hybrid Team is explicit opt-in and preserves a prior profile in its existing namespace.
 
 ## Set up manually
 
@@ -121,14 +158,41 @@ For a namespaced install, use `docs/okms/workflow.md` and `docs/okms/index.md`. 
 
 If the destination already contains an okms workflow, reuse it and keep its context, indexes, and work. Review profile switches or upgrades explicitly; do not copy a new payload over an existing installation.
 
+For explicit Hybrid Team setup, run from the destination project:
+
+Install the pinned experimental release with curl, without a source checkout:
+
+```sh
+curl -fL https://github.com/tidusvn05/okms/releases/download/hybrid-team-v0.1.0/install.sh -o /tmp/okms-hybrid-team-0.1.0-install.sh
+sh /tmp/okms-hybrid-team-0.1.0-install.sh --project . --dry-run
+sh /tmp/okms-hybrid-team-0.1.0-install.sh --project .
+python3 .okms/team.py doctor
+```
+
+The installer requires curl and Python 3.10+. It downloads the versioned bundle and SHA256SUMS, verifies the checksum and payload manifest, and runs the same preserving project setup. It installs the project-local `.okms/team.py` helper; provider CLIs and authentication must already be available. Temporary bundle files are removed. `--docs` selects an explicit documentation namespace; `--release-dir PATH` uses downloaded assets offline. Repeated setup preserves project edits and does not upgrade an installation. See the [prerelease](https://github.com/tidusvn05/okms/releases/tag/hybrid-team-v0.1.0) for assets and observed limitations.
+
+Alternatively, use a local source checkout:
+
+```sh
+python3 /path/to/okms/templates/hybrid-team/setup.py --project . --dry-run
+python3 /path/to/okms/templates/hybrid-team/setup.py --project .
+python3 .okms/team.py doctor
+```
+
+Setup merges native hooks, chooses available agent/skill names, adds workflow pointers, and ignores operational state. It preserves existing instructions, settings, docs, active work, and project customizations. It launches no agents. Fill actual checks/context before task execution. Review Codex hook trust and Claude project settings; then open either CLI for a coordinator session. Read [the runtime guide](templates/hybrid-team/docs/team.md) for explicit join when startup hooks are unavailable, messages, handoff, and recovery.
+
+The default is two workers and 30 minutes per assignment, with separate worktrees from the current dirty working tree. Results need coordinator review, combined checks, and root verification. Failed or unavailable verification stays incomplete. Native permissions must allow runtime Git/state operations and external CLI startup; restrictions remain visible rather than being bypassed. Desktop/IDE and remote sessions are outside this release.
+
 ## Select the task contract automatically
+
 
 The installed profile controls planning and checkpoints. For each substantive outcome, the agent reads the [task catalog](docs/_templates/catalog.md) and only the selected blueprint:
 
 | Kind | Outcome |
 | --- | --- |
-| `implementation` | Add or intentionally change behavior. |
+| `implementation` | Add/change an artifact or behavior, or improve structure while retaining behavior. |
 | `bugfix` | Correct a reproduced contract violation and check regression. |
+| `review` | Assess a defined scope/revision and report supported findings, coverage, and limits. |
 | `investigation` | Explain observed behavior with evidence and explicit unknowns. |
 | `design` | Record a system decision, viable alternatives, and consequences. |
 | `research` | Answer a bounded question with attributable sources and comparison. |
@@ -138,6 +202,8 @@ The installed profile controls planning and checkpoints. For each substantive ou
 Routing honors explicit scope and open checkpoints, then chooses by the next required output rather than keywords. A plan can contain several kinds: investigation → bugfix → runbook, for example. It lists future outcomes and materializes each spec when ready. Short status replies and explanations can stay in the conversation.
 
 New specs store `kind` in frontmatter. Specs without it retain the common contract, so historical files need no migration. Findings, decisions, reports, and operating steps use their own deliverable formats; their micro specs remain small. All copied profiles include the catalog and every blueprint, and routing does not silently switch the installed profile.
+
+A pure refactor uses `implementation`: specify the structural improvement, preserve the named behavior, and record baseline/regression evidence. A review produces findings without an unrequested repair. A no-findings report still records its scope and verification limits.
 
 ## The micro spec contract
 
@@ -202,6 +268,14 @@ okbase -b docs/okms lint --level L1
 
 See [okbase usage](https://github.com/tidusvn05/okbase/blob/main/docs/usage.md) for its CLI and MCP tools. Connect it separately when wanted; these templates do not install or configure it.
 
+## Optional agent contracts
+
+For authorized delegation, read the copied [delegation guide](docs/delegation.md). Use the current micro spec for acceptance, a reusable role for specialist instructions, a brief for assigned scope/context/ownership, and a worker result for observations and actual evidence. Short assignments/results can stay in messages; save optional records only for reuse or recovery.
+
+The coordinator owns shared plan/index updates and verifies combined acceptance. Portable delegation permits parallel readers within one spec and orders edits/plan outcomes. Hybrid Team additionally permits ready independent writer scopes with runtime fencing, worktrees, and durable messages/events. Roles, briefs, results, and TeamSpec policy remain separate from outcome MicroSpecs and plan-owned progress.
+
+[Optional native reviewer examples](adapters/README.md) sit outside portable payloads; Lite/Plan-first adoption never installs them. Hybrid Team explicitly installs preserving project-native roles/hooks/skills. The [review and delegation walkthrough](examples/review-delegation.md) illustrates supported findings and recovery; [the Hybrid Team walkthrough](examples/hybrid-team.md) illustrates mixed-provider work and incomplete checks.
+
 ## Examples and contributions
 
 Read the [worked examples](examples/README.md) for a small validation fix, device administration, and a compatible pagination refactor. They illustrate documents and checkpoints; they contain no application and claim no application tests were run.
@@ -210,7 +284,9 @@ The [routing and Goal walkthrough](examples/routing.md) illustrates mixed task k
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for maintainer checks and workflow review scenarios. This repository uses its own Plan-first workflow; its [implementation history](docs/work/index.md) records actual work and verification.
 
-The [v0.3 targeted workflow report](evals/workflow-report.md) observes two fresh conversations: a standalone Lite fix and a Plan-first compatible refactor. Both record baseline evidence before code changes and pass all observed criteria, 80 independent behavior cases, and seven original test-method executions. The full routing and Goal matrix was not rerun for this version.
+The [v0.4 review and delegation report](evals/review-report.md) records Codex/Claude Code review, native-reader observations, saved recovery, and incomplete verification. It retains native-trace gaps, document-link failures, and deadline limits alongside passing cases. Both targeted Codex workflow regressions pass 80 independent behavior cases and seven original test-method executions.
+
+The historical [v0.3 targeted workflow report](evals/workflow-report.md) observes a standalone Lite fix and a Plan-first compatible refactor with baseline evidence before code changes. The full earlier routing and Goal matrix was not rerun for v0.4.
 
 The [historical v0.2 routing and Goal report](evals/routing-report.md) retains 15 fresh conversations across two drafts, including instruction gaps and affected reruns. All nine latest scenarios choose the expected kinds; eight meet every criterion, with one extra general blueprint read recorded for blocked verification. Independent grading passes 240 behavior-case executions and 47 original test-method executions. Portable Goal exhaustion, explicit extension, recovery, and blocked verification are exercised; native activation is untested.
 

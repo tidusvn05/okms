@@ -2,6 +2,10 @@
 
 See the [routing and Goal walkthrough](routing.md) for mixed task kinds, source-based outcomes, and bounded loop recovery.
 
+The [review and delegation walkthrough](review-delegation.md) covers findings, no-findings limits, optional roles/assignments/results, and recovery through the existing progress owner.
+
+The [Hybrid Team walkthrough](hybrid-team.md) illustrates mixed-provider workers, peer messages, ownership transfer, and verified integration.
+
 These examples illustrate document shape and workflow decisions. They contain no application code or executable application test suite. All application work remains planned and verification is explicitly unexecuted.
 
 | Example | Scenario | What to look for |

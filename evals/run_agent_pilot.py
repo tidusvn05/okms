@@ -341,14 +341,24 @@ class Observer:
                         ignore=shutil.ignore_patterns(".git", "__pycache__"))
 
 
-def invoke(cli: str, project: Path, destination: Path, prompt: str, timeout: int) -> dict:
+def invoke(cli: str, project: Path, destination: Path, prompt: str, timeout: int,
+           *, provider: str = "codex") -> dict:
     observer = Observer(project, destination)
     write(destination / "prompt.txt", prompt + "\n")
     command = [cli, "--no-daemon", "-a", "never", "exec", "--ephemeral", "--json",
                "--sandbox", "workspace-write", "--color", "never", "--cd", str(project), "-"]
+    if provider == "claude":
+        command = [cli, "--print", "--verbose", "--output-format", "stream-json",
+                   "--forward-subagent-text", "--no-session-persistence",
+                   "--permission-mode", "acceptEdits", "--permission-prompts", "none",
+                   "--tools", "Read,Glob,Grep,Bash,Write,Edit,Agent,SendMessage",
+                   "--allowedTools", "Read,Glob,Grep,Bash,Write,Edit,Agent,SendMessage",
+                   "--strict-mcp-config", "--mcp-config", '{"mcpServers":{}}']
+    elif provider != "codex":
+        raise ValueError(f"Unsupported provider: {provider}")
     observer.sample()
     process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-                               stderr=subprocess.PIPE, start_new_session=True)
+                               stderr=subprocess.PIPE, start_new_session=True, cwd=project)
     process.stdin.write(prompt.encode())
     process.stdin.close()
     selector = selectors.DefaultSelector()
@@ -395,6 +405,16 @@ def invoke(cli: str, project: Path, destination: Path, prompt: str, timeout: int
               "turn_completed": any(e["event"].get("type") == "turn.completed" for e in observer.events),
               "usage": next((e["event"].get("usage") for e in observer.events
                              if e["event"].get("type") == "turn.completed"), None)}
+    if provider == "claude":
+        final = next((entry["event"] for entry in reversed(observer.events)
+                      if entry["event"].get("type") == "result"), {})
+        initial = next((entry["event"] for entry in observer.events
+                        if entry["event"].get("type") == "system"
+                        and entry["event"].get("subtype") == "init"), {})
+        result.update(thread_id=initial.get("session_id") or final.get("session_id"),
+                      turn_completed=final.get("subtype") == "success" and not final.get("is_error", False),
+                      usage=final.get("usage"), resolved_model=initial.get("model"))
+    result["provider"] = provider
     json_write(destination / "invocation.json", result)
     return result
 
