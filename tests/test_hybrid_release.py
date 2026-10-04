@@ -26,6 +26,13 @@ def files(directory):
             for path in directory.rglob("*") if path.is_file()}
 
 
+def published(version="0.1.0", **fields):
+    return {"tag_name": "hybrid-team-v" + version, "draft": False, "prerelease": True,
+            "assets": [{"name": name, "state": "uploaded"} for name in
+                       ("install.sh", "SHA256SUMS", "okms-hybrid-team-" + version + ".tar.gz")],
+            **fields}
+
+
 class ReleaseTests(unittest.TestCase):
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory(prefix="okms-release-test-")
@@ -37,11 +44,45 @@ class ReleaseTests(unittest.TestCase):
         release.build(self.assets)
         self.env = {**os.environ, "TMPDIR": str(self.directory), "PYTHONDONTWRITEBYTECODE": "1"}
 
-    def install(self, *args, online=False, env=None):
+    def install(self, *args, online=False, env=None, version="0.1.0"):
         argv = ["sh", str(self.assets / "install.sh"), "--project", str(self.project), *args]
+        if version is not None:
+            argv.extend(["--version", version])
         if not online:
             argv.extend(["--release-dir", str(self.assets)])
         return subprocess.run(argv, capture_output=True, text=True, cwd=self.project, env=env or self.env)
+
+    def download_env(self, pages=None):
+        binary = self.directory / "bin"
+        binary.mkdir(exist_ok=True)
+        listing = self.directory / "listing"
+        listing.mkdir(exist_ok=True)
+        for page, body in enumerate(pages or [], 1):
+            (listing / (str(page) + ".json")).write_text(body if isinstance(body, str) else json.dumps(body))
+        curl = binary / "curl"
+        curl.write_text("""#!/usr/bin/env python3
+import json, os, pathlib, shutil, sys, urllib.parse
+args = sys.argv[1:]
+with open(os.environ["OKMS_TEST_REQUESTS"], "a") as stream:
+    stream.write(json.dumps(args) + "\\n")
+if os.environ.get("OKMS_TEST_DOWNLOAD_FAIL"):
+    sys.exit(22)
+url = urllib.parse.urlparse(args[-1])
+if url.netloc == "api.github.com":
+    page = urllib.parse.parse_qs(url.query)["page"][0]
+    source = pathlib.Path(os.environ["OKMS_TEST_LISTING"]) / (page + ".json")
+else:
+    source = pathlib.Path(os.environ["OKMS_TEST_ASSETS"]) / url.path.split("/")[-1]
+shutil.copyfile(source, args[args.index("--output") + 1])
+""")
+        curl.chmod(0o755)
+        return {**self.env, "PATH": str(binary) + os.pathsep + os.environ["PATH"],
+                "OKMS_TEST_ASSETS": str(self.assets), "OKMS_TEST_LISTING": str(listing),
+                "OKMS_TEST_REQUESTS": str(self.directory / "requests.jsonl")}
+
+    def requests(self):
+        path = self.directory / "requests.jsonl"
+        return [json.loads(line) for line in path.read_text().splitlines()] if path.exists() else []
 
     def write(self, name, body):
         path = self.project / name
@@ -77,6 +118,21 @@ class ReleaseTests(unittest.TestCase):
         self.assertEqual(manifest["files"], {name: hashlib.sha256(body).hexdigest() for name, body in bodies.items()})
         self.assertEqual(manifest["version"], "0.1.0")
         self.assertEqual(manifest["tag"], "hybrid-team-v0.1.0")
+
+    def test_tag_mismatch_writes_no_assets_and_valid_tag_generates_pinned_notes(self):
+        output = self.directory / "tagged"
+        notes = self.directory / "release-notes.md"
+        for tag in ("v0.1.0", "hybrid-team-v0.2.0", "hybrid-team-v0.1.0-rc.1", "$(invalid)"):
+            with self.subTest(tag=tag), self.assertRaises(ValueError):
+                release.build(output, tag=tag, notes=notes)
+            self.assertFalse(output.exists())
+            self.assertFalse(notes.exists())
+        result = release.build(output, tag="hybrid-team-v0.1.0", notes=notes)
+        self.assertEqual(result["tag"], "hybrid-team-v0.1.0")
+        self.assertEqual(result["archive"], ARCHIVE)
+        self.assertIn("--version 0.1.0 --project .", notes.read_text())
+        self.assertIn("/releases/download/hybrid-team-v0.1.0/install.sh", notes.read_text())
+        self.assertIn("fake transports", notes.read_text())
 
     def test_dry_run_new_setup_and_source_independent_helper(self):
         self.write("notes.txt", "User note.\n")
@@ -193,27 +249,11 @@ class ReleaseTests(unittest.TestCase):
                 self.assertFalse(list(self.directory.glob("okms-hybrid-install-*")))
 
     def test_downloads_use_pinned_release_and_transport_failure_preserves_project(self):
-        binary = self.directory / "bin"
-        binary.mkdir()
-        curl = binary / "curl"
-        curl.write_text("""#!/usr/bin/env python3
-import json, os, pathlib, shutil, sys
-args = sys.argv[1:]
-with open(os.environ["OKMS_TEST_REQUESTS"], "a") as stream:
-    stream.write(json.dumps(args) + "\\n")
-if os.environ.get("OKMS_TEST_DOWNLOAD_FAIL"):
-    sys.exit(22)
-shutil.copyfile(pathlib.Path(os.environ["OKMS_TEST_ASSETS"]) / args[-1].split("/")[-1],
-                args[args.index("--output") + 1])
-""")
-        curl.chmod(0o755)
-        requests = self.directory / "requests.jsonl"
-        env = {**self.env, "PATH": str(binary) + os.pathsep + os.environ["PATH"],
-               "OKMS_TEST_ASSETS": str(self.assets), "OKMS_TEST_REQUESTS": str(requests)}
+        env = self.download_env()
         result = self.install("--dry-run", online=True, env=env)
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(files(self.project), {})
-        argv = [json.loads(line) for line in requests.read_text().splitlines()]
+        argv = self.requests()
         self.assertEqual([args[-1] for args in argv], [
             "https://github.com/tidusvn05/okms/releases/download/hybrid-team-v0.1.0/SHA256SUMS",
             "https://github.com/tidusvn05/okms/releases/download/hybrid-team-v0.1.0/" + ARCHIVE])
@@ -221,6 +261,77 @@ shutil.copyfile(pathlib.Path(os.environ["OKMS_TEST_ASSETS"]) / args[-1].split("/
         result = self.install(online=True, env={**env, "OKMS_TEST_DOWNLOAD_FAIL": "1"})
         self.assertNotEqual(result.returncode, 0)
         self.assertEqual(files(self.project), {})
+        self.assertFalse(list(self.directory.glob("okms-hybrid-install-*")))
+
+    def test_latest_includes_complete_prereleases_and_skips_other_candidates(self):
+        pending = published("0.4.0")
+        pending["assets"][0]["state"] = "starter"
+        env = self.download_env([[published(), published("0.0.9", prerelease=False),
+                                  published("9.0.0", draft=True),
+                                  published("8.0.0", tag_name="portable-v8.0.0"),
+                                  published("0.2.0", assets=[]),
+                                  published("0.3.0", tag_name="hybrid-team-v0.3.0-rc.1"), pending]])
+        result = self.install("--dry-run", online=True, env=env, version=None)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("Verified Hybrid Team 0.1.0", result.stderr)
+        self.assertEqual(files(self.project), {})
+        self.assertEqual([args[-1] for args in self.requests()], [
+            "https://api.github.com/repos/tidusvn05/okms/releases?per_page=100&page=1",
+            "https://github.com/tidusvn05/okms/releases/download/hybrid-team-v0.1.0/SHA256SUMS",
+            "https://github.com/tidusvn05/okms/releases/download/hybrid-team-v0.1.0/" + ARCHIVE])
+
+    def test_latest_reads_later_pages_before_selecting(self):
+        env = self.download_env([[published("0.0.9")] * 100, [published()]])
+        result = self.install("--dry-run", online=True, env=env, version="latest")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual([args[-1] for args in self.requests()][:2], [
+            "https://api.github.com/repos/tidusvn05/okms/releases?per_page=100&page=1",
+            "https://api.github.com/repos/tidusvn05/okms/releases?per_page=100&page=2"])
+        self.assertIn("/hybrid-team-v0.1.0/", self.requests()[-1][-1])
+
+    def test_latest_compares_numeric_versions_instead_of_listing_order(self):
+        for lower, higher in (("0.9.9", "0.10.0"), ("0.99.99", "1.0.0"), ("1.0.9", "1.0.10")):
+            with self.subTest(lower=lower, higher=higher):
+                env = self.download_env([[published(higher), published(lower)]])
+                result = self.install("--dry-run", online=True, env=env, version=None)
+                # The fixture intentionally has no future bundle. Selection must request
+                # the numerically highest version, then fail without touching the project.
+                self.assertNotEqual(result.returncode, 0)
+                self.assertEqual(self.requests()[-1][-1],
+                                 "https://github.com/tidusvn05/okms/releases/download/hybrid-team-v" +
+                                 higher + "/SHA256SUMS")
+                self.assertEqual(files(self.project), {})
+
+    def test_offline_default_resolves_local_assets_without_network(self):
+        env = {**self.download_env(), "OKMS_TEST_DOWNLOAD_FAIL": "1"}
+        result = self.install("--dry-run", env=env, version=None)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("Verified Hybrid Team 0.1.0", result.stderr)
+        self.assertEqual(self.requests(), [])
+        self.assertEqual(files(self.project), {})
+        (self.assets / "SHA256SUMS").unlink()
+        result = self.install(env=env, version=None)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("No complete", result.stderr)
+        self.assertEqual(self.requests(), [])
+        self.assertEqual(files(self.project), {})
+
+    def test_failed_or_invalid_discovery_stops_before_project_mutation(self):
+        self.write("notes.txt", "Preserve.\n")
+        before = files(self.project)
+        for body in ([], {"message": "API error"}, "not JSON", [None],
+                     [published(draft=True)], [published(assets=[])]):
+            with self.subTest(body=body):
+                env = self.download_env([body])
+                result = self.install(online=True, env=env, version=None)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertTrue(self.requests()[-1][-1].startswith("https://api.github.com/"))
+                self.assertEqual(files(self.project), before)
+                self.assertFalse(list(self.directory.glob("okms-hybrid-install-*")))
+        env = {**env, "OKMS_TEST_DOWNLOAD_FAIL": "1"}
+        result = self.install(online=True, env=env, version=None)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertEqual(files(self.project), before)
         self.assertFalse(list(self.directory.glob("okms-hybrid-install-*")))
 
 

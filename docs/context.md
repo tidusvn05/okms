@@ -23,6 +23,7 @@ Publish task contracts and recoverable workflows for agents working in any proje
 - Record baseline evidence and compatibility obligations when changing or deciding changes to existing contracts; keep the documentation proportional to the affected scope.
 - Explicit Goals retain consumed attempts, linked plans, stop reasons, and checkpoints. Native execution requires a real supported integration.
 - Hybrid Team separates TeamSpec policy, plan-owned progress, operational AgentRun state, directed Messages, and append-only Events. Preserve root staging/edits, fence coordinator operations, and require combined/root checks before completion.
+- Hybrid Team publication uses new hybrid-team-vX.Y.Z tags matching committed VERSION. Check and rehearse before a scoped write-permission job publishes; retain existing tags/assets. Default installation selects complete published releases, including prereleases; numeric pins and offline setup remain supported.
 
 ## Verification
 
@@ -41,4 +42,4 @@ Publish task contracts and recoverable workflows for agents working in any proje
 - Shared formats: [document blueprints](_templates/index.md).
 - Release implementation history: [work](work/index.md).
 - Optional runtime and preserving setup: `templates/hybrid-team/`; operational fixtures: `tests/test_hybrid_runtime.py` and `tests/test_hybrid_adoption.py`.
-- Pinned release installer: `install.sh`; deterministic asset builder: `scripts/build_hybrid_release.py`; distribution checks: `tests/test_hybrid_release.py`. Publication requires the user's authorization and preserves prior tags/assets.
+- Release-aware installer: `install.sh`; deterministic asset builder: `scripts/build_hybrid_release.py`; distribution checks: `tests/test_hybrid_release.py`. CI and tag publication: `.github/workflows/`; maintainer procedure: `CONTRIBUTING.md`. Publication requires the user's authorization and preserves prior tags/assets.

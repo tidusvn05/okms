@@ -20,7 +20,7 @@ The [Hybrid Team pilot report](evals/hybrid-report.md) records observed CLI oper
 
 ## Set up with your agent
 
-Open your agent in the destination project, choose a profile below, and paste its full prompt as-is. The agent needs project file access and network access to fetch the public repository; it obtains the template for you.
+Open your agent in the destination project, choose a profile below, and paste its full prompt as-is. The agent needs project file and network access; it obtains the selected template or release for you.
 
 <details open>
 <summary>Plan-first — multiple outcomes or dependencies (default)</summary>
@@ -108,10 +108,15 @@ https://github.com/tidusvn05/okms
    Preserve them; do not install tools or create/copy credentials.
 2. If .okms/install.json already identifies Hybrid Team, reuse its docs_path,
    runtime and configuration without upgrading or replacing project edits.
-   Otherwise fetch a shallow HTTPS clone/archive into a new temporary
-   directory outside this project. Run python3 templates/hybrid-team/setup.py
-   --project PROJECT_PATH from that source, using argument arrays/quoted paths.
-   Setup selects an empty docs namespace and preserves other profiles/history.
+   Otherwise download the release installer into a new temporary file outside
+   this project from:
+   https://raw.githubusercontent.com/tidusvn05/okms/main/install.sh
+   Run sh INSTALLER_PATH --project PROJECT_PATH --dry-run, review its report,
+   then run it without --dry-run, using argument arrays/quoted paths.
+   It selects the newest complete Hybrid Team release, including prereleases;
+   add --version X.Y.Z to both calls if I requested an exact published version.
+   It verifies the bundle, selects an empty docs namespace, and preserves
+   other profiles/history. Stop on download, verification, or setup failure.
 3. Fill the installed context.md and team-policy.md using actual project
    information. Configure real required checks as argv arrays in
    .okms/team.json. Preserve existing values on repeated setup; mark unknown
@@ -123,7 +128,7 @@ https://github.com/tidusvn05/okms
    activation steps. Codex project/hooks require native trust review via
    /hooks; Claude Code must load project settings. Do not bypass trust or
    permissions. Configuration alone is not proof of automatic startup.
-6. Remove only the temporary source checkout created for setup. Give me
+6. Remove only the temporary installer created for setup. Give me
    the next task instructions: an active coordinator uses ready scoped
    workers, while a second root session stays standby until explicit handoff.
 ```
@@ -134,7 +139,7 @@ Each prompt performs setup; give the agent a substantive task afterward. Portabl
 
 ## Set up manually
 
-For manual setup, download or clone this repository first and use its local checkout path in the commands below.
+For manual Lite or Plan-first setup, download or clone this repository first and use its local checkout path in the commands below.
 
 First reuse an existing okms installation referenced by your project instructions or found at `docs/workflow.md` or `docs/okms/workflow.md`. Its frontmatter identifies the template and version. For a new installation, copy into a destination that does not exist yet. When `docs/` does not exist:
 
@@ -158,18 +163,22 @@ For a namespaced install, use `docs/okms/workflow.md` and `docs/okms/index.md`. 
 
 If the destination already contains an okms workflow, reuse it and keep its context, indexes, and work. Review profile switches or upgrades explicitly; do not copy a new payload over an existing installation.
 
-For explicit Hybrid Team setup, run from the destination project:
-
-Install the pinned experimental release with curl, without a source checkout:
+For explicit Hybrid Team setup, run from the destination project. Download the installer and review the dry-run before installation:
 
 ```sh
-curl -fL https://github.com/tidusvn05/okms/releases/download/hybrid-team-v0.1.0/install.sh -o /tmp/okms-hybrid-team-0.1.0-install.sh
-sh /tmp/okms-hybrid-team-0.1.0-install.sh --project . --dry-run
-sh /tmp/okms-hybrid-team-0.1.0-install.sh --project .
+okms_installer="$(mktemp /tmp/okms-install.XXXXXX)"
+curl -fL https://raw.githubusercontent.com/tidusvn05/okms/main/install.sh -o "$okms_installer"
+sh "$okms_installer" --project . --dry-run
+sh "$okms_installer" --project .
+rm -f "$okms_installer"
 python3 .okms/team.py doctor
 ```
 
-The installer requires curl and Python 3.10+. It downloads the versioned bundle and SHA256SUMS, verifies the checksum and payload manifest, and runs the same preserving project setup. It installs the project-local `.okms/team.py` helper; provider CLIs and authentication must already be available. Temporary bundle files are removed. `--docs` selects an explicit documentation namespace; `--release-dir PATH` uses downloaded assets offline. Repeated setup preserves project edits and does not upgrade an installation. See the [prerelease](https://github.com/tidusvn05/okms/releases/tag/hybrid-team-v0.1.0) for assets and observed limitations.
+The installer requires curl and Python 3.10+. By default (`--version latest`), it selects the highest numeric Hybrid Team version with all three uploaded assets, including experimental prereleases. It downloads the versioned bundle and SHA256SUMS, verifies the checksum and payload manifest, and runs preserving project setup. Stop if any command fails.
+
+Add `--version 0.1.0` to both installer invocations to pin the [current prerelease](https://github.com/tidusvn05/okms/releases/tag/hybrid-team-v0.1.0); that release also provides its own versioned installer. `--docs` selects an explicit documentation namespace. `--release-dir PATH` uses downloaded assets offline and resolves the highest local numeric version when no version is specified. An explicit numeric version skips release discovery.
+
+Setup installs the project-local `.okms/team.py` helper; provider CLIs and authentication must already be available. Temporary bundle files are removed. Repeated setup preserves project edits and does not upgrade an installation. New `hybrid-team-vX.Y.Z` tags matching the committed runtime version are checked and published by [GitHub Actions](.github/workflows/release.yml); see [maintainer instructions](CONTRIBUTING.md#build-and-publish-hybrid-team).
 
 Alternatively, use a local source checkout:
 

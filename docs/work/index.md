@@ -1,5 +1,7 @@
 # Plans
 
+- [P011 · Automatic tag releases](P011-tag-release/index.md) - Automate tag releases and document installation from published distributions.
+
 - [P010 · Publish Hybrid Team](P010-hybrid-release/index.md) - Deliver verified curl adoption and publish the authorized GitHub prerelease.
 
 - [P009 · Hybrid Team](P009-hybrid-team/index.md) - Add local Codex/Claude Code coordination, isolated writers, persistent messages, and observed validation.

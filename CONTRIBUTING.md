@@ -62,25 +62,39 @@ Run the opt-in, executable [agent pilots](evals/README.md) when evaluating workf
 
 ## Build and publish Hybrid Team
 
-Run the required checker/test suite first, then build the pinned distribution:
+The [Checks workflow](.github/workflows/checks.yml) runs document checks, the full test suite, and installer syntax checks on main and pull requests with Python 3.10 and 3.13.
+
+For a local distribution rehearsal, run the required checker/test suite first, then build:
 
 ```sh
-.venv/bin/python scripts/build_hybrid_release.py --output dist
+.venv/bin/python scripts/build_hybrid_release.py --output dist --notes dist/release-notes.md
 sh dist/install.sh --release-dir dist --project /path/to/disposable-project --dry-run
 sh dist/install.sh --release-dir dist --project /path/to/disposable-project
 ```
 
-The builder emits `okms-hybrid-team-0.1.0.tar.gz`, `install.sh`, and `SHA256SUMS`. The archive contains the exact Hybrid Team payload, both license notices, and `release.json` with every file hash. It fixes member ordering, timestamps, ownership, and gzip metadata for reproducibility. `tests/test_hybrid_release.py` exercises real setup, downloaded/offline assets, dirty-project preservation, dry-run/repeat, integrity failures, and unsafe extraction without provider task sessions. Distribution assets stay in ignored `dist/`.
+The builder reads VERSION from `templates/hybrid-team/runtime/okms_team/__init__.py` and emits `okms-hybrid-team-X.Y.Z.tar.gz`, `install.sh`, and `SHA256SUMS`. Optional release notes pin the selected version. The archive contains the exact Hybrid Team payload, both license notices, and `release.json` with every file hash. It fixes member ordering, timestamps, ownership, and gzip metadata for reproducibility. Distribution assets stay in ignored `dist/`.
 
-After explicit publication authorization, commit reviewed changes, push main, and tag that committed source. Publish the three assets as a prerelease:
+`tests/test_hybrid_release.py` exercises real setup, downloaded/offline assets, dirty-project preservation, dry-run/repeat, integrity failures, unsafe extraction, tag mismatches, and latest release selection without provider task sessions.
+
+After publication authorization, update the runtime version and applicable version metadata/docs, complete the checks and review, commit, and push main. Create a new annotated `hybrid-team-vX.Y.Z` tag on that committed source. Derive the exact tag from the builder to avoid version drift:
 
 ```sh
-git tag -a hybrid-team-v0.1.0 -m "Hybrid Team 0.1.0 experimental prerelease"
-git push origin hybrid-team-v0.1.0
-gh release create hybrid-team-v0.1.0 dist/okms-hybrid-team-0.1.0.tar.gz dist/install.sh dist/SHA256SUMS --verify-tag --prerelease --latest=false --title "Hybrid Team 0.1.0 (experimental)" --generate-notes
+release_tag="$(.venv/bin/python scripts/build_hybrid_release.py --validate-only | .venv/bin/python -c 'import json, sys; print(json.load(sys.stdin)["tag"])')"
+git tag -a "$release_tag" -m "$release_tag experimental prerelease"
+git push origin "$release_tag"
 ```
 
-Include the profile's experimental status, project-local installation, required tools, preserving setup, and native trust/observation limits in release notes. Verify published downloads and actual installation in a disposable project. Pin download URLs to this tag; prereleases do not serve as GitHub's latest stable release. Bump the runtime version and installer default together for future distributions, and retain prior tags/assets.
+The [release workflow](.github/workflows/release.yml) triggers on `hybrid-team-v*` tags. It rejects tags that do not exactly match the committed numeric VERSION before packaging. Its read-only prepare job runs required checks, builds deterministic assets and versioned notes, checks SHA256SUMS, and rehearses dry-run/new/repeated installation. Only the publish job receives `contents: write`; it creates the experimental prerelease, uploads the three checked assets, then verifies public downloads and installation. Check the Actions result and release assets after pushing.
+
+Manual dispatch rehearses checks, packaging, and offline installation without publishing:
+
+```sh
+gh workflow run release.yml --ref main
+```
+
+Keep existing tags/assets immutable. Existing releases cause publication to fail rather than replace assets; inspect a partially published release before recovery. Rerunning the whole workflow does not repair an existing release automatically. The existing `hybrid-team-v0.1.0` prerelease predates this workflow and is retained.
+
+The installer entrypoint on main resolves complete published Hybrid Team releases through the paginated GitHub release list, including prereleases, by numeric version. Exact `--version X.Y.Z` pins use only that tag's assets; `--release-dir` is offline. The generic installer needs no version-default bump for future distributions. Generated release notes pin the exact version and preserve experimental status, prerequisites, native trust requirements, and the limits of repository checks. CI never launches native provider task sessions.
 
 ## Versioning and upgrades
 
