@@ -69,7 +69,8 @@ instructions, settings and customizations and starts no task session.
 
 Existing Python 0.1.0 installations are not silently upgraded. Retain their
 history/state and use a deliberate reviewed migration; the old prerelease and
-its assets remain available. Lite and Plan-first remain portable Markdown 0.4.0.
+its assets remain available. Lite and Plan-first are portable Markdown 0.4.1,
+including namespaced page metadata and project-convention setup guidance.
 
 ## Activation and observations
 

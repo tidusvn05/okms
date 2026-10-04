@@ -12,7 +12,7 @@ Copy a template into your project, point your agent at its workflow, and complet
 | [Plan-first](templates/plan-first/docs/workflow.md) | Work with multiple outcomes or dependencies | Save a plan → repeat select → spec → execute → check → checkpoint → check the whole plan. |
 | [Hybrid Team](templates/hybrid-team/docs/workflow.md) | Use Codex and Claude Code together in one project | One coordinator → ready scoped workers → durable messages → isolated integration → root checks → checkpoint. |
 
-Lite and Plan-first each contain 21 Markdown files at version 0.4.0, with eight task kinds and optional delegation contracts. They have no runtime dependencies. Hybrid Team 0.2.0 has 28 documentation files embedded in a standalone Rust CLI, with a bundled SQLite runtime, native configuration, roles, and skills. Binary installation supports Linux/WSL and macOS on x86_64 and arm64, without Python or a Rust compiler. Coordination requires Git with an existing commit and installed/authenticated provider CLIs.
+Lite and Plan-first each contain 21 Markdown files at version 0.4.1, with eight task kinds and optional delegation contracts. They have no runtime dependencies. Hybrid Team 0.2.0 has 28 documentation files embedded in a standalone Rust CLI, with a bundled SQLite runtime, native configuration, roles, and skills. Binary installation supports Linux/WSL and macOS on x86_64 and arm64, without Python or a Rust compiler. Coordination requires Git with an existing commit and installed/authenticated provider CLIs.
 
 Choose by planning and coordination needs. All profiles apply baseline and compatibility obligations when existing contracts are affected. Task kind remains independent of profile: coordination is not a ninth kind.
 
@@ -32,8 +32,9 @@ https://github.com/tidusvn05/okms
 1. Inspect existing project docs and applicable agent instructions.
 2. Reuse an existing okms installation referenced by the project's
    instructions, or look for one at docs/workflow.md or
-   docs/okms/workflow.md. Recognize it by its template and template_version
-   metadata; if the intended installation is ambiguous, ask which to use.
+   docs/okms/workflow.md. Recognize it by its okms_template and
+   okms_template_version metadata (template and template_version before
+   0.4.1); if the intended installation is ambiguous, ask which to use.
    Reuse it without fetching or switching profiles.
 3. For a new installation, fetch the repository with a shallow HTTPS
    clone or archive download into a new temporary directory outside this
@@ -69,8 +70,9 @@ https://github.com/tidusvn05/okms
 1. Inspect existing project docs and applicable agent instructions.
 2. Reuse an existing okms installation referenced by the project's
    instructions, or look for one at docs/workflow.md or
-   docs/okms/workflow.md. Recognize it by its template and template_version
-   metadata; if the intended installation is ambiguous, ask which to use.
+   docs/okms/workflow.md. Recognize it by its okms_template and
+   okms_template_version metadata (template and template_version before
+   0.4.1); if the intended installation is ambiguous, ask which to use.
    Reuse it without fetching or switching profiles.
 3. For a new installation, fetch the repository with a shallow HTTPS
    clone or archive download into a new temporary directory outside this
@@ -141,7 +143,7 @@ Each prompt performs setup; give the agent a substantive task afterward. Portabl
 
 For manual Lite or Plan-first setup, download or clone this repository first and use its local checkout path in the commands below.
 
-First reuse an existing okms installation referenced by your project instructions or found at `docs/workflow.md` or `docs/okms/workflow.md`. Its frontmatter identifies the template and version. For a new installation, copy into a destination that does not exist yet. When `docs/` does not exist:
+First reuse an existing okms installation referenced by your project instructions or found at `docs/workflow.md` or `docs/okms/workflow.md`. Its frontmatter identifies the template and version as `okms_template` and `okms_template_version` (`template` and `template_version` before 0.4.1). For a new installation, copy into a destination that does not exist yet. When `docs/` does not exist:
 
 ```sh
 cp -R /path/to/okms/templates/plan-first/docs ./docs

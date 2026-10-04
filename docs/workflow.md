@@ -2,8 +2,8 @@
 type: Guide
 title: Plan-first workflow
 description: Save an implementation plan and complete one verified micro spec at a time with recoverable progress.
-template: plan-first
-template_version: "0.4.0"
+okms_template: plan-first
+okms_template_version: "0.4.1"
 ---
 
 # Plan-first workflow
