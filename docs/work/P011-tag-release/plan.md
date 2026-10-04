@@ -2,7 +2,7 @@
 type: Plan
 title: P011 · Automatic tag releases
 description: Automate Hybrid Team releases from versioned tags and document release-aware installation.
-work_status: in_progress
+work_status: done
 ---
 
 # P011 · Automatic tag releases
@@ -33,15 +33,17 @@ Retain the observed runtime payload, preserving adoption, numeric --version and 
 
 | Spec | Depends on | State | Evidence |
 | --- | --- | --- | --- |
-| [P011-MS01 · Tag release automation](P011-MS01-automation.md) | — | done | All 77 tests and checker (181 documents/seven bundles) pass. actionlint 1.7.12 accepts both workflows; extracted package/checksum/setup steps execute successfully. Tag mismatch rejects writes and notes pin the version. GitHub activation/rehearsal is included in final verification. |
-| [P011-MS02 · Release-aware install and documentation](P011-MS02-install.md) | P011-MS01 | in_progress | All 82 tests, checker (183 documents/seven bundles), installer syntax, actionlint, and extracted workflow steps pass. Genuine public 0.1.0 latest dry-run/new install and pinned repeat preserve project docs/instructions/settings, dirty Git HEAD/index, and custom context; helper works. Evidence: `.pilot-runs/hybrid-latest-install/result.json`. GitHub activation/rehearsal remains. |
+| [P011-MS01 · Tag release automation](P011-MS01-automation.md) | — | done | All 82 tests and checker (183 documents/seven bundles) pass. actionlint 1.7.12 accepts both workflows; extracted package/checksum/setup steps execute successfully. Tag mismatch rejects writes and notes pin the version. Activated workflows at 2db65e9; [CI](https://github.com/tidusvn05/okms/actions/runs/37194986060) passes on Python 3.10/3.13 and [release rehearsal](https://github.com/tidusvn05/okms/actions/runs/37195004999) prepares/uploads artifacts successfully with publish skipped. |
+| [P011-MS02 · Release-aware install and documentation](P011-MS02-install.md) | P011-MS01 | done | Latest/pinned/offline boundaries pass. Genuine public 0.1.0 latest dry-run/new install and pinned repeat preserve project docs/instructions/settings, dirty Git HEAD/index, and custom context; helper works. The README URL serves the pushed installer bytes and a genuine dry-run succeeds. Local evidence: `.pilot-runs/hybrid-latest-install/{result,public-entrypoint,github-actions}.json`. Existing release asset digests remain unchanged. |
 
 ## Resume
 
-- Current: P011-MS02.
-- Next: push the reviewed workflow/installer/docs, verify the served entrypoint, and observe GitHub CI and the nonpublishing rehearsal.
+- Current: complete.
+- Next: none; future publication uses a new matching runtime-version tag after reviewed version changes.
 - Blocker: none.
 
 ## Result
 
-Pending.
+Implemented and pushed automatic checked tag publication, main/PR CI, complete-release discovery including prereleases, and README/maintainer installation instructions. Explicit version pins, offline assets, preserving adoption, and the observed runtime payload remain intact.
+
+GitHub CI and the nonpublishing release rehearsal are observed successes. The publish branch is configured and guarded; no new version/tag was created to exercise publication. The current 0.1.0 prerelease and all its assets are retained. No native provider task session ran during this work; repository checks and installation rehearsal do not extend the prior native observation claims.

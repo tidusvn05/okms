@@ -4,7 +4,7 @@ okf_version: "0.2"
 
 # Active work
 
-- [P011 · Automatic tag releases](work/P011-tag-release/plan.md) - Activate verified tag publication and release-aware installation.
+None.
 
 # Documents and directories
 
