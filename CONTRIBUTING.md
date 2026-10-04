@@ -98,9 +98,11 @@ The installer entrypoint on main resolves complete published Hybrid Team release
 
 ## Versioning and upgrades
 
-Lite and Plan-first are `0.4.0`; change both portable workflows' versions together for updated contracts. Hybrid Team is independently versioned experimental `0.1.0`. Review copies manually during an upgrade: preserve project context, active work, and history, and merge workflow/blueprint changes deliberately. Shared task contracts remain consistent across all profiles.
+Lite and Plan-first are `0.4.1`; change both portable workflows' versions together for updated contracts. Hybrid Team is independently versioned experimental `0.1.0`. Review copies manually during an upgrade: preserve project context, active work, and history, and merge workflow/blueprint changes deliberately. Shared task contracts remain consistent across all profiles.
 
 Keep existing spec IDs, plan columns, kindless historical files, and project instructions during deliberate upgrades. Repeated setup alone does not upgrade an installation or change its profile.
+
+Portable workflow frontmatter uses namespaced `okms_template` and `okms_template_version` keys from 0.4.1, because documentation site generators reserve unprefixed page metadata (MkDocs treats `template` as a theme template and fails the build). Setup keeps recognizing the unprefixed keys of earlier installations; upgrading one renames both keys without other changes. Hybrid Team is identified by `.okms/install.json` and keeps its workflow metadata until its next runtime version.
 
 For a v0.3 portable installation, merge the review catalog/blueprint, revised implementation contract, optional delegation guide/blueprints, and index entries deliberately. Existing general reviews keep their historical kind. Optional adapter examples remain separate from portable adoption. Explicit Hybrid Team setup merges its native files; edits and effective native trust/permissions remain project/user-owned.
 

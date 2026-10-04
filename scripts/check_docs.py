@@ -49,8 +49,20 @@ SHARED_FILES = {"goal-loop.md", "delegation.md", "_templates/index.md", "_templa
                 *(f"_templates/{name}" for name in AGENT_BLUEPRINTS)}
 HYBRID_FILES = PAYLOAD_FILES | {"team.md", "team-policy.md", "_templates/team-spec.md",
                                "roles/index.md", "roles/coordinator.md", "roles/worker.md", "roles/reviewer.md"}
+# Unprefixed keys collide with site generators' page metadata (MkDocs reads `template` as a theme file);
+# installs before 0.4.1 still carry them and must remain recognizable.
+LEGACY_IDENTITY = {"template", "template_version"}
 ID_PATTERN = r"(?:P\d+-MS\d+|MS\d+)"
 UNEXECUTED = re.compile(r"^(?:pending|not run|not created|not implemented|not verified)\b", re.I)
+
+
+def portable_identity(metadata: dict) -> tuple[str, str] | None:
+    """Return (profile, version) of a portable install, accepting pre-0.4.1 unprefixed keys."""
+    for profile_key, version_key in (("okms_template", "okms_template_version"), ("template", "template_version")):
+        profile, version = metadata.get(profile_key), metadata.get(version_key)
+        if profile in PROFILES and version is not None:
+            return profile, version
+    return None
 
 
 def valid_state(value) -> bool:
@@ -440,20 +452,22 @@ class Checker:
             if inventory != PAYLOAD_FILES:
                 self.error(bundle, f"profile must contain exactly the {len(PAYLOAD_FILES)} payload files")
             metadata = self.documents.get(bundle / "workflow.md", ({}, ""))[0] or {}
-            if metadata.get("template") != profile:
+            if LEGACY_IDENTITY & metadata.keys():
+                self.error(bundle, "portable workflow must use namespaced okms_template metadata")
+            if metadata.get("okms_template") != profile:
                 self.error(bundle, "workflow template metadata disagrees with its profile")
-            version = metadata.get("template_version")
+            version = metadata.get("okms_template_version")
             if isinstance(version, str):
                 versions.add(version)
             else:
-                self.error(bundle, "template_version must be a string")
+                self.error(bundle, "okms_template_version must be a string")
             for name in SHARED_FILES:
                 source, target = self.root / "docs" / name, bundle / name
                 if not source.is_file() or not target.is_file() or source.read_bytes() != target.read_bytes():
                     self.error(target, "shared catalog, contract, or Goal guide drifted")
         if len(versions) != 1 or not all(isinstance(v, str) and re.fullmatch(r"\d+\.\d+\.\d+", v) for v in versions):
             self.error(self.root / "templates", "profile versions must match and use three numeric parts")
-        maintainer_version = (self.documents.get(self.root / "docs/workflow.md", ({}, ""))[0] or {}).get("template_version")
+        maintainer_version = (self.documents.get(self.root / "docs/workflow.md", ({}, ""))[0] or {}).get("okms_template_version")
         if not isinstance(maintainer_version, str) or versions != {maintainer_version}:
             self.error(self.root / "docs/workflow.md", "maintainer workflow version must match the payloads")
         for profile in RUNTIME_PROFILES:
@@ -516,7 +530,7 @@ def fixture_adopt(source: Path, project: Path) -> Path:
         if not path.is_file() or not path.read_text().startswith("---\n"):
             return False
         metadata = yaml.load(path.read_text().split("---", 2)[1], Loader=UniqueLoader)
-        return isinstance(metadata, dict) and metadata.get("template") in PROFILES and "template_version" in metadata
+        return isinstance(metadata, dict) and portable_identity(metadata) is not None
 
     candidates = list(dict.fromkeys(path for path in pointed if installed(path)))
     if not candidates:
@@ -572,6 +586,16 @@ def onboarding_smoke(root: Path) -> int:
                 assert snapshot == {p: p.read_bytes() for p in project.rglob("*") if p.is_file()}
                 assert (project / "AGENTS.md").read_text().count("For substantive project tasks,") == 1
                 scenarios += 1
+            # An install from before 0.4.1 carries unprefixed identity keys and is still reused.
+            legacy = scratch / f"{profile}-legacy"
+            shutil.copytree(source, legacy / "docs")
+            workflow = legacy / "docs/workflow.md"
+            workflow.write_text(re.sub(r"^okms_(template(?:_version)?):", r"\1:", workflow.read_text(), flags=re.M))
+            (legacy / "AGENTS.md").write_text("# Project rules\n")
+            snapshot = {p: p.read_bytes() for p in (legacy / "docs").rglob("*") if p.is_file()}
+            assert fixture_adopt(source, legacy) == legacy / "docs"
+            assert snapshot == {p: p.read_bytes() for p in (legacy / "docs").rglob("*") if p.is_file()}
+            scenarios += 1
             conflict = scratch / f"{profile}-occupied"
             (conflict / "docs/okms").mkdir(parents=True)
             sentinel = conflict / "docs/okms/owned.txt"

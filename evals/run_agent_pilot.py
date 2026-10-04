@@ -269,7 +269,7 @@ def source_record(run_dir: Path) -> dict:
 
 
 def template_version() -> str:
-    match = re.search(r'^template_version: "(\d+\.\d+\.\d+)"$',
+    match = re.search(r'^okms_template_version: "(\d+\.\d+\.\d+)"$',
                       (ROOT / "docs/workflow.md").read_text(), re.M)
     if not match:
         raise RuntimeError("Maintainer workflow has no valid template version")

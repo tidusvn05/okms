@@ -8,7 +8,7 @@ description: Locate the template payloads, durable authoring rules, and checks u
 
 ## Purpose
 
-Publish task contracts and recoverable workflows for agents working in any project. Lite and Plan-first 0.4.0 remain portable Markdown with eight kinds and optional delegation. Hybrid Team 0.1.0 is an opt-in Python/Git runtime for local Codex and Claude Code workers; its independent version does not upgrade portable copies.
+Publish task contracts and recoverable workflows for agents working in any project. Lite and Plan-first 0.4.1 remain portable Markdown with eight kinds and optional delegation. Hybrid Team 0.1.0 is an opt-in Python/Git runtime for local Codex and Claude Code workers; its independent version does not upgrade portable copies.
 
 ## Durable rules
 

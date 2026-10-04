@@ -2,8 +2,8 @@
 type: Guide
 title: Lite workflow
 description: Complete one independent change through a saved micro spec and use a plan when work needs coordination.
-template: lite
-template_version: "0.4.0"
+okms_template: lite
+okms_template_version: "0.4.1"
 ---
 
 # Lite workflow

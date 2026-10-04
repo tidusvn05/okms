@@ -290,12 +290,29 @@ class ContractTests(unittest.TestCase):
         path.write_text(path.read_text() + "\n[Other project](../../elsewhere.md)\n")
         self.assertTrue(any("outside file" in error for error in self.errors(link_root=self.project)))
 
+    def test_unprefixed_payload_identity_is_rejected(self):
+        repository = self.project / "repository"
+        shutil.copytree(ROOT / "docs", repository / "docs")
+        shutil.copytree(ROOT / "templates", repository / "templates")
+        path = repository / "templates/lite/docs/workflow.md"
+        path.write_text(re.sub(r"^okms_template:", "template:", path.read_text(), flags=re.M))
+        instance = checker.Checker(repository)
+        instance.load()
+        instance.check_profiles()
+        self.assertTrue(any("namespaced okms_template" in error for error in instance.errors))
+
+    def test_legacy_identity_is_still_recognized(self):
+        self.assertEqual(checker.portable_identity({"template": "lite", "template_version": "0.4.0"}), ("lite", "0.4.0"))
+        self.assertEqual(checker.portable_identity({"okms_template": "plan-first", "okms_template_version": "0.4.1"}),
+                         ("plan-first", "0.4.1"))
+        self.assertIsNone(checker.portable_identity({"template": "main.html"}))
+
     def test_nonscalar_maintainer_version_is_rejected(self):
         repository = self.project / "repository"
         shutil.copytree(ROOT / "docs", repository / "docs")
         shutil.copytree(ROOT / "templates", repository / "templates")
         path = repository / "docs/workflow.md"
-        path.write_text(re.sub(r"^template_version:.*$", "template_version: [invalid]", path.read_text(), flags=re.M))
+        path.write_text(re.sub(r"^okms_template_version:.*$", "okms_template_version: [invalid]", path.read_text(), flags=re.M))
         instance = checker.Checker(repository)
         instance.load()
         instance.check_profiles()

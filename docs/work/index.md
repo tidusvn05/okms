@@ -1,5 +1,7 @@
 # Plans
 
+- [P012 · Namespaced template metadata](P012-namespaced-metadata/index.md) - Rename portable identity keys so documentation site generators accept installed copies.
+
 - [P011 · Automatic tag releases](P011-tag-release/index.md) - Automate tag releases and document installation from published distributions.
 
 - [P010 · Publish Hybrid Team](P010-hybrid-release/index.md) - Deliver verified curl adoption and publish the authorized GitHub prerelease.
