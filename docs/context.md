@@ -8,7 +8,7 @@ description: Locate the template payloads, durable authoring rules, and checks u
 
 ## Purpose
 
-Publish lightweight task contracts and recoverable workflows for agents working in any project. Version 0.2 keeps Lite, Plan-first, and Brownfield profiles, adds selective task routing and bounded Goal contracts, and keeps okbase optional.
+Publish lightweight task contracts and recoverable workflows for agents working in any project. Version 0.3 offers Lite and Plan-first, applies existing-system obligations by affected scope, retains selective task routing and bounded Goal contracts, and keeps okbase optional.
 
 ## Durable rules
 
@@ -19,6 +19,7 @@ Publish lightweight task contracts and recoverable workflows for agents working 
 - Adoption preserves existing docs, agent instructions, and active work.
 - Verification evidence must distinguish actual results from illustrative or skipped checks.
 - Task kind selects a blueprint independently of profile; preserve kindless history and load only the needed contract.
+- Record baseline evidence and compatibility obligations when changing or deciding changes to existing contracts; keep the documentation proportional to the affected scope.
 - Explicit Goals retain consumed attempts, linked plans, stop reasons, and checkpoints. Native execution requires a real supported integration.
 
 ## Verification

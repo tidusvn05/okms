@@ -1,12 +1,12 @@
 ---
 type: Guide
-title: Brownfield example walkthrough
+title: Existing-system Plan-first walkthrough
 description: Replace an assumed baseline with observed behavior before implementing a compatible pagination refactor.
 ---
 
-# Brownfield example walkthrough
+# Existing-system Plan-first walkthrough
 
-The [plan](work/P003-pagination-compatibility/plan.md) illustrates the additional Baseline and Compatibility sections. Its behavior is an assumed scenario; no actual baseline check has run.
+Use the Plan-first template for this coordinated refactor. The [plan](work/P003-pagination-compatibility/plan.md) illustrates conditional Baseline and Compatibility sections because existing pagination contracts are affected. Its behavior is an assumed scenario; no actual baseline check has run.
 
 In a real project, explore the endpoint, callers, current docs, and tests. Record actual current behavior and baseline results before implementation. Separate observed facts from assumptions and identify any existing failures with evidence.
 

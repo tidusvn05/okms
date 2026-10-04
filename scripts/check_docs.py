@@ -17,7 +17,8 @@ except ImportError:
     sys.exit("PyYAML is required for maintainer checks: install requirements-dev.txt.")
 
 
-PROFILES = ("lite", "plan-first", "brownfield")
+PROFILES = ("lite", "plan-first")
+EXAMPLES = ("lite", "plan-first", "existing-system")
 STATES = {"planned", "in_progress", "blocked", "done", "cancelled"}
 SPEC_SECTIONS = ["Intent", "Constraints", "Acceptance", "Verify"]
 PLAN_SECTIONS = ["Goal", "Approach", "Work", "Resume", "Result"]
@@ -31,7 +32,7 @@ PAYLOAD_FILES = {
     "_templates/plan.md", "_templates/catalog.md", "_templates/goal.md", "goal-loop.md", "work/index.md",
     *(f"_templates/{name}" for name in BLUEPRINTS.values()),
 }
-SHARED_FILES = {"goal-loop.md", "_templates/index.md", "_templates/catalog.md", "_templates/goal.md",
+SHARED_FILES = {"goal-loop.md", "_templates/index.md", "_templates/catalog.md", "_templates/plan.md", "_templates/goal.md",
                 *(f"_templates/{name}" for name in BLUEPRINTS.values())}
 ID_PATTERN = r"(?:P\d+-MS\d+|MS\d+)"
 UNEXECUTED = re.compile(r"^(?:pending|not run|not created|not implemented|not verified)\b", re.I)
@@ -399,7 +400,10 @@ class Checker:
 
     def check_profiles(self):
         versions = set()
-        standard = (self.root / "docs/_templates/plan.md").read_bytes()
+        distribution = self.root / "templates"
+        actual_profiles = {path.name for path in distribution.iterdir() if path.is_dir() and not path.name.startswith(".")}
+        if actual_profiles != set(PROFILES):
+            self.error(distribution, "distribution must contain only Lite and Plan-first profiles")
         for profile in PROFILES:
             bundle = self.root / "templates" / profile / "docs"
             inventory = {str(p.relative_to(bundle)) for p in markdown_files(bundle)}
@@ -417,10 +421,6 @@ class Checker:
                 source, target = self.root / "docs" / name, bundle / name
                 if not source.is_file() or not target.is_file() or source.read_bytes() != target.read_bytes():
                     self.error(target, "shared catalog, contract, or Goal guide drifted")
-            if profile != "brownfield" and (bundle / "_templates/plan.md").read_bytes() != standard:
-                self.error(bundle, "shared plan blueprint drifted")
-            if profile == "brownfield" and headings(self.documents[bundle / "_templates/plan.md"][1]) != ["Goal", "Baseline", "Compatibility", *PLAN_SECTIONS[1:]]:
-                self.error(bundle, "Brownfield plan needs baseline and compatibility")
         if len(versions) != 1 or not all(isinstance(v, str) and re.fullmatch(r"\d+\.\d+\.\d+", v) for v in versions):
             self.error(self.root / "templates", "profile versions must match and use three numeric parts")
         maintainer_version = (self.documents.get(self.root / "docs/workflow.md", ({}, ""))[0] or {}).get("template_version")
@@ -490,7 +490,7 @@ def onboarding_smoke(root: Path) -> int:
                 snapshot = {p: p.read_bytes() for p in project.rglob("*") if p.is_file()}
                 # A repeated request, including another profile, must reuse the installed one.
                 assert fixture_adopt(source, project) == destination
-                other = "brownfield" if profile != "brownfield" else "lite"
+                other = next(candidate for candidate in PROFILES if candidate != profile)
                 assert fixture_adopt(root / "templates" / other / "docs", project) == destination
                 assert snapshot == {p: p.read_bytes() for p in project.rglob("*") if p.is_file()}
                 assert (project / "AGENTS.md").read_text().count("For substantive project tasks,") == 1
@@ -517,7 +517,7 @@ def main() -> int:
     checker = Checker(root)
     checker.load()
     checker.check_links()
-    bundles = [root / "docs"] + [root / "templates" / p / "docs" for p in PROFILES] + [root / "examples" / p for p in PROFILES]
+    bundles = [root / "docs"] + [root / "templates" / p / "docs" for p in PROFILES] + [root / "examples" / name for name in EXAMPLES]
     for bundle in bundles:
         checker.check_bundle(bundle)
     if not checker.errors:
@@ -532,7 +532,7 @@ def main() -> int:
         for error in checker.errors:
             print(f"FAIL {error}", file=sys.stderr)
         return 1
-    print(f"PASS: {len(checker.documents)} Markdown files, {len(bundles)} OKF bundles, 3 standalone payloads, {scenarios} onboarding scenarios.")
+    print(f"PASS: {len(checker.documents)} Markdown files, {len(bundles)} OKF bundles, {len(PROFILES)} standalone payloads, {scenarios} onboarding scenarios.")
     print("This command checks documents and fixtures; it does not run agent pilots or example application tests.")
     return 0
 

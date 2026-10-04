@@ -1,0 +1,167 @@
+{
+  "payload_version": "0.3.0",
+  "source": {
+    "files": {
+      "templates/lite/docs/_templates/catalog.md": "985796f5a4d7c7d5dec8c1c40bd5e3e1e0c66f8eb007006d11c15feb878ab364",
+      "templates/lite/docs/_templates/goal.md": "99a5a9a4d514d1548d2f411b710e9c9e651c9346a704b70d43cc6f6823bc5ec3",
+      "templates/lite/docs/_templates/index.md": "e33d05b9e9228ee51cdceeceb736fc82f6d9e98c1328969a90479a065cc0c1d0",
+      "templates/lite/docs/_templates/micro-spec-bugfix.md": "64d65e4447cd4199dd497fc8b0234c0f935bae0b5344c847eb636ec49ae155db",
+      "templates/lite/docs/_templates/micro-spec-design.md": "239b044839c7aa81bb66d790443352fc3687bdd61fb5fe4c47a3f41075dc1590",
+      "templates/lite/docs/_templates/micro-spec-implementation.md": "6e57f4d02fc6105f2d54c4f4b652d191e0c82e1402770811782f727800a16242",
+      "templates/lite/docs/_templates/micro-spec-investigation.md": "2cb65bd9eb42c22e7b5e7210bf5c47d1f8ad36f40a9cb712664779988a50ef07",
+      "templates/lite/docs/_templates/micro-spec-research.md": "9fd81d4d054f57d547cdb003ce171c97ffdb00774ad251de0312caa997249f74",
+      "templates/lite/docs/_templates/micro-spec-runbook.md": "be8121101175aadedbac4f2257e573310df30680ab88f542c626ee241b0ee973",
+      "templates/lite/docs/_templates/micro-spec.md": "f3fbf40b474df4b642fbc21ff7985a63eb5dcee27236259b442b647c3b13c1f6",
+      "templates/lite/docs/_templates/plan.md": "4c3b572028a479194bb9e750bbd43984ceb7aae8c98ecfc9aec3cc998077ffb6",
+      "templates/lite/docs/context.md": "ce1e9b38f06c070bc9e3ae471b69d9a7d15791b91059c37d0a6cf4ba87282e8f",
+      "templates/lite/docs/goal-loop.md": "d6a254ec650e628151cc5665e96bcdaab0eef8acac17ed50730680f739e228c0",
+      "templates/lite/docs/index.md": "b33e856c46b0a0a3ba7723f4bece21b7e24e470d088916d31eea7da31b52bcd4",
+      "templates/lite/docs/work/index.md": "f6e9a2c9c4970be9bf2c098eb4c74f22d5f200df50ec044d8eb6305b44e95850",
+      "templates/lite/docs/workflow.md": "2e3ffa7bb82fee6194873e9dc0756287ff8bf3ff5b73825c7142771d0c8e4efb",
+      "templates/plan-first/docs/_templates/catalog.md": "985796f5a4d7c7d5dec8c1c40bd5e3e1e0c66f8eb007006d11c15feb878ab364",
+      "templates/plan-first/docs/_templates/goal.md": "99a5a9a4d514d1548d2f411b710e9c9e651c9346a704b70d43cc6f6823bc5ec3",
+      "templates/plan-first/docs/_templates/index.md": "e33d05b9e9228ee51cdceeceb736fc82f6d9e98c1328969a90479a065cc0c1d0",
+      "templates/plan-first/docs/_templates/micro-spec-bugfix.md": "64d65e4447cd4199dd497fc8b0234c0f935bae0b5344c847eb636ec49ae155db",
+      "templates/plan-first/docs/_templates/micro-spec-design.md": "239b044839c7aa81bb66d790443352fc3687bdd61fb5fe4c47a3f41075dc1590",
+      "templates/plan-first/docs/_templates/micro-spec-implementation.md": "6e57f4d02fc6105f2d54c4f4b652d191e0c82e1402770811782f727800a16242",
+      "templates/plan-first/docs/_templates/micro-spec-investigation.md": "2cb65bd9eb42c22e7b5e7210bf5c47d1f8ad36f40a9cb712664779988a50ef07",
+      "templates/plan-first/docs/_templates/micro-spec-research.md": "9fd81d4d054f57d547cdb003ce171c97ffdb00774ad251de0312caa997249f74",
+      "templates/plan-first/docs/_templates/micro-spec-runbook.md": "be8121101175aadedbac4f2257e573310df30680ab88f542c626ee241b0ee973",
+      "templates/plan-first/docs/_templates/micro-spec.md": "f3fbf40b474df4b642fbc21ff7985a63eb5dcee27236259b442b647c3b13c1f6",
+      "templates/plan-first/docs/_templates/plan.md": "4c3b572028a479194bb9e750bbd43984ceb7aae8c98ecfc9aec3cc998077ffb6",
+      "templates/plan-first/docs/context.md": "ce1e9b38f06c070bc9e3ae471b69d9a7d15791b91059c37d0a6cf4ba87282e8f",
+      "templates/plan-first/docs/goal-loop.md": "d6a254ec650e628151cc5665e96bcdaab0eef8acac17ed50730680f739e228c0",
+      "templates/plan-first/docs/index.md": "b33e856c46b0a0a3ba7723f4bece21b7e24e470d088916d31eea7da31b52bcd4",
+      "templates/plan-first/docs/work/index.md": "f6e9a2c9c4970be9bf2c098eb4c74f22d5f200df50ec044d8eb6305b44e95850",
+      "templates/plan-first/docs/workflow.md": "c40f967a535203d891c3748dcba9645bf47cdf727439be1aba99e4e86ed996f4"
+    },
+    "combined_sha256": "8508750f770d8e7ef63fa32518bc6be21bea532aa4755cbd0075bd2cb24fb4d2"
+  },
+  "sessions": [
+    {
+      "case": "lite",
+      "profile": "lite",
+      "started_utc": "2026-10-04T02:34:48.282132+00:00",
+      "cli_version": "codex-cli 0.159.0",
+      "model": "existing CLI default; no override",
+      "model_id": null,
+      "thread_id": "01a104c3-9463-7342-9ebb-0c3d578e3767",
+      "duration_seconds": 176.811291,
+      "cli_exit_code": 0,
+      "usage": {
+        "input_tokens": 190784,
+        "cached_input_tokens": 163712,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5252,
+        "reasoning_output_tokens": 2066
+      },
+      "prompt": "Fix parse_page_size(raw) in pagination.py. A missing value (None) defaults to 20. Accept only nonempty ASCII decimal strings representing 1 through 100 inclusive; leading zeros are allowed. Reject empty strings, whitespace, signs, fractions, scientific notation, Unicode digits, zero, values above 100, and other text with PaginationError('invalid page size'). Inputs are strings or None. Preserve the public function and exception names.\n",
+      "checks": {
+        "fresh_cli_completed": true,
+        "history_bodies_not_emitted": true,
+        "spec_before_implementation": true,
+        "agent_ran_unit_tests": true,
+        "standalone_done_with_result": true,
+        "standalone_baseline_before_code": true,
+        "standalone_compatibility_contract": true,
+        "observed_baseline_check_before_code": true,
+        "completion_after_successful_check": true,
+        "independent_behavior": true,
+        "original_project_tests": true,
+        "document_contracts": true
+      },
+      "passed": true,
+      "document_errors": [],
+      "independent_behavior_cases": 20,
+      "original_test_methods": 3,
+      "observed_final_project_test_methods": 6,
+      "observed_order": {
+        "baseline_unit_check_seconds": 31.532886,
+        "contract_seconds": 78.39121,
+        "first_source_change_seconds": 153.234133
+      },
+      "artifact_sha256": {
+        "prompt.txt": "dc3c38410fb28aef52ed9c850e4c9c39935279ca7cc690aaf9a72a8dcfaf734a",
+        "events.jsonl": "04b1f04d1112fc997dc0ad99ce166e059f95a17bcd82305447ae05d12f1b3497",
+        "grade.json": "da529327ff557b09db4ea80b0a548ce60cf5077d6cc2cb56ae34b3048eb30e42",
+        "observations.json": "309eef8d80410470fcffbf896749550d904e98a5c3e1b887eba44b668a9cdea3",
+        "timed-events.json": "90cf517b514d2f99341792ea904513ed0331486b9150d1e32548f5697c9ff8c5",
+        "invocation.json": "264be60b152e9fab971784f79714328bd4cdac6f7c2fa95eec510c34a0919919"
+      },
+      "grading_source_sha256": {
+        "run_agent_pilot.py": "0a79e9992431dac3a2d3180ea149d7dee9aed3637b9f3988cda85fd1ce8633c5",
+        "check_docs.py": "3d05a2b96a023300cb0bdd9bba67f3a74f2a6ea98f541649857dbb389677bef3"
+      }
+    },
+    {
+      "case": "existing-system",
+      "profile": "plan-first",
+      "started_utc": "2026-10-04T02:34:48.277672+00:00",
+      "cli_version": "codex-cli 0.159.0",
+      "model": "existing CLI default; no override",
+      "model_id": null,
+      "thread_id": "01a104c3-9444-7812-940c-d7e9de11aac0",
+      "duration_seconds": 274.499146,
+      "cli_exit_code": 0,
+      "usage": {
+        "input_tokens": 203556,
+        "cached_input_tokens": 174464,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8239,
+        "reasoning_output_tokens": 2946
+      },
+      "prompt": "Refactor the duplicated page_size validation in api.list_articles and api.list_devices into one shared parser in pagination.py. Preserve all current behavior: defaults, accepted and rejected inputs, response shapes, item data, and authorization order. Do not add dependencies or change public signatures.\n",
+      "checks": {
+        "fresh_cli_completed": true,
+        "history_bodies_not_emitted": true,
+        "spec_before_implementation": true,
+        "plan_before_implementation": true,
+        "agent_ran_unit_tests": true,
+        "one_plan": true,
+        "plan_owns_spec_progress": true,
+        "baseline_and_compatibility_before_code": true,
+        "observed_baseline_check_before_code": true,
+        "plan_done": true,
+        "shared_parser_used": true,
+        "completion_after_successful_check": true,
+        "independent_behavior": true,
+        "original_project_tests": true,
+        "document_contracts": true
+      },
+      "passed": true,
+      "document_errors": [],
+      "independent_behavior_cases": 60,
+      "original_test_methods": 4,
+      "observed_final_project_test_methods": 13,
+      "observed_order": {
+        "baseline_unit_check_seconds": 40.818618,
+        "contract_seconds": 104.033786,
+        "first_source_change_seconds": 186.350506
+      },
+      "artifact_sha256": {
+        "prompt.txt": "cae0397700a6ba0f7d6b5fba3863b85555634c13f01821e75eba22cf46ae3262",
+        "events.jsonl": "55c5c8e297daba735df74432d424556a3b8dcdf1575e130ac10ae68f9af04b4a",
+        "grade.json": "e3d9e068050b66ac7e7e856658df11c5574d59e69143b2b191b4e9e38b353531",
+        "observations.json": "c31f84d175729da58ba4e95026baaffeec92f02badd58778b7fbf549d18e7616",
+        "timed-events.json": "ed060e1f403e209065ce4f188a93fb15a998d95ba190b3007cf475474de9124b",
+        "invocation.json": "92cc846cc61d136bf16a58d80736dd7e4d033f26af8130e6093f191d9a76c866"
+      },
+      "grading_source_sha256": {
+        "run_agent_pilot.py": "0a79e9992431dac3a2d3180ea149d7dee9aed3637b9f3988cda85fd1ce8633c5",
+        "check_docs.py": "3d05a2b96a023300cb0bdd9bba67f3a74f2a6ea98f541649857dbb389677bef3"
+      }
+    }
+  ],
+  "passed": true,
+  "totals": {
+    "fresh_conversations": 2,
+    "independent_behavior_cases": 80,
+    "original_test_method_executions": 7
+  },
+  "limits": [
+    "Two targeted controlled projects; the full routing and Goal matrix was not rerun.",
+    "Actual model ID was not recorded; the existing CLI default was used without an override.",
+    "Twenty-millisecond file polling supports observed save order but cannot prove unobserved actions.",
+    "Native Goal execution was not activated or tested."
+  ]
+}

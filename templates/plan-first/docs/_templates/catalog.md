@@ -6,7 +6,7 @@ description: Select one micro spec blueprint by the next required outcome, indep
 
 # Task blueprint catalog
 
-Read this catalog at task selection, then open only the chosen blueprint. The installed Lite, Plan-first, or Brownfield profile controls planning and compatibility; task kind controls the contract. Goal/loop execution is a separate explicit choice.
+Read this catalog at task selection, then open only the chosen blueprint. The installed Lite or Plan-first profile controls planning; task kind controls the contract. Apply existing-system obligations from the workflow according to the affected scope, without changing the profile or kind. Goal/loop execution is a separate explicit choice.
 
 Every specialized blueprint already contains the common four-section contract. Read `micro-spec.md` only when selecting `general`; it is a fallback, not a prerequisite for the other kinds. Future planned kinds do not need their blueprints until their outcomes are ready.
 

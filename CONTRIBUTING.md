@@ -21,17 +21,16 @@ If okbase is available, also check the bundles against its L1 rules:
 okbase -b docs lint --level L1
 okbase -b templates/lite/docs lint --level L1
 okbase -b templates/plan-first/docs lint --level L1
-okbase -b templates/brownfield/docs lint --level L1
 okbase -b examples/lite lint --level L1
 okbase -b examples/plan-first lint --level L1
-okbase -b examples/brownfield lint --level L1
+okbase -b examples/existing-system lint --level L1
 ```
 
 ## Review changes
 
 - Copy each payload to a different directory and follow its links; no required link may depend on the okms checkout.
 - Preserve existing project docs and instructions during setup; repeat setup without overwriting context or adding duplicate pointers.
-- Keep shared blueprints consistent across profiles. Make profile differences explicit in the workflow; Brownfield adds baseline and compatibility to the plan.
+- Keep shared blueprints consistent across Lite and Plan-first. Apply baseline and compatibility obligations by affected scope in either workflow; extra plan sections are conditional.
 - Render blueprints with actual types, titles, descriptions, and values before treating them as work. Never execute a placeholder.
 - Keep plan progress in its Work table, standalone progress in its spec, and evidence truthful. Future specs remain text entries until their files exist.
 - Keep historical paths and indexes stable. Promote lasting rules into current docs rather than loading all history.
@@ -42,10 +41,10 @@ okbase -b examples/brownfield lint --level L1
 
 Use a disposable project with actual code and applicable checks. These scenarios need an agent session; structural checks alone cannot demonstrate agent compliance.
 
-1. Ask for one independent change with Lite. Confirm its saved spec precedes implementation and its Verify section records actual results.
+1. Ask for one independent existing-code change with Lite. Confirm baseline evidence and retained behavior are recorded in its standalone spec before implementation, and Verify records actual results.
 2. Ask for two dependent outcomes with Plan-first. Confirm the plan is saved first, the second spec is written when needed, and progress is updated after checking the first.
 3. Start a fresh session after a checkpoint. Give it the task and project instruction pointer without prior chat. Confirm it selects the matching plan, inspects current files, and continues from Resume.
-4. Use Brownfield for a compatible change. Confirm current behavior and real baseline results are recorded before implementation, and retained behavior is checked afterward.
+4. Use Plan-first for a compatible refactor. Confirm conditional Baseline and Compatibility sections record current behavior and real baseline results before implementation, and retained behavior is checked afterward. For an isolated new outcome, confirm unnecessary sections are omitted.
 5. Introduce a failed required check or unavailable necessary verification. Confirm the item stays incomplete, the blocker is recorded, and acceptance is not weakened.
 6. Add unrelated historical specs. Confirm the agent loads current work and applicable constraints, expanding its reads only when the task warrants it.
 
@@ -53,13 +52,13 @@ Record the task, profile, agent/version, files read, observed state transitions,
 
 For task routing, observe all six specialized kinds and general, investigation-to-repair recovery, design compatibility, supplied source limits, runbook rehearsal, and portable Goal exhaustion/extension/blocking. Record unnecessary blueprint reads as exceptions even when the chosen kind and output are correct. Native activation needs its own actual runtime evaluation.
 
-Run the opt-in, executable [agent pilots](evals/README.md) when evaluating workflow changes. The [v0.2 report](evals/routing-report.md) retains 15 fresh conversations across two drafts and the selective-reading exception; the [v0.1 report](evals/pilot-report.md) remains historical. Raw traces and disposable projects stay outside the published templates; the normal maintainer checker does not launch an agent.
+Run the opt-in, executable [agent pilots](evals/README.md) when evaluating workflow changes. The [v0.3 report](evals/workflow-report.md) covers targeted existing-system work in both workflows. The historical [v0.2 report](evals/routing-report.md) retains 15 fresh conversations across two drafts and the selective-reading exception; the [v0.1 report](evals/pilot-report.md) remains historical. Raw traces and disposable projects stay outside the published templates; the normal maintainer checker does not launch an agent.
 
 ## Versioning and upgrades
 
-The current payload version is `0.2.0`, recorded in each `workflow.md`. Change every profile's version together when publishing updated contracts. Review copies manually during an upgrade: preserve project context, active work, and history, and merge workflow/blueprint changes deliberately.
+The current payload version is `0.3.0`, recorded in each `workflow.md`. Change both workflows' versions together when publishing updated contracts. Review copies manually during an upgrade: preserve project context, active work, and history, and merge workflow/blueprint changes deliberately.
 
-For a v0.1 copy, add the task catalog, six specialized blueprints, Goal blueprint, and Goal guide; merge indexes and workflow rules deliberately. Keep existing spec IDs, plan columns, and kindless historical files. Broaden the existing instruction pointer from implementation tasks to substantive project tasks when adopting the new routing rules, while retaining other project instructions. Repeated setup alone does not upgrade an installation or change its profile.
+Keep existing spec IDs, plan columns, kindless historical files, and project instructions during deliberate upgrades. Repeated setup alone does not upgrade an installation or change its profile.
 
 Check the final change, describe its behavior and evidence, and keep the release focused on templates, documentation, and examples. Installers and automatic synchronization belong in a later proposal.
 

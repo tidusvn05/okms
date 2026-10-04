@@ -10,9 +10,10 @@ Copy a template into your project, point your agent at its workflow, and complet
 | --- | --- | --- |
 | [Lite](templates/lite/docs/workflow.md) | One independent fix, report, or small outcome | Select a kind → save a micro spec → execute → check. Use its Plan-first fallback when scope grows. |
 | [Plan-first](templates/plan-first/docs/workflow.md) | Work with multiple outcomes or dependencies | Save a plan → repeat select → spec → execute → check → checkpoint → check the whole plan. |
-| [Brownfield](templates/brownfield/docs/workflow.md) | Changes to an existing system | Plan-first with observed baseline and compatibility obligations. |
 
 Each template contains 16 Markdown files, including a workflow, context, task catalog, seven micro spec blueprints, Plan and Goal blueprints, Goal execution guidance, and directory indexes. The copied bundle has no runtime dependencies.
+
+Choose the workflow by the work's size and dependencies. Both workflows apply baseline and compatibility obligations when the affected scope includes existing contracts, including shared integration effects from new code. The agent identifies those obligations from the project.
 
 ## Set up with your agent
 
@@ -71,43 +72,6 @@ https://github.com/tidusvn05/okms
 3. For a new installation, fetch the repository with a shallow HTTPS
    clone or archive download into a new temporary directory outside this
    project. Use templates/lite/docs/ from that checkout.
-   Choose docs/ if it is absent or empty; otherwise choose docs/okms/.
-   Copy only the selected docs payload into a new or empty destination.
-   If that destination contains other content, choose an empty
-   destination. Do not overwrite existing project files.
-4. Fill context.md from actual project files: purpose, durable rules,
-   applicable docs, and real required checks/test commands. Preserve
-   existing context on repeated setup. Mark undiscovered information
-   as unknown; never execute placeholders or invent commands.
-5. Reuse a pointer to this installation if one already exists. Otherwise
-   add this instruction once to the project's AGENTS.md, adapting paths:
-   For substantive project tasks, read and follow [the workflow](docs/workflow.md),
-   starting with [the docs index](docs/index.md).
-   Preserve existing instructions. If this agent uses a different
-   instruction entrypoint, add the same pointer there instead.
-6. Check the copied links and report the selected profile and location.
-   Remove the temporary source checkout created for this setup, if any.
-   Keep okbase optional; there is no need to install it for this setup.
-```
-
-</details>
-
-<details>
-<summary>Brownfield — changes to an existing system</summary>
-
-```text
-Set up okms in the current project using the brownfield template from:
-https://github.com/tidusvn05/okms
-
-1. Inspect existing project docs and applicable agent instructions.
-2. Reuse an existing okms installation referenced by the project's
-   instructions, or look for one at docs/workflow.md or
-   docs/okms/workflow.md. Recognize it by its template and template_version
-   metadata; if the intended installation is ambiguous, ask which to use.
-   Reuse it without fetching or switching profiles.
-3. For a new installation, fetch the repository with a shallow HTTPS
-   clone or archive download into a new temporary directory outside this
-   project. Use templates/brownfield/docs/ from that checkout.
    Choose docs/ if it is absent or empty; otherwise choose docs/okms/.
    Copy only the selected docs payload into a new or empty destination.
    If that destination contains other content, choose an empty
@@ -190,7 +154,13 @@ Aim for roughly 100–250 words and 2–5 acceptance criteria. These are writing
 
 Keep critical authorization, data preservation, compatibility, and concurrency rules when they determine correctness. Reference existing code and deliverable docs for details. Verify can mean regression checks, reproducible observations, decision review, source checking, or runbook rehearsal. Never weaken acceptance to make failed or unsupported work appear complete.
 
-Plans use `Goal / Approach / Work / Resume / Result`; Brownfield adds `Baseline / Compatibility`. Save the plan before substantive execution. List future specs and dependencies, then save each spec just before its outcome is executed. Agents continue without a mandatory approval pause unless review was requested or an important decision is missing.
+Plans use `Goal / Approach / Work / Resume / Result`, adding `Baseline / Compatibility` between Goal and Approach when existing contracts are affected. Save the plan before substantive execution. List future specs and dependencies, then save each spec just before its outcome is executed. Agents continue without a mandatory approval pause unless review was requested or an important decision is missing.
+
+## Work on an existing system
+
+The agent inspects the affected behavior, callers, interfaces, stored data, and shared dependencies. Before changing or deciding changes to existing contracts, it records current behavior, actual baseline checks or their unavailability, and known failures. Acceptance and verification cover the contracts to retain and the intended changes.
+
+Lite keeps baseline evidence in the micro spec's Verify section and compatibility obligations in Constraints and Acceptance. A small fix can remain standalone. Plan-first adds concise Baseline and Compatibility sections when these obligations apply, and omits them for outcomes that affect no existing contracts. Include migration, rollout, and rollback only when the change needs them.
 
 ## Run an explicit Goal or loop
 
@@ -240,7 +210,9 @@ The [routing and Goal walkthrough](examples/routing.md) illustrates mixed task k
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for maintainer checks and workflow review scenarios. This repository uses its own Plan-first workflow; its [implementation history](docs/work/index.md) records actual work and verification.
 
-The [v0.2 routing and Goal report](evals/routing-report.md) retains 15 fresh conversations across two drafts, including instruction gaps and affected reruns. All nine latest scenarios choose the expected kinds; eight meet every criterion, with one extra general blueprint read recorded for blocked verification. Independent grading passes 240 behavior-case executions and 47 original test-method executions. Portable Goal exhaustion, explicit extension, recovery, and blocked verification are exercised; native activation is untested.
+The [v0.3 targeted workflow report](evals/workflow-report.md) observes two fresh conversations: a standalone Lite fix and a Plan-first compatible refactor. Both record baseline evidence before code changes and pass all observed criteria, 80 independent behavior cases, and seven original test-method executions. The full routing and Goal matrix was not rerun for this version.
+
+The [historical v0.2 routing and Goal report](evals/routing-report.md) retains 15 fresh conversations across two drafts, including instruction gaps and affected reruns. All nine latest scenarios choose the expected kinds; eight meet every criterion, with one extra general blueprint read recorded for blocked verification. Independent grading passes 240 behavior-case executions and 47 original test-method executions. Portable Goal exhaustion, explicit extension, recovery, and blocked verification are exercised; native activation is untested.
 
 The historical [v0.1 agent pilot report](evals/pilot-report.md) covers adoption and the original workflows. See the [pilot runner instructions](evals/README.md) for opt-in evaluation; ordinary checks do not launch an agent.
 

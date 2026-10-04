@@ -1,6 +1,6 @@
 # Document blueprints
 
-- [Plan template](plan.md) - Save a goal, approach, work table, next action, and final result before implementation.
+- [Plan template](plan.md) - Save a tracked plan with baseline and compatibility sections when existing contracts are affected.
 - [Micro spec template](micro-spec.md) - Define one observable behavior and the method used to verify it.
 - [Task catalog](catalog.md) - Choose one task contract from its intended outcome and required evidence.
 - [Implementation](micro-spec-implementation.md) - Specify a new or intentionally changed behavior.

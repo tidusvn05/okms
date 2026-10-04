@@ -8,9 +8,11 @@ These examples illustrate document shape and workflow decisions. They contain no
 | --- | --- | --- |
 | [Lite](lite/index.md) | Reject invalid pagination sizes | One standalone micro spec owns its progress and verification. |
 | [Plan-first](plan-first/index.md) | Admin device catalog and request decisions | A saved plan owns two dependent outcomes; only the first spec exists initially. |
-| [Brownfield](brownfield/index.md) | Refactor existing pagination validation | An assumed scenario baseline, compatibility obligations, and a real-project verification gate. |
+| [Plan-first in an existing system](existing-system/index.md) | Refactor existing pagination validation | Conditional baseline and compatibility sections, with a real-project verification gate. |
 
 Use [the matching template](../README.md#choose-a-template) in your project, then write your own work from the actual code and requirements. Do not copy fictional baseline claims or test commands into real evidence.
+
+The Lite fix also affects existing behavior: its baseline belongs in Verify and its retained contract in Constraints and Acceptance. Choose the workflow by coordination needs; apply existing-system obligations according to the affected scope.
 
 The Plan-first walkthrough includes a proposed second spec inside a code block. It is a preview to write after the first item is checked, not an already-created work document. During actual use, list the plan's future outcomes first and create their specs one at a time.
 

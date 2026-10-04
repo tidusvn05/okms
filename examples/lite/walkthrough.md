@@ -7,8 +7,8 @@ description: Use a standalone validation spec and record only checks performed i
 # Lite example walkthrough
 
 1. Copy the Lite payload into a real project's chosen docs location and fill its project context.
-2. Explore the existing pagination parser, error contract, callers, and tests.
-3. Save a spec shaped like [MS001](work/MS001-validate-page-size.md), using requirements and verification commands from that project.
+2. Explore the existing pagination parser, error contract, callers, and tests. Run the relevant baseline checks and record actual behavior and known failures, or why checks are unavailable.
+3. Save a spec shaped like [MS001](work/MS001-validate-page-size.md), putting baseline evidence in Verify and retained behavior in Constraints and Acceptance. Use requirements and commands from that project; a small existing-code fix can stay standalone.
 4. Set its `work_status` to `in_progress`, implement the behavior, and check every acceptance criterion.
 5. Record the actual command or review method and result under Verify. Mark `done` only when acceptance and required checks are supported.
 

@@ -14,6 +14,7 @@ Give callers predictable pagination validation while preserving a page size of 2
 ## Constraints
 
 - Always: accept only decimal integer input representing a value from 1 through 100, inclusive.
+- Always: preserve the omitted-value default of 20 and the existing caller interface.
 - Never: silently replace a supplied invalid value with the default or expose a low-level parsing exception.
 
 ## Acceptance
@@ -24,6 +25,8 @@ Give callers predictable pagination validation while preserving a page size of 2
 - Given empty, fractional, scientific-notation, or non-numeric input, When listing articles, Then a validation error is returned.
 
 ## Verify
+
+Baseline: unobserved; inspect the real parser and callers, record current behavior and known failures, and run relevant baseline checks before implementation. This example has no application.
 
 Use the destination project's real targeted tests or equivalent check for omission, valid boundaries, and invalid inputs, then run its required checks. A test label such as `[ms001]` is optional.
 

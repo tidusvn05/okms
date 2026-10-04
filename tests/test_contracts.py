@@ -108,6 +108,35 @@ class ContractTests(unittest.TestCase):
     def test_copied_payload_is_valid(self):
         self.assertFalse(self.errors())
 
+    def test_conditional_plan_sections_are_valid_in_either_workflow(self):
+        self.make_goal()
+        original = self.plan.read_text()
+        for profile in checker.PROFILES:
+            shutil.copyfile(ROOT / "templates" / profile / "docs/workflow.md", self.bundle / "workflow.md")
+            for extra in ("", "## Baseline\n\nFixture-only current behavior and check evidence.\n\n"
+                          "## Compatibility\n\nPreserve the fixture interface.\n\n"):
+                with self.subTest(profile=profile, conditional=bool(extra)):
+                    self.plan.write_text(original.replace("## Approach", extra + "## Approach"))
+                    self.assertFalse(self.errors())
+
+    def test_partial_conditional_plan_sections_are_rejected(self):
+        self.make_goal()
+        original = self.plan.read_text()
+        for name in ("Baseline", "Compatibility"):
+            with self.subTest(section=name):
+                self.plan.write_text(original.replace("## Approach", f"## {name}\n\nFixture-only evidence.\n\n## Approach"))
+                self.assertTrue(any("expected sections" in error for error in self.errors()))
+
+    def test_unexpected_third_profile_is_rejected(self):
+        repository = self.project / "repository"
+        shutil.copytree(ROOT / "docs", repository / "docs")
+        shutil.copytree(ROOT / "templates", repository / "templates")
+        shutil.copytree(repository / "templates/plan-first", repository / "templates/extra-profile")
+        instance = checker.Checker(repository)
+        instance.load()
+        instance.check_profiles()
+        self.assertTrue(any("only Lite and Plan-first" in error for error in instance.errors))
+
     def test_legacy_kindless_spec_stays_valid(self):
         self.make_spec(task_kind=None, standalone=True)
         self.assertFalse(self.errors())
@@ -210,7 +239,7 @@ class ContractTests(unittest.TestCase):
         shutil.copytree(ROOT / "docs", repository / "docs")
         shutil.copytree(ROOT / "templates", repository / "templates")
         path = repository / "docs/workflow.md"
-        path.write_text(path.read_text().replace('template_version: "0.2.0"', 'template_version: ["0.2.0"]'))
+        path.write_text(re.sub(r"^template_version:.*$", "template_version: [invalid]", path.read_text(), flags=re.M))
         instance = checker.Checker(repository)
         instance.load()
         instance.check_profiles()

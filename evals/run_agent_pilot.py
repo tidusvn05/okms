@@ -25,7 +25,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CASES = ("setup", "lite", "plan-first", "brownfield", "blocked")
+CASES = ("setup", "lite", "plan-first", "existing-system", "blocked")
 CHECK = "python3 -m unittest discover -s tests -v"
 PAGINATION = '''class PaginationError(ValueError):
     pass
@@ -55,7 +55,7 @@ class ExistingPaginationTests(unittest.TestCase):
     def test_upper_bound(self):
         self.assertEqual(parse_page_size("100"), 100)
 '''
-BROWNFIELD_API = '''ARTICLES = ["a", "b", "c"]
+EXISTING_API = '''ARTICLES = ["a", "b", "c"]
 DEVICES = ["x", "y", "z"]
 
 
@@ -82,7 +82,7 @@ def list_devices(query, is_admin):
         return 400, {"error": "invalid_page_size"}
     return 200, {"items": DEVICES[:size], "page_size": size}
 '''
-BROWNFIELD_TESTS = '''import unittest
+EXISTING_TESTS = '''import unittest
 from api import list_articles, list_devices
 
 
@@ -175,8 +175,8 @@ def run_check(command: list[str], cwd: Path, timeout: int = 30) -> dict:
 def prepare(case: str, project: Path, observation: Path) -> None:
     project.mkdir(parents=True)
     write(project / "pagination.py", PAGINATION)
-    write(project / "api.py", BROWNFIELD_API if case == "brownfield" else API)
-    original_tests = BROWNFIELD_TESTS if case == "brownfield" else TESTS
+    write(project / "api.py", EXISTING_API if case == "existing-system" else API)
+    original_tests = EXISTING_TESTS if case == "existing-system" else TESTS
     write(project / "tests/test_existing.py", original_tests)
     write(observation / "original_tests.py", original_tests)
     write(project / ".gitignore", "__pycache__/\n*.pyc\n")
@@ -196,7 +196,7 @@ def prepare(case: str, project: Path, observation: Path) -> None:
     if case == "setup":
         write(project / "docs/README.md", "# Existing project docs\n\nPreserve this document during adoption.\n")
     else:
-        profile = "plan-first" if case in {"plan-first", "blocked"} else case
+        profile = "plan-first" if case in {"plan-first", "existing-system", "blocked"} else case
         shutil.copytree(ROOT / "templates" / profile / "docs", project / "docs")
         instructions += (
             "\nFor implementation tasks, read and follow [the workflow](docs/workflow.md), "
@@ -251,6 +251,31 @@ def setup_prompt() -> str:
     return match.group(1).replace("/path/to/okms", str(ROOT))
 
 
+def source_record(run_dir: Path) -> dict:
+    """Freeze the observed payload and checker independently of later edits."""
+    path = run_dir / "source-record.json"
+    if path.exists():
+        return json.loads(path.read_text())
+    payload = {str(path.relative_to(ROOT)): digest(path.read_bytes())
+               for path in sorted((ROOT / "templates").glob("*/docs/**/*.md"))}
+    record = {"files": payload,
+              "combined_sha256": digest(json.dumps(payload, sort_keys=True).encode())}
+    json_write(path, record)
+    snapshot = run_dir / "source-snapshot"
+    shutil.copytree(ROOT / "templates", snapshot / "templates")
+    shutil.copy2(Path(__file__), snapshot / "run_agent_pilot.py")
+    shutil.copy2(ROOT / "scripts/check_docs.py", snapshot / "check_docs.py")
+    return record
+
+
+def template_version() -> str:
+    match = re.search(r'^template_version: "(\d+\.\d+\.\d+)"$',
+                      (ROOT / "docs/workflow.md").read_text(), re.M)
+    if not match:
+        raise RuntimeError("Maintainer workflow has no valid template version")
+    return match.group(1)
+
+
 def prompts(case: str) -> list[tuple[str, str]]:
     if case == "setup":
         return [("setup-first", setup_prompt()), ("setup-repeat", setup_prompt())]
@@ -264,8 +289,8 @@ def prompts(case: str) -> list[tuple[str, str]]:
             ("plan-resume", "Continue the article pagination feature from the saved project files. "
              "Complete the remaining scope and required checks."),
         ]
-    if case == "brownfield":
-        return [("brownfield", "Refactor the duplicated page_size validation in api.list_articles "
+    if case == "existing-system":
+        return [("existing-system", "Refactor the duplicated page_size validation in api.list_articles "
                  "and api.list_devices into one shared parser in pagination.py. Preserve all "
                  "current behavior: defaults, accepted and rejected inputs, response shapes, item "
                  "data, and authorization order. Do not add dependencies or change public signatures.")]
@@ -382,7 +407,7 @@ case = sys.argv[2]
 passed = 0
 valid = [(None, 20), ("1", 1), ("2", 2), ("20", 20), ("100", 100), ("0002", 2)]
 invalid = ["", "0", "101", "-1", "+2", " 2", "2 ", "2.0", "1e1", "bad", "٢", "１２", "\\t2", "2\\n"]
-if case != "brownfield":
+if case != "existing-system":
     from pagination import PaginationError, parse_page_size
     for raw, expected in valid:
         assert parse_page_size(raw) == expected, (raw, expected)
@@ -395,7 +420,7 @@ if case != "brownfield":
         else:
             raise AssertionError((raw, "did not reject"))
         passed += 1
-if case in ("plan-first", "brownfield"):
+if case in ("plan-first", "existing-system"):
     from api import list_articles
     for raw, expected in valid:
         query = {} if raw is None else {"page_size": raw}
@@ -404,7 +429,7 @@ if case in ("plan-first", "brownfield"):
     for raw in invalid:
         assert list_articles({"page_size": raw}) == (400, {"error": "invalid_page_size"}), raw
         passed += 1
-if case == "brownfield":
+if case == "existing-system":
     from api import list_devices
     for raw, expected in valid:
         query = {} if raw is None else {"page_size": raw}
@@ -484,6 +509,15 @@ def grade_session(case: str, label: str, destination: Path, previous: Path | Non
         if case == "lite":
             checks["standalone_done_with_result"] = len(specs) == 1 and not plans and all(state(body) == "done" and
                                                        re.search(r"\bResult:\s*\S", body) for body in specs.values())
+            early_specs = [snapshot_text(destination, change) for change in observations
+                           if change["path"] in specs and first_code_tick is not None and change["tick"] < first_code_tick]
+            checks["standalone_baseline_before_code"] = any("baseline" in text.lower() and CHECK in text
+                and re.search(r"\b(?:passed|OK)\b", text, re.I) for text in early_specs)
+            checks["standalone_compatibility_contract"] = any(re.search(
+                r"^## Constraints\n.*?\b(?:preserve|retain)\b", text, re.M | re.S | re.I) for text in early_specs)
+            first_code_seconds = min((change["seconds"] for change in source_changes), default=0)
+            checks["observed_baseline_check_before_code"] = any("unittest" in command.get("command", "")
+                and command.get("exit_code") == 0 and command["seconds"] < first_code_seconds for command in commands)
         else:
             checks["one_plan"] = len(plans) == 1
             plan = next(iter(plans.values()), "")
@@ -506,7 +540,7 @@ def grade_session(case: str, label: str, destination: Path, previous: Path | Non
                     new_versions = [c for c in observations if c["path"] in specs and c["path"] not in old_spec_paths]
                     checks["second_spec_after_first_done"] = bool(new_versions) and len(work_rows(next((v.decode() for v in before.values() if kind(v.decode()) == "Plan"), ""))) == 2 and work_rows(next(v.decode() for v in before.values() if kind(v.decode()) == "Plan"))[0][2] == "done"
                     checks["second_spec_before_endpoint_code"] = bool(new_versions) and first_code_tick is not None and min(c["tick"] for c in new_versions) < first_code_tick
-            elif case == "brownfield":
+            elif case == "existing-system":
                 early_plans = [snapshot_text(destination, c) for c in observations if c["path"] in plans and first_code_tick is not None and c["tick"] < first_code_tick]
                 checks["baseline_and_compatibility_before_code"] = any("## Baseline" in p and "## Compatibility" in p and CHECK in p and re.search(r"\b(?:passed|OK)\b", p) for p in early_plans)
                 first_code_seconds = min((c["seconds"] for c in source_changes), default=0)
@@ -582,15 +616,20 @@ def main() -> int:
             parser.error("codex is not logged in; this runner never creates or copies credentials")
         manifest = {"started_utc": datetime.now(timezone.utc).isoformat(), "cli": cli,
                     "cli_version": version["stdout"].strip(), "model": "existing CLI default; no override",
+                    "template_version": template_version(),
                     "login_status": (login["stdout"] + login["stderr"]).strip(),
                     "workspace_root": tempfile.mkdtemp(prefix="okms-agent-pilot."), "sessions": []}
         json_write(manifest_path, manifest)
     workspace_root = Path(manifest["workspace_root"])
+    recorded_source = source_record(run_dir)
     print(f"Artifacts: {run_dir}\nDisposable projects: {workspace_root}", flush=True)
     for case in arguments.cases:
         observation = run_dir / case
         project = workspace_root / case
         if not project.exists():
+            for name, fingerprint in recorded_source["files"].items():
+                if digest((ROOT / name).read_bytes()) != fingerprint:
+                    raise RuntimeError("Payload changed since this run started; preserve evidence and use a new run directory")
             observation.mkdir(parents=True, exist_ok=True)
             prepare(case, project, observation)
             print(f"{case}: baseline passed", flush=True)
@@ -619,7 +658,7 @@ def main() -> int:
         if grade_path.exists():
             grades[session["label"]] = json.loads(grade_path.read_text())
     summary = {"started_utc": manifest["started_utc"], "cli_version": manifest["cli_version"],
-               "model": manifest["model"], "sessions": grades,
+               "model": manifest["model"], "template_version": manifest.get("template_version"), "sessions": grades,
                "passed": all(grade["passed"] for grade in grades.values()) if grades else None}
     json_write(run_dir / "results.json", summary)
     return 0 if arguments.fixtures_only or summary["passed"] else 1

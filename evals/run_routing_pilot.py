@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Opt-in fresh-session task routing and portable Goal pilots for v0.2."""
+"""Opt-in fresh-session task routing and portable Goal pilots."""
 
 from __future__ import annotations
 
@@ -21,7 +21,7 @@ import run_agent_pilot as observer
 
 ROOT = observer.ROOT
 CASES = ("investigate-fix", "design", "research", "runbook", "general", "goal", "goal-blocked")
-PROFILES = {"investigate-fix": "plan-first", "design": "brownfield", "research": "lite",
+PROFILES = {"investigate-fix": "plan-first", "design": "plan-first", "research": "lite",
             "runbook": "lite", "general": "lite", "goal": "plan-first", "goal-blocked": "plan-first"}
 EXPECTED = {"diagnosis": "investigation", "repair": "bugfix", "design": "design", "research": "research",
             "runbook": "runbook", "general": "general", "goal-limit": "implementation",
@@ -80,7 +80,7 @@ def source_record(run_dir: Path) -> dict:
 
 
 def prepare(case: str, project: Path, destination: Path):
-    old_case = "blocked" if case == "goal-blocked" else PROFILES[case]
+    old_case = "blocked" if case == "goal-blocked" else "existing-system" if case == "design" else PROFILES[case]
     observer.prepare(old_case, project, destination)
     agents = project / "AGENTS.md"
     agents.write_text(agents.read_text().replace("For implementation tasks,", "For substantive project tasks,") +
@@ -209,7 +209,7 @@ def grade(case: str, label: str, destination: Path, previous: Path | None) -> di
         checks["repair_plan_closed"] = len(plans) == 1 and next(iter(plans.values()))[0].get("work_status") == "done" and len(specs) >= 2
     if label == "design":
         checks["decision_and_compatibility_evidence"] = all(re.search(pattern, body) for pattern in (r"alternativ|option", r"decision|recommend", r"consequence|trade.?off", r"invalid_page_size", r"forbidden"))
-        checks["brownfield_baseline_recorded"] = any("## Baseline" in text and "## Compatibility" in text and observer.CHECK in text for _, text in plans.values())
+        checks["existing_system_baseline_recorded"] = any("## Baseline" in text and "## Compatibility" in text and observer.CHECK in text for _, text in plans.values())
     if label == "research":
         checks["source_facts_dates_and_limits"] = all(token in body for token in ("harbor", "quarry", "2026-09-30", "2026-10-01", "atomic")) and all(re.search(pattern, body) for pattern in (r"\b4\s*ms", r"\b12\s*ms", r"limit|unknown|unspecified|comparab"))
         checks["source_references_present"] = "harbor.md" in body and "quarry.md" in body
@@ -295,7 +295,7 @@ def main():
             parser.error("Codex must already be installed and logged in; credentials are never created or copied")
         manifest = {"started_utc": datetime.now(timezone.utc).isoformat(), "cli": cli,
                     "cli_version": observer.run_check([cli, "--version"], ROOT)["stdout"].strip(),
-                    "model": "existing default; no override", "template_version": "0.2.0",
+                    "model": "existing default; no override", "template_version": observer.template_version(),
                     "workspace_root": tempfile.mkdtemp(prefix="okms-routing-pilot."), "sessions": []}
         observer.json_write(manifest_path, manifest)
     workspace_root = Path(manifest["workspace_root"])

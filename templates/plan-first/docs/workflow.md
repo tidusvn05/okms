@@ -3,7 +3,7 @@ type: Guide
 title: Plan-first workflow
 description: Save an implementation plan and complete one verified micro spec at a time with recoverable progress.
 template: plan-first
-template_version: "0.2.0"
+template_version: "0.3.0"
 ---
 
 # Plan-first workflow
@@ -26,9 +26,17 @@ Start with project-wide context, the current plan, the current micro spec, and i
 
 The root index's Active work section points to open work. Historical work and `_templates/` are available for lookup, not an instruction to load the entire corpus. If multiple plans are open, select the one matching the task rather than assuming the newest is current.
 
+## Existing-system obligations
+
+Inspect the affected implementation, callers, interfaces, stored data, and shared dependencies. When the outcome changes or decides changes to existing contracts, record the current behavior and actual baseline check results before implementation or the decision. Include known failures and their evidence. If a check cannot run, record why; missing necessary evidence remains incomplete.
+
+Identify behavior, interfaces, data, and invariants to preserve, plus intentional contract changes. Acceptance and verification must cover retained behavior and the requested change. Include migration, rollout, and rollback only when the change needs them. Ask when a breaking change lacks a clear requirement.
+
+Add Baseline and Compatibility before Approach in the plan when these obligations apply. Keep them concise and scoped to the affected contracts; omit them for outcomes that affect no existing contracts, such as an isolated new component or a report. Check shared integration effects before treating new code as isolated. An existing repository alone does not require these sections or another workflow profile.
+
 ## Work loop
 
-1. Save Goal, Approach, Work, Resume, and Result in a new plan, or read the checkpoint in an existing plan.
+1. Save Goal, Approach, Work, Resume, and Result, adding applicable Baseline and Compatibility sections, or read the checkpoint in an existing plan.
 2. Select one planned item whose dependencies are done. Inspect relevant code or sources, choose its catalog kind, and save the selected micro spec with its outcome and verification method.
 3. Add the created file to its directory index, turn its plan entry into a link, and set the item's State to `in_progress`.
 4. Execute the scoped outcome. Keep detailed findings, designs, reports, or procedures in their deliverables. Update the spec and plan when scope changes; do not weaken acceptance to excuse a failure.
@@ -41,7 +49,7 @@ Checkpoint at state or scope changes, handoff, and interruption. Retain the lite
 
 Micro specs use **Intent / Constraints / Acceptance / Verify**. Describe one observable outcome, essential Always/Never invariants, and meaningful outcome-specific acceptance. Given/When/Then is useful for behavior; source-backed conclusions and document checks suit other kinds. Approximately 100–250 words and 2–5 acceptance criteria are writing guides, not limits. Include implementation details only when required for correctness or compatibility. Verify names a real command or review method, expected result, and relevant test scope or justified skip. A conclusion required by acceptance stays incomplete when supporting evidence is missing.
 
-Plans use **Goal / Approach / Work / Resume / Result**. Include exclusions in Goal and important decisions or assumptions in Approach. Work columns are **Spec / Depends on / State / Evidence**. List future items as text; link them only after their files exist. Use `P001`, `P002`, … for plans and `P001-MS01`, `P001-MS02`, … for their specs. Allocate the next unused ID; keep assigned IDs and paths stable. One writer updates a plan at a time.
+Plans use **Goal / Approach / Work / Resume / Result**, with **Baseline / Compatibility** between Goal and Approach when existing-system obligations apply. Include exclusions in Goal and important decisions or assumptions in Approach. Work columns are **Spec / Depends on / State / Evidence**. List future items as text; link them only after their files exist. Use `P001`, `P002`, … for plans and `P001-MS01`, `P001-MS02`, … for their specs. Allocate the next unused ID; keep assigned IDs and paths stable. One writer updates a plan at a time.
 
 Create plans under `work/P001-short-title/` with `index.md`, `plan.md`, and their micro specs. Store the catalog-selected `kind` in each new micro spec. Legacy specs without kind remain valid under the common contract; preserve historical metadata. Render blueprints by replacing every `{{PLACEHOLDER}}` and setting `type`, `title`, and `description` to the actual document. Types are `Plan` and `MicroSpec`; reusable blueprints keep `type: Template`. Keep an index in every directory and list each immediate document or subdirectory with a useful description.
 
