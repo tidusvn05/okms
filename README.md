@@ -16,7 +16,10 @@ Each template contains 16 Markdown files, including a workflow, context, task ca
 
 ## Set up with your agent
 
-Open your agent in the destination project and paste this prompt as-is. The agent needs project file access and network access to fetch the public repository; it obtains the template for you.
+Open your agent in the destination project, choose a profile below, and paste its full prompt as-is. The agent needs project file access and network access to fetch the public repository; it obtains the template for you.
+
+<details open>
+<summary>Plan-first — multiple outcomes or dependencies (default)</summary>
 
 ```text
 Set up okms in the current project using the plan-first template from:
@@ -50,7 +53,83 @@ https://github.com/tidusvn05/okms
    Keep okbase optional; there is no need to install it for this setup.
 ```
 
-The default is Plan-first. Change both `plan-first` occurrences to `lite` or `brownfield` to select another profile; no source-path edit or pre-clone is needed. The setup prompt performs setup; give the agent a substantive task afterward.
+</details>
+
+<details>
+<summary>Lite — one small independent outcome</summary>
+
+```text
+Set up okms in the current project using the lite template from:
+https://github.com/tidusvn05/okms
+
+1. Inspect existing project docs and applicable agent instructions.
+2. Reuse an existing okms installation referenced by the project's
+   instructions, or look for one at docs/workflow.md or
+   docs/okms/workflow.md. Recognize it by its template and template_version
+   metadata; if the intended installation is ambiguous, ask which to use.
+   Reuse it without fetching or switching profiles.
+3. For a new installation, fetch the repository with a shallow HTTPS
+   clone or archive download into a new temporary directory outside this
+   project. Use templates/lite/docs/ from that checkout.
+   Choose docs/ if it is absent or empty; otherwise choose docs/okms/.
+   Copy only the selected docs payload into a new or empty destination.
+   If that destination contains other content, choose an empty
+   destination. Do not overwrite existing project files.
+4. Fill context.md from actual project files: purpose, durable rules,
+   applicable docs, and real required checks/test commands. Preserve
+   existing context on repeated setup. Mark undiscovered information
+   as unknown; never execute placeholders or invent commands.
+5. Reuse a pointer to this installation if one already exists. Otherwise
+   add this instruction once to the project's AGENTS.md, adapting paths:
+   For substantive project tasks, read and follow [the workflow](docs/workflow.md),
+   starting with [the docs index](docs/index.md).
+   Preserve existing instructions. If this agent uses a different
+   instruction entrypoint, add the same pointer there instead.
+6. Check the copied links and report the selected profile and location.
+   Remove the temporary source checkout created for this setup, if any.
+   Keep okbase optional; there is no need to install it for this setup.
+```
+
+</details>
+
+<details>
+<summary>Brownfield — changes to an existing system</summary>
+
+```text
+Set up okms in the current project using the brownfield template from:
+https://github.com/tidusvn05/okms
+
+1. Inspect existing project docs and applicable agent instructions.
+2. Reuse an existing okms installation referenced by the project's
+   instructions, or look for one at docs/workflow.md or
+   docs/okms/workflow.md. Recognize it by its template and template_version
+   metadata; if the intended installation is ambiguous, ask which to use.
+   Reuse it without fetching or switching profiles.
+3. For a new installation, fetch the repository with a shallow HTTPS
+   clone or archive download into a new temporary directory outside this
+   project. Use templates/brownfield/docs/ from that checkout.
+   Choose docs/ if it is absent or empty; otherwise choose docs/okms/.
+   Copy only the selected docs payload into a new or empty destination.
+   If that destination contains other content, choose an empty
+   destination. Do not overwrite existing project files.
+4. Fill context.md from actual project files: purpose, durable rules,
+   applicable docs, and real required checks/test commands. Preserve
+   existing context on repeated setup. Mark undiscovered information
+   as unknown; never execute placeholders or invent commands.
+5. Reuse a pointer to this installation if one already exists. Otherwise
+   add this instruction once to the project's AGENTS.md, adapting paths:
+   For substantive project tasks, read and follow [the workflow](docs/workflow.md),
+   starting with [the docs index](docs/index.md).
+   Preserve existing instructions. If this agent uses a different
+   instruction entrypoint, add the same pointer there instead.
+6. Check the copied links and report the selected profile and location.
+   Remove the temporary source checkout created for this setup, if any.
+   Keep okbase optional; there is no need to install it for this setup.
+```
+
+</details>
+
+Each prompt performs setup; give the agent a substantive task afterward. Existing installations keep their current profile; request a profile switch explicitly if needed.
 
 ## Set up manually
 
