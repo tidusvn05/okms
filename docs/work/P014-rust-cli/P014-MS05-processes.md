@@ -1,11 +1,11 @@
 ---
 type: MicroSpec
 kind: bugfix
-title: P012-MS05 · Bound descendant cleanup
+title: P014-MS05 · Bound descendant cleanup
 description: Keep cancellation bounded when a terminated driver leaves descendants that ignore graceful termination.
 ---
 
-# P012-MS05 · Bound descendant cleanup
+# P014-MS05 · Bound descendant cleanup
 
 ## Intent
 

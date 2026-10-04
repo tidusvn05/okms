@@ -1,11 +1,11 @@
 ---
 type: MicroSpec
 kind: implementation
-title: P012-MS01 · Rust runtime foundation
+title: P014-MS01 · Rust runtime foundation
 description: Introduce a standalone Rust command interface and preserve durable ownership, identities, messages, and events.
 ---
 
-# P012-MS01 · Rust runtime foundation
+# P014-MS01 · Rust runtime foundation
 
 ## Intent
 

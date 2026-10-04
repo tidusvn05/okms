@@ -1,11 +1,11 @@
 ---
 type: MicroSpec
 kind: implementation
-title: P012-MS02 · Complete Rust coordination
+title: P014-MS02 · Complete Rust coordination
 description: Preserve scoped worktrees, bounded provider execution, resume, mandatory integration gates, hooks, and checkpoints in Rust.
 ---
 
-# P012-MS02 · Complete Rust coordination
+# P014-MS02 · Complete Rust coordination
 
 ## Intent
 

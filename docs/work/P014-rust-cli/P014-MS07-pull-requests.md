@@ -1,11 +1,11 @@
 ---
 type: MicroSpec
 kind: implementation
-title: P012-MS07 · Review and merge portable changes
+title: P014-MS07 · Review and merge portable changes
 description: Integrate the user's stacked metadata and setup-convention PRs after exact-source review and compatible checks.
 ---
 
-# P012-MS07 · Review and merge portable changes
+# P014-MS07 · Review and merge portable changes
 
 ## Intent
 

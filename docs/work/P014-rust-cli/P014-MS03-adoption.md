@@ -1,11 +1,11 @@
 ---
 type: MicroSpec
 kind: implementation
-title: P012-MS03 · Embedded preserving setup
+title: P014-MS03 · Embedded preserving setup
 description: Install an embedded Rust Hybrid Team payload and native helper commands while preserving project ownership.
 ---
 
-# P012-MS03 · Embedded preserving setup
+# P014-MS03 · Embedded preserving setup
 
 ## Intent
 

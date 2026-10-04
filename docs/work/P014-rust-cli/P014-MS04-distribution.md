@@ -1,11 +1,11 @@
 ---
 type: MicroSpec
 kind: implementation
-title: P012-MS04 · Rust binary distribution
+title: P014-MS04 · Rust binary distribution
 description: Build checked platform binaries, install without Python, and publish regular releases from matching tags.
 ---
 
-# P012-MS04 · Rust binary distribution
+# P014-MS04 · Rust binary distribution
 
 ## Intent
 

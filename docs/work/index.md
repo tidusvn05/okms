@@ -1,6 +1,6 @@
 # Plans
 
-- [P012 · Standalone Rust CLI](P012-rust-cli/index.md) - Replace Python coordination with a standalone Rust binary and publish after a final spike.
+- [P014 · Standalone Rust CLI](P014-rust-cli/index.md) - Replace Python coordination with a standalone Rust binary and publish after a final spike.
 
 - [P011 · Automatic tag releases](P011-tag-release/index.md) - Automate tag releases and document installation from published distributions.
 
