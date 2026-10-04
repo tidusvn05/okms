@@ -9,9 +9,9 @@ work_status: in_progress
 
 ## Goal
 
-Deliver a standalone okms Rust binary for complete Hybrid Team setup and coordination without Python, and complete the user's authorized spike and official GitHub release after verification.
+Deliver a standalone okms Rust binary for complete Hybrid Team setup and coordination without Python, integrate the user's two reviewed portable-profile PRs, and complete the authorized spike and official GitHub release after verification.
 
-Out of scope: portable-profile contract changes, automatic upgrades of existing installations, credential changes, native trust bypass, and unsupported remote/desktop integrations.
+Out of scope: unrelated portable contract changes, automatic upgrades of existing installations, credential changes, native trust bypass, and unsupported remote/desktop integrations.
 
 ## Baseline
 
@@ -30,6 +30,7 @@ Preserve JSON envelopes, identity fencing, SQLite schema, plan-owned progress, s
 - Build native Linux/macOS archives through Actions, replace the Python installer with checked binary installation, and publish a new independent Hybrid Team version after final checks.
 - Run the explicitly authorized mixed-provider spike against the final Rust payload; preserve all failed attempts and diagnose failures before rerunning. Automatic hook trust remains user-owned.
 - Activate CI/release workflows, verify published asset downloads and Python-free installation, and record the supported release scope and any measured limitations.
+- The user additionally authorized reviewing and merging stacked PRs #1 (portable metadata 0.4.1) and #2 (project-convention setup). Review exact heads, resolve overlaps with the Rust migration, verify the combined tree and preserve the PR histories before final release. Concurrent plans retain their assigned IDs in distinct existing directories; explicit paths identify their scope.
 
 ## Work
 
@@ -40,12 +41,13 @@ Preserve JSON envelopes, identity fencing, SQLite schema, plan-owned progress, s
 | [P012-MS03 · Embedded preserving setup and native configuration](P012-MS03-adoption.md) | P012-MS02 | done | Six native adoption scenarios and five adapted pilot controls pass, including source removal with no Python in PATH, collision/preservation/preflight checks, ignored worker overlays and legacy-upgrade refusal. The active payload contains no Python files; the old checksum-pinned distribution remains a comparison fixture. Checker passes 188 documents; clippy passes. |
 | [P012-MS04 · Binary installation, CI and regular tag releases](P012-MS04-distribution.md) | P012-MS03 | in_progress | Seven binary-distribution scenarios pass, including Python-free setup and independent integrity/extraction controls. All 116 maintainer tests, six native Rust tests, minimum Rust 1.88 compilation, fmt/clippy, shell syntax and actionlint pass; checker passes 190 documents. Two checker-fixture errors were corrected by including the new Rust source metadata. Pending observed Actions build/rehearsal. |
 | [P012-MS05 · Bounded descendant cleanup](P012-MS05-processes.md) | P012-MS02 | done | The real descendant-write regression initially failed (seven writes after cancellation instead of one); repaired group cleanup passes in 5.34s. All 116 maintainer scenarios and six native Rust tests pass, with no surviving reproduction process. Minimum Rust 1.88, fmt and clippy pass. |
-| P012-MS06 · Final Rust mixed-provider spike and publication | P012-MS04, P012-MS05 | planned | Pending. |
+| [P012-MS07 · Review and merge the portable PRs](P012-MS07-pull-requests.md) | — | in_progress | PR #1 head 41d9f41 and stacked #2 head 8ad8c6c have passing old CI. Reviewing current diff/compatibility and resolving the Rust overlaps before merging. |
+| P012-MS06 · Final Rust mixed-provider spike and publication | P012-MS04, P012-MS05, P012-MS07 | planned | Pending. |
 
 ## Resume
 
-- Current: P012-MS04.
-- Next: commit/push the checked implementation, observe the four-platform Actions rehearsal, and download its Linux binary for the final native spike.
+- Current: P012-MS07; the P012-MS04 Actions rehearsal is also running.
+- Next: review and integrate PR #1 before #2, check their combined tree, then freeze the final release binary for native evaluation.
 - Blocker: none.
 
 ## Result

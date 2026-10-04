@@ -6,3 +6,4 @@
 - [Adoption contract](P012-MS03-adoption.md) - Embedded payload, project-local executable, preserving setup, and Python-free native commands.
 - [Distribution contract](P012-MS04-distribution.md) - Checked platform archives, Python-free installation, CI and regular tag publication.
 - [Process cleanup contract](P012-MS05-processes.md) - Bound descendants after their driver exits during cancellation.
+- [PR integration contract](P012-MS07-pull-requests.md) - Review the stacked portable changes and merge a checked combined tree.
