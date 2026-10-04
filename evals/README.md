@@ -4,13 +4,16 @@
 
 Read the [v0.1 observed report](hybrid-report.md) and [measurements](hybrid-results.json) for selected passes, retained failures, component follow-ups, and native activation limits.
 
-The opt-in [Hybrid runner](run_hybrid_pilot.py) prepares three disposable Git projects with dirty staging, unstaged edits, untracked notes, and two saved independent contracts. It uses installed/logged-in Codex and Claude Code CLIs without installing tools, copying credentials, or bypassing native trust/permissions. Its source fingerprint/snapshot freezes the payload, checker, and runner; use a new directory after source changes.
+The opt-in [Hybrid runner](run_hybrid_pilot.py) exercises the Rust CLI in three disposable Git projects with dirty staging, unstaged edits, untracked notes, and two saved independent contracts. It uses installed/logged-in Codex and Claude Code CLIs without installing tools, copying credentials, or bypassing native trust/permissions. Its source fingerprint/snapshot freezes the Rust source, executable, payload, checker and runner; use a new directory after source changes. Python belongs to the evaluation harness and fixture application checks, not the distributed runtime.
 
 ```sh
+cargo build --locked
 .venv/bin/python evals/run_hybrid_pilot.py --fixtures-only --run-dir .pilot-runs/hybrid-fixtures
 .venv/bin/python evals/run_hybrid_pilot.py --run-dir .pilot-runs/hybrid-live
 .venv/bin/python evals/run_hybrid_pilot.py --grade-only --run-dir .pilot-runs/hybrid-live
 ```
+
+Set `OKMS_TEST_BINARY=/absolute/path/to/okms` to evaluate a downloaded release/rehearsal binary instead of target/debug/okms. The harness copies it into each project and retains its version/hash.
 
 Cases `codex` and `claude` start that tool as coordinator, two external mixed-provider workers, and the other tool as standby for explicit handoff. The label worker requests input, returns waiting_input, and resumes by its saved native ID when the duration worker replies. The receiving coordinator checks the actual root before final completion. Case `blocked` retains a required unavailable combined gate and incomplete plan rows. `--cases` selects cases; `--timeout` defaults to 900 seconds per case.
 

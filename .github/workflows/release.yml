@@ -17,13 +17,23 @@ defaults:
     shell: bash
 
 jobs:
-  prepare:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    outputs:
-      tag: ${{ steps.package.outputs.tag }}
-      version: ${{ steps.package.outputs.version }}
-      archive: ${{ steps.package.outputs.archive }}
+  build:
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: x86_64-unknown-linux-musl
+            runner: ubuntu-24.04
+          - target: aarch64-unknown-linux-musl
+            runner: ubuntu-24.04-arm
+          - target: x86_64-apple-darwin
+            runner: macos-15-intel
+          - target: aarch64-apple-darwin
+            runner: macos-15
+    env:
+      OKMS_TARGET: ${{ matrix.target }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -31,42 +41,87 @@ jobs:
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.13"
-      - name: Validate pushed tag
-        if: github.event_name == 'push'
-        run: python scripts/build_hybrid_release.py --tag "$GITHUB_REF_NAME" --validate-only
-      - name: Prepare maintainer environment
+      - name: Validate release version before building
         run: |
-          python -m venv .venv
-          .venv/bin/python -m pip install -r requirements-dev.txt
-      - name: Check documents and tests
+          release_args=()
+          if [[ "$GITHUB_EVENT_NAME" == push ]]; then release_args+=(--tag "$GITHUB_REF_NAME"); fi
+          python scripts/build_hybrid_release.py "${release_args[@]}" --validate-only
+      - name: Prepare pinned Rust toolchain
+        run: rustup toolchain install 1.88.0 --profile minimal --target "$OKMS_TARGET"
+      - name: Prepare static Linux compiler
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install --yes musl-tools
+      - name: Build native binary
+        env:
+          RUSTUP_TOOLCHAIN: "1.88.0"
         run: |
-          .venv/bin/python scripts/check_docs.py
-          .venv/bin/python -m unittest discover -s tests -v
-          sh -n install.sh
-      - name: Build assets and versioned notes
+          if [[ "$RUNNER_OS" == Linux ]]; then export CC=musl-gcc; fi
+          cargo build --release --locked --target "$OKMS_TARGET"
+          unset CC
+          cargo test --locked
+      - name: Package and smoke-test on the native platform
+        run: |
+          release_args=()
+          if [[ "$GITHUB_EVENT_NAME" == push ]]; then release_args+=(--tag "$GITHUB_REF_NAME"); fi
+          python scripts/build_hybrid_release.py "${release_args[@]}" \
+            --binary "target/$OKMS_TARGET/release/okms" --target "$OKMS_TARGET" --output dist
+          release_project="$(mktemp -d)"
+          release_bin="$(mktemp -d)"
+          trap 'rm -rf "$release_project" "$release_bin"' EXIT
+          sh dist/install.sh --release-dir "$PWD/dist" --bin-dir "$release_bin" --project "$release_project" --dry-run
+          sh dist/install.sh --release-dir "$PWD/dist" --bin-dir "$release_bin" --project "$release_project"
+          sh dist/install.sh --release-dir "$PWD/dist" --bin-dir "$release_bin" --project "$release_project"
+          "$release_project/.okms/okms" --help
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: okms-${{ matrix.target }}-${{ github.sha }}
+          path: dist/okms-*.tar.gz
+          if-no-files-found: error
+          retention-days: 7
+
+  prepare:
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    outputs:
+      tag: ${{ steps.package.outputs.tag }}
+      version: ${{ steps.package.outputs.version }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.13"
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          pattern: okms-*-${{ github.sha }}
+          path: dist
+          merge-multiple: true
+      - name: Assemble checked assets and notes
         id: package
         run: |
           release_args=()
-          if [[ "$GITHUB_EVENT_NAME" == push ]]; then
-            release_args+=(--tag "$GITHUB_REF_NAME")
-          fi
-          .venv/bin/python scripts/build_hybrid_release.py "${release_args[@]}" --output dist --notes dist/release-notes.md > "$RUNNER_TEMP/hybrid-release.json"
-          .venv/bin/python - "$RUNNER_TEMP/hybrid-release.json" "$GITHUB_OUTPUT" <<'PY'
+          if [[ "$GITHUB_EVENT_NAME" == push ]]; then release_args+=(--tag "$GITHUB_REF_NAME"); fi
+          python scripts/build_hybrid_release.py "${release_args[@]}" \
+            --assemble --output dist --notes dist/release-notes.md > "$RUNNER_TEMP/okms-release.json"
+          python - "$RUNNER_TEMP/okms-release.json" "$GITHUB_OUTPUT" <<'PY'
           import json, sys
           metadata = json.load(open(sys.argv[1]))
           with open(sys.argv[2], "a") as output:
-              for key in ("tag", "version", "archive"):
+              for key in ("tag", "version"):
                   output.write(key + "=" + metadata[key] + "\n")
           PY
-      - name: Verify checksums and rehearse installation
-        run: |
           (cd dist && sha256sum --check SHA256SUMS)
-          release_project="$(mktemp -d)"
-          trap 'rm -rf "$release_project"' EXIT
-          sh dist/install.sh --release-dir "$PWD/dist" --project "$release_project" --dry-run
-          sh dist/install.sh --release-dir "$PWD/dist" --project "$release_project"
-          sh dist/install.sh --release-dir "$PWD/dist" --project "$release_project"
-          python "$release_project/.okms/team.py" --help
+      - name: Check documents and retained regression suite
+        run: |
+          mkdir -p target/debug
+          tar -xzf dist/okms-x86_64-unknown-linux-musl.tar.gz -C target/debug okms
+          python -m venv .venv
+          .venv/bin/python -m pip install -r requirements-dev.txt
+          .venv/bin/python scripts/check_docs.py
+          .venv/bin/python -m unittest discover -s tests -v
+          sh -n install.sh
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: hybrid-team-${{ github.sha }}
@@ -77,45 +132,44 @@ jobs:
   publish:
     if: github.event_name == 'push' && github.ref_type == 'tag'
     needs: prepare
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
     permissions:
       contents: write
     env:
       OKMS_RELEASE_TAG: ${{ needs.prepare.outputs.tag }}
       OKMS_RELEASE_VERSION: ${{ needs.prepare.outputs.version }}
-      OKMS_RELEASE_ARCHIVE: ${{ needs.prepare.outputs.archive }}
     steps:
       - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: hybrid-team-${{ github.sha }}
           path: dist
-      - name: Publish checked prerelease
+      - name: Publish checked regular release
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         run: |
-          gh release create "$OKMS_RELEASE_TAG" \
-            "dist/$OKMS_RELEASE_ARCHIVE" dist/install.sh dist/SHA256SUMS \
-            --verify-tag --prerelease --latest=false \
-            --title "Hybrid Team $OKMS_RELEASE_VERSION (experimental)" \
-            --notes-file dist/release-notes.md
-      - name: Verify public downloads and installation
+          gh release create "$OKMS_RELEASE_TAG" dist/okms-*.tar.gz dist/install.sh dist/SHA256SUMS \
+            --verify-tag --latest \
+            --title "Hybrid Team $OKMS_RELEASE_VERSION" --notes-file dist/release-notes.md
+      - name: Verify public assets and installation
         env:
           OKMS_RELEASE_REPOSITORY: ${{ github.repository }}
         run: |
           release_downloads="$(mktemp -d)"
           release_project="$(mktemp -d)"
-          trap 'rm -rf "$release_downloads" "$release_project"' EXIT
-          for release_asset in "$OKMS_RELEASE_ARCHIVE" install.sh SHA256SUMS; do
+          release_bin="$(mktemp -d)"
+          trap 'rm -rf "$release_downloads" "$release_project" "$release_bin"' EXIT
+          for source_asset in dist/okms-*.tar.gz dist/install.sh dist/SHA256SUMS; do
+            release_asset="$(basename "$source_asset")"
             curl --fail --location --silent --show-error --proto '=https' --proto-redir '=https' \
               --retry 2 --connect-timeout 15 --max-time 180 \
               "https://github.com/$OKMS_RELEASE_REPOSITORY/releases/download/$OKMS_RELEASE_TAG/$release_asset" \
               --output "$release_downloads/$release_asset"
-            cmp "dist/$release_asset" "$release_downloads/$release_asset"
+            cmp "$source_asset" "$release_downloads/$release_asset"
           done
           (cd "$release_downloads" && sha256sum --check SHA256SUMS)
-          sh "$release_downloads/install.sh" --version "$OKMS_RELEASE_VERSION" --project "$release_project" --dry-run
-          sh "$release_downloads/install.sh" --version "$OKMS_RELEASE_VERSION" --project "$release_project"
-          sh "$release_downloads/install.sh" --version "$OKMS_RELEASE_VERSION" --project "$release_project"
-          python3 "$release_project/.okms/team.py" --help
+          sh "$release_downloads/install.sh" --version "$OKMS_RELEASE_VERSION" --bin-dir "$release_bin" --project "$release_project" --dry-run
+          sh "$release_downloads/install.sh" --version "$OKMS_RELEASE_VERSION" --bin-dir "$release_bin" --project "$release_project"
+          sh "$release_downloads/install.sh" --bin-dir "$release_bin" --project "$release_project"
+          "$release_project/.okms/okms" --version

@@ -1,0 +1,26 @@
+[package]
+name = "okms"
+version = "0.2.0"
+edition = "2024"
+rust-version = "1.88"
+description = "Project-local workflows and mixed-provider coding agent coordination"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/tidusvn05/okms"
+
+[dependencies]
+anyhow = "1"
+chrono = { version = "0.4", default-features = false, features = ["clock"] }
+clap = { version = "4", features = ["derive"] }
+libc = "0.2"
+regex = "1"
+rusqlite = { version = "0.40.2", features = ["bundled"] }
+serde_json = "1"
+sha2 = "0.10"
+subtle = "2.6"
+tempfile = "3"
+uuid = { version = "1", features = ["v4"] }
+walkdir = "2"
+
+[profile.release]
+lto = "thin"
+strip = true

@@ -10,13 +10,13 @@ Copy a template into your project, point your agent at its workflow, and complet
 | --- | --- | --- |
 | [Lite](templates/lite/docs/workflow.md) | One independent fix, report, or small outcome | Select a kind → save a micro spec → execute → check. Use its Plan-first fallback when scope grows. |
 | [Plan-first](templates/plan-first/docs/workflow.md) | Work with multiple outcomes or dependencies | Save a plan → repeat select → spec → execute → check → checkpoint → check the whole plan. |
-| [Hybrid Team](templates/hybrid-team/docs/workflow.md) · experimental | Use Codex and Claude Code together in one project | One coordinator → ready scoped workers → durable messages → isolated integration → root checks → checkpoint. |
+| [Hybrid Team](templates/hybrid-team/docs/workflow.md) | Use Codex and Claude Code together in one project | One coordinator → ready scoped workers → durable messages → isolated integration → root checks → checkpoint. |
 
-Lite and Plan-first each contain 21 Markdown files at version 0.4.0, with eight task kinds and optional delegation contracts. They have no runtime dependencies. Hybrid Team 0.1.0 has 28 documentation files plus a Python standard-library runtime, native configuration, roles, and skills. It requires Python 3.10+, Git with an existing commit, and both installed/authenticated CLIs on Linux, macOS, or WSL.
+Lite and Plan-first each contain 21 Markdown files at version 0.4.0, with eight task kinds and optional delegation contracts. They have no runtime dependencies. Hybrid Team 0.2.0 has 28 documentation files embedded in a standalone Rust CLI, with a bundled SQLite runtime, native configuration, roles, and skills. Binary installation supports Linux/WSL and macOS on x86_64 and arm64, without Python or a Rust compiler. Coordination requires Git with an existing commit and installed/authenticated provider CLIs.
 
 Choose by planning and coordination needs. All profiles apply baseline and compatibility obligations when existing contracts are affected. Task kind remains independent of profile: coordination is not a ninth kind.
 
-The [Hybrid Team pilot report](evals/hybrid-report.md) records observed CLI operation, retained failures, and automatic-startup limits for this experimental profile.
+The historical [Python pilot report](evals/hybrid-report.md) retains the 0.1.0 observations and failures. Native hook trust and automatic-startup limits remain explicit.
 
 ## Set up with your agent
 
@@ -97,23 +97,23 @@ https://github.com/tidusvn05/okms
 </details>
 
 <details>
-<summary>Hybrid Team — Codex and Claude Code together (experimental)</summary>
+<summary>Hybrid Team — Codex and Claude Code together</summary>
 
 ```text
 Explicitly set up the hybrid-team profile in the current project from:
 https://github.com/tidusvn05/okms
 
 1. Inspect existing docs, active work, agent instructions, native settings,
-   Git, Python, and available/authenticated Codex and Claude Code CLIs.
+   Git, and available/authenticated Codex and Claude Code CLIs.
    Preserve them; do not install tools or create/copy credentials.
 2. If .okms/install.json already identifies Hybrid Team, reuse its docs_path,
    runtime and configuration without upgrading or replacing project edits.
    Otherwise download the release installer into a new temporary file outside
    this project from:
-   https://raw.githubusercontent.com/tidusvn05/okms/main/install.sh
+   https://github.com/tidusvn05/okms/releases/latest/download/install.sh
    Run sh INSTALLER_PATH --project PROJECT_PATH --dry-run, review its report,
    then run it without --dry-run, using argument arrays/quoted paths.
-   It selects the newest complete Hybrid Team release, including prereleases;
+   It selects the latest regular Hybrid Team release;
    add --version X.Y.Z to both calls if I requested an exact published version.
    It verifies the bundle, selects an empty docs namespace, and preserves
    other profiles/history. Stop on download, verification, or setup failure.
@@ -121,7 +121,7 @@ https://github.com/tidusvn05/okms
    information. Configure real required checks as argv arrays in
    .okms/team.json. Preserve existing values on repeated setup; mark unknown
    commands as unknown and never run placeholders or invent a test runner.
-4. Run python3 .okms/team.py doctor and review the installed instructions,
+4. Run .okms/okms doctor and review the installed instructions,
    roles, skills, hooks, links, and preservation report. Ordinary setup must
    not launch provider sessions or application work.
 5. Report profile/version/docs_path, prerequisites, and remaining native
@@ -163,30 +163,36 @@ For a namespaced install, use `docs/okms/workflow.md` and `docs/okms/index.md`. 
 
 If the destination already contains an okms workflow, reuse it and keep its context, indexes, and work. Review profile switches or upgrades explicitly; do not copy a new payload over an existing installation.
 
-For explicit Hybrid Team setup, run from the destination project. Download the installer and review the dry-run before installation:
+For Hybrid Team, install the standalone CLI and review project setup:
 
 ```sh
 okms_installer="$(mktemp /tmp/okms-install.XXXXXX)"
-curl -fL https://raw.githubusercontent.com/tidusvn05/okms/main/install.sh -o "$okms_installer"
-sh "$okms_installer" --project . --dry-run
-sh "$okms_installer" --project .
+curl -fL https://github.com/tidusvn05/okms/releases/latest/download/install.sh -o "$okms_installer"
+sh "$okms_installer"
 rm -f "$okms_installer"
-python3 .okms/team.py doctor
+export PATH="$HOME/.local/bin:$PATH"
+okms --version
+okms init --project . --dry-run
+okms init --project .
+.okms/okms doctor
 ```
 
-The installer requires curl and Python 3.10+. By default (`--version latest`), it selects the highest numeric Hybrid Team version with all three uploaded assets, including experimental prereleases. It downloads the versioned bundle and SHA256SUMS, verifies the checksum and payload manifest, and runs preserving project setup. Stop if any command fails.
+The installer requires curl, tar, and sha256sum or shasum. It verifies the archive before executing the binary and installs into `~/.local/bin`; `--bin-dir PATH` selects another location. `--dry-run` verifies without writes, and `--project PATH` also runs preserving project setup. Stop if any command fails.
 
-Add `--version 0.1.0` to both installer invocations to pin the [current prerelease](https://github.com/tidusvn05/okms/releases/tag/hybrid-team-v0.1.0); that release also provides its own versioned installer. `--docs` selects an explicit documentation namespace. `--release-dir PATH` uses downloaded assets offline and resolves the highest local numeric version when no version is specified. An explicit numeric version skips release discovery.
+Use `--version 0.2.0` to pin [this release](https://github.com/tidusvn05/okms/releases/tag/hybrid-team-v0.2.0). `--release-dir PATH` installs offline from its selected platform archive and SHA256SUMS. `okms init --docs RELATIVE_PATH` chooses a documentation namespace. By default, setup selects an empty namespace and installs the project-local `.okms/okms` helper. Provider CLIs and authentication must already be available.
 
-Setup installs the project-local `.okms/team.py` helper; provider CLIs and authentication must already be available. Temporary bundle files are removed. Repeated setup preserves project edits and does not upgrade an installation. New `hybrid-team-vX.Y.Z` tags matching the committed runtime version are checked and published by [GitHub Actions](.github/workflows/release.yml); see [maintainer instructions](CONTRIBUTING.md#build-and-publish-hybrid-team).
+Repeated setup preserves project edits. Existing Python 0.1.0 copies are refused by Rust setup and require a deliberate reviewed migration that retains active work, operational state, context and native customizations. The [historical prerelease](https://github.com/tidusvn05/okms/releases/tag/hybrid-team-v0.1.0) keeps its original assets and installer.
 
-Alternatively, use a local source checkout:
+To build from a source checkout, install Rust 1.88+ and a C compiler for bundled SQLite:
 
 ```sh
-python3 /path/to/okms/templates/hybrid-team/setup.py --project . --dry-run
-python3 /path/to/okms/templates/hybrid-team/setup.py --project .
-python3 .okms/team.py doctor
+cargo build --release --locked --manifest-path /path/to/okms/Cargo.toml
+/path/to/okms/target/release/okms init --project . --dry-run
+/path/to/okms/target/release/okms init --project .
+.okms/okms doctor
 ```
+
+New `hybrid-team-vX.Y.Z` tags matching Cargo and template versions are checked and published as regular releases by [GitHub Actions](.github/workflows/release.yml); see [maintainer instructions](CONTRIBUTING.md#build-and-publish-hybrid-team).
 
 Setup merges native hooks, chooses available agent/skill names, adds workflow pointers, and ignores operational state. It preserves existing instructions, settings, docs, active work, and project customizations. It launches no agents. Fill actual checks/context before task execution. Review Codex hook trust and Claude project settings; then open either CLI for a coordinator session. Read [the runtime guide](templates/hybrid-team/docs/team.md) for explicit join when startup hooks are unavailable, messages, handoff, and recovery.
 

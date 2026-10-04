@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 import argparse
-import ast
 import re
 import shutil
 import sys
@@ -462,26 +461,28 @@ class Checker:
             if inventory != HYBRID_FILES:
                 self.error(bundle, f"runtime profile must contain exactly the {len(HYBRID_FILES)} documentation files")
             metadata = self.documents.get(bundle / "workflow.md", ({}, ""))[0] or {}
-            if metadata.get("template") != profile or metadata.get("template_version") != "0.1.0":
-                self.error(bundle, "Hybrid Team must identify its independent experimental version")
+            cargo_path = self.root / "Cargo.toml"
+            cargo = cargo_path.read_text().split("[dependencies]", 1)[0] if cargo_path.is_file() else ""
+            version = re.search(r'^version\s*=\s*"(\d+\.\d+\.\d+)"$', cargo, re.M)
+            if not version or metadata.get("template") != profile or metadata.get("template_version") != version[1]:
+                self.error(bundle, "Hybrid Team must identify its independent Rust package version")
             for name in {"_templates/plan.md", "_templates/goal.md", "goal-loop.md",
                          *(f"_templates/{name}" for name in BLUEPRINTS.values()),
                          *(f"_templates/{name}" for name in AGENT_BLUEPRINTS)}:
                 source, target = self.root / "docs" / name, bundle / name
                 if not target.is_file() or source.read_bytes() != target.read_bytes():
                     self.error(target, "shared task/agent contract or Goal guide drifted")
-            if not (distribution / profile / "runtime/team.py").is_file():
-                self.error(distribution / profile, "missing project-local runtime entrypoint")
             self.check_runtime_assets(distribution / profile)
 
     def check_runtime_assets(self, profile):
-        if not (profile / "setup.py").is_file():
-            self.error(profile, "missing preserving runtime setup")
-        for path in [profile / "setup.py", *(profile / "runtime").rglob("*.py")]:
-            try:
-                ast.parse(path.read_text(), filename=str(path))
-            except (OSError, SyntaxError) as error:
-                self.error(path, "runtime source cannot be parsed: " + str(error))
+        for name in ("main", "lib", "cli", "state", "runtime", "gitops", "providers", "worker", "process", "adoption"):
+            path = self.root / "src" / (name + ".rs")
+            if not path.is_file():
+                self.error(path, "missing Rust runtime source")
+        if not (self.root / "build.rs").is_file():
+            self.error(self.root, "missing embedded payload builder")
+        if list(profile.rglob("*.py")):
+            self.error(profile, "the distributed runtime profile must not contain Python entrypoints")
         for provider in ("codex", "claude"):
             for role in ("worker", "reviewer"):
                 extension = ".toml" if provider == "codex" else ".md"
