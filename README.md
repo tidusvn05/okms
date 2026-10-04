@@ -16,38 +16,45 @@ Each template contains 16 Markdown files, including a workflow, context, task ca
 
 ## Set up with your agent
 
-Download or clone this repository. Open your agent in the destination project and paste this prompt, replacing the template name and checkout path:
+Open your agent in the destination project and paste this prompt as-is. The agent needs project file access and network access to fetch the public repository; it obtains the template for you.
 
 ```text
-Set up okms using the plan-first template from /path/to/okms.
+Set up okms in the current project using the plan-first template from:
+https://github.com/tidusvn05/okms
 
 1. Inspect existing project docs and applicable agent instructions.
 2. Reuse an existing okms installation referenced by the project's
    instructions, or look for one at docs/workflow.md or
    docs/okms/workflow.md. Recognize it by its template and template_version
    metadata; if the intended installation is ambiguous, ask which to use.
-   For a new installation, choose docs/ if it is absent or empty;
-   otherwise choose docs/okms/. Copy templates/plan-first/docs/ from the
-   okms checkout only into a new or empty destination. If that destination
-   contains other content, choose an empty destination. Do not overwrite
-   existing files or switch an installed profile.
-3. Fill context.md from actual project files: purpose, durable rules,
+   Reuse it without fetching or switching profiles.
+3. For a new installation, fetch the repository with a shallow HTTPS
+   clone or archive download into a new temporary directory outside this
+   project. Use templates/plan-first/docs/ from that checkout.
+   Choose docs/ if it is absent or empty; otherwise choose docs/okms/.
+   Copy only the selected docs payload into a new or empty destination.
+   If that destination contains other content, choose an empty
+   destination. Do not overwrite existing project files.
+4. Fill context.md from actual project files: purpose, durable rules,
    applicable docs, and real required checks/test commands. Preserve
    existing context on repeated setup. Mark undiscovered information
    as unknown; never execute placeholders or invent commands.
-4. Reuse a pointer to this installation if one already exists. Otherwise
+5. Reuse a pointer to this installation if one already exists. Otherwise
    add this instruction once to the project's AGENTS.md, adapting paths:
    For substantive project tasks, read and follow [the workflow](docs/workflow.md),
    starting with [the docs index](docs/index.md).
    Preserve existing instructions. If this agent uses a different
    instruction entrypoint, add the same pointer there instead.
-5. Check the copied links and report the selected profile and location.
+6. Check the copied links and report the selected profile and location.
+   Remove the temporary source checkout created for this setup, if any.
    Keep okbase optional; there is no need to install it for this setup.
 ```
 
-Change both `plan-first` occurrences to `lite` or `brownfield` to select another profile. The setup prompt performs setup; give the agent an implementation task afterward.
+The default is Plan-first. Change both `plan-first` occurrences to `lite` or `brownfield` to select another profile; no source-path edit or pre-clone is needed. The setup prompt performs setup; give the agent a substantive task afterward.
 
 ## Set up manually
+
+For manual setup, download or clone this repository first and use its local checkout path in the commands below.
 
 First reuse an existing okms installation referenced by your project instructions or found at `docs/workflow.md` or `docs/okms/workflow.md`. Its frontmatter identifies the template and version. For a new installation, copy into a destination that does not exist yet. When `docs/` does not exist:
 
