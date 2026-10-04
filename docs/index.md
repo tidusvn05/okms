@@ -4,7 +4,7 @@ okf_version: "0.2"
 
 # Active work
 
-None.
+- [P014 · Standalone Rust CLI](work/P014-rust-cli/plan.md) - Migrate the complete runtime and verify its official release.
 
 # Documents and directories
 

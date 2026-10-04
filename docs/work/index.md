@@ -1,5 +1,7 @@
 # Plans
 
+- [P014 · Standalone Rust CLI](P014-rust-cli/index.md) - Replace Python coordination with a standalone Rust binary and publish after a final spike.
+
 - [P012 · Namespaced template metadata](P012-namespaced-metadata/index.md) - Rename portable identity keys so documentation site generators accept installed copies.
 
 - [P011 · Automatic tag releases](P011-tag-release/index.md) - Automate tag releases and document installation from published distributions.

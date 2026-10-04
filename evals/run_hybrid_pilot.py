@@ -17,12 +17,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "templates/hybrid-team"
-sys.path.insert(0, str(SOURCE / "runtime"))
-from okms_team.adoption import install
-from okms_team.providers import capabilities, observation
-from okms_team.runtime import Runtime
-from okms_team.state import atomic_json
-from okms_team.worker import stop_process
+sys.path.insert(0, str(ROOT / "evals"))
+from hybrid_support import BINARY, install, capabilities, observation, Runtime, atomic_json, stop_process
 
 CASES = ("codex", "claude", "blocked")
 PLAN = "docs/work/P001-feature/plan.md"
@@ -105,6 +101,8 @@ def write(project, relative, content):
 
 def fingerprint():
     paths = [path for path in SOURCE.rglob("*") if path.is_file() and "__pycache__" not in path.parts]
+    paths += list((ROOT / "src").glob("*.rs"))
+    paths += [ROOT / name for name in ("Cargo.toml", "Cargo.lock", "build.rs", "evals/hybrid_support.py")]
     paths += [Path(__file__), ROOT / "scripts/check_docs.py"]
     return {str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest() for path in sorted(paths)}
 
@@ -163,7 +161,7 @@ Attempt integration using the configured required gate. It is deliberately unava
 Integrate using configured checks after inspecting actual results/diffs/gaps. Checkpoint P001-MS01 done with real evidence, leaving P001-MS02 open for the other root session. Read .okms/state/pilot-standby.json and handoff to its agent_id. Send a notice to coordinator describing the verified batch and remaining checkpoint; then stop, leaving final completion to the new owner. Do not overwrite its identity file.
 """
     return """You are the primary coordinator in an authorized disposable Hybrid Team pilot. Read project instructions, workflow, context and saved plan/specs. The external evaluation harness registers YOUR ACTUAL native session ID; read .okms/state/pilot-primary.json for identity_file. Use that file on every runtime command. This explicit bootstrap evaluates the runtime, not automatic Codex hook trust.
-Execute autonomously through python3 .okms/team.py COMMAND --identity IDENTITY_FILE --input - and JSON stdin. Never launch provider CLIs directly or use native subagents. Preserve notes, staging, HEAD, tests and required gates. Do not rewrite specs or team configuration.
+Execute autonomously through .okms/okms COMMAND --identity IDENTITY_FILE --input - and JSON stdin. Never launch provider CLIs directly or use native subagents. Preserve notes, staging, HEAD, tests and required gates. Do not rewrite specs or team configuration.
 Dispatch Codex for labels.py/P001-MS01 and Claude for durations.py/P001-MS02 under docs/work/P001-feature/plan.md. Both contracts are saved and ready with no dependencies. Assign only the respective module, and checks [["python3","checks.py","labels"]] or [["python3","checks.py","durations"]]. Use status wait_seconds up to 30 while workers run. A result_ready is not completion. Read actual worker artifact results and diffs before acceptance_review.
 """ + peer + finish
 
@@ -357,6 +355,15 @@ def main(argv=None):
             shutil.copytree(SOURCE, directory / "source/hybrid-team", ignore=shutil.ignore_patterns("__pycache__"))
             shutil.copy2(__file__, directory / "source/run_hybrid_pilot.py")
             shutil.copy2(ROOT / "scripts/check_docs.py", directory / "source/check_docs.py")
+            shutil.copy2(ROOT / "evals/hybrid_support.py", directory / "source/hybrid_support.py")
+            shutil.copy2(BINARY, directory / "source/okms")
+            atomic_json(directory / "binary.json", {"path": str(BINARY),
+                "sha256": hashlib.sha256(BINARY.read_bytes()).hexdigest(),
+                "version": subprocess.check_output([str(BINARY), "--version"], text=True).strip()})
+            for path in [ROOT / "Cargo.toml", ROOT / "Cargo.lock", ROOT / "build.rs", *(ROOT / "src").glob("*.rs")]:
+                target = directory / "source" / path.relative_to(ROOT)
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(path, target)
         results = []
         for case in args.cases:
             target = directory / case
@@ -370,14 +377,15 @@ def main(argv=None):
                 continue
             if (target / "primary/invocation.json").exists():
                 parser.error("Partial native execution exists; preserve/review its artifacts and use explicit recovery or a new run directory. It is never silently restarted.")
-            providers = capabilities(Runtime(target / "project").config)
+            providers = capabilities(Runtime(target / "project").config, target / "project")
             atomic_json(target / "capabilities.json", providers)
             if not all(value["available"] and value["authenticated"] and value.get("structured_output") for value in providers.values()):
                 parser.error("Both CLIs must support structured output and be logged in; setup/auth is not performed.")
             results.append(execute(target, case, args.timeout))
     if args.fixtures_only:
         return 0
-    atomic_json(directory / "results.json", {"profile": "hybrid-team", "version": "0.1.0", "results": results})
+    version = subprocess.check_output([str(BINARY), "--version"], text=True).strip().split()[-1]
+    atomic_json(directory / "results.json", {"profile": "hybrid-team", "runtime": "rust", "version": version, "results": results})
     for result in results:
         print(result["case"] + ": " + ("PASS" if result["pass"] else "FAIL") + " " + json.dumps(result["checks"]), flush=True)
     return 0 if all(result["pass"] for result in results) else 1

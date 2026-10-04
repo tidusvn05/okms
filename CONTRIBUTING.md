@@ -4,9 +4,13 @@ Keep templates portable, English, and small enough to read once at task start. U
 
 ## Maintainer checks
 
-Lite and Plan-first have no runtime dependencies. Hybrid Team uses Python 3.10+, SQLite from the standard library, Git, and installed/logged-in provider CLIs. The repository checker uses Python 3.10+ and PyYAML to parse frontmatter:
+Lite and Plan-first have no runtime dependencies. Hybrid Team runs as a Rust binary with bundled SQLite, Git and installed/logged-in provider CLIs. Development needs Rust 1.88+ and a C compiler; Python 3.10+ with PyYAML is used only for maintenance checks, fixtures and evaluation:
 
 ```sh
+cargo build --locked
+cargo fmt --all -- --check
+cargo test --locked
+cargo clippy --locked --all-targets -- -D warnings
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements-dev.txt
 .venv/bin/python scripts/check_docs.py
@@ -62,43 +66,46 @@ Run the opt-in, executable [agent pilots](evals/README.md) when evaluating workf
 
 ## Build and publish Hybrid Team
 
-The [Checks workflow](.github/workflows/checks.yml) runs document checks, the full test suite, and installer syntax checks on main and pull requests with Python 3.10 and 3.13.
+The [Checks workflow](.github/workflows/checks.yml) builds/tests Rust on its minimum 1.88.0 toolchain and stable, runs clippy, checks stable formatting, and runs Python maintainer regressions on 3.10 and 3.13. CI never launches provider task sessions.
 
-For a local distribution rehearsal, run the required checker/test suite first, then build:
+For a local distribution rehearsal, complete the checks above, build a binary for its native target, and package it:
 
 ```sh
-.venv/bin/python scripts/build_hybrid_release.py --output dist --notes dist/release-notes.md
-sh dist/install.sh --release-dir dist --project /path/to/disposable-project --dry-run
-sh dist/install.sh --release-dir dist --project /path/to/disposable-project
+cargo build --release --locked --target x86_64-unknown-linux-musl
+.venv/bin/python scripts/build_hybrid_release.py \
+  --binary target/x86_64-unknown-linux-musl/release/okms \
+  --target x86_64-unknown-linux-musl --output dist
+sh dist/install.sh --release-dir dist --bin-dir /path/to/disposable-bin --project /path/to/disposable-project --dry-run
+sh dist/install.sh --release-dir dist --bin-dir /path/to/disposable-bin --project /path/to/disposable-project
 ```
 
-The builder reads VERSION from `templates/hybrid-team/runtime/okms_team/__init__.py` and emits `okms-hybrid-team-X.Y.Z.tar.gz`, `install.sh`, and `SHA256SUMS`. Optional release notes pin the selected version. The archive contains the exact Hybrid Team payload, both license notices, and `release.json` with every file hash. It fixes member ordering, timestamps, ownership, and gzip metadata for reproducibility. Distribution assets stay in ignored `dist/`.
+Install the Rust target first with rustup; Linux static builds additionally use musl-tools and `CC=musl-gcc`. Use the appropriate target on macOS or arm64. The builder reads the version from Cargo.toml, requires matching workflow metadata and binary output, and emits `okms-TARGET.tar.gz`, install.sh and SHA256SUMS. Archives contain exactly the executable and both license notices. Member ordering, modes, timestamps, ownership and gzip metadata are fixed. `--assemble` combines the four platform archives and writes optional pinned release notes. Generated assets stay in ignored dist/.
 
-`tests/test_hybrid_release.py` exercises real setup, downloaded/offline assets, dirty-project preservation, dry-run/repeat, integrity failures, unsafe extraction, tag mismatches, and latest release selection without provider task sessions.
+`tests/test_rust_release.py` exercises real binary/offline/downloaded installation, Python-free setup, dirty-project preservation, dry-run/repeat, checksums, unsafe extraction, pins and latest URLs. Historical Python distribution/runtime tests use the immutable checksum-pinned 0.1.0 fixture under tests/fixtures; those fixtures are never distributed.
 
-After publication authorization, update the runtime version and applicable version metadata/docs, complete the checks and review, commit, and push main. Create a new annotated `hybrid-team-vX.Y.Z` tag on that committed source. Derive the exact tag from the builder to avoid version drift:
+After publication authorization, update Cargo/template versions and applicable documentation, complete the final native evaluation and checks, commit, and push. Create a new annotated tag on that checked commit:
 
 ```sh
 release_tag="$(.venv/bin/python scripts/build_hybrid_release.py --validate-only | .venv/bin/python -c 'import json, sys; print(json.load(sys.stdin)["tag"])')"
-git tag -a "$release_tag" -m "$release_tag experimental prerelease"
+git tag -a "$release_tag" -m "$release_tag"
 git push origin "$release_tag"
 ```
 
-The [release workflow](.github/workflows/release.yml) triggers on `hybrid-team-v*` tags. It rejects tags that do not exactly match the committed numeric VERSION before packaging. Its read-only prepare job runs required checks, builds deterministic assets and versioned notes, checks SHA256SUMS, and rehearses dry-run/new/repeated installation. Only the publish job receives `contents: write`; it creates the experimental prerelease, uploads the three checked assets, then verifies public downloads and installation. Check the Actions result and release assets after pushing.
+The [release workflow](.github/workflows/release.yml) triggers on `hybrid-team-v*` tags and rejects mismatched versions before building. Four read-only native jobs build Linux musl and macOS binaries on x86_64 and arm64 and smoke-test installation. A read-only prepare job assembles checksums/notes and runs the required document/regression checks against the Linux binary. Only the publish job receives contents: write; it creates a regular latest release, uploads the six checked assets, verifies public downloads, and repeats pinned/default installation.
 
-Manual dispatch rehearses checks, packaging, and offline installation without publishing:
+Manual dispatch performs the same build/check/package rehearsal without publishing:
 
 ```sh
 gh workflow run release.yml --ref main
 ```
 
-Keep existing tags/assets immutable. Existing releases cause publication to fail rather than replace assets; inspect a partially published release before recovery. Rerunning the whole workflow does not repair an existing release automatically. The existing `hybrid-team-v0.1.0` prerelease predates this workflow and is retained.
+Observe Actions results and public assets after pushing a tag. Existing releases cause publication to fail rather than replace assets; inspect a partially published release before recovery. Keep old tags/assets immutable. The 0.1.0 Python prerelease remains historical.
 
-The installer entrypoint on main resolves complete published Hybrid Team releases through the paginated GitHub release list, including prereleases, by numeric version. Exact `--version X.Y.Z` pins use only that tag's assets; `--release-dir` is offline. The generic installer needs no version-default bump for future distributions. Generated release notes pin the exact version and preserve experimental status, prerequisites, native trust requirements, and the limits of repository checks. CI never launches native provider task sessions.
+The installer uses GitHub's latest regular-release asset endpoint by default. Numeric `--version X.Y.Z` pins exact assets, and `--release-dir` is offline. It needs no API JSON parser, Python, Rust compiler, provider installation or authentication. The version-independent platform archive names allow future releases without changing an installer version default.
 
 ## Versioning and upgrades
 
-Lite and Plan-first are `0.4.1`; change both portable workflows' versions together for updated contracts. Hybrid Team is independently versioned experimental `0.1.0`. Review copies manually during an upgrade: preserve project context, active work, and history, and merge workflow/blueprint changes deliberately. Shared task contracts remain consistent across all profiles.
+Lite and Plan-first are `0.4.1`; change both portable workflows' versions together for updated contracts. Hybrid Team is independently versioned `0.2.0` with a Rust CLI/runtime. Review copies manually during an upgrade: preserve project context, active work, and history, and merge workflow/blueprint changes deliberately. Shared task contracts remain consistent across all profiles.
 
 Keep existing spec IDs, plan columns, kindless historical files, and project instructions during deliberate upgrades. Repeated setup alone does not upgrade an installation or change its profile.
 

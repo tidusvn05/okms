@@ -15,7 +15,8 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "templates/hybrid-team/runtime"
+from hybrid_legacy import SOURCE as LEGACY_SOURCE
+SOURCE = LEGACY_SOURCE / "runtime"
 sys.path.insert(0, str(SOURCE))
 from okms_team import gitops, providers, worker
 from okms_team.runtime import CHILDREN, Runtime
