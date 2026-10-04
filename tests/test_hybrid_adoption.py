@@ -12,7 +12,7 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "templates/hybrid-team"
+from hybrid_legacy import SOURCE
 sys.path.insert(0, str(SOURCE / "runtime"))
 from okms_team.adoption import install
 from okms_team.providers import command

@@ -8,7 +8,7 @@ description: Locate the template payloads, durable authoring rules, and checks u
 
 ## Purpose
 
-Publish task contracts and recoverable workflows for agents working in any project. Lite and Plan-first 0.4.1 remain portable Markdown with eight kinds and optional delegation. Hybrid Team 0.1.0 is an opt-in Python/Git runtime for local Codex and Claude Code workers; its independent version does not upgrade portable copies.
+Publish task contracts and recoverable workflows for agents working in any project. Lite and Plan-first 0.4.1 remain portable Markdown with eight kinds and optional delegation. Hybrid Team 0.2.0 is an opt-in standalone Rust/Git runtime for local Codex and Claude Code workers; its independent version does not upgrade portable copies.
 
 ## Durable rules
 
@@ -23,12 +23,13 @@ Publish task contracts and recoverable workflows for agents working in any proje
 - Record baseline evidence and compatibility obligations when changing or deciding changes to existing contracts; keep the documentation proportional to the affected scope.
 - Explicit Goals retain consumed attempts, linked plans, stop reasons, and checkpoints. Native execution requires a real supported integration.
 - Hybrid Team separates TeamSpec policy, plan-owned progress, operational AgentRun state, directed Messages, and append-only Events. Preserve root staging/edits, fence coordinator operations, and require combined/root checks before completion.
-- Hybrid Team publication uses new hybrid-team-vX.Y.Z tags matching committed VERSION. Check and rehearse before a scoped write-permission job publishes; retain existing tags/assets. Default installation selects complete published releases, including prereleases; numeric pins and offline setup remain supported.
+- Hybrid Team publication uses new hybrid-team-vX.Y.Z tags matching Cargo and template versions. Check and rehearse before a scoped write-permission job publishes regular releases; retain existing tags/assets. Default installation selects the latest regular release; numeric pins and offline setup remain supported.
 
 ## Verification
 
 - Required: `.venv/bin/python scripts/check_docs.py` after creating the maintainer environment described in CONTRIBUTING.md.
 - Required for contract/checker changes: `.venv/bin/python -m unittest discover -s tests -v`.
+- Required for Rust changes: `cargo build --locked`, `cargo fmt --all -- --check`, `cargo test --locked` and `cargo clippy --locked --all-targets -- -D warnings`.
 - Optional integration: run `okbase -b PATH lint --level L1` against `docs/`, each template's `docs/`, and the example bundles.
 - Review setup in an empty project and one with existing docs and agent instructions; resume a saved plan without relying on chat history.
 - Explicit agent evaluation: run `.venv/bin/python evals/run_agent_pilot.py` when assessing workflow changes; this uses the installed Codex CLI and existing login in disposable projects. Ordinary document checks never invoke it.
@@ -41,5 +42,5 @@ Publish task contracts and recoverable workflows for agents working in any proje
 - Worked examples: `examples/`.
 - Shared formats: [document blueprints](_templates/index.md).
 - Release implementation history: [work](work/index.md).
-- Optional runtime and preserving setup: `templates/hybrid-team/`; operational fixtures: `tests/test_hybrid_runtime.py` and `tests/test_hybrid_adoption.py`.
-- Release-aware installer: `install.sh`; deterministic asset builder: `scripts/build_hybrid_release.py`; distribution checks: `tests/test_hybrid_release.py`. CI and tag publication: `.github/workflows/`; maintainer procedure: `CONTRIBUTING.md`. Publication requires the user's authorization and preserves prior tags/assets.
+- Rust runtime and preserving setup: `src/`; embedded payload: `templates/hybrid-team/`; native binary scenarios: `tests/test_rust_runtime.py`, `tests/test_rust_adoption.py` and `tests/foundation.rs`. Immutable Python comparisons: `tests/fixtures/`.
+- Binary installer: `install.sh`; deterministic asset builder: `scripts/build_hybrid_release.py`; distribution checks: `tests/test_rust_release.py`. CI and tag publication: `.github/workflows/`; maintainer procedure: `CONTRIBUTING.md`. Publication requires the user's authorization and preserves prior tags/assets.

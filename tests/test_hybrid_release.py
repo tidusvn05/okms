@@ -14,7 +14,8 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SPEC = importlib.util.spec_from_file_location("hybrid_release", ROOT / "scripts/build_hybrid_release.py")
+from hybrid_legacy import SOURCE as LEGACY_SOURCE
+SPEC = importlib.util.spec_from_file_location("hybrid_release", ROOT / "tests/fixtures/build_hybrid_python_release.py")
 release = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(release)
 ARCHIVE = "okms-hybrid-team-0.1.0.tar.gz"
@@ -111,8 +112,8 @@ shutil.copyfile(source, args[args.index("--output") + 1])
             bodies = {member.name.removeprefix(PREFIX + "/"): archive.extractfile(member).read()
                       for member in archive.getmembers()}
         manifest = json.loads(bodies.pop("release.json"))
-        expected = {path.relative_to(ROOT / "templates/hybrid-team").as_posix()
-                    for path in (ROOT / "templates/hybrid-team").rglob("*")
+        expected = {path.relative_to(LEGACY_SOURCE).as_posix()
+                    for path in LEGACY_SOURCE.rglob("*")
                     if path.is_file() and path.suffix in {".py", ".md", ".toml"} and "__pycache__" not in path.parts}
         self.assertEqual(set(bodies), expected | {"LICENSE-MIT", "LICENSE-APACHE"})
         self.assertEqual(manifest["files"], {name: hashlib.sha256(body).hexdigest() for name, body in bodies.items()})

@@ -8,9 +8,9 @@ description: Operate local CLI workers, durable messages, ownership transfer, is
 
 ## Requirements and startup
 
-Use Python 3.10+, Git with an existing commit, and installed/logged-in Codex and Claude Code CLIs. Version 0.1 targets local Linux, macOS, and WSL. Setup installs project files; it does not create accounts, copy credentials, or install the provider CLIs. Native logs/authentication remain under the tools' own management.
+Use the standalone Rust okms binary, Git with an existing commit, and installed/logged-in Codex and Claude Code CLIs. Version 0.2 provides local Linux/WSL and macOS binaries on x86_64 and arm64. Setup and runtime require no Python or Rust compiler; configured application checks may require their own tools. Setup installs project files; it does not create accounts, copy credentials, or install the provider CLIs. Native logs/authentication remain under the tools' own management.
 
-Run `python3 .okms/team.py doctor`. Fill real checks as argv arrays in `.okms/team.json`; unknown commands remain unknown. Context discovery belongs to setup with the agent, not invented command defaults. The CLI transport preserves login/model configuration. Writers use Codex workspace-write and Claude acceptEdits, with runtime-command permission; native denials remain failures. No trust/permission bypass flags are used.
+Run `.okms/okms doctor`. Fill real checks as argv arrays in `.okms/team.json`; unknown commands remain unknown. Context discovery belongs to setup with the agent, not invented command defaults. The CLI transport preserves login/model configuration. Writers use Codex workspace-write and Claude acceptEdits, with runtime-command permission; native denials remain failures. No trust/permission bypass flags are used.
 
 Codex requires project and hook trust before nonmanaged hooks run. Open `/hooks` to review the generated definitions. Claude Code must load the project's settings/hooks. A doctor receipt records a hook invocation; it does not independently establish how the native tool granted trust. [Codex hooks](https://learn.chatgpt.com/docs/hooks), [Claude Code hooks](https://code.claude.com/docs/en/hooks).
 
@@ -20,7 +20,7 @@ SessionStart returns a coordinator or standby identity. Workers carry their iden
 
 In unattended Claude workers, invoke the helper directly with shell-quoted --input-json, or --input FILE prepared in ignored .okms/state. Pure inbox/verify reads need no input. Read artifacts with the native Read tool. Heredocs, compound shell commands, and parsing pipelines may require additional native permission. For root Git inspection, --no-optional-locks avoids Git's optional stat-cache refresh; preserving staging does not require arbitrary external Git readers to leave cache bytes unchanged. [Git status](https://git-scm.com/docs/git-status#_background_refresh).
 
-From the project, use `python3 .okms/team.py COMMAND --identity IDENTITY_FILE --input INPUT_FILE`. Use `--input -` for JSON stdin. Workers omit --identity because their environment is already bound. Input is an object; output is JSON. Errors exit nonzero with incomplete: true. Pass argument arrays when invoking from code; do not interpolate prompts or JSON into shell commands.
+From the project, use `.okms/okms COMMAND --identity IDENTITY_FILE --input INPUT_FILE`. Use `--input -` for JSON stdin. Workers omit --identity because their environment is already bound. Input is an object; output is JSON. Errors exit nonzero with incomplete: true. Pass argument arrays when invoking from code; do not interpolate prompts or JSON into shell commands.
 
 | Command | Input and behavior |
 | --- | --- |

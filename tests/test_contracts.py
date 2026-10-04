@@ -187,6 +187,9 @@ class ContractTests(unittest.TestCase):
         repository = self.project / "repository"
         shutil.copytree(ROOT / "docs", repository / "docs")
         shutil.copytree(ROOT / "templates", repository / "templates")
+        shutil.copytree(ROOT / "src", repository / "src")
+        shutil.copy2(ROOT / "Cargo.toml", repository / "Cargo.toml")
+        shutil.copy2(ROOT / "build.rs", repository / "build.rs")
         shutil.copytree(repository / "templates/plan-first", repository / "templates/extra-profile")
         instance = checker.Checker(repository)
         instance.load()
@@ -294,6 +297,9 @@ class ContractTests(unittest.TestCase):
         repository = self.project / "repository"
         shutil.copytree(ROOT / "docs", repository / "docs")
         shutil.copytree(ROOT / "templates", repository / "templates")
+        shutil.copytree(ROOT / "src", repository / "src")
+        shutil.copy2(ROOT / "Cargo.toml", repository / "Cargo.toml")
+        shutil.copy2(ROOT / "build.rs", repository / "build.rs")
         path = repository / "templates/lite/docs/workflow.md"
         path.write_text(re.sub(r"^okms_template:", "template:", path.read_text(), flags=re.M))
         instance = checker.Checker(repository)
@@ -311,6 +317,9 @@ class ContractTests(unittest.TestCase):
         repository = self.project / "repository"
         shutil.copytree(ROOT / "docs", repository / "docs")
         shutil.copytree(ROOT / "templates", repository / "templates")
+        shutil.copytree(ROOT / "src", repository / "src")
+        shutil.copy2(ROOT / "Cargo.toml", repository / "Cargo.toml")
+        shutil.copy2(ROOT / "build.rs", repository / "build.rs")
         path = repository / "docs/workflow.md"
         path.write_text(re.sub(r"^okms_template_version:.*$", "okms_template_version: [invalid]", path.read_text(), flags=re.M))
         instance = checker.Checker(repository)
