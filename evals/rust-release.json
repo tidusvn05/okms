@@ -1,0 +1,73 @@
+{
+  "tag": "hybrid-team-v0.2.0",
+  "url": "https://github.com/tidusvn05/okms/releases/tag/hybrid-team-v0.2.0",
+  "name": "Hybrid Team 0.2.0",
+  "published_at": "2026-10-04T13:19:47Z",
+  "draft": false,
+  "prerelease": false,
+  "latest_regular_tag": "hybrid-team-v0.2.0",
+  "source_commit": "7eeb753ef84ba5a6c2ab7b5b791a893619a4bf82",
+  "observed_source_commit": "e927ec404505dad084a6071f8f32550069587f84",
+  "asset_sha256": {
+    "install.sh": "3ac63c422ea34344b844350985a5c64c01cd24c619f9bd8dee3cf719ec7de031",
+    "okms-aarch64-apple-darwin.tar.gz": "d46d75356ad63ecf4694cb7ee499d1b3ea5c2adf4aef288c5cd45c70f108ede9",
+    "okms-aarch64-unknown-linux-musl.tar.gz": "2c4518e183a3d201ae453f13d93385bcdaeb08f47f44ccac09bef144cd85c07c",
+    "okms-x86_64-apple-darwin.tar.gz": "a3094ebf379bb03acb0dbbd44a3c11f2a85709a412eb6640067b26c9719f7ce6",
+    "okms-x86_64-unknown-linux-musl.tar.gz": "7682dbe0042df94fd8f104ecffd894e9cf98ffd0481a1c39856eedf5cf64a354",
+    "SHA256SUMS": "8c9fd6cb2ba461aa6b7be500b763efd8d63b017b177712350f0b1e8253831707"
+  },
+  "published_binary_sha256": "9196bc504504882f70948439352bd391231aa6c8e5a4cc6bd88b5518c7773889",
+  "all_six_assets_match_rehearsal": true,
+  "binary_matches_native_matrix": true,
+  "frozen_source_fingerprints_verified": 53,
+  "installation": {
+    "platform": "Linux x86_64",
+    "python_in_path": false,
+    "numeric_pin": true,
+    "latest_regular_default": true,
+    "dry_run_no_writes": true,
+    "dirty_head_index_preserved": true,
+    "existing_docs_instructions_preserved": true,
+    "repeat_preserves_user_context": true,
+    "installed_binary_join": true,
+    "provider_task_session_started": false
+  },
+  "immutable_legacy": {
+    "tag": "hybrid-team-v0.1.0",
+    "tag_object": "8c4a31bb8542a6c14696e8cd41b7d08e33c082ea",
+    "source_commit": "2cd287d57de0bfaecb4730d7e78a3b76b83d4533",
+    "published_at": "2026-10-04T09:24:53Z",
+    "prerelease": true,
+    "asset_sha256": {
+      "install.sh": "ef86a4a44cdc2ef1d942a59b009239d1b7d6ee82a6ed3cdc8ccded699cba5bc4",
+      "okms-hybrid-team-0.1.0.tar.gz": "0fd9a27a172ad83226df7fca437e299c34aab07ae1fc3af06a45c4a12acb121e",
+      "SHA256SUMS": "caa58a5704dfee29eb920950b70adf269b6cb0bc25d294c9927cb3a865946f40"
+    }
+  },
+  "raw_evidence": ".pilot-runs/rust-public-release",
+  "commands_sha256": "8fd36f2128d27f37665a5f9623874bf865b5dff68eb2cc2318fb895c25e614c1",
+  "tag_object": "3d538ac252abf45bdfa3e4f82dfaa1777dfca31f",
+  "workflow": {
+    "run_id": 37204870955,
+    "url": "https://github.com/tidusvn05/okms/actions/runs/37204870955",
+    "event": "push",
+    "conclusion": "success",
+    "successful_attempt": 2,
+    "job_results": {
+      "linux_x86_64": "success",
+      "linux_aarch64": "success",
+      "macos_x86_64": "success",
+      "macos_aarch64": "success",
+      "prepare": "success",
+      "publish": "success"
+    },
+    "retained_failure": {
+      "attempt": 1,
+      "job": "build (aarch64-apple-darwin, macos-15)",
+      "reason": "Runner DNS could not resolve index.crates.io while downloading dependencies; no source compilation failure observed.",
+      "recovery": "Reran only failed jobs and their dependencies with the original tag/source. Other three successful builds were retained.",
+      "raw_log": ".pilot-runs/rust-public-release/mac-arm64-attempt-1.log",
+      "raw_log_sha256": "5539480630366e02672f2e508e611a203faaa03ebb204853080d3e16c355d189"
+    }
+  }
+}

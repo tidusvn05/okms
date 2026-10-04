@@ -27,6 +27,14 @@ The observed executable is the Linux musl artifact downloaded from the successfu
 
 Both ZIP digests match GitHub artifact metadata. All six assembled release assets pass SHA256 checks. The 53 source fingerprints cover Rust/Cargo/build/license files, the embedded payload, checker, runner, and independent SQLite observer. Report-only changes do not alter these checked files. Actual public-download comparison and publication evidence are recorded in the [release plan](../docs/work/P014-rust-cli/plan.md).
 
+## Published release
+
+[Hybrid Team 0.2.0](https://github.com/tidusvn05/okms/releases/tag/hybrid-team-v0.2.0) was published on October 4, 2026 at 13:19:47 UTC as the latest regular release, with draft and prerelease both false. Tag source 7eeb753ef84ba5a6c2ab7b5b791a893619a4bf82 differs from the observed source only in reporting documentation; all 53 frozen fingerprints still match. All six public assets are byte-identical to the checked rehearsal assets. The installed public Linux executable has the exact SHA256 used by every final native case. [Publication measurements](rust-release.json) retain the release metadata, hashes, installer checks and preserved legacy assets.
+
+The [tag workflow](https://github.com/tidusvn05/okms/actions/runs/37204870955) succeeds for four native builds, prepare and publication. Its first macOS ARM job failed to resolve index.crates.io while downloading dependencies; that log is retained. Rerunning the failed job and its dependencies succeeds with unchanged source/tag and the other three successful builds retained. No compilation or acceptance criterion was changed to excuse the network failure.
+
+Actual public downloads, numeric-pin and default-latest installation pass in a Linux PATH containing no Python. Dry-run writes nothing; installation preserves dirty HEAD/index, existing docs/instructions and notes; repeated setup preserves edited context. The installed project helper performs a standalone SQLite join without a provider task session. The original 0.1.0 annotated tag, source commit and all three asset bytes remain unchanged and its historical prerelease is retained.
+
 ## Method, maintenance evidence, and retained failures
 
 Observed native versions are `codex-cli 0.159.0` and Claude Code `2.1.284`, with existing authentication and no model override. Claude streams identify `claude-opus-5-5`; captured Codex JSONL does not identify its effective model. Python executes the maintainer harness and fixture application checks only. The distributed CLI/runtime is Rust and requires no Python interpreter.

@@ -2,7 +2,7 @@
 type: Plan
 title: P014 · Standalone Rust CLI
 description: Migrate the complete Hybrid Team CLI and runtime to Rust, verify native behavior, and publish a regular release.
-work_status: in_progress
+work_status: done
 ---
 
 # P014 · Standalone Rust CLI
@@ -43,14 +43,14 @@ Preserve JSON envelopes, identity fencing, SQLite schema, plan-owned progress, s
 | [P014-MS05 · Bounded descendant cleanup](P014-MS05-processes.md) | P014-MS02 | done | The real descendant-write regression initially failed (seven writes after cancellation instead of one); repaired group cleanup passes in 5.34s. All 116 maintainer scenarios and six native Rust tests pass, with no surviving reproduction process. Minimum Rust 1.88, fmt and clippy pass. |
 | [P014-MS07 · Review and merge the portable PRs](P014-MS07-pull-requests.md) | — | done | [Review](PR-review.md) finds no blocking proposal defect. PR #1/#2 integrated trees pass 118 tests, real MkDocs collision/repaired builds, prompt extraction, 197 documents and ten onboarding scenarios. Exact heads 5e6f64e/7cc1493 pass both CI combinations; merges 0dfe3ea/e0440a8 are observed. Main's resulting tree equals the checked #2 head. |
 | [P014-MS08 · Hybrid metadata compatibility](P014-MS08-metadata.md) | P014-MS07 | done | Actual Hybrid MkDocs 1.6.1 strict build reproduces TemplateNotFound before the rename and passes afterward. Seven adoption scenarios include matching occupied docs and repeated byte preservation; all 119 maintainer and six Rust tests pass. Checker passes 199 documents/ten onboarding scenarios, tag validation still matches 0.2.0, and fmt/clippy pass. Runtime JSON fields and frozen 0.1.0 assets are retained. |
-| [P014-MS06 · Final Rust mixed-provider spike and publication](P014-MS06-release.md) | P014-MS04, P014-MS05, P014-MS07, P014-MS08 | in_progress | All 121 maintainer tests and six Rust tests pass, with minimum Rust/fmt/clippy and checker (201 documents/ten onboarding scenarios). Provenance/chronology controls pass without weakening resume-ID checks. Final e927ec4 [CI](https://github.com/tidusvn05/okms/actions/runs/37203068610) and [four-platform rehearsal](https://github.com/tidusvn05/okms/actions/runs/37203104400) pass. Downloaded ZIP digests and all six asset checksums match. The [Rust report](https://github.com/tidusvn05/okms/blob/hybrid-team-v0.2.0/evals/rust-report.md) records all 36 criteria passing in three projects/five native roots/eight worker turns, 30/30 successful-root behavior cases and preserved blocked-gate work. All 53 frozen source fingerprints still match; regular publication/public-download comparison remains pending. |
+| [P014-MS06 · Final Rust mixed-provider spike and publication](P014-MS06-release.md) | P014-MS04, P014-MS05, P014-MS07, P014-MS08 | done | All 121 maintainer and six Rust tests, minimum Rust/fmt/clippy and checker (201 documents/ten onboarding scenarios) pass. All 36 native criteria pass in three projects/five roots/eight worker turns, with 30/30 successful-root behavior cases and truthful blocked-gate work. Rehearsal/source/binary provenance is retained. [Release-source CI](https://github.com/tidusvn05/okms/actions/runs/37204590399) and [tag workflow](https://github.com/tidusvn05/okms/actions/runs/37204870955) pass; an initial macOS ARM dependency DNS failure is retained and succeeds after a failed-job rerun without source/tag changes. [Regular latest 0.2.0](https://github.com/tidusvn05/okms/releases/tag/hybrid-team-v0.2.0) publishes all six assets. Public bytes match the checked rehearsal; installed Linux binary matches the final native matrix. Actual Python-free numeric/default installation, dry-run, dirty HEAD/index/docs/instruction preservation, edited-context repeat and SQLite join pass. All 53 frozen files, the old annotated tag/source and all three 0.1.0 assets remain unchanged. Evidence: evals/rust-report.md, rust-results.json and rust-release.json. |
 
 ## Resume
 
-- Current: P014-MS06.
-- Next: commit the final native report, publish hybrid-team-v0.2.0, and verify public hashes/installers and immutable 0.1.0 assets.
+- Current: complete.
+- Next: none; released source and evidence are retained.
 - Blocker: none.
 
 ## Result
 
-Pending.
+Complete CLI/runtime and embedded preserving setup run as a standalone Rust 0.2.0 binary. Both authorized portable PRs are reviewed and merged, with Lite/Plan-first 0.4.1 included in source and release notes. The checked annotated tag 3d538ac252abf45bdfa3e4f82dfaa1777dfca31f points to 7eeb753ef84ba5a6c2ab7b5b791a893619a4bf82 and publishes the regular latest release. Public hashes and actual installation are verified; 0.1.0 is immutable. Final native operation is observed only on the recorded Linux CLIs with explicit bootstrap; automatic Codex hook trust, independent role/skill activation, other native platforms/models and desktop/remote integrations remain unclaimed.
